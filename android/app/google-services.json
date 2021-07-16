@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "81093612277",
+    "project_id": "allnimall",
+    "storage_bucket": "allnimall.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81093612277:android:6ec9dd17a7be7e324febbc",
+        "android_client_info": {
+          "package_name": "com.allnimall.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81093612277-98ist3lcs2cnq2o2nb5lunfudt1pjvmc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBydXSoppRjB-gdhCkIckjS0O_t9hzMgtw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81093612277-98ist3lcs2cnq2o2nb5lunfudt1pjvmc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

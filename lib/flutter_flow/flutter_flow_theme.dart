@@ -17,7 +17,7 @@ class FlutterFlowTheme {
         fontSize: 32,
       );
   static TextStyle get title2 => GoogleFonts.getFont(
-        'Poppins',
+        'Fredoka One',
         color: Color(0xFF303030),
         fontWeight: FontWeight.w500,
         fontSize: 22,
