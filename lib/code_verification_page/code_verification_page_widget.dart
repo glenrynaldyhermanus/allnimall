@@ -51,9 +51,9 @@ class _CodeVerificationPageWidgetState
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Allnimall',
+                      'allnimall',
                       style: FlutterFlowTheme.title1.override(
-                        fontFamily: 'Fredoka One',
+                        fontFamily: 'Gorditas',
                         color: FlutterFlowTheme.tertiaryColor,
                       ),
                     )
@@ -108,7 +108,7 @@ class _CodeVerificationPageWidgetState
                             child: Text(
                               'Verify Code',
                               style: FlutterFlowTheme.title2.override(
-                                fontFamily: 'Fredoka One',
+                                fontFamily: 'Gorditas',
                                 color: FlutterFlowTheme.primaryColor,
                               ),
                             ),

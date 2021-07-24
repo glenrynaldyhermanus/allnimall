@@ -37,11 +37,12 @@ class _SplashPageWidgetState extends State<SplashPageWidget> {
         child: Align(
           alignment: Alignment(0, 0),
           child: Text(
-            'Allnimall',
+            'allnimall',
             style: FlutterFlowTheme.title1.override(
-              fontFamily: 'Fredoka One',
+              fontFamily: 'Gorditas',
               color: FlutterFlowTheme.tertiaryColor,
               fontSize: 48,
+              fontWeight: FontWeight.normal,
             ),
           ),
         ),

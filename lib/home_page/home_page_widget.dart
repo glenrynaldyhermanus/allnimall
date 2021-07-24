@@ -22,9 +22,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         backgroundColor: FlutterFlowTheme.tertiaryColor,
         automaticallyImplyLeading: true,
         title: Text(
-          'Allnimall',
+          'allnimall',
           style: FlutterFlowTheme.title1.override(
-            fontFamily: 'Fredoka One',
+            fontFamily: 'Gorditas',
           ),
         ),
         actions: [],

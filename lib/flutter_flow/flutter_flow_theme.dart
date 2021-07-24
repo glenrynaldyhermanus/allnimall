@@ -11,13 +11,13 @@ class FlutterFlowTheme {
   String secondaryFontFamily = 'Roboto';
 
   static TextStyle get title1 => GoogleFonts.getFont(
-        'Fredoka One',
+        'Gorditas',
         color: primaryColor,
         fontWeight: FontWeight.w600,
         fontSize: 32,
       );
   static TextStyle get title2 => GoogleFonts.getFont(
-        'Fredoka One',
+        'Gorditas',
         color: Color(0xFF303030),
         fontWeight: FontWeight.w500,
         fontSize: 22,

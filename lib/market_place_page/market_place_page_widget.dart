@@ -22,9 +22,9 @@ class _MarketPlacePageWidgetState extends State<MarketPlacePageWidget> {
         backgroundColor: FlutterFlowTheme.tertiaryColor,
         automaticallyImplyLeading: true,
         title: Text(
-          'Marketplace',
+          'marketplace',
           style: FlutterFlowTheme.title1.override(
-            fontFamily: 'Fredoka One',
+            fontFamily: 'Gorditas',
           ),
         ),
         actions: [],
