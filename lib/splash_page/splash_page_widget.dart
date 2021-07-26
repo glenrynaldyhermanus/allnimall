@@ -30,8 +30,8 @@ class _SplashPageWidgetState extends State<SplashPageWidget> {
               Color(0xFF806BD0)
             ],
             stops: [0, 0.5, 0.7, 1],
-            begin: Alignment(1, 1),
-            end: Alignment(-1, -1),
+            begin: Alignment(-1, 0),
+            end: Alignment(1, 0),
           ),
         ),
         child: Align(

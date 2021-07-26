@@ -5,6 +5,7 @@ import '../new_pet_page/new_pet_page_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfileAndPetsPageWidget extends StatefulWidget {
@@ -120,13 +121,28 @@ class _ProfileAndPetsPageWidgetState extends State<ProfileAndPetsPageWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    columnPetsRecord.name,
-                                    style: FlutterFlowTheme.subtitle1.override(
-                                      fontFamily: 'Poppins',
-                                      color: FlutterFlowTheme.primaryColor,
-                                      fontSize: 21,
-                                    ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text(
+                                        columnPetsRecord.name,
+                                        style:
+                                            FlutterFlowTheme.subtitle1.override(
+                                          fontFamily: 'Poppins',
+                                          color: FlutterFlowTheme.primaryColor,
+                                          fontSize: 21,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(8, 0, 0, 0),
+                                        child: FaIcon(
+                                          FontAwesomeIcons.venusMars,
+                                          color: FlutterFlowTheme.primaryColor,
+                                          size: 24,
+                                        ),
+                                      )
+                                    ],
                                   ),
                                   Text(
                                     dateTimeFormat(

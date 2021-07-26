@@ -37,6 +37,14 @@ abstract class PetsRecord implements Built<PetsRecord, PetsRecordBuilder> {
   String get pictureUrl;
 
   @nullable
+  @BuiltValueField(wireName: 'has_vaccinated')
+  bool get hasVaccinated;
+
+  @nullable
+  @BuiltValueField(wireName: 'has_sterilised')
+  bool get hasSterilised;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -46,7 +54,9 @@ abstract class PetsRecord implements Built<PetsRecord, PetsRecordBuilder> {
     ..ownerName = ''
     ..weight = 0.0
     ..condition = ''
-    ..pictureUrl = '';
+    ..pictureUrl = ''
+    ..hasVaccinated = false
+    ..hasSterilised = false;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('pets');
@@ -73,6 +83,8 @@ Map<String, dynamic> createPetsRecordData({
   double weight,
   String condition,
   String pictureUrl,
+  bool hasVaccinated,
+  bool hasSterilised,
 }) =>
     serializers.toFirestore(
         PetsRecord.serializer,
@@ -84,4 +96,6 @@ Map<String, dynamic> createPetsRecordData({
           ..ownerName = ownerName
           ..weight = weight
           ..condition = condition
-          ..pictureUrl = pictureUrl));
+          ..pictureUrl = pictureUrl
+          ..hasVaccinated = hasVaccinated
+          ..hasSterilised = hasSterilised));
