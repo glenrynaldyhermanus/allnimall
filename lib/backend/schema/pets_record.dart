@@ -10,17 +10,10 @@ abstract class PetsRecord implements Built<PetsRecord, PetsRecordBuilder> {
   static Serializer<PetsRecord> get serializer => _$petsRecordSerializer;
 
   @nullable
-  String get uid;
-
-  @nullable
   String get name;
 
   @nullable
   DateTime get birthdate;
-
-  @nullable
-  @BuiltValueField(wireName: 'owner_path')
-  DocumentReference get ownerPath;
 
   @nullable
   @BuiltValueField(wireName: 'owner_name')
@@ -45,18 +38,64 @@ abstract class PetsRecord implements Built<PetsRecord, PetsRecordBuilder> {
   bool get hasSterilised;
 
   @nullable
+  @BuiltValueField(wireName: 'owner_uid')
+  DocumentReference get ownerUid;
+
+  @nullable
+  String get sex;
+
+  @nullable
+  @BuiltValueField(wireName: 'weight_unit')
+  String get weightUnit;
+
+  @nullable
+  String get breed;
+
+  @nullable
+  @BuiltValueField(wireName: 'has_diarrhea')
+  bool get hasDiarrhea;
+
+  @nullable
+  @BuiltValueField(wireName: 'has_earmites')
+  bool get hasEarmites;
+
+  @nullable
+  @BuiltValueField(wireName: 'has_fleas')
+  bool get hasFleas;
+
+  @nullable
+  @BuiltValueField(wireName: 'has_fungus')
+  bool get hasFungus;
+
+  @nullable
+  @BuiltValueField(wireName: 'has_scabies')
+  bool get hasScabies;
+
+  @nullable
+  @BuiltValueField(wireName: 'has_worms')
+  bool get hasWorms;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
   static void _initializeBuilder(PetsRecordBuilder builder) => builder
-    ..uid = ''
     ..name = ''
     ..ownerName = ''
     ..weight = 0.0
     ..condition = ''
     ..pictureUrl = ''
     ..hasVaccinated = false
-    ..hasSterilised = false;
+    ..hasSterilised = false
+    ..sex = ''
+    ..weightUnit = ''
+    ..breed = ''
+    ..hasDiarrhea = false
+    ..hasEarmites = false
+    ..hasFleas = false
+    ..hasFungus = false
+    ..hasScabies = false
+    ..hasWorms = false;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('pets');
@@ -65,37 +104,57 @@ abstract class PetsRecord implements Built<PetsRecord, PetsRecordBuilder> {
       .snapshots()
       .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
 
+  static Future<PetsRecord> getDocumentOnce(DocumentReference ref) => ref
+      .get()
+      .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
+
   PetsRecord._();
   factory PetsRecord([void Function(PetsRecordBuilder) updates]) = _$PetsRecord;
 
   static PetsRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(
-          serializer, {...data, kDocumentReferenceField: reference});
+      serializers.deserializeWith(serializer,
+          {...mapFromFirestore(data), kDocumentReferenceField: reference});
 }
 
 Map<String, dynamic> createPetsRecordData({
-  String uid,
   String name,
   DateTime birthdate,
-  DocumentReference ownerPath,
   String ownerName,
   double weight,
   String condition,
   String pictureUrl,
   bool hasVaccinated,
   bool hasSterilised,
+  DocumentReference ownerUid,
+  String sex,
+  String weightUnit,
+  String breed,
+  bool hasDiarrhea,
+  bool hasEarmites,
+  bool hasFleas,
+  bool hasFungus,
+  bool hasScabies,
+  bool hasWorms,
 }) =>
     serializers.toFirestore(
         PetsRecord.serializer,
         PetsRecord((p) => p
-          ..uid = uid
           ..name = name
           ..birthdate = birthdate
-          ..ownerPath = ownerPath
           ..ownerName = ownerName
           ..weight = weight
           ..condition = condition
           ..pictureUrl = pictureUrl
           ..hasVaccinated = hasVaccinated
-          ..hasSterilised = hasSterilised));
+          ..hasSterilised = hasSterilised
+          ..ownerUid = ownerUid
+          ..sex = sex
+          ..weightUnit = weightUnit
+          ..breed = breed
+          ..hasDiarrhea = hasDiarrhea
+          ..hasEarmites = hasEarmites
+          ..hasFleas = hasFleas
+          ..hasFungus = hasFungus
+          ..hasScabies = hasScabies
+          ..hasWorms = hasWorms));

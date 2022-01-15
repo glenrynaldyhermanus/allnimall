@@ -3,51 +3,50 @@ import 'package:google_fonts/google_fonts.dart';
 
 // ignore: avoid_classes_with_only_static_members
 class FlutterFlowTheme {
-  static const Color primaryColor = Color(0xFF58459F);
-  static const Color secondaryColor = Color(0xFFEA6795);
+  static const Color primaryColor = Color(0xFF3A3D71);
+  static const Color secondaryColor = Color(0xFFEF487F);
   static const Color tertiaryColor = Color(0xFFFFFFFF);
 
   String primaryFontFamily = 'Poppins';
   String secondaryFontFamily = 'Roboto';
-
-  static TextStyle get title1 => GoogleFonts.getFont(
-        'Gorditas',
+  static TextStyle get title1 => TextStyle(
+        fontFamily: 'RockoUltra',
         color: primaryColor,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w500,
         fontSize: 32,
       );
-  static TextStyle get title2 => GoogleFonts.getFont(
-        'Gorditas',
+  static TextStyle get title2 => TextStyle(
+        fontFamily: 'RockoUltra',
         color: Color(0xFF303030),
         fontWeight: FontWeight.w500,
         fontSize: 22,
       );
-  static TextStyle get title3 => GoogleFonts.getFont(
-        'Poppins',
+  static TextStyle get title3 => TextStyle(
+        fontFamily: 'RockoUltra',
         color: Color(0xFF303030),
         fontWeight: FontWeight.w500,
         fontSize: 20,
       );
   static TextStyle get subtitle1 => GoogleFonts.getFont(
-        'Poppins',
+        'Cabin',
         color: Color(0xFF757575),
         fontWeight: FontWeight.w500,
         fontSize: 18,
       );
   static TextStyle get subtitle2 => GoogleFonts.getFont(
-        'Poppins',
+        'Cabin',
         color: Color(0xFF616161),
         fontWeight: FontWeight.normal,
         fontSize: 16,
       );
   static TextStyle get bodyText1 => GoogleFonts.getFont(
-        'Poppins',
+        'Cabin',
         color: Color(0xFF303030),
         fontWeight: FontWeight.normal,
         fontSize: 14,
       );
   static TextStyle get bodyText2 => GoogleFonts.getFont(
-        'Poppins',
+        'Cabin',
         color: Color(0xFF424242),
         fontWeight: FontWeight.normal,
         fontSize: 14,
@@ -55,17 +54,30 @@ class FlutterFlowTheme {
 }
 
 extension TextStyleHelper on TextStyle {
-  TextStyle override(
-          {String fontFamily,
-          Color color,
-          double fontSize,
-          FontWeight fontWeight,
-          FontStyle fontStyle}) =>
-      GoogleFonts.getFont(
-        fontFamily,
-        color: color ?? this.color,
-        fontSize: fontSize ?? this.fontSize,
-        fontWeight: fontWeight ?? this.fontWeight,
-        fontStyle: fontStyle ?? this.fontStyle,
-      );
+  TextStyle override({
+    String fontFamily,
+    Color color,
+    double fontSize,
+    FontWeight fontWeight,
+    FontStyle fontStyle,
+    bool useGoogleFonts = true,
+    double lineHeight,
+  }) =>
+      useGoogleFonts
+          ? GoogleFonts.getFont(
+              fontFamily,
+              color: color ?? this.color,
+              fontSize: fontSize ?? this.fontSize,
+              fontWeight: fontWeight ?? this.fontWeight,
+              fontStyle: fontStyle ?? this.fontStyle,
+              height: lineHeight,
+            )
+          : copyWith(
+              fontFamily: fontFamily,
+              color: color,
+              fontSize: fontSize,
+              fontWeight: fontWeight,
+              fontStyle: fontStyle,
+              height: lineHeight,
+            );
 }

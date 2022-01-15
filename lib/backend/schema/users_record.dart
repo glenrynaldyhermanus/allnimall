@@ -32,6 +32,23 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   String get phoneNumber;
 
   @nullable
+  @BuiltValueField(wireName: 'order_address')
+  String get orderAddress;
+
+  @nullable
+  @BuiltValueField(wireName: 'order_latlng')
+  LatLng get orderLatlng;
+
+  @nullable
+  DateTime get birthdate;
+
+  @nullable
+  String get gender;
+
+  @nullable
+  String get role;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -40,7 +57,10 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
     ..displayName = ''
     ..photoUrl = ''
     ..uid = ''
-    ..phoneNumber = '';
+    ..phoneNumber = ''
+    ..orderAddress = ''
+    ..gender = ''
+    ..role = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -49,14 +69,18 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
       .snapshots()
       .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
 
+  static Future<UsersRecord> getDocumentOnce(DocumentReference ref) => ref
+      .get()
+      .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
+
   UsersRecord._();
   factory UsersRecord([void Function(UsersRecordBuilder) updates]) =
       _$UsersRecord;
 
   static UsersRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(
-          serializer, {...data, kDocumentReferenceField: reference});
+      serializers.deserializeWith(serializer,
+          {...mapFromFirestore(data), kDocumentReferenceField: reference});
 }
 
 Map<String, dynamic> createUsersRecordData({
@@ -66,6 +90,11 @@ Map<String, dynamic> createUsersRecordData({
   String uid,
   DateTime createdTime,
   String phoneNumber,
+  String orderAddress,
+  LatLng orderLatlng,
+  DateTime birthdate,
+  String gender,
+  String role,
 }) =>
     serializers.toFirestore(
         UsersRecord.serializer,
@@ -75,4 +104,9 @@ Map<String, dynamic> createUsersRecordData({
           ..photoUrl = photoUrl
           ..uid = uid
           ..createdTime = createdTime
-          ..phoneNumber = phoneNumber));
+          ..phoneNumber = phoneNumber
+          ..orderAddress = orderAddress
+          ..orderLatlng = orderLatlng
+          ..birthdate = birthdate
+          ..gender = gender
+          ..role = role));
