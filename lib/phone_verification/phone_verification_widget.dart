@@ -102,13 +102,15 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                     if (phoneVerifiedUser == null) {
                       return;
                     }
-                    await Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SignUpWidget(),
-                      ),
-                      (r) => false,
-                    );
+                    if ((currentUserDisplayName) == '') {
+                      await Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignUpWidget(),
+                        ),
+                        (r) => false,
+                      );
+                    }
                   },
                   text: 'Verify',
                   options: FFButtonOptions(

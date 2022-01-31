@@ -1,5 +1,7 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../components/empty_pet_widget.dart';
+import '../components/pet_weight_form_widget.dart';
 import '../edit_profile/edit_profile_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -31,6 +33,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.tertiaryColor,
+        iconTheme: IconThemeData(color: FlutterFlowTheme.primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
           'Profile n Pets',
@@ -207,7 +210,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      8, 12, 0, 0),
+                                      0, 12, 0, 0),
                                   child: StreamBuilder<List<PetsRecord>>(
                                     stream: queryPetsRecord(
                                       queryBuilder: (petsRecord) =>
@@ -231,6 +234,11 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                       }
                                       List<PetsRecord> rowPetsRecordList =
                                           snapshot.data;
+                                      if (rowPetsRecordList.isEmpty) {
+                                        return Center(
+                                          child: EmptyPetWidget(),
+                                        );
+                                      }
                                       return SingleChildScrollView(
                                         scrollDirection: Axis.horizontal,
                                         child: Row(
@@ -242,7 +250,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                                 rowPetsRecordList[rowIndex];
                                             return Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(12, 0, 0, 0),
+                                                  .fromSTEB(20, 0, 0, 16),
                                               child: InkWell(
                                                 onTap: () async {
                                                   await Navigator.push(
@@ -256,12 +264,18 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                                     ),
                                                   );
                                                 },
-                                                child: Card(
-                                                  clipBehavior: Clip
-                                                      .antiAliasWithSaveLayer,
-                                                  color: Colors.white,
-                                                  elevation: 8,
-                                                  shape: RoundedRectangleBorder(
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        blurRadius: 8,
+                                                        color:
+                                                            Color(0xFFE4E4E4),
+                                                        offset: Offset(0, 8),
+                                                        spreadRadius: 4,
+                                                      )
+                                                    ],
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             24),
@@ -270,7 +284,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                                     padding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
-                                                                12, 12, 12, 12),
+                                                                12, 16, 12, 16),
                                                     child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -281,7 +295,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                                         ClipRRect(
                                                           borderRadius:
                                                               BorderRadius
-                                                                  .circular(28),
+                                                                  .circular(16),
                                                           child:
                                                               CachedNetworkImage(
                                                             imageUrl:
@@ -470,6 +484,10 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                             List<PetSchedulesRecord>
                                                 columnPetSchedulesRecordList =
                                                 snapshot.data;
+                                            if (columnPetSchedulesRecordList
+                                                .isEmpty) {
+                                              return PetWeightFormWidget();
+                                            }
                                             return Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: List.generate(

@@ -20,7 +20,7 @@ class FFAppState {
 
   SharedPreferences prefs;
 
-  String phone;
+  String phone = '';
 
   List<DocumentReference> adminList = [];
 }

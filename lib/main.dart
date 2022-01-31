@@ -7,12 +7,9 @@ import 'auth/auth_util.dart';
 import 'backend/push_notifications/push_notifications_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import 'package:allnimall/phone_sign_in/phone_sign_in_widget.dart';
+import 'package:allnimall/home/home_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'home/home_widget.dart';
-import 'market_place/market_place_widget.dart';
-import 'timeline/timeline_widget.dart';
-import 'profile_and_pets/profile_and_pets_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -75,86 +72,8 @@ class _MyAppState extends State<MyApp> {
               ),
             )
           : currentUser.loggedIn
-              ? PushNotificationsHandler(child: NavBarPage())
+              ? PushNotificationsHandler(child: HomeWidget())
               : PhoneSignInWidget(),
-    );
-  }
-}
-
-class NavBarPage extends StatefulWidget {
-  NavBarPage({Key key, this.initialPage}) : super(key: key);
-
-  final String initialPage;
-
-  @override
-  _NavBarPageState createState() => _NavBarPageState();
-}
-
-/// This is the private State class that goes with NavBarPage.
-class _NavBarPageState extends State<NavBarPage> {
-  String _currentPage = 'Home';
-
-  @override
-  void initState() {
-    super.initState();
-    _currentPage = widget.initialPage ?? _currentPage;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final tabs = {
-      'Home': HomeWidget(),
-      'MarketPlace': MarketPlaceWidget(),
-      'Timeline': TimelineWidget(),
-      'ProfileAndPets': ProfileAndPetsWidget(),
-    };
-    final currentIndex = tabs.keys.toList().indexOf(_currentPage);
-    return Scaffold(
-      body: tabs[_currentPage],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
-        backgroundColor: FlutterFlowTheme.primaryColor,
-        selectedItemColor: FlutterFlowTheme.secondaryColor,
-        unselectedItemColor: Color(0x8AC8C8C8),
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.dashboard_rounded,
-              size: 32,
-            ),
-            label: 'Home',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.store_mall_directory_rounded,
-              size: 32,
-            ),
-            label: 'Marketplace',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.people_alt,
-              size: 32,
-            ),
-            label: 'Timeline',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.pets_outlined,
-              size: 32,
-            ),
-            label: 'Profile n Pets',
-            tooltip: '',
-          )
-        ],
-      ),
     );
   }
 }

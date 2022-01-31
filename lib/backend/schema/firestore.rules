@@ -1,72 +1,79 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    function userDoc() {
-      return /databases/$(database)/documents/users/$(request.auth.uid);
+    match /users/{document} {
+      allow create: if request.auth.uid == document;
+      allow read: if true;
+      allow write: if request.auth.uid == document;
+      allow delete: if false;
     }
 
-    match /users/{userId} {
+    match /pets/{document} {
+      allow create: if true;
       allow read: if true;
-      allow create, update: if request.auth.uid == userId;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /orders/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /categories/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /services/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /articles/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /feature_requests/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /chat_messages/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /pet_posts/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /pet_schedules/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
     }
 
     match /ff_user_push_notifications/{id} {
       allow read, update, delete: if false;
       allow create: if userDoc() == request.resource.data.sender;
-    }
-
-    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
-    // security rules for this collection before publishing your app.
-    match /pets/{id} {
-      allow read, write: if true;
-    }
-
-    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
-    // security rules for this collection before publishing your app.
-    match /orders/{id} {
-      allow read, write: if true;
-    }
-
-    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
-    // security rules for this collection before publishing your app.
-    match /categories/{id} {
-      allow read, write: if true;
-    }
-
-    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
-    // security rules for this collection before publishing your app.
-    match /services/{id} {
-      allow read, write: if true;
-    }
-
-    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
-    // security rules for this collection before publishing your app.
-    match /articles/{id} {
-      allow read, write: if true;
-    }
-
-    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
-    // security rules for this collection before publishing your app.
-    match /feature_requests/{id} {
-      allow read, write: if true;
-    }
-
-    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
-    // security rules for this collection before publishing your app.
-    match /chat_messages/{id} {
-      allow read, write: if true;
-    }
-
-    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
-    // security rules for this collection before publishing your app.
-    match /pet_posts/{id} {
-      allow read, write: if true;
-    }
-
-    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
-    // security rules for this collection before publishing your app.
-    match /pet_schedules/{id} {
-      allow read, write: if true;
     }
   }
 }

@@ -340,94 +340,81 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.tertiaryColor,
                               ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 24, 0, 0),
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        final ordersCreateData =
-                                            createOrdersRecordData(
-                                          createdAt: getCurrentTimestamp,
-                                          orderNo:
-                                              functions.generateOrderNumber(
-                                                  getCurrentTimestamp),
-                                          scheduledAt: calendarSelectedDay.end,
-                                          quantity: countControllerValue,
-                                          amount: functions.countAmount(
-                                              100000.0, countControllerValue),
-                                          status: 'New',
-                                          petCategory: dropDownPetsValue,
-                                          name:
-                                              'Groom ${countControllerValue.toString()} ${dropDownPetsValue}',
-                                          service: dropDownServiceValue,
-                                          customerUid: currentUserReference,
-                                          customerAddress:
-                                              groomingFormUsersRecord
-                                                  .orderAddress,
-                                          customerLatlng:
-                                              groomingFormUsersRecord
-                                                  .orderLatlng,
-                                          customerName: currentUserDisplayName,
-                                          paymentStatus: 'Unpaid',
-                                        );
-                                        final ordersRecordReference =
-                                            OrdersRecord.collection.doc();
-                                        await ordersRecordReference
-                                            .set(ordersCreateData);
-                                        order =
-                                            OrdersRecord.getDocumentFromData(
-                                                ordersCreateData,
-                                                ordersRecordReference);
-                                        triggerPushNotification(
-                                          notificationTitle: 'Test',
-                                          notificationText: 'Tus',
-                                          userRefs: containerUsersRecordList
-                                              .map((e) => e.reference)
-                                              .toList(),
-                                          initialPageName: 'Home',
-                                          parameterData: {},
-                                        );
-                                        await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                GroomingDetailWidget(
-                                              order: order.reference,
-                                            ),
-                                          ),
-                                        );
-
-                                        setState(() {});
-                                      },
-                                      text:
-                                          'Order - ${functions.countFee(countControllerValue)}',
-                                      options: FFButtonOptions(
-                                        width: double.infinity,
-                                        height: 56,
-                                        color: FlutterFlowTheme.secondaryColor,
-                                        textStyle:
-                                            FlutterFlowTheme.title3.override(
-                                          fontFamily: 'RockoUltra',
-                                          color: FlutterFlowTheme.tertiaryColor,
-                                          fontSize: 16,
-                                          useGoogleFonts: false,
+                              child: Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    final ordersCreateData =
+                                        createOrdersRecordData(
+                                      createdAt: getCurrentTimestamp,
+                                      orderNo: functions.generateOrderNumber(
+                                          getCurrentTimestamp),
+                                      scheduledAt: calendarSelectedDay.end,
+                                      quantity: countControllerValue,
+                                      amount: functions.countAmount(
+                                          100000.0, countControllerValue),
+                                      status: 'New',
+                                      petCategory: dropDownPetsValue,
+                                      name:
+                                          'Groom ${countControllerValue.toString()} ${dropDownPetsValue}',
+                                      service: dropDownServiceValue,
+                                      customerUid: currentUserReference,
+                                      customerAddress:
+                                          groomingFormUsersRecord.orderAddress,
+                                      customerLatlng:
+                                          groomingFormUsersRecord.orderLatlng,
+                                      customerName: currentUserDisplayName,
+                                      paymentStatus: 'Unpaid',
+                                    );
+                                    final ordersRecordReference =
+                                        OrdersRecord.collection.doc();
+                                    await ordersRecordReference
+                                        .set(ordersCreateData);
+                                    order = OrdersRecord.getDocumentFromData(
+                                        ordersCreateData,
+                                        ordersRecordReference);
+                                    triggerPushNotification(
+                                      notificationTitle: 'New Grooming Order',
+                                      notificationText:
+                                          'Hey! You\'ve got a new order, check it out!',
+                                      userRefs: containerUsersRecordList
+                                          .map((e) => e.reference)
+                                          .toList(),
+                                      initialPageName: 'Home',
+                                      parameterData: {},
+                                    );
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            GroomingDetailWidget(
+                                          order: order.reference,
                                         ),
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1,
-                                        ),
-                                        borderRadius: 24,
                                       ),
+                                    );
+
+                                    setState(() {});
+                                  },
+                                  text:
+                                      'Order - ${functions.countFee(countControllerValue)}',
+                                  options: FFButtonOptions(
+                                    width: double.infinity,
+                                    height: 56,
+                                    color: FlutterFlowTheme.secondaryColor,
+                                    textStyle: FlutterFlowTheme.title3.override(
+                                      fontFamily: 'RockoUltra',
+                                      color: FlutterFlowTheme.tertiaryColor,
+                                      fontSize: 16,
+                                      useGoogleFonts: false,
                                     ),
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1,
+                                    ),
+                                    borderRadius: 24,
                                   ),
-                                  Text(
-                                    containerUsersRecordList.length.toString(),
-                                    style: FlutterFlowTheme.bodyText1,
-                                  ),
-                                ],
+                                ),
                               ),
                             );
                           },

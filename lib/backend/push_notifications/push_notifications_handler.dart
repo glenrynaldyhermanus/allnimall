@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 
 import '../../main.dart';
 import '../../splash/splash_widget.dart';
+import '../../profile_and_pets/profile_and_pets_widget.dart';
+import '../../market_place/market_place_widget.dart';
 import '../../new_pet/new_pet_widget.dart';
 import '../../order_list/order_list_widget.dart';
 import '../../grooming_form/grooming_form_widget.dart';
@@ -29,8 +31,10 @@ import '../../pet_post/pet_post_widget.dart';
 import '../../update_pet/update_pet_widget.dart';
 import '../../pet_schedule/pet_schedule_widget.dart';
 import '../../add_schedule/add_schedule_widget.dart';
+import '../../timeline/timeline_widget.dart';
 import '../../pet_list/pet_list_widget.dart';
 import '../../edit_profile/edit_profile_widget.dart';
+import '../../home_backup/home_backup_widget.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
   const PushNotificationsHandler(
@@ -101,9 +105,8 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
 
 final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'Splash': (data) async => SplashWidget(),
-  'ProfileAndPets': (data) async =>
-      NavBarPage(initialPage: 'ProfileAndPetsWidget'),
-  'MarketPlace': (data) async => NavBarPage(initialPage: 'MarketPlaceWidget'),
+  'ProfileAndPets': (data) async => ProfileAndPetsWidget(),
+  'MarketPlace': (data) async => MarketPlaceWidget(),
   'NewPet': (data) async => NewPetWidget(
         pet: getParameter(data, 'pet'),
       ),
@@ -138,9 +141,10 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'AddSchedule': (data) async => AddScheduleWidget(
         petRef: getParameter(data, 'petRef'),
       ),
-  'Timeline': (data) async => NavBarPage(initialPage: 'TimelineWidget'),
+  'Timeline': (data) async => TimelineWidget(),
   'PetList': (data) async => PetListWidget(),
   'EditProfile': (data) async => EditProfileWidget(),
+  'HomeBackup': (data) async => HomeBackupWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>
