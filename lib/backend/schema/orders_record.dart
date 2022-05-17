@@ -62,6 +62,52 @@ abstract class OrdersRecord
   String get paymentStatus;
 
   @nullable
+  @BuiltValueField(wireName: 'preffered_time')
+  String get prefferedTime;
+
+  @nullable
+  double get discount;
+
+  @nullable
+  String get notes;
+
+  @nullable
+  @BuiltValueField(wireName: 'start_time')
+  String get startTime;
+
+  @nullable
+  @BuiltValueField(wireName: 'end_time')
+  String get endTime;
+
+  @nullable
+  @BuiltValueField(wireName: 'ranger_uid')
+  DocumentReference get rangerUid;
+
+  @nullable
+  @BuiltValueField(wireName: 'ranger_name')
+  String get rangerName;
+
+  @nullable
+  @BuiltValueField(wireName: 'ranger_phone')
+  String get rangerPhone;
+
+  @nullable
+  @BuiltValueField(wireName: 'ranger_profile_picture')
+  String get rangerProfilePicture;
+
+  @nullable
+  @BuiltValueField(wireName: 'confirmed_at')
+  DateTime get confirmedAt;
+
+  @nullable
+  @BuiltValueField(wireName: 'customer_phone')
+  String get customerPhone;
+
+  @nullable
+  @BuiltValueField(wireName: 'ontheway_at')
+  DateTime get onthewayAt;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -75,7 +121,16 @@ abstract class OrdersRecord
     ..status = ''
     ..customerAddress = ''
     ..customerName = ''
-    ..paymentStatus = '';
+    ..paymentStatus = ''
+    ..prefferedTime = ''
+    ..discount = 0.0
+    ..notes = ''
+    ..startTime = ''
+    ..endTime = ''
+    ..rangerName = ''
+    ..rangerPhone = ''
+    ..rangerProfilePicture = ''
+    ..customerPhone = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('orders');
@@ -113,6 +168,18 @@ Map<String, dynamic> createOrdersRecordData({
   LatLng customerLatlng,
   String customerName,
   String paymentStatus,
+  String prefferedTime,
+  double discount,
+  String notes,
+  String startTime,
+  String endTime,
+  DocumentReference rangerUid,
+  String rangerName,
+  String rangerPhone,
+  String rangerProfilePicture,
+  DateTime confirmedAt,
+  String customerPhone,
+  DateTime onthewayAt,
 }) =>
     serializers.toFirestore(
         OrdersRecord.serializer,
@@ -130,4 +197,16 @@ Map<String, dynamic> createOrdersRecordData({
           ..customerAddress = customerAddress
           ..customerLatlng = customerLatlng
           ..customerName = customerName
-          ..paymentStatus = paymentStatus));
+          ..paymentStatus = paymentStatus
+          ..prefferedTime = prefferedTime
+          ..discount = discount
+          ..notes = notes
+          ..startTime = startTime
+          ..endTime = endTime
+          ..rangerUid = rangerUid
+          ..rangerName = rangerName
+          ..rangerPhone = rangerPhone
+          ..rangerProfilePicture = rangerProfilePicture
+          ..confirmedAt = confirmedAt
+          ..customerPhone = customerPhone
+          ..onthewayAt = onthewayAt));

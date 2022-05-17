@@ -58,16 +58,17 @@ class _NewPetWidgetState extends State<NewPetWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.primaryColor),
+        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+        iconTheme:
+            IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
           'New Pet',
-          style: FlutterFlowTheme.title3.override(
-            fontFamily: 'RockoUltra',
-            color: FlutterFlowTheme.primaryColor,
-            useGoogleFonts: false,
-          ),
+          style: FlutterFlowTheme.of(context).title3.override(
+                fontFamily: 'RockoUltra',
+                color: FlutterFlowTheme.of(context).primaryColor,
+                useGoogleFonts: false,
+              ),
         ),
         actions: [],
         centerTitle: true,
@@ -77,7 +78,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
         child: Container(
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-            color: FlutterFlowTheme.tertiaryColor,
+            color: FlutterFlowTheme.of(context).tertiaryColor,
           ),
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(32, 20, 32, 20),
@@ -95,7 +96,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                           buttonSize: 64,
                           icon: FaIcon(
                             FontAwesomeIcons.cameraRetro,
-                            color: FlutterFlowTheme.secondaryColor,
+                            color: FlutterFlowTheme.of(context).secondaryColor,
                             size: 48,
                           ),
                           onPressed: () async {
@@ -108,21 +109,34 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                               pickerFontFamily: 'Cabin',
                             );
                             if (selectedMedia != null &&
-                                validateFileFormat(
-                                    selectedMedia.storagePath, context)) {
-                              showUploadMessage(context, 'Uploading file...',
-                                  showLoading: true);
-                              final downloadUrl = await uploadData(
-                                  selectedMedia.storagePath,
-                                  selectedMedia.bytes);
+                                selectedMedia.every((m) => validateFileFormat(
+                                    m.storagePath, context))) {
+                              showUploadMessage(
+                                context,
+                                'Uploading file...',
+                                showLoading: true,
+                              );
+                              final downloadUrls = (await Future.wait(
+                                      selectedMedia.map((m) async =>
+                                          await uploadData(
+                                              m.storagePath, m.bytes))))
+                                  .where((u) => u != null)
+                                  .toList();
                               ScaffoldMessenger.of(context)
                                   .hideCurrentSnackBar();
-                              if (downloadUrl != null) {
-                                setState(() => uploadedFileUrl = downloadUrl);
-                                showUploadMessage(context, 'Success!');
+                              if (downloadUrls != null &&
+                                  downloadUrls.length == selectedMedia.length) {
+                                setState(
+                                    () => uploadedFileUrl = downloadUrls.first);
+                                showUploadMessage(
+                                  context,
+                                  'Success!',
+                                );
                               } else {
                                 showUploadMessage(
-                                    context, 'Failed to upload media');
+                                  context,
+                                  'Failed to upload media',
+                                );
                                 return;
                               }
                             }
@@ -147,7 +161,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                       if ((uploadedFileUrl) == '')
                         Text(
                           'Add picture',
-                          style: FlutterFlowTheme.subtitle2,
+                          style: FlutterFlowTheme.of(context).subtitle2,
                         ),
                     ],
                   ),
@@ -158,17 +172,16 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                       obscureText: false,
                       decoration: InputDecoration(
                         hintText: 'Pet\'s name',
-                        hintStyle: FlutterFlowTheme.subtitle1,
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: FlutterFlowTheme.secondaryColor,
+                            color: FlutterFlowTheme.of(context).secondaryColor,
                             width: 2,
                           ),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: FlutterFlowTheme.secondaryColor,
+                            color: FlutterFlowTheme.of(context).secondaryColor,
                             width: 2,
                           ),
                           borderRadius: BorderRadius.circular(8),
@@ -176,7 +189,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                         contentPadding:
                             EdgeInsetsDirectional.fromSTEB(16, 24, 16, 24),
                       ),
-                      style: FlutterFlowTheme.subtitle1,
+                      style: FlutterFlowTheme.of(context).subtitle1,
                     ),
                   ),
                   Padding(
@@ -190,6 +203,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                             setState(() => datePicked = date);
                           },
                           currentTime: getCurrentTimestamp,
+                          minTime: DateTime(0, 0, 0),
                         );
                       },
                       child: Material(
@@ -202,10 +216,11 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                           width: double.infinity,
                           height: 60,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.tertiaryColor,
+                            color: FlutterFlowTheme.of(context).tertiaryColor,
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(
-                              color: FlutterFlowTheme.secondaryColor,
+                              color:
+                                  FlutterFlowTheme.of(context).secondaryColor,
                               width: 2,
                             ),
                           ),
@@ -221,12 +236,14 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                                       dateTimeFormat('yMMMd', datePicked),
                                       'Pet\'s birthdate',
                                     ),
-                                    style: FlutterFlowTheme.subtitle1,
+                                    style:
+                                        FlutterFlowTheme.of(context).subtitle1,
                                   ),
                                 ),
                                 FaIcon(
                                   FontAwesomeIcons.calendarCheck,
-                                  color: FlutterFlowTheme.secondaryColor,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryColor,
                                   size: 24,
                                 ),
                               ],
@@ -243,10 +260,10 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                       onChanged: (val) =>
                           setState(() => sexSelectionValue = val),
                       width: double.infinity,
-                      textStyle: FlutterFlowTheme.subtitle1,
+                      textStyle: FlutterFlowTheme.of(context).subtitle1,
                       fillColor: Colors.white,
                       elevation: 0,
-                      borderColor: FlutterFlowTheme.secondaryColor,
+                      borderColor: FlutterFlowTheme.of(context).secondaryColor,
                       borderWidth: 2,
                       borderRadius: 8,
                       margin: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 8),
@@ -264,17 +281,18 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                             obscureText: false,
                             decoration: InputDecoration(
                               hintText: 'Pet\'s weight',
-                              hintStyle: FlutterFlowTheme.subtitle1,
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.secondaryColor,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryColor,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.secondaryColor,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryColor,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(8),
@@ -282,7 +300,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                               contentPadding: EdgeInsetsDirectional.fromSTEB(
                                   16, 24, 16, 24),
                             ),
-                            style: FlutterFlowTheme.subtitle1,
+                            style: FlutterFlowTheme.of(context).subtitle1,
                             keyboardType: TextInputType.number,
                           ),
                         ),
@@ -294,7 +312,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                                 setState(() => weightUnitSelectionValue = val),
                             width: 88,
                             height: 50,
-                            textStyle: FlutterFlowTheme.subtitle1,
+                            textStyle: FlutterFlowTheme.of(context).subtitle1,
                             fillColor: Colors.white,
                             elevation: 2,
                             borderColor: Colors.transparent,
@@ -315,17 +333,16 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                       obscureText: false,
                       decoration: InputDecoration(
                         hintText: 'Pet\'s breed',
-                        hintStyle: FlutterFlowTheme.subtitle1,
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: FlutterFlowTheme.secondaryColor,
+                            color: FlutterFlowTheme.of(context).secondaryColor,
                             width: 2,
                           ),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: FlutterFlowTheme.secondaryColor,
+                            color: FlutterFlowTheme.of(context).secondaryColor,
                             width: 2,
                           ),
                           borderRadius: BorderRadius.circular(8),
@@ -333,7 +350,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                         contentPadding:
                             EdgeInsetsDirectional.fromSTEB(16, 24, 16, 24),
                       ),
-                      style: FlutterFlowTheme.subtitle1,
+                      style: FlutterFlowTheme.of(context).subtitle1,
                     ),
                   ),
                   Align(
@@ -342,7 +359,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
                       child: Text(
                         'Conditions',
-                        style: FlutterFlowTheme.title3,
+                        style: FlutterFlowTheme.of(context).title3,
                       ),
                     ),
                   ),
@@ -350,34 +367,44 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                     alignment: AlignmentDirectional(-1, 0),
                     child: Text(
                       'Has your pet take any of these medical actions?',
-                      style: FlutterFlowTheme.bodyText2,
+                      style: FlutterFlowTheme.of(context).bodyText2,
                     ),
                   ),
-                  CheckboxListTile(
-                    value: vaccinCheckValue ??= false,
-                    onChanged: (newValue) =>
-                        setState(() => vaccinCheckValue = newValue),
-                    title: Text(
-                      'Vaccinated',
-                      style: FlutterFlowTheme.subtitle1,
+                  Theme(
+                    data: ThemeData(
+                      unselectedWidgetColor: Color(0xFF707070),
                     ),
-                    tileColor: Color(0xFFF5F5F5),
-                    activeColor: FlutterFlowTheme.primaryColor,
-                    dense: false,
-                    controlAffinity: ListTileControlAffinity.trailing,
+                    child: CheckboxListTile(
+                      value: vaccinCheckValue ??= false,
+                      onChanged: (newValue) =>
+                          setState(() => vaccinCheckValue = newValue),
+                      title: Text(
+                        'Vaccinated',
+                        style: FlutterFlowTheme.of(context).subtitle1,
+                      ),
+                      tileColor: Color(0xFFF5F5F5),
+                      activeColor: FlutterFlowTheme.of(context).primaryColor,
+                      dense: false,
+                      controlAffinity: ListTileControlAffinity.trailing,
+                    ),
                   ),
-                  CheckboxListTile(
-                    value: sterileCheckValue ??= false,
-                    onChanged: (newValue) =>
-                        setState(() => sterileCheckValue = newValue),
-                    title: Text(
-                      'Sterilised',
-                      style: FlutterFlowTheme.subtitle1,
+                  Theme(
+                    data: ThemeData(
+                      unselectedWidgetColor: Color(0xFF707070),
                     ),
-                    tileColor: Color(0xFFF5F5F5),
-                    activeColor: FlutterFlowTheme.primaryColor,
-                    dense: false,
-                    controlAffinity: ListTileControlAffinity.trailing,
+                    child: CheckboxListTile(
+                      value: sterileCheckValue ??= false,
+                      onChanged: (newValue) =>
+                          setState(() => sterileCheckValue = newValue),
+                      title: Text(
+                        'Sterilised',
+                        style: FlutterFlowTheme.of(context).subtitle1,
+                      ),
+                      tileColor: Color(0xFFF5F5F5),
+                      activeColor: FlutterFlowTheme.of(context).primaryColor,
+                      dense: false,
+                      controlAffinity: ListTileControlAffinity.trailing,
+                    ),
                   ),
                   Align(
                     alignment: AlignmentDirectional(-1, 0),
@@ -385,7 +412,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
                       child: Text(
                         'Issues',
-                        style: FlutterFlowTheme.title3,
+                        style: FlutterFlowTheme.of(context).title3,
                       ),
                     ),
                   ),
@@ -393,86 +420,116 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                     alignment: AlignmentDirectional(-1, 0),
                     child: Text(
                       'Does your pet having these issues?',
-                      style: FlutterFlowTheme.bodyText2,
+                      style: FlutterFlowTheme.of(context).bodyText2,
                     ),
                   ),
-                  CheckboxListTile(
-                    value: fungusCheckValue ??= false,
-                    onChanged: (newValue) =>
-                        setState(() => fungusCheckValue = newValue),
-                    title: Text(
-                      'Fungus',
-                      style: FlutterFlowTheme.subtitle1,
+                  Theme(
+                    data: ThemeData(
+                      unselectedWidgetColor: Color(0xFF707070),
                     ),
-                    tileColor: Color(0xFFF5F5F5),
-                    activeColor: FlutterFlowTheme.primaryColor,
-                    dense: false,
-                    controlAffinity: ListTileControlAffinity.trailing,
+                    child: CheckboxListTile(
+                      value: fungusCheckValue ??= false,
+                      onChanged: (newValue) =>
+                          setState(() => fungusCheckValue = newValue),
+                      title: Text(
+                        'Fungus',
+                        style: FlutterFlowTheme.of(context).subtitle1,
+                      ),
+                      tileColor: Color(0xFFF5F5F5),
+                      activeColor: FlutterFlowTheme.of(context).primaryColor,
+                      dense: false,
+                      controlAffinity: ListTileControlAffinity.trailing,
+                    ),
                   ),
-                  CheckboxListTile(
-                    value: fleaCheckValue ??= false,
-                    onChanged: (newValue) =>
-                        setState(() => fleaCheckValue = newValue),
-                    title: Text(
-                      'Fleas',
-                      style: FlutterFlowTheme.subtitle1,
+                  Theme(
+                    data: ThemeData(
+                      unselectedWidgetColor: Color(0xFF707070),
                     ),
-                    tileColor: Color(0xFFF5F5F5),
-                    activeColor: FlutterFlowTheme.primaryColor,
-                    dense: false,
-                    controlAffinity: ListTileControlAffinity.trailing,
+                    child: CheckboxListTile(
+                      value: fleaCheckValue ??= false,
+                      onChanged: (newValue) =>
+                          setState(() => fleaCheckValue = newValue),
+                      title: Text(
+                        'Fleas',
+                        style: FlutterFlowTheme.of(context).subtitle1,
+                      ),
+                      tileColor: Color(0xFFF5F5F5),
+                      activeColor: FlutterFlowTheme.of(context).primaryColor,
+                      dense: false,
+                      controlAffinity: ListTileControlAffinity.trailing,
+                    ),
                   ),
-                  CheckboxListTile(
-                    value: wormCheckValue ??= false,
-                    onChanged: (newValue) =>
-                        setState(() => wormCheckValue = newValue),
-                    title: Text(
-                      'Worms',
-                      style: FlutterFlowTheme.subtitle1,
+                  Theme(
+                    data: ThemeData(
+                      unselectedWidgetColor: Color(0xFF707070),
                     ),
-                    tileColor: Color(0xFFF5F5F5),
-                    activeColor: FlutterFlowTheme.primaryColor,
-                    dense: false,
-                    controlAffinity: ListTileControlAffinity.trailing,
+                    child: CheckboxListTile(
+                      value: wormCheckValue ??= false,
+                      onChanged: (newValue) =>
+                          setState(() => wormCheckValue = newValue),
+                      title: Text(
+                        'Worms',
+                        style: FlutterFlowTheme.of(context).subtitle1,
+                      ),
+                      tileColor: Color(0xFFF5F5F5),
+                      activeColor: FlutterFlowTheme.of(context).primaryColor,
+                      dense: false,
+                      controlAffinity: ListTileControlAffinity.trailing,
+                    ),
                   ),
-                  CheckboxListTile(
-                    value: earmiteCheckValue ??= false,
-                    onChanged: (newValue) =>
-                        setState(() => earmiteCheckValue = newValue),
-                    title: Text(
-                      'Earmites',
-                      style: FlutterFlowTheme.subtitle1,
+                  Theme(
+                    data: ThemeData(
+                      unselectedWidgetColor: Color(0xFF707070),
                     ),
-                    tileColor: Color(0xFFF5F5F5),
-                    activeColor: FlutterFlowTheme.primaryColor,
-                    dense: false,
-                    controlAffinity: ListTileControlAffinity.trailing,
+                    child: CheckboxListTile(
+                      value: earmiteCheckValue ??= false,
+                      onChanged: (newValue) =>
+                          setState(() => earmiteCheckValue = newValue),
+                      title: Text(
+                        'Earmites',
+                        style: FlutterFlowTheme.of(context).subtitle1,
+                      ),
+                      tileColor: Color(0xFFF5F5F5),
+                      activeColor: FlutterFlowTheme.of(context).primaryColor,
+                      dense: false,
+                      controlAffinity: ListTileControlAffinity.trailing,
+                    ),
                   ),
-                  CheckboxListTile(
-                    value: scabiesCheckValue ??= false,
-                    onChanged: (newValue) =>
-                        setState(() => scabiesCheckValue = newValue),
-                    title: Text(
-                      'Scabies',
-                      style: FlutterFlowTheme.subtitle1,
+                  Theme(
+                    data: ThemeData(
+                      unselectedWidgetColor: Color(0xFF707070),
                     ),
-                    tileColor: Color(0xFFF5F5F5),
-                    activeColor: FlutterFlowTheme.primaryColor,
-                    dense: false,
-                    controlAffinity: ListTileControlAffinity.trailing,
+                    child: CheckboxListTile(
+                      value: scabiesCheckValue ??= false,
+                      onChanged: (newValue) =>
+                          setState(() => scabiesCheckValue = newValue),
+                      title: Text(
+                        'Scabies',
+                        style: FlutterFlowTheme.of(context).subtitle1,
+                      ),
+                      tileColor: Color(0xFFF5F5F5),
+                      activeColor: FlutterFlowTheme.of(context).primaryColor,
+                      dense: false,
+                      controlAffinity: ListTileControlAffinity.trailing,
+                    ),
                   ),
-                  CheckboxListTile(
-                    value: diarrheaCheckValue ??= false,
-                    onChanged: (newValue) =>
-                        setState(() => diarrheaCheckValue = newValue),
-                    title: Text(
-                      'Diarrhea',
-                      style: FlutterFlowTheme.subtitle1,
+                  Theme(
+                    data: ThemeData(
+                      unselectedWidgetColor: Color(0xFF707070),
                     ),
-                    tileColor: Color(0xFFF5F5F5),
-                    activeColor: FlutterFlowTheme.primaryColor,
-                    dense: false,
-                    controlAffinity: ListTileControlAffinity.trailing,
+                    child: CheckboxListTile(
+                      value: diarrheaCheckValue ??= false,
+                      onChanged: (newValue) =>
+                          setState(() => diarrheaCheckValue = newValue),
+                      title: Text(
+                        'Diarrhea',
+                        style: FlutterFlowTheme.of(context).subtitle1,
+                      ),
+                      tileColor: Color(0xFFF5F5F5),
+                      activeColor: FlutterFlowTheme.of(context).primaryColor,
+                      dense: false,
+                      controlAffinity: ListTileControlAffinity.trailing,
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 64, 0, 0),
@@ -511,12 +568,12 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 56,
-                        color: FlutterFlowTheme.secondaryColor,
-                        textStyle: FlutterFlowTheme.title3.override(
-                          fontFamily: 'RockoUltra',
-                          color: FlutterFlowTheme.tertiaryColor,
-                          useGoogleFonts: false,
-                        ),
+                        color: FlutterFlowTheme.of(context).secondaryColor,
+                        textStyle: FlutterFlowTheme.of(context).title3.override(
+                              fontFamily: 'RockoUltra',
+                              color: FlutterFlowTheme.of(context).tertiaryColor,
+                              useGoogleFonts: false,
+                            ),
                         borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 1,

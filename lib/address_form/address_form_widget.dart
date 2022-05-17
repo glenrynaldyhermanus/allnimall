@@ -13,9 +13,9 @@ class AddressFormWidget extends StatefulWidget {
 }
 
 class _AddressFormWidgetState extends State<AddressFormWidget> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController textController1;
   TextEditingController textController2;
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -29,22 +29,23 @@ class _AddressFormWidgetState extends State<AddressFormWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.primaryColor),
+        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+        iconTheme:
+            IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
           'Address',
-          style: FlutterFlowTheme.title3.override(
-            fontFamily: 'RockoUltra',
-            color: FlutterFlowTheme.primaryColor,
-            useGoogleFonts: false,
-          ),
+          style: FlutterFlowTheme.of(context).title3.override(
+                fontFamily: 'RockoUltra',
+                color: FlutterFlowTheme.of(context).primaryColor,
+                useGoogleFonts: false,
+              ),
         ),
         actions: [],
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -60,17 +61,16 @@ class _AddressFormWidgetState extends State<AddressFormWidget> {
                       obscureText: false,
                       decoration: InputDecoration(
                         hintText: 'Full address',
-                        hintStyle: FlutterFlowTheme.subtitle1,
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: FlutterFlowTheme.secondaryColor,
+                            color: FlutterFlowTheme.of(context).secondaryColor,
                             width: 2,
                           ),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: FlutterFlowTheme.secondaryColor,
+                            color: FlutterFlowTheme.of(context).secondaryColor,
                             width: 2,
                           ),
                           borderRadius: BorderRadius.circular(8),
@@ -78,7 +78,7 @@ class _AddressFormWidgetState extends State<AddressFormWidget> {
                         contentPadding:
                             EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
                       ),
-                      style: FlutterFlowTheme.subtitle1,
+                      style: FlutterFlowTheme.of(context).subtitle1,
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
@@ -87,17 +87,18 @@ class _AddressFormWidgetState extends State<AddressFormWidget> {
                         obscureText: false,
                         decoration: InputDecoration(
                           hintText: 'Detail location',
-                          hintStyle: FlutterFlowTheme.subtitle1,
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.secondaryColor,
+                              color:
+                                  FlutterFlowTheme.of(context).secondaryColor,
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.secondaryColor,
+                              color:
+                                  FlutterFlowTheme.of(context).secondaryColor,
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(8),
@@ -105,7 +106,7 @@ class _AddressFormWidgetState extends State<AddressFormWidget> {
                           contentPadding:
                               EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
                         ),
-                        style: FlutterFlowTheme.subtitle1,
+                        style: FlutterFlowTheme.of(context).subtitle1,
                       ),
                     ),
                   ],
@@ -122,12 +123,12 @@ class _AddressFormWidgetState extends State<AddressFormWidget> {
                 options: FFButtonOptions(
                   width: double.infinity,
                   height: 56,
-                  color: FlutterFlowTheme.secondaryColor,
-                  textStyle: FlutterFlowTheme.title3.override(
-                    fontFamily: 'RockoUltra',
-                    color: FlutterFlowTheme.tertiaryColor,
-                    useGoogleFonts: false,
-                  ),
+                  color: FlutterFlowTheme.of(context).secondaryColor,
+                  textStyle: FlutterFlowTheme.of(context).title3.override(
+                        fontFamily: 'RockoUltra',
+                        color: FlutterFlowTheme.of(context).tertiaryColor,
+                        useGoogleFonts: false,
+                      ),
                   borderSide: BorderSide(
                     color: Colors.transparent,
                     width: 1,

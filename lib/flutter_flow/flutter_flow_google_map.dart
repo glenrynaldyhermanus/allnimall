@@ -39,7 +39,7 @@ class FlutterFlowMarker {
 
 class FlutterFlowGoogleMap extends StatefulWidget {
   const FlutterFlowGoogleMap({
-    this.controller,
+    @required this.controller,
     this.onCameraIdle,
     this.initialLocation,
     this.markers = const [],
@@ -93,7 +93,7 @@ class _FlutterFlowGoogleMapState extends State<FlutterFlowGoogleMap> {
   void initState() {
     super.initState();
     currentMapCenter = initialPosition;
-    _controller = widget.controller ?? Completer<GoogleMapController>();
+    _controller = widget.controller;
   }
 
   @override

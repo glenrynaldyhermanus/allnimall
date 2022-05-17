@@ -30,15 +30,15 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
+        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
         automaticallyImplyLeading: true,
         title: Text(
           'Allnimall',
-          style: FlutterFlowTheme.title2.override(
-            fontFamily: 'RockoUltra',
-            color: FlutterFlowTheme.primaryColor,
-            useGoogleFonts: false,
-          ),
+          style: FlutterFlowTheme.of(context).title2.override(
+                fontFamily: 'RockoUltra',
+                color: FlutterFlowTheme.of(context).primaryColor,
+                useGoogleFonts: false,
+              ),
         ),
         actions: [
           FlutterFlowIconButton(
@@ -48,7 +48,7 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
             buttonSize: 60,
             icon: Icon(
               Icons.help_outline_rounded,
-              color: FlutterFlowTheme.secondaryColor,
+              color: FlutterFlowTheme.of(context).secondaryColor,
               size: 24,
             ),
             onPressed: () async {
@@ -64,7 +64,28 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () async {
+          await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => GroomingFormWidget(),
+            ),
+          );
+        },
+        backgroundColor: FlutterFlowTheme.of(context).secondaryColor,
+        elevation: 8,
+        label: Text(
+          'Panggil Groomer',
+          style: FlutterFlowTheme.of(context).title3.override(
+                fontFamily: 'RockoUltra',
+                color: FlutterFlowTheme.of(context).tertiaryColor,
+                fontSize: 16,
+                useGoogleFonts: false,
+              ),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -79,7 +100,7 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                       width: double.infinity,
                       height: 200,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.primaryColor,
+                        color: FlutterFlowTheme.of(context).primaryColor,
                         borderRadius: BorderRadius.circular(32),
                       ),
                       child: Padding(
@@ -103,24 +124,28 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'Hello',
-                                          style:
-                                              FlutterFlowTheme.title3.override(
-                                            fontFamily: 'RockoUltra',
-                                            color:
-                                                FlutterFlowTheme.tertiaryColor,
-                                            useGoogleFonts: false,
-                                          ),
+                                          'Halo kak!',
+                                          style: FlutterFlowTheme.of(context)
+                                              .title3
+                                              .override(
+                                                fontFamily: 'RockoUltra',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiaryColor,
+                                                useGoogleFonts: false,
+                                              ),
                                         ),
                                         Text(
-                                          'Need grooming?',
-                                          style: FlutterFlowTheme.subtitle1
+                                          'Mau grooming kucing?',
+                                          style: FlutterFlowTheme.of(context)
+                                              .subtitle1
                                               .override(
-                                            fontFamily: 'Cabin',
-                                            color:
-                                                FlutterFlowTheme.tertiaryColor,
-                                            fontSize: 15,
-                                          ),
+                                                fontFamily: 'Cabin',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiaryColor,
+                                                fontSize: 15,
+                                              ),
                                         ),
                                       ],
                                     ),
@@ -134,17 +159,22 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                           ),
                                         );
                                       },
-                                      text: 'Order now',
+                                      text: 'Panggil Groomer',
                                       options: FFButtonOptions(
                                         width: double.infinity,
                                         height: 48,
-                                        color: FlutterFlowTheme.secondaryColor,
-                                        textStyle:
-                                            FlutterFlowTheme.title3.override(
-                                          fontFamily: 'RockoUltra',
-                                          color: FlutterFlowTheme.tertiaryColor,
-                                          useGoogleFonts: false,
-                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryColor,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .title3
+                                            .override(
+                                              fontFamily: 'RockoUltra',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .tertiaryColor,
+                                              fontSize: 14,
+                                              useGoogleFonts: false,
+                                            ),
                                         borderSide: BorderSide(
                                           color: Colors.transparent,
                                           width: 1,
@@ -181,12 +211,13 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Articles',
-                            style: FlutterFlowTheme.title3.override(
-                              fontFamily: 'RockoUltra',
-                              color: FlutterFlowTheme.primaryColor,
-                              useGoogleFonts: false,
-                            ),
+                            'Artikel',
+                            style: FlutterFlowTheme.of(context).title3.override(
+                                  fontFamily: 'RockoUltra',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  useGoogleFonts: false,
+                                ),
                           ),
                         ],
                       ),
@@ -208,7 +239,8 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                       width: 50,
                                       height: 50,
                                       child: SpinKitRipple(
-                                        color: FlutterFlowTheme.primaryColor,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
                                         size: 50,
                                       ),
                                     ),
@@ -241,8 +273,8 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                         child: Container(
                                           width: 240,
                                           decoration: BoxDecoration(
-                                            color:
-                                                FlutterFlowTheme.tertiaryColor,
+                                            color: FlutterFlowTheme.of(context)
+                                                .tertiaryColor,
                                           ),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -267,7 +299,8 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                                       .maybeHandleOverflow(
                                                           maxChars: 100),
                                                   textAlign: TextAlign.justify,
-                                                  style: FlutterFlowTheme
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
                                                       .subtitle2,
                                                 ),
                                               ),
@@ -285,7 +318,7 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                             width: 20,
                             height: 100,
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.tertiaryColor,
+                              color: FlutterFlowTheme.of(context).tertiaryColor,
                             ),
                           ),
                         ],
@@ -305,12 +338,13 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Your Order',
-                            style: FlutterFlowTheme.title3.override(
-                              fontFamily: 'RockoUltra',
-                              color: FlutterFlowTheme.primaryColor,
-                              useGoogleFonts: false,
-                            ),
+                            'Order',
+                            style: FlutterFlowTheme.of(context).title3.override(
+                                  fontFamily: 'RockoUltra',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  useGoogleFonts: false,
+                                ),
                           ),
                           InkWell(
                             onTap: () async {
@@ -322,13 +356,15 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                               );
                             },
                             child: Text(
-                              'View All',
-                              style: FlutterFlowTheme.title2.override(
-                                fontFamily: 'RockoUltra',
-                                color: FlutterFlowTheme.primaryColor,
-                                fontSize: 14,
-                                useGoogleFonts: false,
-                              ),
+                              'Lihat Semua',
+                              style:
+                                  FlutterFlowTheme.of(context).title2.override(
+                                        fontFamily: 'RockoUltra',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                        fontSize: 14,
+                                        useGoogleFonts: false,
+                                      ),
                             ),
                           ),
                         ],
@@ -349,7 +385,8 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                 width: 50,
                                 height: 50,
                                 child: SpinKitRipple(
-                                  color: FlutterFlowTheme.primaryColor,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
                                   size: 50,
                                 ),
                               ),
@@ -365,7 +402,8 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                   columnOrdersRecordList[columnIndex];
                               return Card(
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                                color: FlutterFlowTheme.tertiaryColor,
+                                color:
+                                    FlutterFlowTheme.of(context).tertiaryColor,
                                 elevation: 0,
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -402,7 +440,8 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                                     AlignmentDirectional(0, 0),
                                                 child: FaIcon(
                                                   FontAwesomeIcons.cat,
-                                                  color: FlutterFlowTheme
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
                                                       .primaryColor,
                                                   size: 40,
                                                 ),
@@ -421,15 +460,17 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                                     Text(
                                                       columnOrdersRecord.name,
                                                       style: FlutterFlowTheme
+                                                              .of(context)
                                                           .subtitle1
                                                           .override(
-                                                        fontFamily: 'Cabin',
-                                                        color: FlutterFlowTheme
-                                                            .primaryColor,
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
+                                                            fontFamily: 'Cabin',
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryColor,
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
                                                     ),
                                                     Text(
                                                       dateTimeFormat(
@@ -437,11 +478,12 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                                           columnOrdersRecord
                                                               .scheduledAt),
                                                       style: FlutterFlowTheme
+                                                              .of(context)
                                                           .bodyText1
                                                           .override(
-                                                        fontFamily: 'Cabin',
-                                                        fontSize: 12,
-                                                      ),
+                                                            fontFamily: 'Cabin',
+                                                            fontSize: 12,
+                                                          ),
                                                     ),
                                                     Padding(
                                                       padding:
@@ -466,19 +508,19 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                                           child: Text(
                                                             columnOrdersRecord
                                                                 .status,
-                                                            style:
-                                                                FlutterFlowTheme
-                                                                    .bodyText1
-                                                                    .override(
-                                                              fontFamily:
-                                                                  'Cabin',
-                                                              color: Color(
-                                                                  0xFF62CD59),
-                                                              fontSize: 12,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Cabin',
+                                                                  color: Color(
+                                                                      0xFF62CD59),
+                                                                  fontSize: 12,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
                                                           ),
                                                         ),
                                                       ),

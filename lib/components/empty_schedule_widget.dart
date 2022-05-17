@@ -29,7 +29,7 @@ class _EmptyScheduleWidgetState extends State<EmptyScheduleWidget> {
         children: [
           Text(
             'You have no upcoming schedules',
-            style: FlutterFlowTheme.subtitle2,
+            style: FlutterFlowTheme.of(context).subtitle2,
           ),
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
@@ -48,13 +48,13 @@ class _EmptyScheduleWidgetState extends State<EmptyScheduleWidget> {
               options: FFButtonOptions(
                 width: 160,
                 height: 40,
-                color: FlutterFlowTheme.primaryColor,
-                textStyle: FlutterFlowTheme.title3.override(
-                  fontFamily: 'RockoUltra',
-                  color: FlutterFlowTheme.tertiaryColor,
-                  fontSize: 14,
-                  useGoogleFonts: false,
-                ),
+                color: FlutterFlowTheme.of(context).primaryColor,
+                textStyle: FlutterFlowTheme.of(context).title3.override(
+                      fontFamily: 'RockoUltra',
+                      color: FlutterFlowTheme.of(context).tertiaryColor,
+                      fontSize: 14,
+                      useGoogleFonts: false,
+                    ),
                 borderSide: BorderSide(
                   color: Colors.transparent,
                   width: 1,

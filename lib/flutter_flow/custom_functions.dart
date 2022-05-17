@@ -60,7 +60,25 @@ String countAgeString(DateTime dateTime) {
 String countFee(int quantity) {
   // string currency from integer
 
-  int fee = quantity * 100000;
+  int fee = quantity * 85000;
+
+  final formatter = new NumberFormat("###,###");
+  return formatter.format(fee);
+}
+
+String countDiscount(int quantity) {
+  // string currency from integer
+
+  int fee = quantity * -20000;
+
+  final formatter = new NumberFormat("###,###");
+  return formatter.format(fee);
+}
+
+String countTotal(int quantity) {
+  // string currency from integer
+
+  int fee = (quantity * 85000) - (quantity * 20000);
 
   final formatter = new NumberFormat("###,###");
   return formatter.format(fee);
@@ -78,8 +96,9 @@ String generateOrderNumber(DateTime dateTime) {
 double countAmount(
   double serviceFee,
   int quantity,
+  double discount,
 ) {
-  return serviceFee * quantity;
+  return (serviceFee * quantity) - (discount * quantity);
 }
 
 bool isDatePicked(DateTime dateTime) {
@@ -96,4 +115,43 @@ int countFavs(List<DocumentReference> favedBy) {
     return 0;
   }
   return favedBy.length;
+}
+
+String fullStatus(String status) {
+  if (status == "New") {
+    return "Menunggu Konfirmasi";
+  }
+
+  return status;
+}
+
+String fullPaymentStatus(String paymentStatus) {
+  if (paymentStatus == "Unpaid") {
+    return "Belum dibayar";
+  } else if (paymentStatus == "Paid") {
+    return "Lunas";
+  }
+
+  return paymentStatus;
+}
+
+bool isPaid(String paymentStatus) {
+  if (paymentStatus == "Paid") {
+    return true;
+  }
+  return false;
+}
+
+bool isOrderConfirmed(String status) {
+  if (status == "New" || status == "Rejected" || status == "Canceled") {
+    return false;
+  }
+  return true;
+}
+
+bool hasNotes(String notes) {
+  if (notes.isEmpty) {
+    return false;
+  }
+  return true;
 }

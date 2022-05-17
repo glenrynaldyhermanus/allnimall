@@ -39,6 +39,7 @@ class FlutterFlowCalendar extends StatefulWidget {
     this.inactiveDateStyle,
     this.selectedDateStyle,
     this.titleStyle,
+    this.locale,
     Key key,
   }) : super(key: key);
 
@@ -53,6 +54,7 @@ class FlutterFlowCalendar extends StatefulWidget {
   final TextStyle inactiveDateStyle;
   final TextStyle selectedDateStyle;
   final TextStyle titleStyle;
+  final String locale;
 
   static const Cubic pageAnimationCurve = Curves.easeInOut;
   static const Duration pageAnimationDuration = Duration(milliseconds: 350);
@@ -105,7 +107,7 @@ class _FlutterFlowCalendarState extends State<FlutterFlowCalendar> {
     setState(() {
       selectedDay = newRange;
       calendarController.setSelectedDay(newSelectedDay);
-      widget.onChange?.call(newRange);
+      widget.onChange.call(newRange);
     });
   }
 
@@ -131,6 +133,7 @@ class _FlutterFlowCalendarState extends State<FlutterFlowCalendar> {
             },
             titleStyle: widget.titleStyle,
             iconColor: widget.iconColor,
+            locale: widget.locale,
           ),
           TableCalendar(
             calendarController: calendarController,
@@ -138,6 +141,7 @@ class _FlutterFlowCalendarState extends State<FlutterFlowCalendar> {
             endDay: kLastDay,
             initialCalendarFormat: calendarFormat,
             headerVisible: false,
+            locale: widget.locale,
             calendarStyle: CalendarStyle(
               weekdayStyle: widget.dateStyle,
               weekendStyle: widget.dateStyle,
@@ -205,6 +209,7 @@ class CalendarHeader extends StatelessWidget {
     this.clearButtonVisible = false,
     this.onClearButtonTap,
     this.titleStyle,
+    this.locale,
     Key key,
   }) : super(key: key);
 
@@ -216,6 +221,7 @@ class CalendarHeader extends StatelessWidget {
   final VoidCallback onTodayButtonTap;
   final Color iconColor;
   final TextStyle titleStyle;
+  final String locale;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -230,7 +236,7 @@ class CalendarHeader extends StatelessWidget {
             ),
             Expanded(
               child: Text(
-                DateFormat.yMMMM().format(focusedDay),
+                DateFormat.yMMMM(locale).format(focusedDay),
                 style: const TextStyle(fontSize: 17).merge(titleStyle),
               ),
             ),
@@ -259,7 +265,7 @@ class CalendarHeader extends StatelessWidget {
 class CustomIconButton extends StatelessWidget {
   const CustomIconButton({
     @required this.icon,
-    @required this.onTap,
+    this.onTap,
     this.margin = const EdgeInsets.symmetric(horizontal: 4),
     this.padding = const EdgeInsets.all(10),
     Key key,
@@ -280,8 +286,8 @@ class CustomIconButton extends StatelessWidget {
             padding: padding,
             child: Icon(
               icon.icon,
-              color: icon?.color,
-              size: icon?.size,
+              color: icon.color,
+              size: icon.size,
             ),
           ),
         ),

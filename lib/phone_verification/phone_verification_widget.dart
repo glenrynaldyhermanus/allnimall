@@ -2,6 +2,7 @@ import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../home_backup/home_backup_widget.dart';
 import '../sign_up/sign_up_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -16,8 +17,8 @@ class PhoneVerificationWidget extends StatefulWidget {
 }
 
 class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
-  TextEditingController phoneNumberController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  TextEditingController phoneNumberController;
 
   @override
   void initState() {
@@ -30,21 +31,21 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
+        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
         automaticallyImplyLeading: false,
         title: Text(
-          'Verification',
-          style: FlutterFlowTheme.title3.override(
-            fontFamily: 'RockoUltra',
-            color: FlutterFlowTheme.primaryColor,
-            useGoogleFonts: false,
-          ),
+          'Verifikasi',
+          style: FlutterFlowTheme.of(context).title3.override(
+                fontFamily: 'RockoUltra',
+                color: FlutterFlowTheme.of(context).primaryColor,
+                useGoogleFonts: false,
+              ),
         ),
         actions: [],
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -57,37 +58,38 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                   controller: phoneNumberController,
                   obscureText: false,
                   decoration: InputDecoration(
-                    labelText: 'Enter the 6 digit code',
-                    labelStyle: FlutterFlowTheme.subtitle2,
+                    labelText: 'Masukkan kode 6 digit',
+                    labelStyle: FlutterFlowTheme.of(context).subtitle2,
                     hintText: '000000',
-                    hintStyle: FlutterFlowTheme.subtitle2,
+                    hintStyle: FlutterFlowTheme.of(context).subtitle2,
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: FlutterFlowTheme.secondaryColor,
+                        color: FlutterFlowTheme.of(context).secondaryColor,
                         width: 2,
                       ),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: FlutterFlowTheme.secondaryColor,
+                        color: FlutterFlowTheme.of(context).secondaryColor,
                         width: 2,
                       ),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     filled: true,
-                    fillColor: FlutterFlowTheme.tertiaryColor,
+                    fillColor: FlutterFlowTheme.of(context).tertiaryColor,
                     contentPadding:
                         EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
                   ),
-                  style: FlutterFlowTheme.subtitle1,
+                  style: FlutterFlowTheme.of(context).subtitle1,
                 ),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    if (phoneNumberController.text.isEmpty) {
+                    final smsCodeVal = phoneNumberController.text;
+                    if (smsCodeVal.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text('Enter SMS verification code.'),
@@ -97,11 +99,12 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                     }
                     final phoneVerifiedUser = await verifySmsCode(
                       context: context,
-                      smsCode: phoneNumberController.text,
+                      smsCode: smsCodeVal,
                     );
                     if (phoneVerifiedUser == null) {
                       return;
                     }
+
                     if ((currentUserDisplayName) == '') {
                       await Navigator.pushAndRemoveUntil(
                         context,
@@ -110,18 +113,25 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                         ),
                         (r) => false,
                       );
+                    } else {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomeBackupWidget(),
+                        ),
+                      );
                     }
                   },
-                  text: 'Verify',
+                  text: 'Lanjut',
                   options: FFButtonOptions(
                     width: 230,
                     height: 60,
-                    color: FlutterFlowTheme.primaryColor,
-                    textStyle: FlutterFlowTheme.title3.override(
-                      fontFamily: 'RockoUltra',
-                      color: FlutterFlowTheme.tertiaryColor,
-                      useGoogleFonts: false,
-                    ),
+                    color: FlutterFlowTheme.of(context).primaryColor,
+                    textStyle: FlutterFlowTheme.of(context).title3.override(
+                          fontFamily: 'RockoUltra',
+                          color: FlutterFlowTheme.of(context).tertiaryColor,
+                          useGoogleFonts: false,
+                        ),
                     elevation: 3,
                     borderSide: BorderSide(
                       color: Colors.transparent,

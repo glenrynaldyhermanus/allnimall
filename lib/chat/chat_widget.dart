@@ -17,8 +17,8 @@ class ChatWidget extends StatefulWidget {
 }
 
 class _ChatWidgetState extends State<ChatWidget> {
-  TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  TextEditingController textController;
 
   @override
   void initState() {
@@ -31,22 +31,23 @@ class _ChatWidgetState extends State<ChatWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.primaryColor),
+        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+        iconTheme:
+            IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
           'Chat',
-          style: FlutterFlowTheme.title3.override(
-            fontFamily: 'RockoUltra',
-            color: FlutterFlowTheme.primaryColor,
-            useGoogleFonts: false,
-          ),
+          style: FlutterFlowTheme.of(context).title3.override(
+                fontFamily: 'RockoUltra',
+                color: FlutterFlowTheme.of(context).primaryColor,
+                useGoogleFonts: false,
+              ),
         ),
         actions: [],
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -56,7 +57,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                 width: double.infinity,
                 height: 100,
                 decoration: BoxDecoration(
-                  color: FlutterFlowTheme.tertiaryColor,
+                  color: FlutterFlowTheme.of(context).tertiaryColor,
                 ),
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
@@ -74,7 +75,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                             width: 50,
                             height: 50,
                             child: SpinKitRipple(
-                              color: FlutterFlowTheme.primaryColor,
+                              color: FlutterFlowTheme.of(context).primaryColor,
                               size: 50,
                             ),
                           ),
@@ -100,7 +101,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                       0, 4, 0, 4),
                                   child: Card(
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
-                                    color: FlutterFlowTheme.secondaryColor,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryColor,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.only(
                                         bottomLeft: Radius.circular(24),
@@ -119,12 +121,13 @@ class _ChatWidgetState extends State<ChatWidget> {
                                         children: [
                                           Text(
                                             'Me',
-                                            style: FlutterFlowTheme.bodyText2
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText2
                                                 .override(
-                                              fontFamily: 'Cabin',
-                                              color: Color(0xA4FFFFFF),
-                                              fontSize: 14,
-                                            ),
+                                                  fontFamily: 'Cabin',
+                                                  color: Color(0xA4FFFFFF),
+                                                  fontSize: 14,
+                                                ),
                                           ),
                                           Padding(
                                             padding:
@@ -132,12 +135,16 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                     0, 4, 0, 0),
                                             child: Text(
                                               columnChatMessagesRecord.text,
-                                              style: FlutterFlowTheme.subtitle2
-                                                  .override(
-                                                fontFamily: 'Cabin',
-                                                color: FlutterFlowTheme
-                                                    .tertiaryColor,
-                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle2
+                                                      .override(
+                                                        fontFamily: 'Cabin',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiaryColor,
+                                                      ),
                                             ),
                                           ),
                                           Padding(
@@ -149,12 +156,15 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                   'Hm',
                                                   columnChatMessagesRecord
                                                       .createdAt),
-                                              style: FlutterFlowTheme.bodyText2
-                                                  .override(
-                                                fontFamily: 'Cabin',
-                                                color: Color(0xA4FFFFFF),
-                                                fontSize: 11,
-                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText2
+                                                      .override(
+                                                        fontFamily: 'Cabin',
+                                                        color:
+                                                            Color(0xA4FFFFFF),
+                                                        fontSize: 11,
+                                                      ),
                                             ),
                                           ),
                                         ],
@@ -172,7 +182,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                       0, 4, 0, 4),
                                   child: Card(
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
-                                    color: FlutterFlowTheme.primaryColor,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.only(
                                         bottomLeft: Radius.circular(24),
@@ -195,23 +206,27 @@ class _ChatWidgetState extends State<ChatWidget> {
                                               Text(
                                                 columnChatMessagesRecord
                                                     .adminName,
-                                                style: FlutterFlowTheme
-                                                    .bodyText2
-                                                    .override(
-                                                  fontFamily: 'Cabin',
-                                                  color: Color(0xA4FFFFFF),
-                                                  fontSize: 14,
-                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText2
+                                                        .override(
+                                                          fontFamily: 'Cabin',
+                                                          color:
+                                                              Color(0xA4FFFFFF),
+                                                          fontSize: 14,
+                                                        ),
                                               ),
                                               Text(
                                                 ' from Allnimall',
-                                                style: FlutterFlowTheme
-                                                    .bodyText2
-                                                    .override(
-                                                  fontFamily: 'Cabin',
-                                                  color: Color(0xA4FFFFFF),
-                                                  fontSize: 12,
-                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText2
+                                                        .override(
+                                                          fontFamily: 'Cabin',
+                                                          color:
+                                                              Color(0xA4FFFFFF),
+                                                          fontSize: 12,
+                                                        ),
                                               ),
                                             ],
                                           ),
@@ -221,12 +236,16 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                     0, 4, 0, 0),
                                             child: Text(
                                               columnChatMessagesRecord.text,
-                                              style: FlutterFlowTheme.subtitle2
-                                                  .override(
-                                                fontFamily: 'Cabin',
-                                                color: FlutterFlowTheme
-                                                    .tertiaryColor,
-                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle2
+                                                      .override(
+                                                        fontFamily: 'Cabin',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiaryColor,
+                                                      ),
                                             ),
                                           ),
                                           Padding(
@@ -238,12 +257,15 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                   'Hm',
                                                   columnChatMessagesRecord
                                                       .createdAt),
-                                              style: FlutterFlowTheme.bodyText2
-                                                  .override(
-                                                fontFamily: 'Cabin',
-                                                color: Color(0xA4FFFFFF),
-                                                fontSize: 11,
-                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText2
+                                                      .override(
+                                                        fontFamily: 'Cabin',
+                                                        color:
+                                                            Color(0xA4FFFFFF),
+                                                        fontSize: 11,
+                                                      ),
                                             ),
                                           ),
                                         ],
@@ -272,16 +294,15 @@ class _ChatWidgetState extends State<ChatWidget> {
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
                           child: TextFormField(
+                            controller: textController,
                             onChanged: (_) => EasyDebounce.debounce(
                               'textController',
                               Duration(milliseconds: 0),
                               () => setState(() {}),
                             ),
-                            controller: textController,
                             obscureText: false,
                             decoration: InputDecoration(
                               hintText: 'Put your message here...',
-                              hintStyle: FlutterFlowTheme.bodyText1,
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
@@ -299,7 +320,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                               filled: true,
                               fillColor: Color(0xFFE7E7E7),
                             ),
-                            style: FlutterFlowTheme.bodyText1,
+                            style: FlutterFlowTheme.of(context).bodyText1,
                           ),
                         ),
                       ),
@@ -310,7 +331,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                         buttonSize: 48,
                         icon: Icon(
                           Icons.send,
-                          color: FlutterFlowTheme.primaryColor,
+                          color: FlutterFlowTheme.of(context).primaryColor,
                           size: 30,
                         ),
                         onPressed: () async {

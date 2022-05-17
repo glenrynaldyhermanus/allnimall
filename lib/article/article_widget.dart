@@ -27,22 +27,23 @@ class _ArticleWidgetState extends State<ArticleWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.primaryColor),
+        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+        iconTheme:
+            IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
           'Article',
-          style: FlutterFlowTheme.title3.override(
-            fontFamily: 'RockoUltra',
-            color: FlutterFlowTheme.primaryColor,
-            useGoogleFonts: false,
-          ),
+          style: FlutterFlowTheme.of(context).title3.override(
+                fontFamily: 'RockoUltra',
+                color: FlutterFlowTheme.of(context).primaryColor,
+                useGoogleFonts: false,
+              ),
         ),
         actions: [],
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(
         child: StreamBuilder<ArticlesRecord>(
           stream: ArticlesRecord.getDocument(widget.article),
@@ -54,7 +55,7 @@ class _ArticleWidgetState extends State<ArticleWidget> {
                   width: 50,
                   height: 50,
                   child: SpinKitRipple(
-                    color: FlutterFlowTheme.primaryColor,
+                    color: FlutterFlowTheme.of(context).primaryColor,
                     size: 50,
                   ),
                 ),
@@ -76,7 +77,7 @@ class _ArticleWidgetState extends State<ArticleWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(20, 32, 20, 0),
                     child: Text(
                       columnArticlesRecord.title,
-                      style: FlutterFlowTheme.title3,
+                      style: FlutterFlowTheme.of(context).title3,
                     ),
                   ),
                   Padding(

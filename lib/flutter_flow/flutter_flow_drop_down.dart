@@ -75,10 +75,11 @@ class _FlutterFlowDropDownState extends State<FlutterFlowDropDown> {
       icon: widget.icon,
       isExpanded: true,
       dropdownColor: widget.fillColor,
+      focusColor: Colors.transparent,
     );
     final childWidget = DecoratedBox(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(widget.borderRadius ?? 28),
+        borderRadius: BorderRadius.circular(widget.borderRadius),
         border: Border.all(
           color: widget.borderColor,
           width: widget.borderWidth,

@@ -41,7 +41,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
               width: 50,
               height: 50,
               child: SpinKitRipple(
-                color: FlutterFlowTheme.primaryColor,
+                color: FlutterFlowTheme.of(context).primaryColor,
                 size: 50,
               ),
             ),
@@ -51,16 +51,17 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.tertiaryColor,
-            iconTheme: IconThemeData(color: FlutterFlowTheme.primaryColor),
+            backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+            iconTheme:
+                IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
             automaticallyImplyLeading: true,
             title: Text(
               petProfilePetsRecord.name,
-              style: FlutterFlowTheme.title3.override(
-                fontFamily: 'RockoUltra',
-                color: FlutterFlowTheme.primaryColor,
-                useGoogleFonts: false,
-              ),
+              style: FlutterFlowTheme.of(context).title3.override(
+                    fontFamily: 'RockoUltra',
+                    color: FlutterFlowTheme.of(context).primaryColor,
+                    useGoogleFonts: false,
+                  ),
             ),
             actions: [
               FlutterFlowIconButton(
@@ -82,7 +83,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
             centerTitle: true,
             elevation: 0,
           ),
-          backgroundColor: FlutterFlowTheme.tertiaryColor,
+          backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
           body: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -116,12 +117,12 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                               children: [
                                 Text(
                                   petProfilePetsRecord.condition,
-                                  style: FlutterFlowTheme.title3,
+                                  style: FlutterFlowTheme.of(context).title3,
                                 ),
                                 Text(
                                   functions.countAgeString(
                                       petProfilePetsRecord.birthdate),
-                                  style: FlutterFlowTheme.subtitle2,
+                                  style: FlutterFlowTheme.of(context).subtitle2,
                                 ),
                               ],
                             ),
@@ -144,13 +145,17 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                               options: FFButtonOptions(
                                 width: 120,
                                 height: 40,
-                                color: FlutterFlowTheme.secondaryColor,
-                                textStyle: FlutterFlowTheme.title3.override(
-                                  fontFamily: 'RockoUltra',
-                                  color: FlutterFlowTheme.tertiaryColor,
-                                  fontSize: 14,
-                                  useGoogleFonts: false,
-                                ),
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .title3
+                                    .override(
+                                      fontFamily: 'RockoUltra',
+                                      color: FlutterFlowTheme.of(context)
+                                          .tertiaryColor,
+                                      fontSize: 14,
+                                      useGoogleFonts: false,
+                                    ),
                                 borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1,
@@ -173,15 +178,18 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                 children: [
                                   FaIcon(
                                     FontAwesomeIcons.venusMars,
-                                    color: FlutterFlowTheme.primaryColor,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
                                     size: 24,
                                   ),
                                   Text(
                                     petProfilePetsRecord.sex,
-                                    style: FlutterFlowTheme.subtitle1.override(
-                                      fontFamily: 'Cabin',
-                                      color: Color(0xFF343434),
-                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .subtitle1
+                                        .override(
+                                          fontFamily: 'Cabin',
+                                          color: Color(0xFF343434),
+                                        ),
                                   ),
                                 ],
                               ),
@@ -192,15 +200,18 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                 children: [
                                   FaIcon(
                                     FontAwesomeIcons.cat,
-                                    color: FlutterFlowTheme.primaryColor,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
                                     size: 24,
                                   ),
                                   Text(
                                     petProfilePetsRecord.breed,
-                                    style: FlutterFlowTheme.subtitle1.override(
-                                      fontFamily: 'Cabin',
-                                      color: Color(0xFF343434),
-                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .subtitle1
+                                        .override(
+                                          fontFamily: 'Cabin',
+                                          color: Color(0xFF343434),
+                                        ),
                                   ),
                                 ],
                               ),
@@ -212,7 +223,8 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                 children: [
                                   FaIcon(
                                     FontAwesomeIcons.weightHanging,
-                                    color: FlutterFlowTheme.primaryColor,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
                                     size: 24,
                                   ),
                                   Row(
@@ -221,22 +233,24 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                     children: [
                                       Text(
                                         petProfilePetsRecord.weight.toString(),
-                                        style:
-                                            FlutterFlowTheme.subtitle1.override(
-                                          fontFamily: 'Cabin',
-                                          color: Color(0xFF343434),
-                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .subtitle1
+                                            .override(
+                                              fontFamily: 'Cabin',
+                                              color: Color(0xFF343434),
+                                            ),
                                       ),
                                       Text(
                                         valueOrDefault<String>(
                                           petProfilePetsRecord.weightUnit,
                                           'gr',
                                         ),
-                                        style:
-                                            FlutterFlowTheme.subtitle1.override(
-                                          fontFamily: 'Cabin',
-                                          color: Color(0xFF343434),
-                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .subtitle1
+                                            .override(
+                                              fontFamily: 'Cabin',
+                                              color: Color(0xFF343434),
+                                            ),
                                       ),
                                     ],
                                   ),
@@ -269,13 +283,15 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                       children: [
                                         Text(
                                           'Upcoming',
-                                          style:
-                                              FlutterFlowTheme.title3.override(
-                                            fontFamily: 'RockoUltra',
-                                            color:
-                                                FlutterFlowTheme.primaryColor,
-                                            useGoogleFonts: false,
-                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .title3
+                                              .override(
+                                                fontFamily: 'RockoUltra',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryColor,
+                                                useGoogleFonts: false,
+                                              ),
                                         ),
                                         InkWell(
                                           onTap: () async {
@@ -292,14 +308,16 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                           },
                                           child: Text(
                                             'View All',
-                                            style: FlutterFlowTheme.title2
+                                            style: FlutterFlowTheme.of(context)
+                                                .title2
                                                 .override(
-                                              fontFamily: 'RockoUltra',
-                                              color:
-                                                  FlutterFlowTheme.primaryColor,
-                                              fontSize: 14,
-                                              useGoogleFonts: false,
-                                            ),
+                                                  fontFamily: 'RockoUltra',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryColor,
+                                                  fontSize: 14,
+                                                  useGoogleFonts: false,
+                                                ),
                                           ),
                                         ),
                                       ],
@@ -328,7 +346,8 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                             height: 50,
                                             child: SpinKitRipple(
                                               color:
-                                                  FlutterFlowTheme.primaryColor,
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
                                               size: 50,
                                             ),
                                           ),
@@ -374,13 +393,14 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: FlutterFlowTheme
+                                                              .of(context)
                                                           .bodyText1
                                                           .override(
-                                                        fontFamily: 'Cabin',
-                                                        color:
-                                                            Color(0xFF7F7F7F),
-                                                        fontSize: 12,
-                                                      ),
+                                                            fontFamily: 'Cabin',
+                                                            color: Color(
+                                                                0xFF7F7F7F),
+                                                            fontSize: 12,
+                                                          ),
                                                     ),
                                                     Text(
                                                       dateTimeFormat(
@@ -388,11 +408,12 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                                           columnPetSchedulesRecord
                                                               .scheduledAt),
                                                       style: FlutterFlowTheme
+                                                              .of(context)
                                                           .bodyText1
                                                           .override(
-                                                        fontFamily: 'Cabin',
-                                                        fontSize: 16,
-                                                      ),
+                                                            fontFamily: 'Cabin',
+                                                            fontSize: 16,
+                                                          ),
                                                     ),
                                                   ],
                                                 ),
@@ -404,8 +425,10 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                                                 8, 0, 0, 0),
                                                     child: Container(
                                                       decoration: BoxDecoration(
-                                                        color: FlutterFlowTheme
-                                                            .tertiaryColor,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiaryColor,
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(16),
@@ -460,7 +483,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                                                           Text(
                                                                         columnPetSchedulesRecord
                                                                             .name,
-                                                                        style: FlutterFlowTheme
+                                                                        style: FlutterFlowTheme.of(context)
                                                                             .subtitle1,
                                                                       ),
                                                                     ),
@@ -475,7 +498,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                                                           Text(
                                                                         columnPetSchedulesRecord
                                                                             .description,
-                                                                        style: FlutterFlowTheme
+                                                                        style: FlutterFlowTheme.of(context)
                                                                             .bodyText1,
                                                                       ),
                                                                     ),
@@ -497,19 +520,21 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                                                       columnPetSchedulesRecord
                                                                           .duration
                                                                           .toString(),
-                                                                      style: FlutterFlowTheme
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
                                                                           .subtitle1
                                                                           .override(
-                                                                        fontFamily:
-                                                                            'Cabin',
-                                                                        color: Color(
-                                                                            0xFF343434),
-                                                                      ),
+                                                                            fontFamily:
+                                                                                'Cabin',
+                                                                            color:
+                                                                                Color(0xFF343434),
+                                                                          ),
                                                                     ),
                                                                     Text(
                                                                       columnPetSchedulesRecord
                                                                           .durationUnit,
-                                                                      style: FlutterFlowTheme
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
                                                                           .bodyText1,
                                                                     ),
                                                                   ],
@@ -597,8 +622,10 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                                                 16, 12, 0, 12),
                                                     child: Text(
                                                       '${petProfilePetsRecord.name}\'s update...',
-                                                      style: FlutterFlowTheme
-                                                          .bodyText1,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
                                                     ),
                                                   ),
                                                 ),
@@ -607,7 +634,8 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                                       .fromSTEB(0, 0, 16, 0),
                                                   child: Icon(
                                                     Icons.add,
-                                                    color: FlutterFlowTheme
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
                                                         .secondaryColor,
                                                     size: 24,
                                                   ),
@@ -640,7 +668,8 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                 width: 50,
                                 height: 50,
                                 child: SpinKitRipple(
-                                  color: FlutterFlowTheme.primaryColor,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
                                   size: 50,
                                 ),
                               ),
@@ -684,12 +713,13 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                                   .fromSTEB(16, 0, 0, 0),
                                               child: Text(
                                                 petProfilePetsRecord.name,
-                                                style: FlutterFlowTheme
-                                                    .subtitle1
-                                                    .override(
-                                                  fontFamily: 'Cabin',
-                                                  fontSize: 20,
-                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle1
+                                                        .override(
+                                                          fontFamily: 'Cabin',
+                                                          fontSize: 20,
+                                                        ),
                                               ),
                                             ),
                                             Padding(
@@ -701,7 +731,8 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                                     columnPetPostsRecord
                                                         .createdAt),
                                                 style:
-                                                    FlutterFlowTheme.bodyText1,
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1,
                                               ),
                                             ),
                                           ],
@@ -715,7 +746,8 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                           20, 20, 20, 0),
                                       child: Text(
                                         columnPetPostsRecord.text,
-                                        style: FlutterFlowTheme.subtitle2,
+                                        style: FlutterFlowTheme.of(context)
+                                            .subtitle2,
                                       ),
                                     ),
                                   if ((columnPetPostsRecord.petPictureUrl) !=

@@ -9,32 +9,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
+import '../../index.dart';
 import '../../main.dart';
-import '../../splash/splash_widget.dart';
-import '../../profile_and_pets/profile_and_pets_widget.dart';
-import '../../market_place/market_place_widget.dart';
-import '../../new_pet/new_pet_widget.dart';
-import '../../order_list/order_list_widget.dart';
-import '../../grooming_form/grooming_form_widget.dart';
-import '../../select_geo_location/select_geo_location_widget.dart';
-import '../../grooming_detail/grooming_detail_widget.dart';
-import '../../address_form/address_form_widget.dart';
-import '../../phone_sign_in/phone_sign_in_widget.dart';
-import '../../phone_verification/phone_verification_widget.dart';
-import '../../sign_up/sign_up_widget.dart';
-import '../../pet_profile/pet_profile_widget.dart';
-import '../../article/article_widget.dart';
-import '../../help/help_widget.dart';
-import '../../request_feature/request_feature_widget.dart';
-import '../../chat/chat_widget.dart';
-import '../../pet_post/pet_post_widget.dart';
-import '../../update_pet/update_pet_widget.dart';
-import '../../pet_schedule/pet_schedule_widget.dart';
-import '../../add_schedule/add_schedule_widget.dart';
-import '../../timeline/timeline_widget.dart';
-import '../../pet_list/pet_list_widget.dart';
-import '../../edit_profile/edit_profile_widget.dart';
-import '../../home_backup/home_backup_widget.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
   const PushNotificationsHandler(
@@ -89,7 +65,7 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
   @override
   Widget build(BuildContext context) => _loading
       ? Container(
-          color: FlutterFlowTheme.tertiaryColor,
+          color: FlutterFlowTheme.of(context).tertiaryColor,
           child: Center(
             child: Builder(
               builder: (context) => Image.asset(
@@ -104,6 +80,7 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
 }
 
 final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
+  'Home': (data) async => HomeWidget(),
   'Splash': (data) async => SplashWidget(),
   'ProfileAndPets': (data) async => ProfileAndPetsWidget(),
   'MarketPlace': (data) async => MarketPlaceWidget(),
@@ -144,7 +121,20 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'Timeline': (data) async => TimelineWidget(),
   'PetList': (data) async => PetListWidget(),
   'EditProfile': (data) async => EditProfileWidget(),
-  'HomeBackup': (data) async => HomeBackupWidget(),
+  'Settings': (data) async => SettingsWidget(),
+  'GroomingSummary': (data) async => GroomingSummaryWidget(
+        customerAddress: getParameter(data, 'customerAddress'),
+        service: getParameter(data, 'service'),
+        quantity: getParameter(data, 'quantity'),
+        customerLatLng: getParameter(data, 'customerLatLng'),
+        scheduleDate: getParameter(data, 'scheduleDate'),
+        scheduleTime: getParameter(data, 'scheduleTime'),
+        petCategory: getParameter(data, 'petCategory'),
+      ),
+  'PaymentMethod': (data) async => PaymentMethodWidget(
+        order:
+            await getDocumentParameter(data, 'order', OrdersRecord.serializer),
+      ),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>

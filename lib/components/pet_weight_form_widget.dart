@@ -35,24 +35,23 @@ class _PetWeightFormWidgetState extends State<PetWeightFormWidget> {
               obscureText: false,
               decoration: InputDecoration(
                 hintText: 'Pet\'s weight',
-                hintStyle: FlutterFlowTheme.subtitle1,
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: FlutterFlowTheme.secondaryColor,
+                    color: FlutterFlowTheme.of(context).secondaryColor,
                     width: 2,
                   ),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: FlutterFlowTheme.secondaryColor,
+                    color: FlutterFlowTheme.of(context).secondaryColor,
                     width: 2,
                   ),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 contentPadding: EdgeInsetsDirectional.fromSTEB(16, 24, 16, 24),
               ),
-              style: FlutterFlowTheme.subtitle1,
+              style: FlutterFlowTheme.of(context).subtitle1,
               keyboardType: TextInputType.number,
             ),
           ),
@@ -64,7 +63,7 @@ class _PetWeightFormWidgetState extends State<PetWeightFormWidget> {
                   setState(() => weightUnitSelectionValue = val),
               width: 88,
               height: 50,
-              textStyle: FlutterFlowTheme.subtitle1,
+              textStyle: FlutterFlowTheme.of(context).subtitle1,
               fillColor: Colors.white,
               elevation: 2,
               borderColor: Colors.transparent,

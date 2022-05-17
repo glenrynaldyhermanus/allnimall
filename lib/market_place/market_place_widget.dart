@@ -20,21 +20,21 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
+        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
         automaticallyImplyLeading: true,
         title: Text(
           'Marketplace',
-          style: FlutterFlowTheme.title3.override(
-            fontFamily: 'RockoUltra',
-            color: FlutterFlowTheme.primaryColor,
-            useGoogleFonts: false,
-          ),
+          style: FlutterFlowTheme.of(context).title3.override(
+                fontFamily: 'RockoUltra',
+                color: FlutterFlowTheme.of(context).primaryColor,
+                useGoogleFonts: false,
+              ),
         ),
         actions: [],
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -54,11 +54,11 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 56, 0, 0),
               child: Text(
                 'Coming Soon',
-                style: FlutterFlowTheme.title2.override(
-                  fontFamily: 'RockoUltra',
-                  color: Color(0xFF717171),
-                  useGoogleFonts: false,
-                ),
+                style: FlutterFlowTheme.of(context).title2.override(
+                      fontFamily: 'RockoUltra',
+                      color: Color(0xFF717171),
+                      useGoogleFonts: false,
+                    ),
               ),
             ),
             Padding(
@@ -66,10 +66,10 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
               child: Text(
                 'Hang on! We\'re on our way...',
                 textAlign: TextAlign.center,
-                style: FlutterFlowTheme.subtitle1.override(
-                  fontFamily: 'Cabin',
-                  fontSize: 20,
-                ),
+                style: FlutterFlowTheme.of(context).subtitle1.override(
+                      fontFamily: 'Cabin',
+                      fontSize: 20,
+                    ),
               ),
             ),
           ],

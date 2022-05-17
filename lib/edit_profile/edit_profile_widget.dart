@@ -39,27 +39,28 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.primaryColor),
+        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+        iconTheme:
+            IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
           'Edit Profile',
-          style: FlutterFlowTheme.title3.override(
-            fontFamily: 'RockoUltra',
-            color: FlutterFlowTheme.primaryColor,
-            useGoogleFonts: false,
-          ),
+          style: FlutterFlowTheme.of(context).title3.override(
+                fontFamily: 'RockoUltra',
+                color: FlutterFlowTheme.of(context).primaryColor,
+                useGoogleFonts: false,
+              ),
         ),
         actions: [],
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(
         child: Container(
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-            color: FlutterFlowTheme.tertiaryColor,
+            color: FlutterFlowTheme.of(context).tertiaryColor,
           ),
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(32, 20, 32, 20),
@@ -82,21 +83,35 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 allowPhoto: true,
                               );
                               if (selectedMedia != null &&
-                                  validateFileFormat(
-                                      selectedMedia.storagePath, context)) {
-                                showUploadMessage(context, 'Uploading file...',
-                                    showLoading: true);
-                                final downloadUrl = await uploadData(
-                                    selectedMedia.storagePath,
-                                    selectedMedia.bytes);
+                                  selectedMedia.every((m) => validateFileFormat(
+                                      m.storagePath, context))) {
+                                showUploadMessage(
+                                  context,
+                                  'Uploading file...',
+                                  showLoading: true,
+                                );
+                                final downloadUrls = (await Future.wait(
+                                        selectedMedia.map((m) async =>
+                                            await uploadData(
+                                                m.storagePath, m.bytes))))
+                                    .where((u) => u != null)
+                                    .toList();
                                 ScaffoldMessenger.of(context)
                                     .hideCurrentSnackBar();
-                                if (downloadUrl != null) {
-                                  setState(() => uploadedFileUrl = downloadUrl);
-                                  showUploadMessage(context, 'Success!');
+                                if (downloadUrls != null &&
+                                    downloadUrls.length ==
+                                        selectedMedia.length) {
+                                  setState(() =>
+                                      uploadedFileUrl = downloadUrls.first);
+                                  showUploadMessage(
+                                    context,
+                                    'Success!',
+                                  );
                                 } else {
                                   showUploadMessage(
-                                      context, 'Failed to upload media');
+                                    context,
+                                    'Failed to upload media',
+                                  );
                                   return;
                                 }
                               }
@@ -131,7 +146,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       if ((uploadedFileUrl) == '')
                         Text(
                           'Change picture',
-                          style: FlutterFlowTheme.subtitle2,
+                          style: FlutterFlowTheme.of(context).subtitle2,
                         ),
                     ],
                   ),
@@ -143,17 +158,18 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         obscureText: false,
                         decoration: InputDecoration(
                           hintText: 'Pet\'s name',
-                          hintStyle: FlutterFlowTheme.subtitle1,
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.secondaryColor,
+                              color:
+                                  FlutterFlowTheme.of(context).secondaryColor,
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.secondaryColor,
+                              color:
+                                  FlutterFlowTheme.of(context).secondaryColor,
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(8),
@@ -161,7 +177,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           contentPadding:
                               EdgeInsetsDirectional.fromSTEB(16, 24, 16, 24),
                         ),
-                        style: FlutterFlowTheme.subtitle1,
+                        style: FlutterFlowTheme.of(context).subtitle1,
                       ),
                     ),
                   ),
@@ -176,6 +192,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             setState(() => datePicked = date);
                           },
                           currentTime: getCurrentTimestamp,
+                          minTime: DateTime(0, 0, 0),
                         );
                       },
                       child: Material(
@@ -188,10 +205,11 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           width: double.infinity,
                           height: 60,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.tertiaryColor,
+                            color: FlutterFlowTheme.of(context).tertiaryColor,
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(
-                              color: FlutterFlowTheme.secondaryColor,
+                              color:
+                                  FlutterFlowTheme.of(context).secondaryColor,
                               width: 2,
                             ),
                           ),
@@ -211,7 +229,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                               currentUserDocument?.birthdate),
                                           'Birthdate',
                                         ),
-                                        style: FlutterFlowTheme.subtitle1,
+                                        style: FlutterFlowTheme.of(context)
+                                            .subtitle1,
                                       ),
                                     ),
                                   ),
@@ -222,12 +241,14 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                         dateTimeFormat('yMMMd', datePicked),
                                         'Pet\'s birthdate',
                                       ),
-                                      style: FlutterFlowTheme.subtitle1,
+                                      style: FlutterFlowTheme.of(context)
+                                          .subtitle1,
                                     ),
                                   ),
                                 FaIcon(
                                   FontAwesomeIcons.calendarCheck,
-                                  color: FlutterFlowTheme.secondaryColor,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryColor,
                                   size: 24,
                                 ),
                               ],
@@ -247,10 +268,11 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         onChanged: (val) =>
                             setState(() => sexSelectionValue = val),
                         width: double.infinity,
-                        textStyle: FlutterFlowTheme.subtitle1,
+                        textStyle: FlutterFlowTheme.of(context).subtitle1,
                         fillColor: Colors.white,
                         elevation: 0,
-                        borderColor: FlutterFlowTheme.secondaryColor,
+                        borderColor:
+                            FlutterFlowTheme.of(context).secondaryColor,
                         borderWidth: 2,
                         borderRadius: 8,
                         margin: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 8),
@@ -275,12 +297,12 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 56,
-                        color: FlutterFlowTheme.secondaryColor,
-                        textStyle: FlutterFlowTheme.title3.override(
-                          fontFamily: 'RockoUltra',
-                          color: FlutterFlowTheme.tertiaryColor,
-                          useGoogleFonts: false,
-                        ),
+                        color: FlutterFlowTheme.of(context).secondaryColor,
+                        textStyle: FlutterFlowTheme.of(context).title3.override(
+                              fontFamily: 'RockoUltra',
+                              color: FlutterFlowTheme.of(context).tertiaryColor,
+                              useGoogleFonts: false,
+                            ),
                         borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 1,

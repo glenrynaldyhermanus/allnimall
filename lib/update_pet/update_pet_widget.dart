@@ -46,7 +46,7 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
               width: 50,
               height: 50,
               child: SpinKitRipple(
-                color: FlutterFlowTheme.primaryColor,
+                color: FlutterFlowTheme.of(context).primaryColor,
                 size: 50,
               ),
             ),
@@ -56,16 +56,17 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.tertiaryColor,
-            iconTheme: IconThemeData(color: FlutterFlowTheme.primaryColor),
+            backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+            iconTheme:
+                IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
             automaticallyImplyLeading: true,
             title: Text(
               'Update Pet',
-              style: FlutterFlowTheme.title3.override(
-                fontFamily: 'RockoUltra',
-                color: FlutterFlowTheme.primaryColor,
-                useGoogleFonts: false,
-              ),
+              style: FlutterFlowTheme.of(context).title3.override(
+                    fontFamily: 'RockoUltra',
+                    color: FlutterFlowTheme.of(context).primaryColor,
+                    useGoogleFonts: false,
+                  ),
             ),
             actions: [],
             centerTitle: true,
@@ -75,7 +76,7 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
             child: Container(
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
-                color: FlutterFlowTheme.tertiaryColor,
+                color: FlutterFlowTheme.of(context).tertiaryColor,
               ),
               child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(32, 20, 32, 20),
@@ -97,23 +98,36 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                                   allowPhoto: true,
                                 );
                                 if (selectedMedia != null &&
-                                    validateFileFormat(
-                                        selectedMedia.storagePath, context)) {
+                                    selectedMedia.every((m) =>
+                                        validateFileFormat(
+                                            m.storagePath, context))) {
                                   showUploadMessage(
-                                      context, 'Uploading file...',
-                                      showLoading: true);
-                                  final downloadUrl = await uploadData(
-                                      selectedMedia.storagePath,
-                                      selectedMedia.bytes);
+                                    context,
+                                    'Uploading file...',
+                                    showLoading: true,
+                                  );
+                                  final downloadUrls = (await Future.wait(
+                                          selectedMedia.map((m) async =>
+                                              await uploadData(
+                                                  m.storagePath, m.bytes))))
+                                      .where((u) => u != null)
+                                      .toList();
                                   ScaffoldMessenger.of(context)
                                       .hideCurrentSnackBar();
-                                  if (downloadUrl != null) {
-                                    setState(
-                                        () => uploadedFileUrl = downloadUrl);
-                                    showUploadMessage(context, 'Success!');
+                                  if (downloadUrls != null &&
+                                      downloadUrls.length ==
+                                          selectedMedia.length) {
+                                    setState(() =>
+                                        uploadedFileUrl = downloadUrls.first);
+                                    showUploadMessage(
+                                      context,
+                                      'Success!',
+                                    );
                                   } else {
                                     showUploadMessage(
-                                        context, 'Failed to upload media');
+                                      context,
+                                      'Failed to upload media',
+                                    );
                                     return;
                                   }
                                 }
@@ -147,7 +161,7 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                           if ((uploadedFileUrl) == '')
                             Text(
                               'Change picture',
-                              style: FlutterFlowTheme.subtitle2,
+                              style: FlutterFlowTheme.of(context).subtitle2,
                             ),
                         ],
                       ),
@@ -161,17 +175,18 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                           obscureText: false,
                           decoration: InputDecoration(
                             hintText: 'Pet\'s name',
-                            hintStyle: FlutterFlowTheme.subtitle1,
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.secondaryColor,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
                                 width: 2,
                               ),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.secondaryColor,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
                                 width: 2,
                               ),
                               borderRadius: BorderRadius.circular(8),
@@ -179,7 +194,7 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                             contentPadding:
                                 EdgeInsetsDirectional.fromSTEB(16, 24, 16, 24),
                           ),
-                          style: FlutterFlowTheme.subtitle1,
+                          style: FlutterFlowTheme.of(context).subtitle1,
                         ),
                       ),
                       Padding(
@@ -193,6 +208,7 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                                 setState(() => datePicked = date);
                               },
                               currentTime: getCurrentTimestamp,
+                              minTime: DateTime(0, 0, 0),
                             );
                           },
                           child: Material(
@@ -205,10 +221,12 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                               width: double.infinity,
                               height: 60,
                               decoration: BoxDecoration(
-                                color: FlutterFlowTheme.tertiaryColor,
+                                color:
+                                    FlutterFlowTheme.of(context).tertiaryColor,
                                 borderRadius: BorderRadius.circular(8),
                                 border: Border.all(
-                                  color: FlutterFlowTheme.secondaryColor,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryColor,
                                   width: 2,
                                 ),
                               ),
@@ -227,7 +245,8 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                                                 updatePetPetsRecord.birthdate),
                                             'Pet\'s birthdate',
                                           ),
-                                          style: FlutterFlowTheme.subtitle1,
+                                          style: FlutterFlowTheme.of(context)
+                                              .subtitle1,
                                         ),
                                       ),
                                     if (functions.isDatePicked(datePicked) ??
@@ -238,12 +257,14 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                                             dateTimeFormat('yMMMd', datePicked),
                                             'Pet\'s birthdate',
                                           ),
-                                          style: FlutterFlowTheme.subtitle1,
+                                          style: FlutterFlowTheme.of(context)
+                                              .subtitle1,
                                         ),
                                       ),
                                     FaIcon(
                                       FontAwesomeIcons.calendarCheck,
-                                      color: FlutterFlowTheme.secondaryColor,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryColor,
                                       size: 24,
                                     ),
                                   ],
@@ -262,10 +283,11 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                           onChanged: (val) =>
                               setState(() => sexSelectionValue = val),
                           width: double.infinity,
-                          textStyle: FlutterFlowTheme.subtitle1,
+                          textStyle: FlutterFlowTheme.of(context).subtitle1,
                           fillColor: Colors.white,
                           elevation: 0,
-                          borderColor: FlutterFlowTheme.secondaryColor,
+                          borderColor:
+                              FlutterFlowTheme.of(context).secondaryColor,
                           borderWidth: 2,
                           borderRadius: 8,
                           margin: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 8),
@@ -282,17 +304,18 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                           obscureText: false,
                           decoration: InputDecoration(
                             hintText: 'Pet\'s breed',
-                            hintStyle: FlutterFlowTheme.subtitle1,
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.secondaryColor,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
                                 width: 2,
                               ),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.secondaryColor,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
                                 width: 2,
                               ),
                               borderRadius: BorderRadius.circular(8),
@@ -300,7 +323,7 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                             contentPadding:
                                 EdgeInsetsDirectional.fromSTEB(16, 24, 16, 24),
                           ),
-                          style: FlutterFlowTheme.subtitle1,
+                          style: FlutterFlowTheme.of(context).subtitle1,
                         ),
                       ),
                       Padding(
@@ -322,12 +345,14 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                           options: FFButtonOptions(
                             width: double.infinity,
                             height: 56,
-                            color: FlutterFlowTheme.secondaryColor,
-                            textStyle: FlutterFlowTheme.title3.override(
-                              fontFamily: 'RockoUltra',
-                              color: FlutterFlowTheme.tertiaryColor,
-                              useGoogleFonts: false,
-                            ),
+                            color: FlutterFlowTheme.of(context).secondaryColor,
+                            textStyle:
+                                FlutterFlowTheme.of(context).title3.override(
+                                      fontFamily: 'RockoUltra',
+                                      color: FlutterFlowTheme.of(context)
+                                          .tertiaryColor,
+                                      useGoogleFonts: false,
+                                    ),
                             borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1,

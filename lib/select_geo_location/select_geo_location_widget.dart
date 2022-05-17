@@ -18,40 +18,56 @@ class SelectGeoLocationWidget extends StatefulWidget {
 }
 
 class _SelectGeoLocationWidgetState extends State<SelectGeoLocationWidget> {
-  LatLng googleMapsCenter;
-  Completer<GoogleMapController> googleMapsController;
-  TextEditingController textController;
+  LatLng currentUserLocationValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  LatLng googleMapsCenter;
+  final googleMapsController = Completer<GoogleMapController>();
+  TextEditingController textController;
 
   @override
   void initState() {
     super.initState();
+    getCurrentUserLocation(defaultLocation: LatLng(0.0, 0.0), cached: true)
+        .then((loc) => setState(() => currentUserLocationValue = loc));
     textController =
         TextEditingController(text: currentUserDocument?.orderAddress);
   }
 
   @override
   Widget build(BuildContext context) {
+    if (currentUserLocationValue == null) {
+      return Center(
+        child: SizedBox(
+          width: 50,
+          height: 50,
+          child: SpinKitRipple(
+            color: FlutterFlowTheme.of(context).primaryColor,
+            size: 50,
+          ),
+        ),
+      );
+    }
     return Scaffold(
       key: scaffoldKey,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.primaryColor),
+        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+        iconTheme:
+            IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
           'Location',
-          style: FlutterFlowTheme.title3.override(
-            fontFamily: 'RockoUltra',
-            color: FlutterFlowTheme.primaryColor,
-            useGoogleFonts: false,
-          ),
+          style: FlutterFlowTheme.of(context).title3.override(
+                fontFamily: 'RockoUltra',
+                color: FlutterFlowTheme.of(context).primaryColor,
+                useGoogleFonts: false,
+              ),
         ),
         actions: [],
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -64,32 +80,30 @@ class _SelectGeoLocationWidgetState extends State<SelectGeoLocationWidget> {
                   children: [
                     Align(
                       alignment: AlignmentDirectional(0, 0),
-                      child: AuthUserStreamWidget(
-                        child: FlutterFlowGoogleMap(
-                          controller: googleMapsController,
-                          onCameraIdle: (latLng) => googleMapsCenter = latLng,
-                          initialLocation: googleMapsCenter ??=
-                              currentUserDocument?.orderLatlng,
-                          markerColor: GoogleMarkerColor.violet,
-                          mapType: MapType.normal,
-                          style: GoogleMapStyle.standard,
-                          initialZoom: 14,
-                          allowInteraction: true,
-                          allowZoom: true,
-                          showZoomControls: true,
-                          showLocation: true,
-                          showCompass: false,
-                          showMapToolbar: false,
-                          showTraffic: false,
-                          centerMapOnMarkerTap: true,
-                        ),
+                      child: FlutterFlowGoogleMap(
+                        controller: googleMapsController,
+                        onCameraIdle: (latLng) => googleMapsCenter = latLng,
+                        initialLocation: googleMapsCenter ??=
+                            currentUserLocationValue,
+                        markerColor: GoogleMarkerColor.violet,
+                        mapType: MapType.normal,
+                        style: GoogleMapStyle.standard,
+                        initialZoom: 14,
+                        allowInteraction: true,
+                        allowZoom: true,
+                        showZoomControls: true,
+                        showLocation: true,
+                        showCompass: false,
+                        showMapToolbar: false,
+                        showTraffic: false,
+                        centerMapOnMarkerTap: true,
                       ),
                     ),
                     Align(
                       alignment: AlignmentDirectional(0, 0),
                       child: Icon(
                         Icons.location_on_rounded,
-                        color: FlutterFlowTheme.primaryColor,
+                        color: FlutterFlowTheme.of(context).primaryColor,
                         size: 60,
                       ),
                     ),
@@ -100,7 +114,7 @@ class _SelectGeoLocationWidgetState extends State<SelectGeoLocationWidget> {
             Container(
               width: double.infinity,
               decoration: BoxDecoration(
-                color: FlutterFlowTheme.tertiaryColor,
+                color: FlutterFlowTheme.of(context).tertiaryColor,
               ),
               child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
@@ -112,18 +126,20 @@ class _SelectGeoLocationWidgetState extends State<SelectGeoLocationWidget> {
                         controller: textController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          hintText: 'Address',
-                          hintStyle: FlutterFlowTheme.subtitle1,
+                          hintText:
+                              'Ketik alamat lengkap, jalan, rt, rw, kecamatan, kota, kode pos',
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.secondaryColor,
+                              color:
+                                  FlutterFlowTheme.of(context).secondaryColor,
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.secondaryColor,
+                              color:
+                                  FlutterFlowTheme.of(context).secondaryColor,
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(8),
@@ -131,7 +147,7 @@ class _SelectGeoLocationWidgetState extends State<SelectGeoLocationWidget> {
                           contentPadding:
                               EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
                         ),
-                        style: FlutterFlowTheme.subtitle1,
+                        style: FlutterFlowTheme.of(context).subtitle1,
                       ),
                     ),
                     Padding(
@@ -149,12 +165,15 @@ class _SelectGeoLocationWidgetState extends State<SelectGeoLocationWidget> {
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 56,
-                          color: FlutterFlowTheme.secondaryColor,
-                          textStyle: FlutterFlowTheme.title3.override(
-                            fontFamily: 'RockoUltra',
-                            color: FlutterFlowTheme.tertiaryColor,
-                            useGoogleFonts: false,
-                          ),
+                          color: FlutterFlowTheme.of(context).secondaryColor,
+                          textStyle: FlutterFlowTheme.of(context)
+                              .title3
+                              .override(
+                                fontFamily: 'RockoUltra',
+                                color:
+                                    FlutterFlowTheme.of(context).tertiaryColor,
+                                useGoogleFonts: false,
+                              ),
                           borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1,

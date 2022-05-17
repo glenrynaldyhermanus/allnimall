@@ -25,25 +25,29 @@ class _TimelineWidgetState extends State<TimelineWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.primaryColor),
+        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+        iconTheme:
+            IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
           'Timeline',
-          style: FlutterFlowTheme.title3.override(
-            fontFamily: 'RockoUltra',
-            color: FlutterFlowTheme.primaryColor,
-            useGoogleFonts: false,
-          ),
+          style: FlutterFlowTheme.of(context).title3.override(
+                fontFamily: 'RockoUltra',
+                color: FlutterFlowTheme.of(context).primaryColor,
+                useGoogleFonts: false,
+              ),
         ),
         actions: [],
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(
         child: StreamBuilder<List<PetPostsRecord>>(
-          stream: queryPetPostsRecord(),
+          stream: queryPetPostsRecord(
+            queryBuilder: (petPostsRecord) =>
+                petPostsRecord.orderBy('created_at', descending: true),
+          ),
           builder: (context, snapshot) {
             // Customize what your widget looks like when it's loading.
             if (!snapshot.hasData) {
@@ -52,7 +56,7 @@ class _TimelineWidgetState extends State<TimelineWidget> {
                   width: 50,
                   height: 50,
                   child: SpinKitRipple(
-                    color: FlutterFlowTheme.primaryColor,
+                    color: FlutterFlowTheme.of(context).primaryColor,
                     size: 50,
                   ),
                 ),
@@ -93,10 +97,12 @@ class _TimelineWidgetState extends State<TimelineWidget> {
                                       16, 0, 0, 0),
                                   child: Text(
                                     columnPetPostsRecord.petName,
-                                    style: FlutterFlowTheme.subtitle1.override(
-                                      fontFamily: 'Cabin',
-                                      fontSize: 20,
-                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .subtitle1
+                                        .override(
+                                          fontFamily: 'Cabin',
+                                          fontSize: 20,
+                                        ),
                                   ),
                                 ),
                                 Padding(
@@ -105,7 +111,8 @@ class _TimelineWidgetState extends State<TimelineWidget> {
                                   child: Text(
                                     dateTimeFormat('relative',
                                         columnPetPostsRecord.createdAt),
-                                    style: FlutterFlowTheme.bodyText1,
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyText1,
                                   ),
                                 ),
                               ],
@@ -119,7 +126,7 @@ class _TimelineWidgetState extends State<TimelineWidget> {
                               EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
                           child: Text(
                             columnPetPostsRecord.text,
-                            style: FlutterFlowTheme.subtitle2,
+                            style: FlutterFlowTheme.of(context).subtitle2,
                           ),
                         ),
                       if ((columnPetPostsRecord.image) != '')
@@ -162,12 +169,14 @@ class _TimelineWidgetState extends State<TimelineWidget> {
                                       .contains(currentUserReference),
                                   onIcon: Icon(
                                     Icons.favorite,
-                                    color: FlutterFlowTheme.secondaryColor,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryColor,
                                     size: 26,
                                   ),
                                   offIcon: Icon(
                                     Icons.favorite_border,
-                                    color: FlutterFlowTheme.secondaryColor,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryColor,
                                     size: 26,
                                   ),
                                 ),
@@ -180,7 +189,8 @@ class _TimelineWidgetState extends State<TimelineWidget> {
                                         .countFavs(columnPetPostsRecord.favedBy
                                             .toList())
                                         .toString(),
-                                    style: FlutterFlowTheme.bodyText1,
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyText1,
                                   ),
                                 if ((functions.countFavs(columnPetPostsRecord
                                         .favedBy
@@ -188,7 +198,8 @@ class _TimelineWidgetState extends State<TimelineWidget> {
                                     0)
                                   Text(
                                     ' loves',
-                                    style: FlutterFlowTheme.bodyText1,
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyText1,
                                   ),
                               ],
                             ),
@@ -200,7 +211,8 @@ class _TimelineWidgetState extends State<TimelineWidget> {
                             buttonSize: 60,
                             icon: Icon(
                               Icons.share_sharp,
-                              color: FlutterFlowTheme.secondaryColor,
+                              color:
+                                  FlutterFlowTheme.of(context).secondaryColor,
                               size: 24,
                             ),
                             onPressed: () async {

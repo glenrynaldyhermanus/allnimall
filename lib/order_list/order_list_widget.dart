@@ -23,22 +23,23 @@ class _OrderListWidgetState extends State<OrderListWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.primaryColor),
+        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+        iconTheme:
+            IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
           'Orders',
-          style: FlutterFlowTheme.title3.override(
-            fontFamily: 'RockoUltra',
-            color: FlutterFlowTheme.primaryColor,
-            useGoogleFonts: false,
-          ),
+          style: FlutterFlowTheme.of(context).title3.override(
+                fontFamily: 'RockoUltra',
+                color: FlutterFlowTheme.of(context).primaryColor,
+                useGoogleFonts: false,
+              ),
         ),
         actions: [],
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(
         child: StreamBuilder<List<OrdersRecord>>(
           stream: queryOrdersRecord(
@@ -54,7 +55,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                   width: 50,
                   height: 50,
                   child: SpinKitRipple(
-                    color: FlutterFlowTheme.primaryColor,
+                    color: FlutterFlowTheme.of(context).primaryColor,
                     size: 50,
                   ),
                 ),
@@ -95,7 +96,8 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                               alignment: AlignmentDirectional(0, 0),
                               child: FaIcon(
                                 FontAwesomeIcons.cat,
-                                color: FlutterFlowTheme.primaryColor,
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
                                 size: 40,
                               ),
                             ),
@@ -110,20 +112,25 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                 children: [
                                   Text(
                                     columnOrdersRecord.name,
-                                    style: FlutterFlowTheme.subtitle1.override(
-                                      fontFamily: 'Cabin',
-                                      color: FlutterFlowTheme.primaryColor,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .subtitle1
+                                        .override(
+                                          fontFamily: 'Cabin',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                   ),
                                   Text(
                                     dateTimeFormat('relative',
                                         columnOrdersRecord.createdAt),
-                                    style: FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Cabin',
-                                      fontSize: 12,
-                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Cabin',
+                                          fontSize: 12,
+                                        ),
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
@@ -139,13 +146,14 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                             8, 4, 8, 0),
                                         child: Text(
                                           columnOrdersRecord.status,
-                                          style: FlutterFlowTheme.bodyText1
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1
                                               .override(
-                                            fontFamily: 'Cabin',
-                                            color: Color(0xFF62CD59),
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600,
-                                          ),
+                                                fontFamily: 'Cabin',
+                                                color: Color(0xFF62CD59),
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                         ),
                                       ),
                                     ),

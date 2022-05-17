@@ -35,7 +35,7 @@ class _EmptyPetWidgetState extends State<EmptyPetWidget> {
               Text(
                 'Add your pet',
                 textAlign: TextAlign.center,
-                style: FlutterFlowTheme.title3,
+                style: FlutterFlowTheme.of(context).title3,
               ),
             ],
           ),
@@ -50,7 +50,7 @@ class _EmptyPetWidgetState extends State<EmptyPetWidget> {
                 child: Text(
                   'Let\'s join our vast community and bring the best out of your pets',
                   textAlign: TextAlign.center,
-                  style: FlutterFlowTheme.bodyText1,
+                  style: FlutterFlowTheme.of(context).bodyText1,
                 ),
               ),
             ],
@@ -71,13 +71,13 @@ class _EmptyPetWidgetState extends State<EmptyPetWidget> {
             options: FFButtonOptions(
               width: 160,
               height: 40,
-              color: FlutterFlowTheme.primaryColor,
-              textStyle: FlutterFlowTheme.title3.override(
-                fontFamily: 'RockoUltra',
-                color: FlutterFlowTheme.tertiaryColor,
-                fontSize: 14,
-                useGoogleFonts: false,
-              ),
+              color: FlutterFlowTheme.of(context).primaryColor,
+              textStyle: FlutterFlowTheme.of(context).title3.override(
+                    fontFamily: 'RockoUltra',
+                    color: FlutterFlowTheme.of(context).tertiaryColor,
+                    fontSize: 14,
+                    useGoogleFonts: false,
+                  ),
               elevation: 2,
               borderSide: BorderSide(
                 color: Colors.transparent,

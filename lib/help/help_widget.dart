@@ -1,6 +1,9 @@
+import '../auth/auth_util.dart';
 import '../chat/chat_widget.dart';
+import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../phone_sign_in/phone_sign_in_widget.dart';
 import '../request_feature/request_feature_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -22,22 +25,45 @@ class _HelpWidgetState extends State<HelpWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.primaryColor),
+        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+        iconTheme:
+            IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
           'Help Center',
-          style: FlutterFlowTheme.title3.override(
-            fontFamily: 'RockoUltra',
-            color: FlutterFlowTheme.primaryColor,
-            useGoogleFonts: false,
-          ),
+          style: FlutterFlowTheme.of(context).title3.override(
+                fontFamily: 'RockoUltra',
+                color: FlutterFlowTheme.of(context).primaryColor,
+                useGoogleFonts: false,
+              ),
         ),
-        actions: [],
+        actions: [
+          FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30,
+            borderWidth: 1,
+            buttonSize: 60,
+            icon: Icon(
+              Icons.exit_to_app_outlined,
+              color: FlutterFlowTheme.of(context).secondaryColor,
+              size: 24,
+            ),
+            onPressed: () async {
+              await signOut();
+              await Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PhoneSignInWidget(),
+                ),
+                (r) => false,
+              );
+            },
+          ),
+        ],
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -55,19 +81,19 @@ class _HelpWidgetState extends State<HelpWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Text(
-                      'Tell us how we can help',
-                      style: FlutterFlowTheme.title3.override(
-                        fontFamily: 'RockoUltra',
-                        color: FlutterFlowTheme.primaryColor,
-                        useGoogleFonts: false,
-                      ),
+                      'Butuh bantuan kami?',
+                      style: FlutterFlowTheme.of(context).title3.override(
+                            fontFamily: 'RockoUltra',
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            useGoogleFonts: false,
+                          ),
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                       child: Text(
-                        'Our super crews are standing by\nfor service and support',
+                        'Kru Allnimall dengan senang hati akan membantu kakak semua!',
                         textAlign: TextAlign.center,
-                        style: FlutterFlowTheme.subtitle2,
+                        style: FlutterFlowTheme.of(context).subtitle2,
                       ),
                     ),
                     Padding(
@@ -105,14 +131,16 @@ class _HelpWidgetState extends State<HelpWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Text(
-                                          'Chat Us',
-                                          style: FlutterFlowTheme.subtitle1,
+                                          'Chat',
+                                          style: FlutterFlowTheme.of(context)
+                                              .subtitle1,
                                         ),
                                       ],
                                     ),
                                     Text(
-                                      'Get solutions direct to your inbox',
-                                      style: FlutterFlowTheme.bodyText1,
+                                      'Chat langsung  dengan kru Allnimall',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1,
                                     ),
                                   ],
                                 ),
@@ -120,7 +148,7 @@ class _HelpWidgetState extends State<HelpWidget> {
                             ),
                             Icon(
                               Icons.arrow_forward_ios,
-                              color: FlutterFlowTheme.primaryColor,
+                              color: FlutterFlowTheme.of(context).primaryColor,
                               size: 24,
                             ),
                           ],
@@ -158,13 +186,15 @@ class _HelpWidgetState extends State<HelpWidget> {
                                       children: [
                                         Text(
                                           'FAQs',
-                                          style: FlutterFlowTheme.subtitle1,
+                                          style: FlutterFlowTheme.of(context)
+                                              .subtitle1,
                                         ),
                                       ],
                                     ),
                                     Text(
-                                      'What\'s buuggin\' you? Find it here!',
-                                      style: FlutterFlowTheme.bodyText1,
+                                      'Temukan jawaban atas pertanyaan-pertanyaan kamu',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1,
                                     ),
                                   ],
                                 ),
@@ -172,7 +202,7 @@ class _HelpWidgetState extends State<HelpWidget> {
                             ),
                             Icon(
                               Icons.arrow_forward_ios,
-                              color: FlutterFlowTheme.primaryColor,
+                              color: FlutterFlowTheme.of(context).primaryColor,
                               size: 24,
                             ),
                           ],
@@ -215,13 +245,15 @@ class _HelpWidgetState extends State<HelpWidget> {
                                       children: [
                                         Text(
                                           'Request Features',
-                                          style: FlutterFlowTheme.subtitle1,
+                                          style: FlutterFlowTheme.of(context)
+                                              .subtitle1,
                                         ),
                                       ],
                                     ),
                                     Text(
-                                      'Need something from this pawsome app? Tell us, don\'t be shy',
-                                      style: FlutterFlowTheme.bodyText1,
+                                      'Ada fitur yang kakak inginkan? Yuk kasih tau kru Allnimall',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1,
                                     ),
                                   ],
                                 ),
@@ -229,7 +261,7 @@ class _HelpWidgetState extends State<HelpWidget> {
                             ),
                             Icon(
                               Icons.arrow_forward_ios,
-                              color: FlutterFlowTheme.primaryColor,
+                              color: FlutterFlowTheme.of(context).primaryColor,
                               size: 24,
                             ),
                           ],

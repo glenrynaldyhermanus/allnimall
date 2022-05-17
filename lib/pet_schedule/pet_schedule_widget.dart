@@ -29,22 +29,23 @@ class _PetScheduleWidgetState extends State<PetScheduleWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.primaryColor),
+        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+        iconTheme:
+            IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
           'Schedule',
-          style: FlutterFlowTheme.title3.override(
-            fontFamily: 'RockoUltra',
-            color: FlutterFlowTheme.primaryColor,
-            useGoogleFonts: false,
-          ),
+          style: FlutterFlowTheme.of(context).title3.override(
+                fontFamily: 'RockoUltra',
+                color: FlutterFlowTheme.of(context).primaryColor,
+                useGoogleFonts: false,
+              ),
         ),
         actions: [],
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       floatingActionButton: Visibility(
         visible: functions.isLoggedIn(currentUserReference) ?? true,
         child: FloatingActionButton.extended(
@@ -58,18 +59,18 @@ class _PetScheduleWidgetState extends State<PetScheduleWidget> {
               ),
             );
           },
-          backgroundColor: FlutterFlowTheme.secondaryColor,
+          backgroundColor: FlutterFlowTheme.of(context).secondaryColor,
           icon: Icon(
             Icons.add_rounded,
           ),
           elevation: 8,
           label: Text(
             'Add',
-            style: FlutterFlowTheme.title3.override(
-              fontFamily: 'RockoUltra',
-              color: FlutterFlowTheme.tertiaryColor,
-              useGoogleFonts: false,
-            ),
+            style: FlutterFlowTheme.of(context).title3.override(
+                  fontFamily: 'RockoUltra',
+                  color: FlutterFlowTheme.of(context).tertiaryColor,
+                  useGoogleFonts: false,
+                ),
           ),
         ),
       ),
@@ -90,7 +91,7 @@ class _PetScheduleWidgetState extends State<PetScheduleWidget> {
                   width: 50,
                   height: 50,
                   child: SpinKitRipple(
-                    color: FlutterFlowTheme.primaryColor,
+                    color: FlutterFlowTheme.of(context).primaryColor,
                     size: 50,
                   ),
                 ),
@@ -118,19 +119,21 @@ class _PetScheduleWidgetState extends State<PetScheduleWidget> {
                             dateTimeFormat(
                                 'MEd', columnPetSchedulesRecord.scheduledAt),
                             textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.bodyText1.override(
-                              fontFamily: 'Cabin',
-                              color: Color(0xFF7F7F7F),
-                              fontSize: 12,
-                            ),
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Cabin',
+                                      color: Color(0xFF7F7F7F),
+                                      fontSize: 12,
+                                    ),
                           ),
                           Text(
                             dateTimeFormat(
                                 'Hm', columnPetSchedulesRecord.scheduledAt),
-                            style: FlutterFlowTheme.bodyText1.override(
-                              fontFamily: 'Cabin',
-                              fontSize: 16,
-                            ),
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Cabin',
+                                      fontSize: 16,
+                                    ),
                           ),
                         ],
                       ),
@@ -173,7 +176,9 @@ class _PetScheduleWidgetState extends State<PetScheduleWidget> {
                                                     8, 0, 0, 0),
                                             child: Text(
                                               columnPetSchedulesRecord.name,
-                                              style: FlutterFlowTheme.subtitle1,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle1,
                                             ),
                                           ),
                                           Padding(
@@ -183,7 +188,9 @@ class _PetScheduleWidgetState extends State<PetScheduleWidget> {
                                             child: Text(
                                               columnPetSchedulesRecord
                                                   .description,
-                                              style: FlutterFlowTheme.bodyText1,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1,
                                             ),
                                           ),
                                         ],
@@ -199,16 +206,18 @@ class _PetScheduleWidgetState extends State<PetScheduleWidget> {
                                           Text(
                                             columnPetSchedulesRecord.duration
                                                 .toString(),
-                                            style: FlutterFlowTheme.subtitle1
+                                            style: FlutterFlowTheme.of(context)
+                                                .subtitle1
                                                 .override(
-                                              fontFamily: 'Cabin',
-                                              color: Color(0xFF343434),
-                                            ),
+                                                  fontFamily: 'Cabin',
+                                                  color: Color(0xFF343434),
+                                                ),
                                           ),
                                           Text(
                                             columnPetSchedulesRecord
                                                 .durationUnit,
-                                            style: FlutterFlowTheme.bodyText1,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1,
                                           ),
                                         ],
                                       ),

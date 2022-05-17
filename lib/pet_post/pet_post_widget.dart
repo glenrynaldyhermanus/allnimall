@@ -45,7 +45,7 @@ class _PetPostWidgetState extends State<PetPostWidget> {
               width: 50,
               height: 50,
               child: SpinKitRipple(
-                color: FlutterFlowTheme.primaryColor,
+                color: FlutterFlowTheme.of(context).primaryColor,
                 size: 50,
               ),
             ),
@@ -55,16 +55,17 @@ class _PetPostWidgetState extends State<PetPostWidget> {
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.tertiaryColor,
-            iconTheme: IconThemeData(color: FlutterFlowTheme.primaryColor),
+            backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+            iconTheme:
+                IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
             automaticallyImplyLeading: true,
             title: Text(
               'Create Post',
-              style: FlutterFlowTheme.title3.override(
-                fontFamily: 'RockoUltra',
-                color: FlutterFlowTheme.primaryColor,
-                useGoogleFonts: false,
-              ),
+              style: FlutterFlowTheme.of(context).title3.override(
+                    fontFamily: 'RockoUltra',
+                    color: FlutterFlowTheme.of(context).primaryColor,
+                    useGoogleFonts: false,
+                  ),
             ),
             actions: [
               Align(
@@ -90,10 +91,10 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                     child: Text(
                       'Post',
                       textAlign: TextAlign.start,
-                      style: FlutterFlowTheme.subtitle1.override(
-                        fontFamily: 'Cabin',
-                        color: FlutterFlowTheme.secondaryColor,
-                      ),
+                      style: FlutterFlowTheme.of(context).subtitle1.override(
+                            fontFamily: 'Cabin',
+                            color: FlutterFlowTheme.of(context).secondaryColor,
+                          ),
                     ),
                   ),
                 ),
@@ -102,7 +103,7 @@ class _PetPostWidgetState extends State<PetPostWidget> {
             centerTitle: true,
             elevation: 0,
           ),
-          backgroundColor: FlutterFlowTheme.tertiaryColor,
+          backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
           body: SafeArea(
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -139,10 +140,12 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                     EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                                 child: Text(
                                   petPostPetsRecord.name,
-                                  style: FlutterFlowTheme.subtitle1.override(
-                                    fontFamily: 'Cabin',
-                                    fontSize: 20,
-                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .subtitle1
+                                      .override(
+                                        fontFamily: 'Cabin',
+                                        fontSize: 20,
+                                      ),
                                 ),
                               ),
                             ],
@@ -155,7 +158,6 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                             obscureText: false,
                             decoration: InputDecoration(
                               hintText: 'Tell us your updates...',
-                              hintStyle: FlutterFlowTheme.subtitle2,
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
@@ -177,7 +179,7 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                 ),
                               ),
                             ),
-                            style: FlutterFlowTheme.subtitle2,
+                            style: FlutterFlowTheme.of(context).subtitle2,
                           ),
                         ),
                         if ((uploadedFileUrl) != '')
@@ -210,23 +212,36 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                   allowPhoto: true,
                                 );
                                 if (selectedMedia != null &&
-                                    validateFileFormat(
-                                        selectedMedia.storagePath, context)) {
+                                    selectedMedia.every((m) =>
+                                        validateFileFormat(
+                                            m.storagePath, context))) {
                                   showUploadMessage(
-                                      context, 'Uploading file...',
-                                      showLoading: true);
-                                  final downloadUrl = await uploadData(
-                                      selectedMedia.storagePath,
-                                      selectedMedia.bytes);
+                                    context,
+                                    'Uploading file...',
+                                    showLoading: true,
+                                  );
+                                  final downloadUrls = (await Future.wait(
+                                          selectedMedia.map((m) async =>
+                                              await uploadData(
+                                                  m.storagePath, m.bytes))))
+                                      .where((u) => u != null)
+                                      .toList();
                                   ScaffoldMessenger.of(context)
                                       .hideCurrentSnackBar();
-                                  if (downloadUrl != null) {
-                                    setState(
-                                        () => uploadedFileUrl = downloadUrl);
-                                    showUploadMessage(context, 'Success!');
+                                  if (downloadUrls != null &&
+                                      downloadUrls.length ==
+                                          selectedMedia.length) {
+                                    setState(() =>
+                                        uploadedFileUrl = downloadUrls.first);
+                                    showUploadMessage(
+                                      context,
+                                      'Success!',
+                                    );
                                   } else {
                                     showUploadMessage(
-                                        context, 'Failed to upload media');
+                                      context,
+                                      'Failed to upload media',
+                                    );
                                     return;
                                   }
                                 }
@@ -247,8 +262,8 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                       children: [
                                         Icon(
                                           Icons.image_outlined,
-                                          color:
-                                              FlutterFlowTheme.secondaryColor,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryColor,
                                           size: 24,
                                         ),
                                         Padding(
@@ -257,7 +272,8 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                                   8, 0, 0, 0),
                                           child: Text(
                                             'Photo',
-                                            style: FlutterFlowTheme.bodyText1,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1,
                                           ),
                                         ),
                                       ],
@@ -299,7 +315,8 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                       children: [
                                         Icon(
                                           Icons.scanner,
-                                          color: FlutterFlowTheme.primaryColor,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
                                           size: 24,
                                         ),
                                         Padding(
@@ -308,7 +325,8 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                                   8, 0, 0, 0),
                                           child: Text(
                                             'Update weight',
-                                            style: FlutterFlowTheme.bodyText1,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1,
                                           ),
                                         ),
                                       ],
@@ -336,7 +354,8 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                     children: [
                                       Icon(
                                         Icons.healing,
-                                        color: FlutterFlowTheme.secondaryColor,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryColor,
                                         size: 24,
                                       ),
                                       Padding(
@@ -344,7 +363,8 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                             8, 0, 0, 0),
                                         child: Text(
                                           'Update condition',
-                                          style: FlutterFlowTheme.bodyText1,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1,
                                         ),
                                       ),
                                     ],
@@ -371,7 +391,8 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                     children: [
                                       Icon(
                                         Icons.emoji_emotions,
-                                        color: FlutterFlowTheme.primaryColor,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
                                         size: 24,
                                       ),
                                       Padding(
@@ -379,7 +400,8 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                             8, 0, 0, 0),
                                         child: Text(
                                           'Mood',
-                                          style: FlutterFlowTheme.bodyText1,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1,
                                         ),
                                       ),
                                     ],

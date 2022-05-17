@@ -51,7 +51,7 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
               width: 50,
               height: 50,
               child: SpinKitRipple(
-                color: FlutterFlowTheme.primaryColor,
+                color: FlutterFlowTheme.of(context).primaryColor,
                 size: 50,
               ),
             ),
@@ -61,22 +61,23 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.tertiaryColor,
-            iconTheme: IconThemeData(color: FlutterFlowTheme.primaryColor),
+            backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+            iconTheme:
+                IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
             automaticallyImplyLeading: true,
             title: Text(
               'Create Plan',
-              style: FlutterFlowTheme.title3.override(
-                fontFamily: 'RockoUltra',
-                color: FlutterFlowTheme.primaryColor,
-                useGoogleFonts: false,
-              ),
+              style: FlutterFlowTheme.of(context).title3.override(
+                    fontFamily: 'RockoUltra',
+                    color: FlutterFlowTheme.of(context).primaryColor,
+                    useGoogleFonts: false,
+                  ),
             ),
             actions: [],
             centerTitle: true,
             elevation: 0,
           ),
-          backgroundColor: FlutterFlowTheme.tertiaryColor,
+          backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
           body: SafeArea(
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -92,17 +93,18 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                           obscureText: false,
                           decoration: InputDecoration(
                             hintText: 'Name',
-                            hintStyle: FlutterFlowTheme.subtitle1,
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.secondaryColor,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
                                 width: 2,
                               ),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.secondaryColor,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
                                 width: 2,
                               ),
                               borderRadius: BorderRadius.circular(8),
@@ -110,7 +112,7 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                             contentPadding:
                                 EdgeInsetsDirectional.fromSTEB(16, 24, 16, 24),
                           ),
-                          style: FlutterFlowTheme.subtitle1,
+                          style: FlutterFlowTheme.of(context).subtitle1,
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
@@ -119,17 +121,18 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                             obscureText: false,
                             decoration: InputDecoration(
                               hintText: 'Desciption',
-                              hintStyle: FlutterFlowTheme.subtitle1,
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.secondaryColor,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryColor,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.secondaryColor,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryColor,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(8),
@@ -137,7 +140,7 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                               contentPadding: EdgeInsetsDirectional.fromSTEB(
                                   16, 24, 16, 24),
                             ),
-                            style: FlutterFlowTheme.subtitle1,
+                            style: FlutterFlowTheme.of(context).subtitle1,
                           ),
                         ),
                         Padding(
@@ -151,6 +154,7 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                                   setState(() => datePicked = date);
                                 },
                                 currentTime: getCurrentTimestamp,
+                                minTime: DateTime(0, 0, 0),
                               );
                             },
                             child: Material(
@@ -163,10 +167,12 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                                 width: double.infinity,
                                 height: 60,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.tertiaryColor,
+                                  color: FlutterFlowTheme.of(context)
+                                      .tertiaryColor,
                                   borderRadius: BorderRadius.circular(8),
                                   border: Border.all(
-                                    color: FlutterFlowTheme.secondaryColor,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryColor,
                                     width: 2,
                                   ),
                                 ),
@@ -183,12 +189,14 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                                                 'M/d H:mm', datePicked),
                                             'Time',
                                           ),
-                                          style: FlutterFlowTheme.subtitle1,
+                                          style: FlutterFlowTheme.of(context)
+                                              .subtitle1,
                                         ),
                                       ),
                                       FaIcon(
                                         FontAwesomeIcons.calendarCheck,
-                                        color: FlutterFlowTheme.secondaryColor,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryColor,
                                         size: 24,
                                       ),
                                     ],
@@ -209,17 +217,18 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     hintText: 'Duration',
-                                    hintStyle: FlutterFlowTheme.subtitle1,
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.secondaryColor,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryColor,
                                         width: 2,
                                       ),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.secondaryColor,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryColor,
                                         width: 2,
                                       ),
                                       borderRadius: BorderRadius.circular(8),
@@ -228,7 +237,7 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                                         EdgeInsetsDirectional.fromSTEB(
                                             16, 24, 16, 24),
                                   ),
-                                  style: FlutterFlowTheme.subtitle1,
+                                  style: FlutterFlowTheme.of(context).subtitle1,
                                   keyboardType: TextInputType.number,
                                 ),
                               ),
@@ -243,7 +252,8 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                                       () => weightUnitSelectionValue = val),
                                   width: 120,
                                   height: 50,
-                                  textStyle: FlutterFlowTheme.subtitle1,
+                                  textStyle:
+                                      FlutterFlowTheme.of(context).subtitle1,
                                   fillColor: Colors.white,
                                   elevation: 2,
                                   borderColor: Colors.transparent,
@@ -281,12 +291,15 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                             options: FFButtonOptions(
                               width: double.infinity,
                               height: 56,
-                              color: FlutterFlowTheme.secondaryColor,
-                              textStyle: FlutterFlowTheme.title3.override(
-                                fontFamily: 'RockoUltra',
-                                color: FlutterFlowTheme.tertiaryColor,
-                                useGoogleFonts: false,
-                              ),
+                              color:
+                                  FlutterFlowTheme.of(context).secondaryColor,
+                              textStyle:
+                                  FlutterFlowTheme.of(context).title3.override(
+                                        fontFamily: 'RockoUltra',
+                                        color: FlutterFlowTheme.of(context)
+                                            .tertiaryColor,
+                                        useGoogleFonts: false,
+                                      ),
                               borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1,

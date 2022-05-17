@@ -16,8 +16,8 @@ class RequestFeatureWidget extends StatefulWidget {
 }
 
 class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
-  TextEditingController nameFieldController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  TextEditingController nameFieldController;
 
   @override
   void initState() {
@@ -30,22 +30,23 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
-        iconTheme: IconThemeData(color: FlutterFlowTheme.primaryColor),
+        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+        iconTheme:
+            IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          'The App Is Yours',
-          style: FlutterFlowTheme.title3.override(
-            fontFamily: 'RockoUltra',
-            color: FlutterFlowTheme.primaryColor,
-            useGoogleFonts: false,
-          ),
+          'Aplikasi Milik Bersama',
+          style: FlutterFlowTheme.of(context).title3.override(
+                fontFamily: 'RockoUltra',
+                color: FlutterFlowTheme.of(context).primaryColor,
+                useGoogleFonts: false,
+              ),
         ),
         actions: [],
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
@@ -54,8 +55,8 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'What would you want us to build?',
-                style: FlutterFlowTheme.subtitle2,
+                'Kakak ingin kami membangun fitur apa?',
+                style: FlutterFlowTheme.of(context).subtitle2,
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
@@ -63,18 +64,19 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                   controller: nameFieldController,
                   obscureText: false,
                   decoration: InputDecoration(
+                    labelStyle: FlutterFlowTheme.of(context).subtitle1,
                     hintText: 'I want Allnimall adds...',
-                    hintStyle: FlutterFlowTheme.subtitle1,
+                    hintStyle: FlutterFlowTheme.of(context).subtitle1,
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: FlutterFlowTheme.secondaryColor,
+                        color: FlutterFlowTheme.of(context).secondaryColor,
                         width: 2,
                       ),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: FlutterFlowTheme.secondaryColor,
+                        color: FlutterFlowTheme.of(context).secondaryColor,
                         width: 2,
                       ),
                       borderRadius: BorderRadius.circular(8),
@@ -84,12 +86,12 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                     contentPadding:
                         EdgeInsetsDirectional.fromSTEB(16, 24, 0, 24),
                   ),
-                  style: FlutterFlowTheme.bodyText1.override(
-                    fontFamily: 'Lexend Deca',
-                    color: Color(0xFF2B343A),
-                    fontSize: 14,
-                    fontWeight: FontWeight.normal,
-                  ),
+                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                        fontFamily: 'Lexend Deca',
+                        color: Color(0xFF2B343A),
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                      ),
                 ),
               ),
               Padding(
@@ -108,16 +110,17 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                         .doc()
                         .set(featureRequestsCreateData);
                   },
-                  text: 'Send my request',
+                  text: 'Kirim Permintaan',
                   options: FFButtonOptions(
                     width: 210,
                     height: 60,
-                    color: FlutterFlowTheme.primaryColor,
-                    textStyle: FlutterFlowTheme.title3.override(
-                      fontFamily: 'RockoUltra',
-                      color: FlutterFlowTheme.tertiaryColor,
-                      useGoogleFonts: false,
-                    ),
+                    color: FlutterFlowTheme.of(context).primaryColor,
+                    textStyle: FlutterFlowTheme.of(context).title3.override(
+                          fontFamily: 'RockoUltra',
+                          color: FlutterFlowTheme.of(context).tertiaryColor,
+                          fontSize: 18,
+                          useGoogleFonts: false,
+                        ),
                     elevation: 3,
                     borderSide: BorderSide(
                       color: Colors.transparent,
@@ -143,7 +146,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                           width: 50,
                           height: 50,
                           child: SpinKitRipple(
-                            color: FlutterFlowTheme.primaryColor,
+                            color: FlutterFlowTheme.of(context).primaryColor,
                             size: 50,
                           ),
                         ),
@@ -174,7 +177,8 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                   alignment: AlignmentDirectional(0, 0),
                                   child: Icon(
                                     Icons.build,
-                                    color: FlutterFlowTheme.primaryColor,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
                                     size: 32,
                                   ),
                                 ),
@@ -190,24 +194,28 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                     children: [
                                       Text(
                                         columnFeatureRequestsRecord.feedback,
-                                        style:
-                                            FlutterFlowTheme.subtitle1.override(
-                                          fontFamily: 'Cabin',
-                                          color: FlutterFlowTheme.primaryColor,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .subtitle1
+                                            .override(
+                                              fontFamily: 'Cabin',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                            ),
                                       ),
                                       Text(
                                         dateTimeFormat(
                                             'relative',
                                             columnFeatureRequestsRecord
                                                 .createdAt),
-                                        style:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Cabin',
-                                          fontSize: 12,
-                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Cabin',
+                                              fontSize: 12,
+                                            ),
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -218,13 +226,17 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                             Text(
                                               columnFeatureRequestsRecord
                                                   .response,
-                                              style: FlutterFlowTheme.bodyText1
-                                                  .override(
-                                                fontFamily: 'Cabin',
-                                                color: FlutterFlowTheme
-                                                    .secondaryColor,
-                                                fontSize: 14,
-                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily: 'Cabin',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryColor,
+                                                        fontSize: 14,
+                                                      ),
                                             ),
                                           ],
                                         ),
