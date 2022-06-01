@@ -123,53 +123,56 @@ class _PhoneSignInWidgetState extends State<PhoneSignInWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            final phoneNumberVal = "+62"+phoneNumberController.text;
-                            if (phoneNumberVal == null ||
-                                phoneNumberVal.isEmpty ||
-                                !phoneNumberVal.startsWith('+')) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                      'Phone Number is required and has to start with +.'),
-                                ),
-                              );
-                              return;
-                            }
-                            await beginPhoneAuth(
-                              context: context,
-                              phoneNumber: phoneNumberVal,
-                              onCodeSent: () async {
-                                await Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        PhoneVerificationWidget(),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 48),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              final phoneNumberVal = "+62"+phoneNumberController.text;
+                              if (phoneNumberVal == null ||
+                                  phoneNumberVal.isEmpty ||
+                                  !phoneNumberVal.startsWith('+')) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                        'Phone Number is required and has to start with +.'),
                                   ),
-                                  (r) => false,
                                 );
-                              },
-                            );
-                          },
-                          text: 'Sign In',
-                          options: FFButtonOptions(
-                            width: 230,
-                            height: 60,
-                            color: FlutterFlowTheme.of(context).primaryColor,
-                            textStyle:
-                                FlutterFlowTheme.of(context).title3.override(
-                                      fontFamily: 'RockoUltra',
-                                      color: FlutterFlowTheme.of(context)
-                                          .tertiaryColor,
-                                      useGoogleFonts: false,
+                                return;
+                              }
+                              await beginPhoneAuth(
+                                context: context,
+                                phoneNumber: phoneNumberVal,
+                                onCodeSent: () async {
+                                  await Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          PhoneVerificationWidget(),
                                     ),
-                            elevation: 3,
-                            borderSide: BorderSide(
-                              color: Colors.transparent,
-                              width: 1,
+                                    (r) => false,
+                                  );
+                                },
+                              );
+                            },
+                            text: 'Sign In',
+                            options: FFButtonOptions(
+                              width: 230,
+                              height: 60,
+                              color: FlutterFlowTheme.of(context).primaryColor,
+                              textStyle:
+                                  FlutterFlowTheme.of(context).title3.override(
+                                        fontFamily: 'RockoUltra',
+                                        color: FlutterFlowTheme.of(context)
+                                            .tertiaryColor,
+                                        useGoogleFonts: false,
+                                      ),
+                              elevation: 3,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1,
+                              ),
+                              borderRadius: 8,
                             ),
-                            borderRadius: 8,
                           ),
                         ),
                       ),
