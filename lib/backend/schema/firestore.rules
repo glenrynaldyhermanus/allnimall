@@ -1,13 +1,6 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /users/{document} {
-      allow create: if request.auth.uid == document;
-      allow read: if true;
-      allow write: if request.auth.uid == document;
-      allow delete: if false;
-    }
-
     match /pets/{document} {
       allow create: if true;
       allow read: if true;
@@ -65,6 +58,20 @@ service cloud.firestore {
     }
 
     match /pet_schedules/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /customers/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /rangers/{document} {
       allow create: if true;
       allow read: if true;
       allow write: if false;

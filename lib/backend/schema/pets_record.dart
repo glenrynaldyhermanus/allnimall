@@ -38,10 +38,6 @@ abstract class PetsRecord implements Built<PetsRecord, PetsRecordBuilder> {
   bool get hasSterilised;
 
   @nullable
-  @BuiltValueField(wireName: 'owner_uid')
-  DocumentReference get ownerUid;
-
-  @nullable
   String get sex;
 
   @nullable
@@ -74,6 +70,10 @@ abstract class PetsRecord implements Built<PetsRecord, PetsRecordBuilder> {
   @nullable
   @BuiltValueField(wireName: 'has_worms')
   bool get hasWorms;
+
+  @nullable
+  @BuiltValueField(wireName: 'owner_uid')
+  DocumentReference get ownerUid;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
@@ -126,7 +126,6 @@ Map<String, dynamic> createPetsRecordData({
   String pictureUrl,
   bool hasVaccinated,
   bool hasSterilised,
-  DocumentReference ownerUid,
   String sex,
   String weightUnit,
   String breed,
@@ -136,6 +135,7 @@ Map<String, dynamic> createPetsRecordData({
   bool hasFungus,
   bool hasScabies,
   bool hasWorms,
+  DocumentReference ownerUid,
 }) =>
     serializers.toFirestore(
         PetsRecord.serializer,
@@ -148,7 +148,6 @@ Map<String, dynamic> createPetsRecordData({
           ..pictureUrl = pictureUrl
           ..hasVaccinated = hasVaccinated
           ..hasSterilised = hasSterilised
-          ..ownerUid = ownerUid
           ..sex = sex
           ..weightUnit = weightUnit
           ..breed = breed
@@ -157,4 +156,5 @@ Map<String, dynamic> createPetsRecordData({
           ..hasFleas = hasFleas
           ..hasFungus = hasFungus
           ..hasScabies = hasScabies
-          ..hasWorms = hasWorms));
+          ..hasWorms = hasWorms
+          ..ownerUid = ownerUid));

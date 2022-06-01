@@ -47,7 +47,7 @@
       "queryScope": "COLLECTION",
       "fields": [
         {
-          "fieldPath": "user",
+          "fieldPath": "customer_uid",
           "order": "ASCENDING"
         },
         {

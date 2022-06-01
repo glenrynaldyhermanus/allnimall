@@ -192,15 +192,10 @@ class _TimelineWidgetState extends State<TimelineWidget> {
                                     style:
                                         FlutterFlowTheme.of(context).bodyText1,
                                   ),
-                                if ((functions.countFavs(columnPetPostsRecord
-                                        .favedBy
-                                        .toList())) >
-                                    0)
-                                  Text(
-                                    ' loves',
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyText1,
-                                  ),
+                                Text(
+                                  ' loves',
+                                  style: FlutterFlowTheme.of(context).bodyText1,
+                                ),
                               ],
                             ),
                           ),

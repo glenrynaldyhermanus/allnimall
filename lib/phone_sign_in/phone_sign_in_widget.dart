@@ -3,7 +3,6 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../phone_verification/phone_verification_widget.dart';
-import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,8 +15,8 @@ class PhoneSignInWidget extends StatefulWidget {
 }
 
 class _PhoneSignInWidgetState extends State<PhoneSignInWidget> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController phoneNumberController;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -61,38 +60,59 @@ class _PhoneSignInWidgetState extends State<PhoneSignInWidget> {
             children: [
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
-                child: TextFormField(
-                  controller: phoneNumberController,
-                  obscureText: false,
-                  decoration: InputDecoration(
-                    labelText: 'No Handphone',
-                    labelStyle: FlutterFlowTheme.of(context).subtitle2,
-                    hintText: '+62801234567',
-                    hintStyle: FlutterFlowTheme.of(context).subtitle2,
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).secondaryColor,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(
+                      '+62',
+                      style: FlutterFlowTheme.of(context).subtitle1.override(
+                            fontFamily: 'Cabin',
+                            fontSize: 18,
+                          ),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).secondaryColor,
-                        width: 2,
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                        child: TextFormField(
+                          controller: phoneNumberController,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            labelText: 'No Handphone',
+                            labelStyle: FlutterFlowTheme.of(context).subtitle2,
+                            hintText: '801234567',
+                            hintStyle: FlutterFlowTheme.of(context).subtitle2,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            filled: true,
+                            fillColor:
+                                FlutterFlowTheme.of(context).tertiaryColor,
+                            contentPadding:
+                                EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).subtitle1.override(
+                                    fontFamily: 'Cabin',
+                                    color: Color(0xFF757575),
+                                  ),
+                          keyboardType: TextInputType.phone,
+                        ),
                       ),
-                      borderRadius: BorderRadius.circular(8),
                     ),
-                    filled: true,
-                    fillColor: FlutterFlowTheme.of(context).tertiaryColor,
-                    contentPadding:
-                        EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
-                  ),
-                  style: FlutterFlowTheme.of(context).subtitle1.override(
-                        fontFamily: 'Cabin',
-                        color: Color(0xFF757575),
-                      ),
-                  keyboardType: TextInputType.phone,
+                  ],
                 ),
               ),
               Padding(
@@ -103,10 +123,9 @@ class _PhoneSignInWidgetState extends State<PhoneSignInWidget> {
                     Expanded(
                       child: FFButtonWidget(
                         onPressed: () async {
-                          setState(() => FFAppState().phone = functions
-                              .formatPhone(phoneNumberController.text));
                           final phoneNumberVal = phoneNumberController.text;
-                          if (phoneNumberVal.isEmpty ||
+                          if (phoneNumberVal == null ||
+                              phoneNumberVal.isEmpty ||
                               !phoneNumberVal.startsWith('+')) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(

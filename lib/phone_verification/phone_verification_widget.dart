@@ -17,8 +17,8 @@ class PhoneVerificationWidget extends StatefulWidget {
 }
 
 class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController phoneNumberController;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -89,7 +89,7 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                 child: FFButtonWidget(
                   onPressed: () async {
                     final smsCodeVal = phoneNumberController.text;
-                    if (smsCodeVal.isEmpty) {
+                    if (smsCodeVal == null || smsCodeVal.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text('Enter SMS verification code.'),
@@ -105,20 +105,21 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                       return;
                     }
 
-                    if ((currentUserDisplayName) == '') {
+                    if ((currentUserDisplayName != null) &&
+                        (currentUserDisplayName != '')) {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomeBackupWidget(),
+                        ),
+                      );
+                    } else {
                       await Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
                           builder: (context) => SignUpWidget(),
                         ),
                         (r) => false,
-                      );
-                    } else {
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HomeBackupWidget(),
-                        ),
                       );
                     }
                   },

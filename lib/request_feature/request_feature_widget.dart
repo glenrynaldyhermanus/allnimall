@@ -16,8 +16,8 @@ class RequestFeatureWidget extends StatefulWidget {
 }
 
 class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController nameFieldController;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {

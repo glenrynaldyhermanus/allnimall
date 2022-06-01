@@ -13,9 +13,9 @@ class AddressFormWidget extends StatefulWidget {
 }
 
 class _AddressFormWidgetState extends State<AddressFormWidget> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController textController1;
   TextEditingController textController2;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {

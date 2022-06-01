@@ -263,8 +263,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                     child: AuthUserStreamWidget(
                       child: FlutterFlowDropDown(
                         initialOption: sexSelectionValue ??=
-                            currentUserDocument?.gender,
-                        options: ['Gender', 'Female', 'Male'].toList(),
+                            valueOrDefault(currentUserDocument?.gender, ''),
+                        options: ['Gender', 'Female', 'Male'],
                         onChanged: (val) =>
                             setState(() => sexSelectionValue = val),
                         width: double.infinity,
@@ -284,13 +284,13 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 64, 0, 0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        final usersUpdateData = createUsersRecordData(
+                        final customersUpdateData = createCustomersRecordData(
                           birthdate: datePicked,
                           displayName: nameFieldController.text,
                           gender: sexSelectionValue,
                           photoUrl: uploadedFileUrl,
                         );
-                        await currentUserReference.update(usersUpdateData);
+                        await currentUserReference.update(customersUpdateData);
                         Navigator.pop(context);
                       },
                       text: 'Save',

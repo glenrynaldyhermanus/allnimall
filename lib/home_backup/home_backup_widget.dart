@@ -9,7 +9,6 @@ import '../grooming_detail/grooming_detail_widget.dart';
 import '../grooming_form/grooming_form_widget.dart';
 import '../help/help_widget.dart';
 import '../order_list/order_list_widget.dart';
-import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -327,227 +326,222 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                   ],
                 ),
               ),
-              if (functions.isLoggedIn(currentUserReference) ?? true)
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20, 32, 20, 0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Order',
-                            style: FlutterFlowTheme.of(context).title3.override(
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(20, 32, 20, 0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Order',
+                          style: FlutterFlowTheme.of(context).title3.override(
+                                fontFamily: 'RockoUltra',
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                useGoogleFonts: false,
+                              ),
+                        ),
+                        InkWell(
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => OrderListWidget(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            'Lihat Semua',
+                            style: FlutterFlowTheme.of(context).title2.override(
                                   fontFamily: 'RockoUltra',
                                   color:
                                       FlutterFlowTheme.of(context).primaryColor,
+                                  fontSize: 14,
                                   useGoogleFonts: false,
                                 ),
                           ),
-                          InkWell(
-                            onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => OrderListWidget(),
-                                ),
-                              );
-                            },
-                            child: Text(
-                              'Lihat Semua',
-                              style:
-                                  FlutterFlowTheme.of(context).title2.override(
-                                        fontFamily: 'RockoUltra',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                        fontSize: 14,
-                                        useGoogleFonts: false,
-                                      ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      StreamBuilder<List<OrdersRecord>>(
-                        stream: queryOrdersRecord(
-                          queryBuilder: (ordersRecord) => ordersRecord
-                              .where('customer_uid',
-                                  isEqualTo: currentUserReference)
-                              .orderBy('created_at', descending: true),
-                          limit: 3,
                         ),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50,
-                                height: 50,
-                                child: SpinKitRipple(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
-                                  size: 50,
-                                ),
-                              ),
-                            );
-                          }
-                          List<OrdersRecord> columnOrdersRecordList =
-                              snapshot.data;
-                          return Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: List.generate(
-                                columnOrdersRecordList.length, (columnIndex) {
-                              final columnOrdersRecord =
-                                  columnOrdersRecordList[columnIndex];
-                              return Card(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                      ],
+                    ),
+                    StreamBuilder<List<OrdersRecord>>(
+                      stream: queryOrdersRecord(
+                        queryBuilder: (ordersRecord) => ordersRecord
+                            .where('customer_uid',
+                                isEqualTo: currentUserReference)
+                            .orderBy('created_at', descending: true),
+                        limit: 3,
+                      ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: SpinKitRipple(
                                 color:
-                                    FlutterFlowTheme.of(context).tertiaryColor,
-                                elevation: 0,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 20, 0, 20),
-                                      child: InkWell(
-                                        onTap: () async {
-                                          await Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  GroomingDetailWidget(
-                                                order: columnOrdersRecord
-                                                    .reference,
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                size: 50,
+                              ),
+                            ),
+                          );
+                        }
+                        List<OrdersRecord> columnOrdersRecordList =
+                            snapshot.data;
+                        return Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: List.generate(columnOrdersRecordList.length,
+                              (columnIndex) {
+                            final columnOrdersRecord =
+                                columnOrdersRecordList[columnIndex];
+                            return Card(
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              color: FlutterFlowTheme.of(context).tertiaryColor,
+                              elevation: 0,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 20, 0, 20),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                GroomingDetailWidget(
+                                              order:
+                                                  columnOrdersRecord.reference,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Container(
+                                            width: 88,
+                                            height: 88,
+                                            decoration: BoxDecoration(
+                                              color: Color(0xFFD8D1F2),
+                                              borderRadius:
+                                                  BorderRadius.circular(24),
+                                            ),
+                                            child: Align(
+                                              alignment:
+                                                  AlignmentDirectional(0, 0),
+                                              child: FaIcon(
+                                                FontAwesomeIcons.cat,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryColor,
+                                                size: 40,
                                               ),
                                             ),
-                                          );
-                                        },
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Container(
-                                              width: 88,
-                                              height: 88,
-                                              decoration: BoxDecoration(
-                                                color: Color(0xFFD8D1F2),
-                                                borderRadius:
-                                                    BorderRadius.circular(24),
-                                              ),
-                                              child: Align(
-                                                alignment:
-                                                    AlignmentDirectional(0, 0),
-                                                child: FaIcon(
-                                                  FontAwesomeIcons.cat,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryColor,
-                                                  size: 40,
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(16, 0, 0, 0),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      columnOrdersRecord.name,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .subtitle1
-                                                          .override(
-                                                            fontFamily: 'Cabin',
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryColor,
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                    ),
-                                                    Text(
-                                                      dateTimeFormat(
-                                                          'relative',
-                                                          columnOrdersRecord
-                                                              .scheduledAt),
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText1
-                                                          .override(
-                                                            fontFamily: 'Cabin',
-                                                            fontSize: 12,
-                                                          ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 8, 0, 0),
-                                                      child: Container(
-                                                        height: 28,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color:
-                                                              Color(0xFFF2F2F2),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(8),
+                                          ),
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(16, 0, 0, 0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    columnOrdersRecord.name,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .subtitle1
+                                                        .override(
+                                                          fontFamily: 'Cabin',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryColor,
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.w600,
                                                         ),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(8,
-                                                                      4, 8, 0),
-                                                          child: Text(
-                                                            columnOrdersRecord
-                                                                .status,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Cabin',
-                                                                  color: Color(
-                                                                      0xFF62CD59),
-                                                                  fontSize: 12,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                ),
-                                                          ),
+                                                  ),
+                                                  Text(
+                                                    dateTimeFormat(
+                                                        'relative',
+                                                        columnOrdersRecord
+                                                            .scheduledAt),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily: 'Cabin',
+                                                          fontSize: 12,
+                                                        ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 8, 0, 0),
+                                                    child: Container(
+                                                      height: 28,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            Color(0xFFF2F2F2),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    8, 4, 8, 0),
+                                                        child: Text(
+                                                          columnOrdersRecord
+                                                              .status,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Cabin',
+                                                                color: Color(
+                                                                    0xFF62CD59),
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
                                                         ),
                                                       ),
                                                     ),
-                                                  ],
-                                                ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    Divider(
-                                      height: 1,
-                                      thickness: 1,
-                                      color: Color(0xFFD5D5D5),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
+                                  ),
+                                  Divider(
+                                    height: 1,
+                                    thickness: 1,
+                                    color: Color(0xFFD5D5D5),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }),
+                        );
+                      },
+                    ),
+                  ],
                 ),
+              ),
             ],
           ),
         ),

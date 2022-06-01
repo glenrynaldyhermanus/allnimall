@@ -12,10 +12,6 @@ abstract class FeatureRequestsRecord
       _$featureRequestsRecordSerializer;
 
   @nullable
-  @BuiltValueField(wireName: 'user_uid')
-  DocumentReference get userUid;
-
-  @nullable
   String get feedback;
 
   @nullable
@@ -27,6 +23,10 @@ abstract class FeatureRequestsRecord
 
   @nullable
   String get status;
+
+  @nullable
+  @BuiltValueField(wireName: 'user_uid')
+  DocumentReference get userUid;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
@@ -61,17 +61,17 @@ abstract class FeatureRequestsRecord
 }
 
 Map<String, dynamic> createFeatureRequestsRecordData({
-  DocumentReference userUid,
   String feedback,
   DateTime createdAt,
   String response,
   String status,
+  DocumentReference userUid,
 }) =>
     serializers.toFirestore(
         FeatureRequestsRecord.serializer,
         FeatureRequestsRecord((f) => f
-          ..userUid = userUid
           ..feedback = feedback
           ..createdAt = createdAt
           ..response = response
-          ..status = status));
+          ..status = status
+          ..userUid = userUid));

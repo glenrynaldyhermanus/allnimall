@@ -247,7 +247,7 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                                 child: FlutterFlowDropDown(
                                   initialOption: weightUnitSelectionValue ??=
                                       'minute',
-                                  options: ['minute', 'hour'].toList(),
+                                  options: ['minute', 'hour'],
                                   onChanged: (val) => setState(
                                       () => weightUnitSelectionValue = val),
                                   width: 120,

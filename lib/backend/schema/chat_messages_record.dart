@@ -12,9 +12,6 @@ abstract class ChatMessagesRecord
       _$chatMessagesRecordSerializer;
 
   @nullable
-  DocumentReference get user;
-
-  @nullable
   String get text;
 
   @nullable
@@ -35,6 +32,14 @@ abstract class ChatMessagesRecord
   @nullable
   @BuiltValueField(wireName: 'admin_name')
   String get adminName;
+
+  @nullable
+  @BuiltValueField(wireName: 'customer_uid')
+  DocumentReference get customerUid;
+
+  @nullable
+  @BuiltValueField(wireName: 'ranger_uid')
+  DocumentReference get rangerUid;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
@@ -70,21 +75,23 @@ abstract class ChatMessagesRecord
 }
 
 Map<String, dynamic> createChatMessagesRecordData({
-  DocumentReference user,
   String text,
   String image,
   bool isResponse,
   DateTime createdAt,
   String userName,
   String adminName,
+  DocumentReference customerUid,
+  DocumentReference rangerUid,
 }) =>
     serializers.toFirestore(
         ChatMessagesRecord.serializer,
         ChatMessagesRecord((c) => c
-          ..user = user
           ..text = text
           ..image = image
           ..isResponse = isResponse
           ..createdAt = createdAt
           ..userName = userName
-          ..adminName = adminName));
+          ..adminName = adminName
+          ..customerUid = customerUid
+          ..rangerUid = rangerUid));

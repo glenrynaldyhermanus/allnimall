@@ -42,10 +42,6 @@ abstract class OrdersRecord
   String get status;
 
   @nullable
-  @BuiltValueField(wireName: 'customer_uid')
-  DocumentReference get customerUid;
-
-  @nullable
   @BuiltValueField(wireName: 'customer_address')
   String get customerAddress;
 
@@ -80,10 +76,6 @@ abstract class OrdersRecord
   String get endTime;
 
   @nullable
-  @BuiltValueField(wireName: 'ranger_uid')
-  DocumentReference get rangerUid;
-
-  @nullable
   @BuiltValueField(wireName: 'ranger_name')
   String get rangerName;
 
@@ -106,6 +98,14 @@ abstract class OrdersRecord
   @nullable
   @BuiltValueField(wireName: 'ontheway_at')
   DateTime get onthewayAt;
+
+  @nullable
+  @BuiltValueField(wireName: 'customer_uid')
+  DocumentReference get customerUid;
+
+  @nullable
+  @BuiltValueField(wireName: 'ranger_uid')
+  DocumentReference get rangerUid;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
@@ -163,7 +163,6 @@ Map<String, dynamic> createOrdersRecordData({
   int quantity,
   double amount,
   String status,
-  DocumentReference customerUid,
   String customerAddress,
   LatLng customerLatlng,
   String customerName,
@@ -173,13 +172,14 @@ Map<String, dynamic> createOrdersRecordData({
   String notes,
   String startTime,
   String endTime,
-  DocumentReference rangerUid,
   String rangerName,
   String rangerPhone,
   String rangerProfilePicture,
   DateTime confirmedAt,
   String customerPhone,
   DateTime onthewayAt,
+  DocumentReference customerUid,
+  DocumentReference rangerUid,
 }) =>
     serializers.toFirestore(
         OrdersRecord.serializer,
@@ -193,7 +193,6 @@ Map<String, dynamic> createOrdersRecordData({
           ..quantity = quantity
           ..amount = amount
           ..status = status
-          ..customerUid = customerUid
           ..customerAddress = customerAddress
           ..customerLatlng = customerLatlng
           ..customerName = customerName
@@ -203,10 +202,11 @@ Map<String, dynamic> createOrdersRecordData({
           ..notes = notes
           ..startTime = startTime
           ..endTime = endTime
-          ..rangerUid = rangerUid
           ..rangerName = rangerName
           ..rangerPhone = rangerPhone
           ..rangerProfilePicture = rangerProfilePicture
           ..confirmedAt = confirmedAt
           ..customerPhone = customerPhone
-          ..onthewayAt = onthewayAt));
+          ..onthewayAt = onthewayAt
+          ..customerUid = customerUid
+          ..rangerUid = rangerUid));

@@ -17,9 +17,9 @@ class SignUpWidget extends StatefulWidget {
 }
 
 class _SignUpWidgetState extends State<SignUpWidget> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController emailFieldController;
   TextEditingController nameFieldController;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -164,11 +164,12 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     children: [
                       FFButtonWidget(
                         onPressed: () async {
-                          final usersUpdateData = createUsersRecordData(
+                          final customersUpdateData = createCustomersRecordData(
                             email: emailFieldController.text,
                             displayName: nameFieldController.text,
                           );
-                          await currentUserReference.update(usersUpdateData);
+                          await currentUserReference
+                              .update(customersUpdateData);
                           await Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(

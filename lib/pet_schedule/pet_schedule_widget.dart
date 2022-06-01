@@ -1,9 +1,7 @@
 import '../add_schedule/add_schedule_widget.dart';
-import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -46,32 +44,29 @@ class _PetScheduleWidgetState extends State<PetScheduleWidget> {
         elevation: 0,
       ),
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
-      floatingActionButton: Visibility(
-        visible: functions.isLoggedIn(currentUserReference) ?? true,
-        child: FloatingActionButton.extended(
-          onPressed: () async {
-            await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => AddScheduleWidget(
-                  petRef: widget.petRef,
-                ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () async {
+          await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddScheduleWidget(
+                petRef: widget.petRef,
               ),
-            );
-          },
-          backgroundColor: FlutterFlowTheme.of(context).secondaryColor,
-          icon: Icon(
-            Icons.add_rounded,
-          ),
-          elevation: 8,
-          label: Text(
-            'Add',
-            style: FlutterFlowTheme.of(context).title3.override(
-                  fontFamily: 'RockoUltra',
-                  color: FlutterFlowTheme.of(context).tertiaryColor,
-                  useGoogleFonts: false,
-                ),
-          ),
+            ),
+          );
+        },
+        backgroundColor: FlutterFlowTheme.of(context).secondaryColor,
+        icon: Icon(
+          Icons.add_rounded,
+        ),
+        elevation: 8,
+        label: Text(
+          'Add',
+          style: FlutterFlowTheme.of(context).title3.override(
+                fontFamily: 'RockoUltra',
+                color: FlutterFlowTheme.of(context).tertiaryColor,
+                useGoogleFonts: false,
+              ),
         ),
       ),
       body: SafeArea(

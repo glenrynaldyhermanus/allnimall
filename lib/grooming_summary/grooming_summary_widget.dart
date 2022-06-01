@@ -37,8 +37,8 @@ class GroomingSummaryWidget extends StatefulWidget {
 }
 
 class _GroomingSummaryWidgetState extends State<GroomingSummaryWidget> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   OrdersRecord order;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {

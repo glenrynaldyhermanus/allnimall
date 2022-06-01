@@ -39,8 +39,8 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<UsersRecord>(
-      stream: UsersRecord.getDocument(currentUserReference),
+    return StreamBuilder<CustomersRecord>(
+      stream: CustomersRecord.getDocument(currentUserReference),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -55,7 +55,7 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
             ),
           );
         }
-        final groomingFormUsersRecord = snapshot.data;
+        final groomingFormCustomersRecord = snapshot.data;
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
@@ -135,7 +135,7 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                                         Expanded(
                                           child: Text(
                                             valueOrDefault<String>(
-                                              groomingFormUsersRecord
+                                              groomingFormCustomersRecord
                                                   .orderAddress,
                                               'Select location',
                                             ),
@@ -207,7 +207,7 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                                         return FlutterFlowDropDown(
                                           initialOption: dropDownPetsValue ??=
                                               'Kucing',
-                                          options: ['Kucing'].toList(),
+                                          options: ['Kucing'],
                                           onChanged: (val) => setState(
                                               () => dropDownPetsValue = val),
                                           width: 130,
@@ -253,8 +253,7 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                                     child: FlutterFlowDropDown(
                                       initialOption: dropDownServiceValue ??=
                                           'Mandi Kutu dan Jamur',
-                                      options:
-                                          ['Mandi Kutu dan Jamur'].toList(),
+                                      options: ['Mandi Kutu dan Jamur'],
                                       onChanged: (val) => setState(
                                           () => dropDownServiceValue = val),
                                       width: 130,
@@ -421,7 +420,7 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                                             'Siang',
                                             'Sore',
                                             'Malam'
-                                          ].toList(),
+                                          ],
                                           onChanged: (val) => setState(
                                               () => dropDownTimeValue = val),
                                           width: 130,
@@ -450,84 +449,57 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                             ],
                           ),
                         ),
-                        StreamBuilder<List<UsersRecord>>(
-                          stream: queryUsersRecord(
-                            queryBuilder: (usersRecord) =>
-                                usersRecord.where('role', isEqualTo: 'Admin'),
+                        Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).tertiaryColor,
                           ),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: SpinKitRipple(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                    size: 50,
-                                  ),
-                                ),
-                              );
-                            }
-                            List<UsersRecord> containerUsersRecordList =
-                                snapshot.data;
-                            return Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color:
-                                    FlutterFlowTheme.of(context).tertiaryColor,
-                              ),
-                              child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-                                child: FFButtonWidget(
-                                  onPressed: () async {
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            GroomingSummaryWidget(
-                                          customerAddress:
-                                              groomingFormUsersRecord
-                                                  .orderAddress,
-                                          service: dropDownServiceValue,
-                                          quantity: countControllerValue,
-                                          customerLatLng:
-                                              groomingFormUsersRecord
-                                                  .orderLatlng,
-                                          scheduleDate: calendarSelectedDay.end,
-                                          scheduleTime: dropDownTimeValue,
-                                          petCategory: dropDownPetsValue,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  text: 'Panggil Groomer',
-                                  options: FFButtonOptions(
-                                    width: double.infinity,
-                                    height: 56,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryColor,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .title3
-                                        .override(
-                                          fontFamily: 'RockoUltra',
-                                          color: FlutterFlowTheme.of(context)
-                                              .tertiaryColor,
-                                          fontSize: 16,
-                                          useGoogleFonts: false,
-                                        ),
-                                    borderSide: BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1,
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => GroomingSummaryWidget(
+                                      customerAddress: valueOrDefault(
+                                          currentUserDocument?.orderAddress,
+                                          ''),
+                                      service: dropDownServiceValue,
+                                      quantity: countControllerValue,
+                                      customerLatLng:
+                                          currentUserDocument?.orderLatlng,
+                                      scheduleDate: calendarSelectedDay?.end,
+                                      scheduleTime: dropDownTimeValue,
+                                      petCategory: dropDownPetsValue,
                                     ),
-                                    borderRadius: 24,
                                   ),
+                                );
+                              },
+                              text: 'Panggil Groomer',
+                              options: FFButtonOptions(
+                                width: double.infinity,
+                                height: 56,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .title3
+                                    .override(
+                                      fontFamily: 'RockoUltra',
+                                      color: FlutterFlowTheme.of(context)
+                                          .tertiaryColor,
+                                      fontSize: 16,
+                                      useGoogleFonts: false,
+                                    ),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
                                 ),
+                                borderRadius: 24,
                               ),
-                            );
-                          },
+                            ),
+                          ),
                         ),
                       ],
                     ),

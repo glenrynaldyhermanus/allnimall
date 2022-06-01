@@ -256,7 +256,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
                     child: FlutterFlowDropDown(
-                      options: ['Pet\'s sex', 'Female', 'Male'].toList(),
+                      options: ['Pet\'s sex', 'Female', 'Male'],
                       onChanged: (val) =>
                           setState(() => sexSelectionValue = val),
                       width: double.infinity,
@@ -307,7 +307,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                           child: FlutterFlowDropDown(
-                            options: ['gr', 'kg'].toList(),
+                            options: ['gr', 'kg'],
                             onChanged: (val) =>
                                 setState(() => weightUnitSelectionValue = val),
                             width: 88,

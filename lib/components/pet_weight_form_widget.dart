@@ -58,7 +58,7 @@ class _PetWeightFormWidgetState extends State<PetWeightFormWidget> {
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
             child: FlutterFlowDropDown(
-              options: ['gr', 'kg'].toList(),
+              options: ['gr', 'kg'],
               onChanged: (val) =>
                   setState(() => weightUnitSelectionValue = val),
               width: 88,

@@ -279,7 +279,7 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                         child: FlutterFlowDropDown(
                           initialOption: sexSelectionValue ??=
                               updatePetPetsRecord.sex,
-                          options: ['Pet\'s sex', 'Female', 'Male'].toList(),
+                          options: ['Pet\'s sex', 'Female', 'Male'],
                           onChanged: (val) =>
                               setState(() => sexSelectionValue = val),
                           width: double.infinity,

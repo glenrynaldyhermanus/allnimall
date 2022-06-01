@@ -711,70 +711,67 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                   ],
                 ),
               ),
-              if (!(functions.isLoggedIn(currentUserReference)) ?? true)
-                Align(
-                  alignment: AlignmentDirectional(0, 0),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          'You need to sign in',
-                          style: FlutterFlowTheme.of(context).title2.override(
-                                fontFamily: 'RockoUltra',
-                                color: Color(0xFF717171),
-                                fontWeight: FontWeight.w500,
-                                useGoogleFonts: false,
-                              ),
-                        ),
-                        Text(
-                          'It just takes a minute to sign in',
-                          textAlign: TextAlign.center,
-                          style:
-                              FlutterFlowTheme.of(context).subtitle1.override(
-                                    fontFamily: 'Cabin',
-                                    color: Color(0xFF757575),
-                                  ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => PhoneSignInWidget(),
-                                ),
-                              );
-                            },
-                            text: 'Sign In',
-                            options: FFButtonOptions(
-                              width: 130,
-                              height: 50,
-                              color:
-                                  FlutterFlowTheme.of(context).secondaryColor,
-                              textStyle:
-                                  FlutterFlowTheme.of(context).title3.override(
-                                        fontFamily: 'RockoUltra',
-                                        color: Colors.white,
-                                        useGoogleFonts: false,
-                                      ),
-                              elevation: 3,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
-                              ),
-                              borderRadius: 8,
+              Align(
+                alignment: AlignmentDirectional(0, 0),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'You need to sign in',
+                        style: FlutterFlowTheme.of(context).title2.override(
+                              fontFamily: 'RockoUltra',
+                              color: Color(0xFF717171),
+                              fontWeight: FontWeight.w500,
+                              useGoogleFonts: false,
                             ),
+                      ),
+                      Text(
+                        'It just takes a minute to sign in',
+                        textAlign: TextAlign.center,
+                        style: FlutterFlowTheme.of(context).subtitle1.override(
+                              fontFamily: 'Cabin',
+                              color: Color(0xFF757575),
+                            ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PhoneSignInWidget(),
+                              ),
+                            );
+                          },
+                          text: 'Sign In',
+                          options: FFButtonOptions(
+                            width: 130,
+                            height: 50,
+                            color: FlutterFlowTheme.of(context).secondaryColor,
+                            textStyle:
+                                FlutterFlowTheme.of(context).title3.override(
+                                      fontFamily: 'RockoUltra',
+                                      color: Colors.white,
+                                      useGoogleFonts: false,
+                                    ),
+                            elevation: 3,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: 8,
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
+              ),
             ],
           ),
         ),

@@ -33,15 +33,15 @@ abstract class PetSchedulesRecord
   DocumentReference get petUid;
 
   @nullable
-  @BuiltValueField(wireName: 'owner_uid')
-  DocumentReference get ownerUid;
-
-  @nullable
   LatLng get location;
 
   @nullable
   @BuiltValueField(wireName: 'created_at')
   DateTime get createdAt;
+
+  @nullable
+  @BuiltValueField(wireName: 'owner_uid')
+  DocumentReference get ownerUid;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
@@ -82,9 +82,9 @@ Map<String, dynamic> createPetSchedulesRecordData({
   int duration,
   String durationUnit,
   DocumentReference petUid,
-  DocumentReference ownerUid,
   LatLng location,
   DateTime createdAt,
+  DocumentReference ownerUid,
 }) =>
     serializers.toFirestore(
         PetSchedulesRecord.serializer,
@@ -95,6 +95,6 @@ Map<String, dynamic> createPetSchedulesRecordData({
           ..duration = duration
           ..durationUnit = durationUnit
           ..petUid = petUid
-          ..ownerUid = ownerUid
           ..location = location
-          ..createdAt = createdAt));
+          ..createdAt = createdAt
+          ..ownerUid = ownerUid));

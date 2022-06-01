@@ -17,8 +17,8 @@ class ChatWidget extends StatefulWidget {
 }
 
 class _ChatWidgetState extends State<ChatWidget> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController textController;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -64,7 +64,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                   child: StreamBuilder<List<ChatMessagesRecord>>(
                     stream: queryChatMessagesRecord(
                       queryBuilder: (chatMessagesRecord) => chatMessagesRecord
-                          .where('user', isEqualTo: currentUserReference)
+                          .where('customer_uid',
+                              isEqualTo: currentUserReference)
                           .orderBy('created_at'),
                     ),
                     builder: (context, snapshot) {
@@ -337,11 +338,11 @@ class _ChatWidgetState extends State<ChatWidget> {
                         onPressed: () async {
                           final chatMessagesCreateData =
                               createChatMessagesRecordData(
-                            user: currentUserReference,
                             text: textController.text,
                             isResponse: false,
                             createdAt: getCurrentTimestamp,
                             userName: currentUserDisplayName,
+                            customerUid: currentUserReference,
                           );
                           await ChatMessagesRecord.collection
                               .doc()

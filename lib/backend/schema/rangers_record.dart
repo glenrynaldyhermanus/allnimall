@@ -4,13 +4,14 @@ import 'index.dart';
 import 'serializers.dart';
 import 'package:built_value/built_value.dart';
 
-part 'users_record.g.dart';
+part 'rangers_record.g.dart';
 
-abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
-  static Serializer<UsersRecord> get serializer => _$usersRecordSerializer;
+abstract class RangersRecord
+    implements Built<RangersRecord, RangersRecordBuilder> {
+  static Serializer<RangersRecord> get serializer => _$rangersRecordSerializer;
 
   @nullable
-  String get email;
+  String get uid;
 
   @nullable
   @BuiltValueField(wireName: 'display_name')
@@ -21,7 +22,7 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   String get photoUrl;
 
   @nullable
-  String get uid;
+  String get email;
 
   @nullable
   @BuiltValueField(wireName: 'created_time')
@@ -32,81 +33,62 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   String get phoneNumber;
 
   @nullable
-  @BuiltValueField(wireName: 'order_address')
-  String get orderAddress;
-
-  @nullable
-  @BuiltValueField(wireName: 'order_latlng')
-  LatLng get orderLatlng;
-
-  @nullable
-  DateTime get birthdate;
-
-  @nullable
-  String get gender;
-
-  @nullable
   String get role;
+
+  @nullable
+  LatLng get latlng;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
-  static void _initializeBuilder(UsersRecordBuilder builder) => builder
-    ..email = ''
+  static void _initializeBuilder(RangersRecordBuilder builder) => builder
+    ..uid = ''
     ..displayName = ''
     ..photoUrl = ''
-    ..uid = ''
+    ..email = ''
     ..phoneNumber = ''
-    ..orderAddress = ''
-    ..gender = ''
     ..role = '';
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('users');
+      FirebaseFirestore.instance.collection('rangers');
 
-  static Stream<UsersRecord> getDocument(DocumentReference ref) => ref
+  static Stream<RangersRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
       .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
 
-  static Future<UsersRecord> getDocumentOnce(DocumentReference ref) => ref
+  static Future<RangersRecord> getDocumentOnce(DocumentReference ref) => ref
       .get()
       .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
 
-  UsersRecord._();
-  factory UsersRecord([void Function(UsersRecordBuilder) updates]) =
-      _$UsersRecord;
+  RangersRecord._();
+  factory RangersRecord([void Function(RangersRecordBuilder) updates]) =
+      _$RangersRecord;
 
-  static UsersRecord getDocumentFromData(
+  static RangersRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
       serializers.deserializeWith(serializer,
           {...mapFromFirestore(data), kDocumentReferenceField: reference});
 }
 
-Map<String, dynamic> createUsersRecordData({
-  String email,
+Map<String, dynamic> createRangersRecordData({
+  String uid,
   String displayName,
   String photoUrl,
-  String uid,
+  String email,
   DateTime createdTime,
   String phoneNumber,
-  String orderAddress,
-  LatLng orderLatlng,
-  DateTime birthdate,
-  String gender,
   String role,
+  LatLng latlng,
 }) =>
     serializers.toFirestore(
-        UsersRecord.serializer,
-        UsersRecord((u) => u
-          ..email = email
+        RangersRecord.serializer,
+        RangersRecord((r) => r
+          ..uid = uid
           ..displayName = displayName
           ..photoUrl = photoUrl
-          ..uid = uid
+          ..email = email
           ..createdTime = createdTime
           ..phoneNumber = phoneNumber
-          ..orderAddress = orderAddress
-          ..orderLatlng = orderLatlng
-          ..birthdate = birthdate
-          ..gender = gender
-          ..role = role));
+          ..role = role
+          ..latlng = latlng));

@@ -18,19 +18,19 @@ class SelectGeoLocationWidget extends StatefulWidget {
 }
 
 class _SelectGeoLocationWidgetState extends State<SelectGeoLocationWidget> {
-  LatLng currentUserLocationValue;
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   LatLng googleMapsCenter;
   final googleMapsController = Completer<GoogleMapController>();
   TextEditingController textController;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  LatLng currentUserLocationValue;
 
   @override
   void initState() {
     super.initState();
     getCurrentUserLocation(defaultLocation: LatLng(0.0, 0.0), cached: true)
         .then((loc) => setState(() => currentUserLocationValue = loc));
-    textController =
-        TextEditingController(text: currentUserDocument?.orderAddress);
+    textController = TextEditingController(
+        text: valueOrDefault(currentUserDocument?.orderAddress, ''));
   }
 
   @override
@@ -154,11 +154,12 @@ class _SelectGeoLocationWidgetState extends State<SelectGeoLocationWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          final usersUpdateData = createUsersRecordData(
+                          final customersUpdateData = createCustomersRecordData(
                             orderAddress: textController.text,
                             orderLatlng: googleMapsCenter,
                           );
-                          await currentUserReference.update(usersUpdateData);
+                          await currentUserReference
+                              .update(customersUpdateData);
                           Navigator.pop(context);
                         },
                         text: 'Save',
