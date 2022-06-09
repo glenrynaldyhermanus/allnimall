@@ -16,6 +16,8 @@ class FFAppState {
 
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
+    _localAddress = prefs.getString('ff_localAddress') ?? _localAddress;
+    _localLatLng = _latLngFromString(prefs.getString('ff_localLatLng'));
   }
 
   SharedPreferences prefs;
@@ -23,6 +25,20 @@ class FFAppState {
   String phone = '';
 
   List<DocumentReference> adminList = [];
+
+  String _localAddress = '';
+  String get localAddress => _localAddress;
+  set localAddress(String _value) {
+    _localAddress = _value;
+    prefs.setString('ff_localAddress', _value);
+  }
+
+  LatLng _localLatLng;
+  LatLng get localLatLng => _localLatLng;
+  set localLatLng(LatLng _value) {
+    _localLatLng = _value;
+    prefs.setString('ff_localLatLng', _value.serialize());
+  }
 }
 
 LatLng _latLngFromString(String val) {

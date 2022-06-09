@@ -1,5 +1,3 @@
-import '../auth/auth_util.dart';
-import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_place_picker.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -7,7 +5,6 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/place.dart';
 import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -27,15 +24,30 @@ class _OrderGroomingLocationWidgetState
   TextEditingController textController;
   var placePickerValue = FFPlace();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  LatLng currentUserLocationValue;
 
   @override
   void initState() {
     super.initState();
+    getCurrentUserLocation(defaultLocation: LatLng(0.0, 0.0), cached: true)
+        .then((loc) => setState(() => currentUserLocationValue = loc));
     textController = TextEditingController(text: placePickerValue.address);
   }
 
   @override
   Widget build(BuildContext context) {
+    if (currentUserLocationValue == null) {
+      return Center(
+        child: SizedBox(
+          width: 50,
+          height: 50,
+          child: SpinKitRipple(
+            color: FlutterFlowTheme.of(context).primaryColor,
+            size: 50,
+          ),
+        ),
+      );
+    }
     return Scaffold(
       key: scaffoldKey,
       resizeToAvoidBottomInset: false,
@@ -140,7 +152,7 @@ class _OrderGroomingLocationWidgetState
                         controller: googleMapsController,
                         onCameraIdle: (latLng) => googleMapsCenter = latLng,
                         initialLocation: googleMapsCenter ??=
-                            placePickerValue.latLng,
+                            currentUserLocationValue,
                         markerColor: GoogleMarkerColor.violet,
                         mapType: MapType.normal,
                         style: GoogleMapStyle.standard,
@@ -182,11 +194,10 @@ class _OrderGroomingLocationWidgetState
                   children: [
                     FFButtonWidget(
                       onPressed: () async {
-                        final customersUpdateData = createCustomersRecordData(
-                          orderAddress: textController.text,
-                          orderLatlng: googleMapsCenter,
-                        );
-                        await currentUserReference.update(customersUpdateData);
+                        setState(() =>
+                            FFAppState().localAddress = textController.text);
+                        setState(
+                            () => FFAppState().localLatLng = googleMapsCenter);
                         Navigator.pop(context);
                       },
                       text: 'Pilih lokasi',
