@@ -1,5 +1,3 @@
-import '../auth/auth_util.dart';
-import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_place_picker.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -7,7 +5,6 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/place.dart';
 import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -196,11 +193,6 @@ class _OrderGroomingLocationWidgetState
                   children: [
                     FFButtonWidget(
                       onPressed: () async {
-                        final customersUpdateData = createCustomersRecordData(
-                          orderAddress: textController.text,
-                          orderLatlng: googleMapsCenter,
-                        );
-                        await currentUserReference.update(customersUpdateData);
                         setState(() =>
                             FFAppState().localAddress = textController.text);
                         setState(
