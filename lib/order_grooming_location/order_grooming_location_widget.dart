@@ -104,7 +104,19 @@ class _OrderGroomingLocationWidgetState
                       'AIzaSyBydXSoppRjB-gdhCkIckjS0O_t9hzMgtw',
                   webGoogleMapsApiKey:
                       'AIzaSyAVmO1JRU552L2OhuDi0sdRhwgleBPNO3c',
-                  onSelect: (place) => setState(() => placePickerValue = place),
+                  onSelect: (place) => setState(() {
+                    placePickerValue = place;
+                    textController.text = place.address;
+                    var newPosition = CameraPosition(
+                        target: placePickerValue.latLng.toGoogleMaps(),
+                        zoom: 16);
+                    CameraUpdate update = CameraUpdate.newCameraPosition(
+                        newPosition);
+                    CameraUpdate zoom = CameraUpdate.zoomTo(16);
+                    googleMapsController.future.then((controller) {
+                      controller.animateCamera(update);
+                    });
+                  }),
                   defaultText: 'Cari',
                   icon: Icon(
                     Icons.search,
@@ -113,7 +125,7 @@ class _OrderGroomingLocationWidgetState
                   ),
                   buttonOptions: FFButtonOptions(
                     width: 80,
-                    height: 50,
+                    height: 60,
                     color: FlutterFlowTheme.of(context).primaryColor,
                     textStyle: FlutterFlowTheme.of(context).subtitle2.override(
                           fontFamily: 'Cabin',
@@ -124,6 +136,7 @@ class _OrderGroomingLocationWidgetState
                       width: 1,
                     ),
                     borderRadius: 0,
+                    elevation: 0
                   ),
                 ),
               ],
