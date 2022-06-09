@@ -32,3 +32,10 @@ export 'settings/settings_widget.dart' show SettingsWidget;
 export 'grooming_summary/grooming_summary_widget.dart'
     show GroomingSummaryWidget;
 export 'payment_method/payment_method_widget.dart' show PaymentMethodWidget;
+export 'order_grooming/order_grooming_widget.dart' show OrderGroomingWidget;
+export 'order_grooming_service/order_grooming_service_widget.dart'
+    show OrderGroomingServiceWidget;
+export 'order_grooming_schedule/order_grooming_schedule_widget.dart'
+    show OrderGroomingScheduleWidget;
+export 'order_grooming_location/order_grooming_location_widget.dart'
+    show OrderGroomingLocationWidget;
