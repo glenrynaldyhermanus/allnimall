@@ -66,7 +66,10 @@ class _CreateOrderFormWidgetState extends State<CreateOrderFormWidget> {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      'Rumah, kantor, tempat lainnya...',
+                                      valueOrDefault<String>(
+                                        FFAppState().localAddress,
+                                        'Rumah, kantor, tempat lainnya...',
+                                      ),
                                       maxLines: 2,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText2,
