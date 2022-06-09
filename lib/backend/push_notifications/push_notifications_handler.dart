@@ -136,6 +136,10 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
         order:
             await getDocumentParameter(data, 'order', OrdersRecord.serializer),
       ),
+  'OrderGrooming': (data) async => OrderGroomingWidget(),
+  'OrderGroomingService': (data) async => OrderGroomingServiceWidget(),
+  'OrderGroomingSchedule': (data) async => OrderGroomingScheduleWidget(),
+  'OrderGroomingLocation': (data) async => OrderGroomingLocationWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>
