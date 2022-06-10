@@ -39,6 +39,12 @@ class FFAppState {
     _localLatLng = _value;
     prefs.setString('ff_localLatLng', _value.serialize());
   }
+
+  DateTime localScheduleDate;
+
+  String localPreferedTime = '';
+
+  String localPreferedDay = '';
 }
 
 LatLng _latLngFromString(String val) {
