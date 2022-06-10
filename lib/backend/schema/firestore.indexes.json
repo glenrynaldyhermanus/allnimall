@@ -7,10 +7,6 @@
         {
           "fieldPath": "owner_uid",
           "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "scheduled_at",
-          "order": "ASCENDING"
         }
       ]
     },
@@ -20,10 +16,6 @@
       "fields": [
         {
           "fieldPath": "pet_uid",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "scheduled_at",
           "order": "ASCENDING"
         }
       ]

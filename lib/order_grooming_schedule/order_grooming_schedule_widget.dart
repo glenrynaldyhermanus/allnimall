@@ -1,4 +1,5 @@
-import '../components/create_order_form_widget.dart';
+import '../components/calendar_picker_widget.dart';
+import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -16,6 +17,8 @@ class OrderGroomingScheduleWidget extends StatefulWidget {
 
 class _OrderGroomingScheduleWidgetState
     extends State<OrderGroomingScheduleWidget> {
+  String dropDownValue1;
+  String dropDownValue2;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -49,7 +52,188 @@ class _OrderGroomingScheduleWidgetState
             Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                CreateOrderFormWidget(),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(25, 25, 25, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Tanggal Grooming',
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                              child: InkWell(
+                                onTap: () async {
+                                  await showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    backgroundColor: Colors.transparent,
+                                    context: context,
+                                    builder: (context) {
+                                      return Padding(
+                                        padding:
+                                            MediaQuery.of(context).viewInsets,
+                                        child: CalendarPickerWidget(),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 52,
+                                  decoration: BoxDecoration(
+                                    color: Color(0x7FDBDCFF),
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        24, 0, 16, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            valueOrDefault<String>(
+                                              dateTimeFormat(
+                                                  'MMMMEEEEd',
+                                                  FFAppState()
+                                                      .localScheduleDate),
+                                              'Pilih tanggal',
+                                            ),
+                                            maxLines: 2,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText2,
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.date_range,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryColor,
+                                          size: 20,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(25, 25, 25, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Waktu Grooming',
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                            ),
+                            FlutterFlowDropDown(
+                              options: [
+                                'Pagi 08:00 - 11:00',
+                                'Siang 12:00 -14:00',
+                                'Sore 15:00 - 16:00'
+                              ],
+                              onChanged: (val) =>
+                                  setState(() => dropDownValue1 = val),
+                              width: double.infinity,
+                              height: 50,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Cabin',
+                                    color: Colors.black,
+                                  ),
+                              hintText: 'Pilih waktu',
+                              icon: Icon(
+                                Icons.access_time,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
+                                size: 20,
+                              ),
+                              fillColor: Color(0x7FDBDCFF),
+                              elevation: 2,
+                              borderColor: Colors.transparent,
+                              borderWidth: 0,
+                              borderRadius: 0,
+                              margin:
+                                  EdgeInsetsDirectional.fromSTEB(24, 4, 16, 4),
+                              hidesUnderline: true,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(25, 25, 25, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Backup Plan',
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                            ),
+                            FlutterFlowDropDown(
+                              options: [
+                                'Weekday / Hari Kerja',
+                                'Weekend / Hari Libur'
+                              ],
+                              onChanged: (val) =>
+                                  setState(() => dropDownValue2 = val),
+                              width: double.infinity,
+                              height: 50,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Cabin',
+                                    color: Colors.black,
+                                  ),
+                              hintText: 'Pilih preferensi hari',
+                              icon: Icon(
+                                Icons.access_time,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
+                                size: 20,
+                              ),
+                              fillColor: Color(0x7FDBDCFF),
+                              elevation: 2,
+                              borderColor: Colors.transparent,
+                              borderWidth: 0,
+                              borderRadius: 0,
+                              margin:
+                                  EdgeInsetsDirectional.fromSTEB(24, 4, 16, 4),
+                              hidesUnderline: true,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
             Padding(
@@ -60,10 +244,14 @@ class _OrderGroomingScheduleWidgetState
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 25),
                     child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        setState(() =>
+                            FFAppState().localPreferedTime = dropDownValue1);
+                        setState(() =>
+                            FFAppState().localPreferedDay = dropDownValue2);
+                        Navigator.pop(context);
                       },
-                      text: 'Panggil Groomer',
+                      text: 'Set Jadwal',
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 48,
