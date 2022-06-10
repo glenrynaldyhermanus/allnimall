@@ -146,11 +146,7 @@ class _OrderGroomingScheduleWidgetState
                               style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                             FlutterFlowDropDown(
-                              options: [
-                                'Pagi 08:00 - 11:00',
-                                'Siang 12:00 -14:00',
-                                'Sore 15:00 - 16:00'
-                              ],
+                              options: ['Pagi ', 'Siang', 'Sore'],
                               onChanged: (val) =>
                                   setState(() => dropDownValue1 = val),
                               width: double.infinity,
