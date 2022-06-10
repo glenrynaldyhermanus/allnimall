@@ -203,7 +203,10 @@ class _CreateOrderFormWidgetState extends State<CreateOrderFormWidget> {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      'Besok, weekend ini, atau waktu lainnya...',
+                                      valueOrDefault<String>(
+                                        '${dateTimeFormat('MMMMEEEEd', FFAppState().localScheduleDate)} - ${FFAppState().localPreferedTime}',
+                                        'Besok, weekend ini, atau waktu lainnya...',
+                                      ),
                                       maxLines: 2,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText2,
