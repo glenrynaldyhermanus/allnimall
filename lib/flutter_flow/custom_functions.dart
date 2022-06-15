@@ -156,3 +156,14 @@ bool hasNotes(String notes) {
   }
   return true;
 }
+
+int stringToInteger(String param) {
+  // convert string to integer
+  if (param == null) {
+    return 0;
+  } else if (param.isEmpty) {
+    return 0;
+  } else {
+    return int.parse(param);
+  }
+}

@@ -3,6 +3,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../order_service_list/order_service_list_widget.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -294,8 +295,12 @@ class _OrderGroomingServiceWidgetState
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 25),
                     child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        setState(() =>
+                            FFAppState().localServiceCategory = dropDownValue2);
+                        setState(() => FFAppState().localPetAmount =
+                            functions.stringToInteger(dropDownValue1));
+                        Navigator.pop(context);
                       },
                       text: FFLocalizations.of(context).getText(
                         'duq0q3fr' /* Pilih Layanan */,
