@@ -180,7 +180,7 @@ class _CreateOrderFormWidgetState extends State<CreateOrderFormWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Schedule',
+                        'Jadwal',
                         style: FlutterFlowTheme.of(context).bodyText1,
                       ),
                       Padding(
