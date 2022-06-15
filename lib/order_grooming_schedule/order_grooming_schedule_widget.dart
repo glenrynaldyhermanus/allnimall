@@ -31,9 +31,7 @@ class _OrderGroomingScheduleWidgetState
             IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          FFLocalizations.of(context).getText(
-            '2plzp3ov' /* Jadwal */,
-          ),
+          'Jadwal',
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
@@ -65,9 +63,7 @@ class _OrderGroomingScheduleWidgetState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              FFLocalizations.of(context).getText(
-                                'rsdmox0m' /* Tanggal Grooming */,
-                              ),
+                              'Tanggal Grooming',
                               style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                             Padding(
@@ -146,23 +142,11 @@ class _OrderGroomingScheduleWidgetState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              FFLocalizations.of(context).getText(
-                                'ks27s9h3' /* Waktu Grooming */,
-                              ),
+                              'Waktu Grooming',
                               style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                             FlutterFlowDropDown(
-                              options: [
-                                FFLocalizations.of(context).getText(
-                                  'bwcqkmqs' /* Pagi  */,
-                                ),
-                                FFLocalizations.of(context).getText(
-                                  '2i1eix49' /* Siang */,
-                                ),
-                                FFLocalizations.of(context).getText(
-                                  'yg2kx93j' /* Sore */,
-                                )
-                              ],
+                              options: ['Pagi ', 'Siang', 'Sore'],
                               onChanged: (val) =>
                                   setState(() => dropDownValue1 = val),
                               width: double.infinity,
@@ -173,9 +157,7 @@ class _OrderGroomingScheduleWidgetState
                                     fontFamily: 'Cabin',
                                     color: Colors.black,
                                   ),
-                              hintText: FFLocalizations.of(context).getText(
-                                '5d4yj1it' /* Pilih waktu */,
-                              ),
+                              hintText: 'Pilih waktu',
                               icon: Icon(
                                 Icons.access_time,
                                 color:
@@ -208,19 +190,13 @@ class _OrderGroomingScheduleWidgetState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              FFLocalizations.of(context).getText(
-                                'shylpsre' /* Backup Plan */,
-                              ),
+                              'Backup Plan',
                               style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                             FlutterFlowDropDown(
                               options: [
-                                FFLocalizations.of(context).getText(
-                                  'tzq56v5j' /* Weekday / Hari Kerja */,
-                                ),
-                                FFLocalizations.of(context).getText(
-                                  'ec0q5urg' /* Weekend / Hari Libur */,
-                                )
+                                'Weekday / Hari Kerja',
+                                'Weekend / Hari Libur'
                               ],
                               onChanged: (val) =>
                                   setState(() => dropDownValue2 = val),
@@ -232,9 +208,7 @@ class _OrderGroomingScheduleWidgetState
                                     fontFamily: 'Cabin',
                                     color: Colors.black,
                                   ),
-                              hintText: FFLocalizations.of(context).getText(
-                                'u15qvhcj' /* Pilih preferensi hari */,
-                              ),
+                              hintText: 'Pilih preferensi hari',
                               icon: Icon(
                                 Icons.access_time,
                                 color:
@@ -273,9 +247,7 @@ class _OrderGroomingScheduleWidgetState
                             FFAppState().localPreferedDay = dropDownValue2);
                         Navigator.pop(context);
                       },
-                      text: FFLocalizations.of(context).getText(
-                        'uu0s4mep' /* Set Jadwal */,
-                      ),
+                      text: 'Set Jadwal',
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 48,

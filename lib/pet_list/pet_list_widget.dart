@@ -31,9 +31,7 @@ class _PetListWidgetState extends State<PetListWidget> {
             IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          FFLocalizations.of(context).getText(
-            'e5d9p431' /* My Pets */,
-          ),
+          'My Pets',
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
@@ -60,9 +58,7 @@ class _PetListWidgetState extends State<PetListWidget> {
         ),
         elevation: 8,
         label: Text(
-          FFLocalizations.of(context).getText(
-            'i5mow5o3' /* New pet */,
-          ),
+          'New pet',
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).tertiaryColor,

@@ -30,9 +30,7 @@ class _HelpWidgetState extends State<HelpWidget> {
             IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          FFLocalizations.of(context).getText(
-            '1aqfdhby' /* Help Center */,
-          ),
+          'Help Center',
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
@@ -83,9 +81,7 @@ class _HelpWidgetState extends State<HelpWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Text(
-                      FFLocalizations.of(context).getText(
-                        'jyktpnup' /* Butuh bantuan kami? */,
-                      ),
+                      'Butuh bantuan kami?',
                       style: FlutterFlowTheme.of(context).title3.override(
                             fontFamily: 'RockoUltra',
                             color: FlutterFlowTheme.of(context).primaryColor,
@@ -95,9 +91,7 @@ class _HelpWidgetState extends State<HelpWidget> {
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                       child: Text(
-                        FFLocalizations.of(context).getText(
-                          'y1y2dj3o' /* Kru Allnimall dengan senang ha... */,
-                        ),
+                        'Kru Allnimall dengan senang hati akan membantu kakak semua!',
                         textAlign: TextAlign.center,
                         style: FlutterFlowTheme.of(context).subtitle2,
                       ),
@@ -137,18 +131,14 @@ class _HelpWidgetState extends State<HelpWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Text(
-                                          FFLocalizations.of(context).getText(
-                                            '3s8x0iy2' /* Chat */,
-                                          ),
+                                          'Chat',
                                           style: FlutterFlowTheme.of(context)
                                               .subtitle1,
                                         ),
                                       ],
                                     ),
                                     Text(
-                                      FFLocalizations.of(context).getText(
-                                        'ymmuscst' /* Chat langsung  dengan kru Alln... */,
-                                      ),
+                                      'Chat langsung  dengan kru Allnimall',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText1,
                                     ),
@@ -195,18 +185,14 @@ class _HelpWidgetState extends State<HelpWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Text(
-                                          FFLocalizations.of(context).getText(
-                                            'm9euk7go' /* FAQs */,
-                                          ),
+                                          'FAQs',
                                           style: FlutterFlowTheme.of(context)
                                               .subtitle1,
                                         ),
                                       ],
                                     ),
                                     Text(
-                                      FFLocalizations.of(context).getText(
-                                        '0l99cwsd' /* Temukan jawaban atas pertanyaa... */,
-                                      ),
+                                      'Temukan jawaban atas pertanyaan-pertanyaan kamu',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText1,
                                     ),
@@ -258,18 +244,14 @@ class _HelpWidgetState extends State<HelpWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Text(
-                                          FFLocalizations.of(context).getText(
-                                            'g5q59wq2' /* Request Features */,
-                                          ),
+                                          'Request Features',
                                           style: FlutterFlowTheme.of(context)
                                               .subtitle1,
                                         ),
                                       ],
                                     ),
                                     Text(
-                                      FFLocalizations.of(context).getText(
-                                        'z69aon2o' /* Ada fitur yang kakak inginkan?... */,
-                                      ),
+                                      'Ada fitur yang kakak inginkan? Yuk kasih tau kru Allnimall',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText1,
                                     ),

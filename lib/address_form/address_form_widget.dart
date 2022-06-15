@@ -34,9 +34,7 @@ class _AddressFormWidgetState extends State<AddressFormWidget> {
             IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          FFLocalizations.of(context).getText(
-            '33tkmff4' /* Address */,
-          ),
+          'Address',
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
@@ -62,9 +60,7 @@ class _AddressFormWidgetState extends State<AddressFormWidget> {
                       controller: textController1,
                       obscureText: false,
                       decoration: InputDecoration(
-                        hintText: FFLocalizations.of(context).getText(
-                          '3ukxsp9i' /* Full address */,
-                        ),
+                        hintText: 'Full address',
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: FlutterFlowTheme.of(context).secondaryColor,
@@ -90,9 +86,7 @@ class _AddressFormWidgetState extends State<AddressFormWidget> {
                         controller: textController2,
                         obscureText: false,
                         decoration: InputDecoration(
-                          hintText: FFLocalizations.of(context).getText(
-                            '8mukry14' /* Detail location */,
-                          ),
+                          hintText: 'Detail location',
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color:
@@ -125,9 +119,7 @@ class _AddressFormWidgetState extends State<AddressFormWidget> {
                 onPressed: () {
                   print('Button pressed ...');
                 },
-                text: FFLocalizations.of(context).getText(
-                  '251wresa' /* Save address */,
-                ),
+                text: 'Save address',
                 options: FFButtonOptions(
                   width: double.infinity,
                   height: 56,

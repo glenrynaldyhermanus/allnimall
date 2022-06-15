@@ -33,9 +33,7 @@ class _EmptyPetWidgetState extends State<EmptyPetWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                FFLocalizations.of(context).getText(
-                  'rjyauxf6' /* Add your pet */,
-                ),
+                'Add your pet',
                 textAlign: TextAlign.center,
                 style: FlutterFlowTheme.of(context).title3,
               ),
@@ -50,9 +48,7 @@ class _EmptyPetWidgetState extends State<EmptyPetWidget> {
             children: [
               Expanded(
                 child: Text(
-                  FFLocalizations.of(context).getText(
-                    'xlyqzzdz' /* Let's join our vast community ... */,
-                  ),
+                  'Let\'s join our vast community and bring the best out of your pets',
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).bodyText1,
                 ),
@@ -71,9 +67,7 @@ class _EmptyPetWidgetState extends State<EmptyPetWidget> {
                 ),
               );
             },
-            text: FFLocalizations.of(context).getText(
-              'sfer8jcj' /* Add */,
-            ),
+            text: 'Add',
             options: FFButtonOptions(
               width: 160,
               height: 40,

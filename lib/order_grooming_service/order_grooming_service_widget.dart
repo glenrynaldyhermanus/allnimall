@@ -32,9 +32,7 @@ class _OrderGroomingServiceWidgetState
             IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          FFLocalizations.of(context).getText(
-            'us5mi1ap' /* Layanan */,
-          ),
+          'Layanan',
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
@@ -66,50 +64,25 @@ class _OrderGroomingServiceWidgetState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              FFLocalizations.of(context).getText(
-                                'yy4vd5no' /* Jumlah pet */,
-                              ),
+                              'Jumlah pet',
                               style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                               child: FlutterFlowDropDown(
-                                initialOption: dropDownValue1 ??=
-                                    FFLocalizations.of(context).getText(
-                                  'tcimovkd' /* 1 */,
-                                ),
+                                initialOption: dropDownValue1 ??= '1',
                                 options: [
-                                  FFLocalizations.of(context).getText(
-                                    '45y00u4y' /* 1 */,
-                                  ),
-                                  FFLocalizations.of(context).getText(
-                                    'f6ls85da' /* 2 */,
-                                  ),
-                                  FFLocalizations.of(context).getText(
-                                    'm448vwiz' /* 3 */,
-                                  ),
-                                  FFLocalizations.of(context).getText(
-                                    'x160uejt' /* 4 */,
-                                  ),
-                                  FFLocalizations.of(context).getText(
-                                    'c7dcf61w' /* 5 */,
-                                  ),
-                                  FFLocalizations.of(context).getText(
-                                    'tnag9szu' /* 6 */,
-                                  ),
-                                  FFLocalizations.of(context).getText(
-                                    'l5hkh5cb' /* 7 */,
-                                  ),
-                                  FFLocalizations.of(context).getText(
-                                    'm67p9bav' /* 8 */,
-                                  ),
-                                  FFLocalizations.of(context).getText(
-                                    'fa0padmp' /* 9 */,
-                                  ),
-                                  FFLocalizations.of(context).getText(
-                                    '4ftki7k3' /* 10 */,
-                                  )
+                                  '1',
+                                  '2',
+                                  '3',
+                                  '4',
+                                  '5',
+                                  '6',
+                                  '7',
+                                  '8',
+                                  '9',
+                                  '10'
                                 ],
                                 onChanged: (val) =>
                                     setState(() => dropDownValue1 = val),
@@ -121,9 +94,7 @@ class _OrderGroomingServiceWidgetState
                                       fontFamily: 'Cabin',
                                       color: Colors.black,
                                     ),
-                                hintText: FFLocalizations.of(context).getText(
-                                  '25i3wfw4' /* Jumlah pet */,
-                                ),
+                                hintText: 'Jumlah pet',
                                 icon: Icon(
                                   Icons.filter_1,
                                   color: FlutterFlowTheme.of(context)
@@ -157,24 +128,15 @@ class _OrderGroomingServiceWidgetState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              FFLocalizations.of(context).getText(
-                                '9gvsx8w9' /* Kategori pet */,
-                              ),
+                              'Kategori pet',
                               style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                               child: FlutterFlowDropDown(
-                                initialOption: dropDownValue2 ??=
-                                    FFLocalizations.of(context).getText(
-                                  'py9yxdd4' /* Kucing */,
-                                ),
-                                options: [
-                                  FFLocalizations.of(context).getText(
-                                    'ue7pig5v' /* Kucing */,
-                                  )
-                                ],
+                                initialOption: dropDownValue2 ??= 'Kucing',
+                                options: ['Kucing'],
                                 onChanged: (val) =>
                                     setState(() => dropDownValue2 = val),
                                 width: double.infinity,
@@ -185,9 +147,7 @@ class _OrderGroomingServiceWidgetState
                                       fontFamily: 'Cabin',
                                       color: Colors.black,
                                     ),
-                                hintText: FFLocalizations.of(context).getText(
-                                  'pyr8v9bn' /* Pilih pet */,
-                                ),
+                                hintText: 'Pilih pet',
                                 icon: Icon(
                                   Icons.pets,
                                   color: FlutterFlowTheme.of(context)
@@ -221,9 +181,7 @@ class _OrderGroomingServiceWidgetState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              FFLocalizations.of(context).getText(
-                                '9tt4ob7h' /* Layanan */,
-                              ),
+                              'Layanan',
                               style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                             Padding(
@@ -302,9 +260,7 @@ class _OrderGroomingServiceWidgetState
                             functions.stringToInteger(dropDownValue1));
                         Navigator.pop(context);
                       },
-                      text: FFLocalizations.of(context).getText(
-                        'duq0q3fr' /* Pilih Layanan */,
-                      ),
+                      text: 'Pilih Layanan',
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 48,

@@ -44,9 +44,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
             IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          FFLocalizations.of(context).getText(
-            '0621d69r' /* Edit Profile */,
-          ),
+          'Edit Profile',
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
@@ -147,9 +145,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                     children: [
                       if ((uploadedFileUrl) == '')
                         Text(
-                          FFLocalizations.of(context).getText(
-                            'e1dfhjyt' /* Change picture */,
-                          ),
+                          'Change picture',
                           style: FlutterFlowTheme.of(context).subtitle2,
                         ),
                     ],
@@ -161,9 +157,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         controller: nameFieldController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          hintText: FFLocalizations.of(context).getText(
-                            'trl0dlh5' /* Pet's name */,
-                          ),
+                          hintText: 'Pet\'s name',
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color:
@@ -276,17 +270,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       child: FlutterFlowDropDown(
                         initialOption: sexSelectionValue ??=
                             valueOrDefault(currentUserDocument?.gender, ''),
-                        options: [
-                          FFLocalizations.of(context).getText(
-                            'zyuhfou4' /* Gender */,
-                          ),
-                          FFLocalizations.of(context).getText(
-                            'geymjvbi' /* Female */,
-                          ),
-                          FFLocalizations.of(context).getText(
-                            'erebzh0p' /* Male */,
-                          )
-                        ],
+                        options: ['Gender', 'Female', 'Male'],
                         onChanged: (val) =>
                             setState(() => sexSelectionValue = val),
                         width: double.infinity,
@@ -315,9 +299,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         await currentUserReference.update(customersUpdateData);
                         Navigator.pop(context);
                       },
-                      text: FFLocalizations.of(context).getText(
-                        'j1c1ash0' /* Save */,
-                      ),
+                      text: 'Save',
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 56,

@@ -165,9 +165,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            FFLocalizations.of(context).getText(
-                              '22804qio' /* Nge-Hits */,
-                            ),
+                            'Nge-Hits',
                             style: FlutterFlowTheme.of(context).title3.override(
                                   fontFamily: 'RockoUltra',
                                   color:
@@ -186,9 +184,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               );
                             },
                             child: Text(
-                              FFLocalizations.of(context).getText(
-                                'o5wzc19j' /* Lihat Semua */,
-                              ),
+                              'Lihat Semua',
                               style:
                                   FlutterFlowTheme.of(context).title2.override(
                                         fontFamily: 'RockoUltra',
@@ -382,9 +378,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            FFLocalizations.of(context).getText(
-                              'ikgrhhp8' /* Pet Saya */,
-                            ),
+                            'Pet Saya',
                             style: FlutterFlowTheme.of(context).title3.override(
                                   fontFamily: 'RockoUltra',
                                   color:
@@ -403,9 +397,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               );
                             },
                             child: Text(
-                              FFLocalizations.of(context).getText(
-                                'sebz3x3k' /* Lihat Semua */,
-                              ),
+                              'Lihat Semua',
                               style:
                                   FlutterFlowTheme.of(context).title2.override(
                                         fontFamily: 'RockoUltra',
@@ -612,9 +604,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            FFLocalizations.of(context).getText(
-                              'piy5rbss' /* Artikel */,
-                            ),
+                            'Artikel',
                             style: FlutterFlowTheme.of(context).title3.override(
                                   fontFamily: 'RockoUltra',
                                   color:
@@ -752,9 +742,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  FFLocalizations.of(context).getText(
-                                    'vh0nicy1' /* Jadwal */,
-                                  ),
+                                  'Jadwal',
                                   style: FlutterFlowTheme.of(context)
                                       .title3
                                       .override(

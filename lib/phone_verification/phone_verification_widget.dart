@@ -34,9 +34,7 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
         backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
         automaticallyImplyLeading: false,
         title: Text(
-          FFLocalizations.of(context).getText(
-            'j0iault8' /* Verifikasi */,
-          ),
+          'Verifikasi',
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
@@ -60,13 +58,9 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                   controller: phoneNumberController,
                   obscureText: false,
                   decoration: InputDecoration(
-                    labelText: FFLocalizations.of(context).getText(
-                      'elbifdxy' /* Masukkan kode 6 digit */,
-                    ),
+                    labelText: 'Masukkan kode 6 digit',
                     labelStyle: FlutterFlowTheme.of(context).subtitle2,
-                    hintText: FFLocalizations.of(context).getText(
-                      'xadbmqvp' /* 000000 */,
-                    ),
+                    hintText: '000000',
                     hintStyle: FlutterFlowTheme.of(context).subtitle2,
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
@@ -129,9 +123,7 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                       );
                     }
                   },
-                  text: FFLocalizations.of(context).getText(
-                    'shu0y7mh' /* Lanjut */,
-                  ),
+                  text: 'Lanjut',
                   options: FFButtonOptions(
                     width: 230,
                     height: 60,
