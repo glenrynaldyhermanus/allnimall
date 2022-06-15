@@ -187,7 +187,7 @@ String combinedSchedule(
 ) {
   // Add your function code here!
   if (schedule != null) {
-    return '${DateFormat("MMMMEEEEd").format(schedule)} - $prefTime';
+    return '${DateFormat("MMMMEEEEd", "id").format(schedule)} - $prefTime';
   }
 
   return "";
