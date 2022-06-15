@@ -2,12 +2,18 @@ import '../flutter_flow/flutter_flow_calendar.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CalendarPickerWidget extends StatefulWidget {
-  const CalendarPickerWidget({Key key}) : super(key: key);
+  const CalendarPickerWidget({
+    Key key,
+    this.isAllowBackdate,
+  }) : super(key: key);
+
+  final bool isAllowBackdate;
 
   @override
   _CalendarPickerWidgetState createState() => _CalendarPickerWidgetState();
@@ -70,9 +76,36 @@ class _CalendarPickerWidgetState extends State<CalendarPickerWidget> {
                   ),
                   FFButtonWidget(
                     onPressed: () async {
-                      setState(() => FFAppState().localScheduleDate =
-                          calendarSelectedDay?.end);
-                      Navigator.pop(context);
+                      if (widget.isAllowBackdate) {
+                        setState(() => FFAppState().localScheduleDate =
+                            calendarSelectedDay?.start);
+                        Navigator.pop(context);
+                      } else {
+                        if (functions
+                            .isEarlierThanToday(calendarSelectedDay?.start)) {
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                title: Text('Set Tanggal Gagal'),
+                                content: Text(
+                                    'Tanggal yang dipilih tidak boleh kurang dari hari ini'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: Text('Ok'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        } else {
+                          setState(() => FFAppState().localScheduleDate =
+                              calendarSelectedDay?.start);
+                          Navigator.pop(context);
+                        }
+                      }
                     },
                     text: 'Pilih',
                     options: FFButtonOptions(

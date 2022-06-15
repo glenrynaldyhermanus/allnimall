@@ -192,3 +192,9 @@ String combinedSchedule(
 
   return "";
 }
+
+bool isEarlierThanToday(DateTime date) {
+  // return boolean is date earlier than today
+  return DateTime(date.year, date.month, date.day).isBefore(
+      DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day));
+}
