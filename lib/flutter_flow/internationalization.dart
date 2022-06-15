@@ -45,27 +45,27 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // Home
   {
     '22804qio': {
-      'id': 'Happening!',
-      'en': 'Happy!',
+      'id': 'Nge-Hits',
+      'en': 'Happening!',
     },
     'o5wzc19j': {
-      'id': 'View All',
+      'id': 'Lihat Semua',
       'en': 'View All',
     },
     'ikgrhhp8': {
-      'id': 'My Pets',
+      'id': 'Pet Saya',
       'en': 'My Pets',
     },
     'sebz3x3k': {
-      'id': 'View All',
+      'id': 'Lihat Semua',
       'en': 'View All',
     },
     'piy5rbss': {
-      'id': 'Articles',
+      'id': 'Artikel',
       'en': 'Articles',
     },
     'vh0nicy1': {
-      'id': 'Your Schedule',
+      'id': 'Jadwal',
       'en': 'Your Schedule',
     },
     '5jo8brkj': {
@@ -608,7 +608,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'zbw55x1l': {
       'id': 'Kakak ingin kami membangun fitur apa?',
-      'en': 'What feature do you want us to build?',
+      'en': 'Bro what feature do you want us to build?',
     },
     '13amvh9j': {
       'id': 'I want Allnimall adds...',
@@ -1122,7 +1122,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'duq0q3fr': {
       'id': 'Pilih Layanan',
-      'en': 'Call Groomer',
+      'en': 'Select Service',
     },
     'u6nfd7lt': {
       'id': 'Home',

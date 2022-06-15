@@ -166,7 +166,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         children: [
                           Text(
                             FFLocalizations.of(context).getText(
-                              '22804qio' /* Happening! */,
+                              '22804qio' /* Nge-Hits */,
                             ),
                             style: FlutterFlowTheme.of(context).title3.override(
                                   fontFamily: 'RockoUltra',
@@ -187,7 +187,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                             },
                             child: Text(
                               FFLocalizations.of(context).getText(
-                                'o5wzc19j' /* View All */,
+                                'o5wzc19j' /* Lihat Semua */,
                               ),
                               style:
                                   FlutterFlowTheme.of(context).title2.override(
@@ -383,7 +383,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         children: [
                           Text(
                             FFLocalizations.of(context).getText(
-                              'ikgrhhp8' /* My Pets */,
+                              'ikgrhhp8' /* Pet Saya */,
                             ),
                             style: FlutterFlowTheme.of(context).title3.override(
                                   fontFamily: 'RockoUltra',
@@ -404,7 +404,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                             },
                             child: Text(
                               FFLocalizations.of(context).getText(
-                                'sebz3x3k' /* View All */,
+                                'sebz3x3k' /* Lihat Semua */,
                               ),
                               style:
                                   FlutterFlowTheme.of(context).title2.override(
@@ -613,7 +613,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         children: [
                           Text(
                             FFLocalizations.of(context).getText(
-                              'piy5rbss' /* Articles */,
+                              'piy5rbss' /* Artikel */,
                             ),
                             style: FlutterFlowTheme.of(context).title3.override(
                                   fontFamily: 'RockoUltra',
@@ -753,7 +753,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               children: [
                                 Text(
                                   FFLocalizations.of(context).getText(
-                                    'vh0nicy1' /* Your Schedule */,
+                                    'vh0nicy1' /* Jadwal */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .title3
