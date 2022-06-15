@@ -60,9 +60,7 @@ class _CalendarPickerWidgetState extends State<CalendarPickerWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    FFLocalizations.of(context).getText(
-                      'npikr64a' /* Pilih Tanggal */,
-                    ),
+                    'Pilih Tanggal',
                     style: FlutterFlowTheme.of(context).title2.override(
                           fontFamily: 'Outfit',
                           color: Color(0xFF090F13),
@@ -76,9 +74,7 @@ class _CalendarPickerWidgetState extends State<CalendarPickerWidget> {
                           calendarSelectedDay?.end);
                       Navigator.pop(context);
                     },
-                    text: FFLocalizations.of(context).getText(
-                      'g9a4y9a0' /* Pilih */,
-                    ),
+                    text: 'Pilih',
                     options: FFButtonOptions(
                       width: 120,
                       height: 44,

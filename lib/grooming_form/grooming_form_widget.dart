@@ -64,9 +64,7 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                 IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
             automaticallyImplyLeading: true,
             title: Text(
-              FFLocalizations.of(context).getText(
-                '9llw7boq' /* Grooming */,
-              ),
+              'Grooming',
               style: FlutterFlowTheme.of(context).title3.override(
                     fontFamily: 'RockoUltra',
                     color: FlutterFlowTheme.of(context).primaryColor,
@@ -94,9 +92,7 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              FFLocalizations.of(context).getText(
-                                'i23sw284' /* Alamat */,
-                              ),
+                              'Alamat',
                               style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                             InkWell(
@@ -168,9 +164,7 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                FFLocalizations.of(context).getText(
-                                  '74xv3zql' /* Pet */,
-                                ),
+                                'Pet',
                                 style: FlutterFlowTheme.of(context).bodyText1,
                               ),
                               Row(
@@ -218,15 +212,8 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                                                 : null;
                                         return FlutterFlowDropDown(
                                           initialOption: dropDownPetsValue ??=
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                            '3g16ejbc' /* Kucing */,
-                                          ),
-                                          options: [
-                                            FFLocalizations.of(context).getText(
-                                              '520x57wg' /* Kucing */,
-                                            )
-                                          ],
+                                              'Kucing',
+                                          options: ['Kucing'],
                                           onChanged: (val) => setState(
                                               () => dropDownPetsValue = val),
                                           width: 130,
@@ -234,10 +221,7 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                                           textStyle:
                                               FlutterFlowTheme.of(context)
                                                   .subtitle1,
-                                          hintText: FFLocalizations.of(context)
-                                              .getText(
-                                            '5trys2zk' /* Pilih Jenis Peliharaan */,
-                                          ),
+                                          hintText: 'Pilih Jenis Peliharaan',
                                           fillColor: Colors.white,
                                           elevation: 2,
                                           borderColor:
@@ -265,9 +249,7 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                FFLocalizations.of(context).getText(
-                                  'or0r1vfm' /* Servis */,
-                                ),
+                                'Servis',
                                 style: FlutterFlowTheme.of(context).bodyText1,
                               ),
                               Row(
@@ -276,24 +258,15 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                                   Expanded(
                                     child: FlutterFlowDropDown(
                                       initialOption: dropDownServiceValue ??=
-                                          FFLocalizations.of(context).getText(
-                                        'jp6so3tz' /* Mandi Kutu dan Jamur */,
-                                      ),
-                                      options: [
-                                        FFLocalizations.of(context).getText(
-                                          '52e3l4oc' /* Mandi Kutu dan Jamur */,
-                                        )
-                                      ],
+                                          'Mandi Kutu dan Jamur',
+                                      options: ['Mandi Kutu dan Jamur'],
                                       onChanged: (val) => setState(
                                           () => dropDownServiceValue = val),
                                       width: 130,
                                       height: 60,
                                       textStyle: FlutterFlowTheme.of(context)
                                           .subtitle1,
-                                      hintText:
-                                          FFLocalizations.of(context).getText(
-                                        'o15mxtcu' /* Pilih Servis */,
-                                      ),
+                                      hintText: 'Pilih Servis',
                                       fillColor: Colors.white,
                                       elevation: 2,
                                       borderColor: FlutterFlowTheme.of(context)
@@ -317,9 +290,7 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                FFLocalizations.of(context).getText(
-                                  'p4q8jx4s' /* Jumlah pet */,
-                                ),
+                                'Jumlah pet',
                                 style: FlutterFlowTheme.of(context).bodyText1,
                               ),
                               Padding(
@@ -378,9 +349,7 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                FFLocalizations.of(context).getText(
-                                  'sa4e57p8' /* Tanggal grooming */,
-                                ),
+                                'Tanggal grooming',
                                 style: FlutterFlowTheme.of(context).bodyText1,
                               ),
                               FlutterFlowCalendar(
@@ -411,9 +380,7 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                FFLocalizations.of(context).getText(
-                                  '0qfpwngs' /* Waktu grooming */,
-                                ),
+                                'Waktu grooming',
                                 style: FlutterFlowTheme.of(context).bodyText1,
                               ),
                               Row(
@@ -458,23 +425,12 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                                                 : null;
                                         return FlutterFlowDropDown(
                                           initialOption: dropDownTimeValue ??=
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                            'q0pbfccn' /* Pagi */,
-                                          ),
+                                              'Pagi',
                                           options: [
-                                            FFLocalizations.of(context).getText(
-                                              'bhegat8w' /* Pagi */,
-                                            ),
-                                            FFLocalizations.of(context).getText(
-                                              'l8j675sm' /* Siang */,
-                                            ),
-                                            FFLocalizations.of(context).getText(
-                                              'wwcm5yi5' /* Sore */,
-                                            ),
-                                            FFLocalizations.of(context).getText(
-                                              'ml4dy772' /* Malam */,
-                                            )
+                                            'Pagi',
+                                            'Siang',
+                                            'Sore',
+                                            'Malam'
                                           ],
                                           onChanged: (val) => setState(
                                               () => dropDownTimeValue = val),
@@ -483,10 +439,7 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                                           textStyle:
                                               FlutterFlowTheme.of(context)
                                                   .subtitle1,
-                                          hintText: FFLocalizations.of(context)
-                                              .getText(
-                                            'bbhuj9g4' /* Pilih Waktu */,
-                                          ),
+                                          hintText: 'Pilih Waktu',
                                           fillColor: Colors.white,
                                           elevation: 2,
                                           borderColor:
@@ -535,9 +488,7 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                                   ),
                                 );
                               },
-                              text: FFLocalizations.of(context).getText(
-                                'c5acn72q' /* Panggil Groomer */,
-                              ),
+                              text: 'Panggil Groomer',
                               options: FFButtonOptions(
                                 width: double.infinity,
                                 height: 56,

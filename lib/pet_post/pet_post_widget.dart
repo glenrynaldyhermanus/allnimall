@@ -60,9 +60,7 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                 IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
             automaticallyImplyLeading: true,
             title: Text(
-              FFLocalizations.of(context).getText(
-                'g4ss0uqh' /* Create Post */,
-              ),
+              'Create Post',
               style: FlutterFlowTheme.of(context).title3.override(
                     fontFamily: 'RockoUltra',
                     color: FlutterFlowTheme.of(context).primaryColor,
@@ -91,9 +89,7 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                       Navigator.pop(context);
                     },
                     child: Text(
-                      FFLocalizations.of(context).getText(
-                        'qorlx9gn' /* Post */,
-                      ),
+                      'Post',
                       textAlign: TextAlign.start,
                       style: FlutterFlowTheme.of(context).subtitle1.override(
                             fontFamily: 'Cabin',
@@ -161,9 +157,7 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                             controller: textController,
                             obscureText: false,
                             decoration: InputDecoration(
-                              hintText: FFLocalizations.of(context).getText(
-                                'okuwaap0' /* Tell us your updates... */,
-                              ),
+                              hintText: 'Tell us your updates...',
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
@@ -277,9 +271,7 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   8, 0, 0, 0),
                                           child: Text(
-                                            FFLocalizations.of(context).getText(
-                                              'uli9icu6' /* Photo */,
-                                            ),
+                                            'Photo',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1,
                                           ),
@@ -332,9 +324,7 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   8, 0, 0, 0),
                                           child: Text(
-                                            FFLocalizations.of(context).getText(
-                                              'ybmis9ab' /* Update weight */,
-                                            ),
+                                            'Update weight',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1,
                                           ),
@@ -372,9 +362,7 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             8, 0, 0, 0),
                                         child: Text(
-                                          FFLocalizations.of(context).getText(
-                                            'nl92zfws' /* Update condition */,
-                                          ),
+                                          'Update condition',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyText1,
                                         ),
@@ -411,9 +399,7 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             8, 0, 0, 0),
                                         child: Text(
-                                          FFLocalizations.of(context).getText(
-                                            'o2cf7s6r' /* Mood */,
-                                          ),
+                                          'Mood',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyText1,
                                         ),

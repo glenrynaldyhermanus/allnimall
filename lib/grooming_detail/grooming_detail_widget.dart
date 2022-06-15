@@ -54,9 +54,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                 IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
             automaticallyImplyLeading: true,
             title: Text(
-              FFLocalizations.of(context).getText(
-                'hb3k3mor' /* Grooming Detail */,
-              ),
+              'Grooming Detail',
               style: FlutterFlowTheme.of(context).title3.override(
                     fontFamily: 'RockoUltra',
                     color: FlutterFlowTheme.of(context).primaryColor,
@@ -136,9 +134,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              FFLocalizations.of(context).getText(
-                                '0bzjn16q' /* Layanan */,
-                              ),
+                              'Layanan',
                               style:
                                   FlutterFlowTheme.of(context).title3.override(
                                         fontFamily: 'RockoUltra',
@@ -193,10 +189,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                                       .subtitle2,
                                             ),
                                             Text(
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                                'pxj6xaoo' /*  -  */,
-                                              ),
+                                              ' - ',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .subtitle2,
@@ -209,10 +202,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                                       .subtitle2,
                                             ),
                                             Text(
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                                '3keb58t6' /*  -  */,
-                                              ),
+                                              ' - ',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .subtitle2,
@@ -243,10 +233,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                                       .subtitle2,
                                             ),
                                             Text(
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                                'lt5kits5' /*  x  */,
-                                              ),
+                                              ' x ',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .subtitle2,
@@ -275,9 +262,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                FFLocalizations.of(context).getText(
-                                  'j0w61tc9' /* Customer */,
-                                ),
+                                'Customer',
                                 style: FlutterFlowTheme.of(context)
                                     .title3
                                     .override(
@@ -383,9 +368,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      FFLocalizations.of(context).getText(
-                                        'x48cb4el' /* Groomer */,
-                                      ),
+                                      'Groomer',
                                       style: FlutterFlowTheme.of(context)
                                           .title3
                                           .override(
@@ -462,10 +445,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                           await launchURL(
                                               'https://api.whatsapp.com/send?phone=${groomingDetailOrdersRecord.rangerPhone}');
                                         },
-                                        text:
-                                            FFLocalizations.of(context).getText(
-                                          '1qrmwoaq' /* Call */,
-                                        ),
+                                        text: 'Call',
                                         options: FFButtonOptions(
                                           width: 64,
                                           height: 40,
@@ -511,9 +491,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      FFLocalizations.of(context).getText(
-                                        'p0ykjswk' /* Pembayaran */,
-                                      ),
+                                      'Pembayaran',
                                       style: FlutterFlowTheme.of(context)
                                           .title3
                                           .override(
@@ -550,9 +528,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            FFLocalizations.of(context).getText(
-                                              's2729dyw' /* Service Fee */,
-                                            ),
+                                            'Service Fee',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1,
                                           ),
@@ -582,9 +558,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          FFLocalizations.of(context).getText(
-                                            'ktw1fh3s' /* Potongan */,
-                                          ),
+                                          'Potongan',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyText1,
                                         ),
@@ -619,9 +593,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            FFLocalizations.of(context).getText(
-                                              '1z49ksj9' /* Total */,
-                                            ),
+                                            'Total',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1,
                                           ),
@@ -666,9 +638,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                           ),
                                         );
                                       },
-                                      text: FFLocalizations.of(context).getText(
-                                        'wpm0w2is' /* Bayar */,
-                                      ),
+                                      text: 'Bayar',
                                       options: FFButtonOptions(
                                         width: double.infinity,
                                         height: 56,
@@ -711,9 +681,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      FFLocalizations.of(context).getText(
-                                        'a08cc29c' /* Catatan */,
-                                      ),
+                                      'Catatan',
                                       style: FlutterFlowTheme.of(context)
                                           .title3
                                           .override(
@@ -753,9 +721,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                 ),
                               );
                             },
-                            text: FFLocalizations.of(context).getText(
-                              'vivdhw1t' /* Home */,
-                            ),
+                            text: 'Home',
                             options: FFButtonOptions(
                               width: double.infinity,
                               height: 56,
@@ -784,9 +750,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                               await launchURL(
                                   'https://api.whatsapp.com/send?phone=6285163707044&text=Butuh%20bantuan%20untuk%20order%20${groomingDetailOrdersRecord.orderNo}');
                             },
-                            text: FFLocalizations.of(context).getText(
-                              'wfubp9nt' /* Butuh Bantuan? */,
-                            ),
+                            text: 'Butuh Bantuan?',
                             options: FFButtonOptions(
                               width: double.infinity,
                               height: 56,

@@ -34,9 +34,7 @@ class _CreateOrderFormWidgetState extends State<CreateOrderFormWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        FFLocalizations.of(context).getText(
-                          'lfdr8ijm' /* Lokasi  */,
-                        ),
+                        'Lokasi ',
                         style: FlutterFlowTheme.of(context).bodyText1,
                       ),
                       Padding(
@@ -106,9 +104,7 @@ class _CreateOrderFormWidgetState extends State<CreateOrderFormWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        FFLocalizations.of(context).getText(
-                          '40tmcyw7' /* Layanan */,
-                        ),
+                        'Layanan',
                         style: FlutterFlowTheme.of(context).bodyText1,
                       ),
                       Padding(
@@ -178,9 +174,7 @@ class _CreateOrderFormWidgetState extends State<CreateOrderFormWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        FFLocalizations.of(context).getText(
-                          'nkpbsn2s' /* Schedule */,
-                        ),
+                        'Schedule',
                         style: FlutterFlowTheme.of(context).bodyText1,
                       ),
                       Padding(

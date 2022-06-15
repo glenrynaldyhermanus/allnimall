@@ -29,9 +29,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
             IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          FFLocalizations.of(context).getText(
-            'pw2ggh00' /* Settings */,
-          ),
+          'Settings',
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
@@ -84,18 +82,14 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Text(
-                                        FFLocalizations.of(context).getText(
-                                          'bkyrp5h0' /* Help */,
-                                        ),
+                                        'Help',
                                         style: FlutterFlowTheme.of(context)
                                             .subtitle1,
                                       ),
                                     ],
                                   ),
                                   Text(
-                                    FFLocalizations.of(context).getText(
-                                      'nplrk4dd' /* Find the best solutions by tal... */,
-                                    ),
+                                    'Find the best solutions by talking to us',
                                     style:
                                         FlutterFlowTheme.of(context).bodyText1,
                                   ),
@@ -143,18 +137,14 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Text(
-                                        FFLocalizations.of(context).getText(
-                                          'kttpb749' /* Order */,
-                                        ),
+                                        'Order',
                                         style: FlutterFlowTheme.of(context)
                                             .subtitle1,
                                       ),
                                     ],
                                   ),
                                   Text(
-                                    FFLocalizations.of(context).getText(
-                                      'yqx9fbhb' /* Manage all your orders here */,
-                                    ),
+                                    'Manage all your orders here',
                                     style:
                                         FlutterFlowTheme.of(context).bodyText1,
                                   ),
@@ -205,18 +195,14 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Text(
-                                    FFLocalizations.of(context).getText(
-                                      'ty55d87m' /* Log Out */,
-                                    ),
+                                    'Log Out',
                                     style:
                                         FlutterFlowTheme.of(context).subtitle1,
                                   ),
                                 ],
                               ),
                               Text(
-                                FFLocalizations.of(context).getText(
-                                  'm7m6c07a' /* Bye! Come around anytime */,
-                                ),
+                                'Bye! Come around anytime',
                                 style: FlutterFlowTheme.of(context).bodyText1,
                               ),
                             ],

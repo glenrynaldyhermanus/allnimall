@@ -38,9 +38,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
             IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          FFLocalizations.of(context).getText(
-            '7t3p9dos' /* Profile n Pets */,
-          ),
+          'Profile n Pets',
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
@@ -139,9 +137,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                       ),
                                     );
                                   },
-                                  text: FFLocalizations.of(context).getText(
-                                    'cpx4ysk5' /* Profile */,
-                                  ),
+                                  text: 'Profile',
                                   icon: Icon(
                                     Icons.edit_sharp,
                                     size: 16,
@@ -186,9 +182,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        FFLocalizations.of(context).getText(
-                                          'vzpjg5cv' /* My Pets */,
-                                        ),
+                                        'My Pets',
                                         style: FlutterFlowTheme.of(context)
                                             .title3
                                             .override(
@@ -210,9 +204,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                           );
                                         },
                                         child: Text(
-                                          FFLocalizations.of(context).getText(
-                                            'wgmtuxlu' /* View All */,
-                                          ),
+                                          'View All',
                                           style: FlutterFlowTheme.of(context)
                                               .title2
                                               .override(
@@ -465,10 +457,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                                '77k71d5a' /* Your Schedule */,
-                                              ),
+                                              'Your Schedule',
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .title3
@@ -732,9 +721,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        FFLocalizations.of(context).getText(
-                          'uz8c1khb' /* You need to sign in */,
-                        ),
+                        'You need to sign in',
                         style: FlutterFlowTheme.of(context).title2.override(
                               fontFamily: 'RockoUltra',
                               color: Color(0xFF717171),
@@ -743,9 +730,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                             ),
                       ),
                       Text(
-                        FFLocalizations.of(context).getText(
-                          'kx7pd5ep' /* It just takes a minute to sign... */,
-                        ),
+                        'It just takes a minute to sign in',
                         textAlign: TextAlign.center,
                         style: FlutterFlowTheme.of(context).subtitle1.override(
                               fontFamily: 'Cabin',
@@ -763,9 +748,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                               ),
                             );
                           },
-                          text: FFLocalizations.of(context).getText(
-                            'orpaiw96' /* Sign In */,
-                          ),
+                          text: 'Sign In',
                           options: FFButtonOptions(
                             width: 130,
                             height: 50,

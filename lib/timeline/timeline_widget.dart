@@ -30,9 +30,7 @@ class _TimelineWidgetState extends State<TimelineWidget> {
             IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          FFLocalizations.of(context).getText(
-            '5bvpzafb' /* Timeline */,
-          ),
+          'Timeline',
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
@@ -195,9 +193,7 @@ class _TimelineWidgetState extends State<TimelineWidget> {
                                         FlutterFlowTheme.of(context).bodyText1,
                                   ),
                                 Text(
-                                  FFLocalizations.of(context).getText(
-                                    'wkrwnp1q' /*  loves */,
-                                  ),
+                                  ' loves',
                                   style: FlutterFlowTheme.of(context).bodyText1,
                                 ),
                               ],

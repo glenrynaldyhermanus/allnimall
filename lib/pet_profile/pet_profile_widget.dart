@@ -137,9 +137,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                   ),
                                 );
                               },
-                              text: FFLocalizations.of(context).getText(
-                                'e9zlhhu8' /* Profile */,
-                              ),
+                              text: 'Profile',
                               icon: Icon(
                                 Icons.edit_sharp,
                                 size: 16,
@@ -284,9 +282,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          FFLocalizations.of(context).getText(
-                                            'cz0l03tz' /* Upcoming */,
-                                          ),
+                                          'Upcoming',
                                           style: FlutterFlowTheme.of(context)
                                               .title3
                                               .override(
@@ -311,9 +307,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                             );
                                           },
                                           child: Text(
-                                            FFLocalizations.of(context).getText(
-                                              'cbjcvpjf' /* View All */,
-                                            ),
+                                            'View All',
                                             style: FlutterFlowTheme.of(context)
                                                 .title2
                                                 .override(
