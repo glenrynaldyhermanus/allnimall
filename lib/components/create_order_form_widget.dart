@@ -41,14 +41,16 @@ class _CreateOrderFormWidgetState extends State<CreateOrderFormWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                         child: InkWell(
-                          onTap: () async {
-                            await Navigator.push(
+                          onTap: () {
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
                                     OrderGroomingLocationWidget(),
                               ),
-                            );
+                            ).then((value) {
+                              setState(() {});
+                            });
                           },
                           child: Container(
                             width: MediaQuery.of(context).size.width,
@@ -111,14 +113,16 @@ class _CreateOrderFormWidgetState extends State<CreateOrderFormWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                         child: InkWell(
-                          onTap: () async {
-                            await Navigator.push(
+                          onTap: () {
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
                                     OrderGroomingServiceWidget(),
                               ),
-                            );
+                            ).then((value) {
+                              setState(() {});
+                            });
                           },
                           child: Container(
                             width: MediaQuery.of(context).size.width,
@@ -186,14 +190,16 @@ class _CreateOrderFormWidgetState extends State<CreateOrderFormWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                         child: InkWell(
-                          onTap: () async {
-                            await Navigator.push(
+                          onTap: () {
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
                                     OrderGroomingScheduleWidget(),
                               ),
-                            );
+                            ).then((value) {
+                              setState(() {});
+                            });
                           },
                           child: Container(
                             width: MediaQuery.of(context).size.width,
