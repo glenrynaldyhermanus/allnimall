@@ -49,6 +49,10 @@ class FFAppState {
   DocumentReference localService;
 
   String localServiceName = '';
+
+  String localServiceCategory = '';
+
+  int localPetAmount = 0;
 }
 
 LatLng _latLngFromString(String val) {
