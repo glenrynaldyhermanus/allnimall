@@ -79,7 +79,9 @@ class _OrderGroomingScheduleWidgetState
                                       return Padding(
                                         padding:
                                             MediaQuery.of(context).viewInsets,
-                                        child: CalendarPickerWidget(),
+                                        child: CalendarPickerWidget(
+                                          isAllowBackdate: false,
+                                        ),
                                       );
                                     },
                                   ).then((value) {
