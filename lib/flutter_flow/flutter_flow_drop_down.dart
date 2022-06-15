@@ -74,7 +74,7 @@ class _FlutterFlowDropDownState extends State<FlutterFlowDropDown> {
       },
       icon: widget.icon,
       isExpanded: true,
-      dropdownColor: widget.fillColor,
+      dropdownColor: Colors.white,
       focusColor: Colors.transparent,
     );
     final childWidget = DecoratedBox(

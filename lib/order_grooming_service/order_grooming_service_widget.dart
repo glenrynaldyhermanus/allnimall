@@ -188,8 +188,8 @@ class _OrderGroomingServiceWidgetState
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                               child: InkWell(
-                                onTap: () async {
-                                  await Navigator.push(
+                                onTap: () {
+                                  Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
@@ -197,7 +197,9 @@ class _OrderGroomingServiceWidgetState
                                         petCategory: dropDownValue2,
                                       ),
                                     ),
-                                  );
+                                  ).then((value) {
+                                    setState(() {});
+                                  });
                                 },
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,

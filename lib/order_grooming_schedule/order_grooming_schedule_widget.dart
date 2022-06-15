@@ -70,8 +70,8 @@ class _OrderGroomingScheduleWidgetState
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                               child: InkWell(
-                                onTap: () async {
-                                  await showModalBottomSheet(
+                                onTap: () {
+                                  showModalBottomSheet(
                                     isScrollControlled: true,
                                     backgroundColor: Colors.transparent,
                                     context: context,
@@ -82,7 +82,9 @@ class _OrderGroomingScheduleWidgetState
                                         child: CalendarPickerWidget(),
                                       );
                                     },
-                                  );
+                                  ).then((value) {
+                                    setState(() {});
+                                  });
                                 },
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,

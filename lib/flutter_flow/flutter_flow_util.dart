@@ -32,7 +32,7 @@ String dateTimeFormat(String format, DateTime dateTime) {
   if (format == 'relative') {
     return timeago.format(dateTime);
   }
-  return DateFormat(format).format(dateTime);
+  return DateFormat(format,"id").format(dateTime);
 }
 
 Future launchURL(String url) async {
