@@ -1,39 +1,38 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'categories_record.dart';
+part of 'activities_record.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<CategoriesRecord> _$categoriesRecordSerializer =
-    new _$CategoriesRecordSerializer();
+Serializer<ActivitiesRecord> _$activitiesRecordSerializer =
+    new _$ActivitiesRecordSerializer();
 
-class _$CategoriesRecordSerializer
-    implements StructuredSerializer<CategoriesRecord> {
+class _$ActivitiesRecordSerializer
+    implements StructuredSerializer<ActivitiesRecord> {
   @override
-  final Iterable<Type> types = const [CategoriesRecord, _$CategoriesRecord];
+  final Iterable<Type> types = const [ActivitiesRecord, _$ActivitiesRecord];
   @override
-  final String wireName = 'CategoriesRecord';
+  final String wireName = 'ActivitiesRecord';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, CategoriesRecord object,
+  Iterable<Object> serialize(Serializers serializers, ActivitiesRecord object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[];
     Object value;
-    value = object.name;
+    value = object.activity;
     if (value != null) {
       result
-        ..add('name')
+        ..add('activity')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.isActive;
+    value = object.sequence;
     if (value != null) {
       result
-        ..add('is_active')
-        ..add(
-            serializers.serialize(value, specifiedType: const FullType(bool)));
+        ..add('sequence')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
     value = object.reference;
     if (value != null) {
@@ -47,10 +46,10 @@ class _$CategoriesRecordSerializer
   }
 
   @override
-  CategoriesRecord deserialize(
+  ActivitiesRecord deserialize(
       Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new CategoriesRecordBuilder();
+    final result = new ActivitiesRecordBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -58,13 +57,13 @@ class _$CategoriesRecordSerializer
       iterator.moveNext();
       final Object value = iterator.current;
       switch (key) {
-        case 'name':
-          result.name = serializers.deserialize(value,
+        case 'activity':
+          result.activity = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'is_active':
-          result.isActive = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+        case 'sequence':
+          result.sequence = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
           break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
@@ -79,79 +78,80 @@ class _$CategoriesRecordSerializer
   }
 }
 
-class _$CategoriesRecord extends CategoriesRecord {
+class _$ActivitiesRecord extends ActivitiesRecord {
   @override
-  final String name;
+  final String activity;
   @override
-  final bool isActive;
+  final int sequence;
   @override
   final DocumentReference<Object> reference;
 
-  factory _$CategoriesRecord(
-          [void Function(CategoriesRecordBuilder) updates]) =>
-      (new CategoriesRecordBuilder()..update(updates)).build();
+  factory _$ActivitiesRecord(
+          [void Function(ActivitiesRecordBuilder) updates]) =>
+      (new ActivitiesRecordBuilder()..update(updates)).build();
 
-  _$CategoriesRecord._({this.name, this.isActive, this.reference}) : super._();
+  _$ActivitiesRecord._({this.activity, this.sequence, this.reference})
+      : super._();
 
   @override
-  CategoriesRecord rebuild(void Function(CategoriesRecordBuilder) updates) =>
+  ActivitiesRecord rebuild(void Function(ActivitiesRecordBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  CategoriesRecordBuilder toBuilder() =>
-      new CategoriesRecordBuilder()..replace(this);
+  ActivitiesRecordBuilder toBuilder() =>
+      new ActivitiesRecordBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is CategoriesRecord &&
-        name == other.name &&
-        isActive == other.isActive &&
+    return other is ActivitiesRecord &&
+        activity == other.activity &&
+        sequence == other.sequence &&
         reference == other.reference;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, name.hashCode), isActive.hashCode), reference.hashCode));
+    return $jf($jc(
+        $jc($jc(0, activity.hashCode), sequence.hashCode), reference.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('CategoriesRecord')
-          ..add('name', name)
-          ..add('isActive', isActive)
+    return (newBuiltValueToStringHelper('ActivitiesRecord')
+          ..add('activity', activity)
+          ..add('sequence', sequence)
           ..add('reference', reference))
         .toString();
   }
 }
 
-class CategoriesRecordBuilder
-    implements Builder<CategoriesRecord, CategoriesRecordBuilder> {
-  _$CategoriesRecord _$v;
+class ActivitiesRecordBuilder
+    implements Builder<ActivitiesRecord, ActivitiesRecordBuilder> {
+  _$ActivitiesRecord _$v;
 
-  String _name;
-  String get name => _$this._name;
-  set name(String name) => _$this._name = name;
+  String _activity;
+  String get activity => _$this._activity;
+  set activity(String activity) => _$this._activity = activity;
 
-  bool _isActive;
-  bool get isActive => _$this._isActive;
-  set isActive(bool isActive) => _$this._isActive = isActive;
+  int _sequence;
+  int get sequence => _$this._sequence;
+  set sequence(int sequence) => _$this._sequence = sequence;
 
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
       _$this._reference = reference;
 
-  CategoriesRecordBuilder() {
-    CategoriesRecord._initializeBuilder(this);
+  ActivitiesRecordBuilder() {
+    ActivitiesRecord._initializeBuilder(this);
   }
 
-  CategoriesRecordBuilder get _$this {
+  ActivitiesRecordBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _name = $v.name;
-      _isActive = $v.isActive;
+      _activity = $v.activity;
+      _sequence = $v.sequence;
       _reference = $v.reference;
       _$v = null;
     }
@@ -159,21 +159,21 @@ class CategoriesRecordBuilder
   }
 
   @override
-  void replace(CategoriesRecord other) {
+  void replace(ActivitiesRecord other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$CategoriesRecord;
+    _$v = other as _$ActivitiesRecord;
   }
 
   @override
-  void update(void Function(CategoriesRecordBuilder) updates) {
+  void update(void Function(ActivitiesRecordBuilder) updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$CategoriesRecord build() {
+  _$ActivitiesRecord build() {
     final _$result = _$v ??
-        new _$CategoriesRecord._(
-            name: name, isActive: isActive, reference: reference);
+        new _$ActivitiesRecord._(
+            activity: activity, sequence: sequence, reference: reference);
     replace(_$result);
     return _$result;
   }

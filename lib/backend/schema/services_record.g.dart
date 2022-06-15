@@ -21,6 +21,14 @@ class _$ServicesRecordSerializer
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[];
     Object value;
+    value = object.categoryUid;
+    if (value != null) {
+      result
+        ..add('category_uid')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                DocumentReference, const [const FullType(Object)])));
+    }
     value = object.name;
     if (value != null) {
       result
@@ -28,20 +36,39 @@ class _$ServicesRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.category;
+    value = object.fee;
     if (value != null) {
       result
-        ..add('category')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
-    }
-    value = object.price;
-    if (value != null) {
-      result
-        ..add('price')
+        ..add('fee')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(double)));
+    }
+    value = object.categoryName;
+    if (value != null) {
+      result
+        ..add('category_name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.isActive;
+    if (value != null) {
+      result
+        ..add('is_active')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.description;
+    if (value != null) {
+      result
+        ..add('description')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.sequence;
+    if (value != null) {
+      result
+        ..add('sequence')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
     value = object.reference;
     if (value != null) {
@@ -66,19 +93,35 @@ class _$ServicesRecordSerializer
       iterator.moveNext();
       final Object value = iterator.current;
       switch (key) {
-        case 'name':
-          result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
-          break;
-        case 'category':
-          result.category = serializers.deserialize(value,
+        case 'category_uid':
+          result.categoryUid = serializers.deserialize(value,
                   specifiedType: const FullType(
                       DocumentReference, const [const FullType(Object)]))
               as DocumentReference<Object>;
           break;
-        case 'price':
-          result.price = serializers.deserialize(value,
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'fee':
+          result.fee = serializers.deserialize(value,
               specifiedType: const FullType(double)) as double;
+          break;
+        case 'category_name':
+          result.categoryName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'is_active':
+          result.isActive = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool;
+          break;
+        case 'description':
+          result.description = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'sequence':
+          result.sequence = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
           break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
@@ -95,18 +138,34 @@ class _$ServicesRecordSerializer
 
 class _$ServicesRecord extends ServicesRecord {
   @override
+  final DocumentReference<Object> categoryUid;
+  @override
   final String name;
   @override
-  final DocumentReference<Object> category;
+  final double fee;
   @override
-  final double price;
+  final String categoryName;
+  @override
+  final bool isActive;
+  @override
+  final String description;
+  @override
+  final int sequence;
   @override
   final DocumentReference<Object> reference;
 
   factory _$ServicesRecord([void Function(ServicesRecordBuilder) updates]) =>
       (new ServicesRecordBuilder()..update(updates)).build();
 
-  _$ServicesRecord._({this.name, this.category, this.price, this.reference})
+  _$ServicesRecord._(
+      {this.categoryUid,
+      this.name,
+      this.fee,
+      this.categoryName,
+      this.isActive,
+      this.description,
+      this.sequence,
+      this.reference})
       : super._();
 
   @override
@@ -121,25 +180,42 @@ class _$ServicesRecord extends ServicesRecord {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is ServicesRecord &&
+        categoryUid == other.categoryUid &&
         name == other.name &&
-        category == other.category &&
-        price == other.price &&
+        fee == other.fee &&
+        categoryName == other.categoryName &&
+        isActive == other.isActive &&
+        description == other.description &&
+        sequence == other.sequence &&
         reference == other.reference;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, name.hashCode), category.hashCode), price.hashCode),
+        $jc(
+            $jc(
+                $jc(
+                    $jc(
+                        $jc($jc($jc(0, categoryUid.hashCode), name.hashCode),
+                            fee.hashCode),
+                        categoryName.hashCode),
+                    isActive.hashCode),
+                description.hashCode),
+            sequence.hashCode),
         reference.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('ServicesRecord')
+          ..add('categoryUid', categoryUid)
           ..add('name', name)
-          ..add('category', category)
-          ..add('price', price)
+          ..add('fee', fee)
+          ..add('categoryName', categoryName)
+          ..add('isActive', isActive)
+          ..add('description', description)
+          ..add('sequence', sequence)
           ..add('reference', reference))
         .toString();
   }
@@ -149,18 +225,34 @@ class ServicesRecordBuilder
     implements Builder<ServicesRecord, ServicesRecordBuilder> {
   _$ServicesRecord _$v;
 
+  DocumentReference<Object> _categoryUid;
+  DocumentReference<Object> get categoryUid => _$this._categoryUid;
+  set categoryUid(DocumentReference<Object> categoryUid) =>
+      _$this._categoryUid = categoryUid;
+
   String _name;
   String get name => _$this._name;
   set name(String name) => _$this._name = name;
 
-  DocumentReference<Object> _category;
-  DocumentReference<Object> get category => _$this._category;
-  set category(DocumentReference<Object> category) =>
-      _$this._category = category;
+  double _fee;
+  double get fee => _$this._fee;
+  set fee(double fee) => _$this._fee = fee;
 
-  double _price;
-  double get price => _$this._price;
-  set price(double price) => _$this._price = price;
+  String _categoryName;
+  String get categoryName => _$this._categoryName;
+  set categoryName(String categoryName) => _$this._categoryName = categoryName;
+
+  bool _isActive;
+  bool get isActive => _$this._isActive;
+  set isActive(bool isActive) => _$this._isActive = isActive;
+
+  String _description;
+  String get description => _$this._description;
+  set description(String description) => _$this._description = description;
+
+  int _sequence;
+  int get sequence => _$this._sequence;
+  set sequence(int sequence) => _$this._sequence = sequence;
 
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
@@ -174,9 +266,13 @@ class ServicesRecordBuilder
   ServicesRecordBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _categoryUid = $v.categoryUid;
       _name = $v.name;
-      _category = $v.category;
-      _price = $v.price;
+      _fee = $v.fee;
+      _categoryName = $v.categoryName;
+      _isActive = $v.isActive;
+      _description = $v.description;
+      _sequence = $v.sequence;
       _reference = $v.reference;
       _$v = null;
     }
@@ -198,7 +294,14 @@ class ServicesRecordBuilder
   _$ServicesRecord build() {
     final _$result = _$v ??
         new _$ServicesRecord._(
-            name: name, category: category, price: price, reference: reference);
+            categoryUid: categoryUid,
+            name: name,
+            fee: fee,
+            categoryName: categoryName,
+            isActive: isActive,
+            description: description,
+            sequence: sequence,
+            reference: reference);
     replace(_$result);
     return _$result;
   }

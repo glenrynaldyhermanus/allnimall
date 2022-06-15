@@ -7,8 +7,8 @@ part of 'serializers.dart';
 // **************************************************************************
 
 Serializers _$serializers = (new Serializers().toBuilder()
+      ..add(ActivitiesRecord.serializer)
       ..add(ArticlesRecord.serializer)
-      ..add(CategoriesRecord.serializer)
       ..add(ChatMessagesRecord.serializer)
       ..add(CustomersRecord.serializer)
       ..add(FeatureRequestsRecord.serializer)
@@ -17,6 +17,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(PetSchedulesRecord.serializer)
       ..add(PetsRecord.serializer)
       ..add(RangersRecord.serializer)
+      ..add(ServiceCategoriesRecord.serializer)
       ..add(ServicesRecord.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [
