@@ -2,6 +2,7 @@ import '../components/create_order_form_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../grooming_summary/grooming_summary_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -56,8 +57,21 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   FFButtonWidget(
-                    onPressed: () {
-                      print('Button pressed ...');
+                    onPressed: () async {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => GroomingSummaryWidget(
+                            customerAddress: FFAppState().localAddress,
+                            service: FFAppState().localServiceName,
+                            quantity: FFAppState().localPetAmount,
+                            customerLatLng: FFAppState().localLatLng,
+                            scheduleDate: FFAppState().localScheduleDate,
+                            scheduleTime: FFAppState().localPreferedTime,
+                            petCategory: FFAppState().localServiceCategory,
+                          ),
+                        ),
+                      );
                     },
                     text: 'Panggil Groomer',
                     options: FFButtonOptions(
