@@ -1280,10 +1280,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'id': 'Layanan',
       'en': 'Service',
     },
-    '6fk31ncn': {
-      'id': 'Mandi, cukur, atau lainnya...',
-      'en': 'Shower, shave or something else...',
-    },
     'nkpbsn2s': {
       'id': 'Schedule',
       'en': 'Schedule',

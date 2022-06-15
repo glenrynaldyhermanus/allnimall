@@ -140,8 +140,9 @@ class _CreateOrderFormWidgetState extends State<CreateOrderFormWidget> {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      FFLocalizations.of(context).getText(
-                                        '6fk31ncn' /* Mandi, cukur, atau lainnya... */,
+                                      valueOrDefault<String>(
+                                        '${FFAppState().localServiceName} x ${FFAppState().localPetAmount.toString()} ${FFAppState().localServiceCategory}',
+                                        'Mandi, cukur, atau lainnya...',
                                       ),
                                       maxLines: 2,
                                       style: FlutterFlowTheme.of(context)
