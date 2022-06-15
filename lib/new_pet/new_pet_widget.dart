@@ -63,7 +63,9 @@ class _NewPetWidgetState extends State<NewPetWidget> {
             IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          'New Pet',
+          FFLocalizations.of(context).getText(
+            'mm9uekye' /* New Pet */,
+          ),
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
@@ -160,7 +162,9 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                     children: [
                       if ((uploadedFileUrl) == '')
                         Text(
-                          'Add picture',
+                          FFLocalizations.of(context).getText(
+                            '6vtnugjr' /* Add picture */,
+                          ),
                           style: FlutterFlowTheme.of(context).subtitle2,
                         ),
                     ],
@@ -171,7 +175,9 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                       controller: nameFieldController,
                       obscureText: false,
                       decoration: InputDecoration(
-                        hintText: 'Pet\'s name',
+                        hintText: FFLocalizations.of(context).getText(
+                          'at7qwq1y' /* Pet's name */,
+                        ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: FlutterFlowTheme.of(context).secondaryColor,
@@ -204,6 +210,12 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                           },
                           currentTime: getCurrentTimestamp,
                           minTime: DateTime(0, 0, 0),
+                          locale: LocaleType.values.firstWhere(
+                            (l) =>
+                                l.name ==
+                                FFLocalizations.of(context).languageCode,
+                            orElse: null,
+                          ),
                         );
                       },
                       child: Material(
@@ -256,7 +268,17 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
                     child: FlutterFlowDropDown(
-                      options: ['Pet\'s sex', 'Female', 'Male'],
+                      options: [
+                        FFLocalizations.of(context).getText(
+                          'le6mxyts' /* Pet's sex */,
+                        ),
+                        FFLocalizations.of(context).getText(
+                          'xsh13u0v' /* Female */,
+                        ),
+                        FFLocalizations.of(context).getText(
+                          'utja1830' /* Male */,
+                        )
+                      ],
                       onChanged: (val) =>
                           setState(() => sexSelectionValue = val),
                       width: double.infinity,
@@ -280,7 +302,9 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                             controller: weightFieldController,
                             obscureText: false,
                             decoration: InputDecoration(
-                              hintText: 'Pet\'s weight',
+                              hintText: FFLocalizations.of(context).getText(
+                                'u05pce9y' /* Pet's weight */,
+                              ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context)
@@ -307,7 +331,14 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                           child: FlutterFlowDropDown(
-                            options: ['gr', 'kg'],
+                            options: [
+                              FFLocalizations.of(context).getText(
+                                'vg7uw56u' /* gr */,
+                              ),
+                              FFLocalizations.of(context).getText(
+                                'u2ttvwsp' /* kg */,
+                              )
+                            ],
                             onChanged: (val) =>
                                 setState(() => weightUnitSelectionValue = val),
                             width: 88,
@@ -332,7 +363,9 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                       controller: breedFieldController,
                       obscureText: false,
                       decoration: InputDecoration(
-                        hintText: 'Pet\'s breed',
+                        hintText: FFLocalizations.of(context).getText(
+                          'ln51zcqn' /* Pet's breed */,
+                        ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: FlutterFlowTheme.of(context).secondaryColor,
@@ -358,7 +391,9 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
                       child: Text(
-                        'Conditions',
+                        FFLocalizations.of(context).getText(
+                          '1a4qr3dh' /* Conditions */,
+                        ),
                         style: FlutterFlowTheme.of(context).title3,
                       ),
                     ),
@@ -366,7 +401,9 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                   Align(
                     alignment: AlignmentDirectional(-1, 0),
                     child: Text(
-                      'Has your pet take any of these medical actions?',
+                      FFLocalizations.of(context).getText(
+                        'ibylv1vn' /* Has your pet take any of these... */,
+                      ),
                       style: FlutterFlowTheme.of(context).bodyText2,
                     ),
                   ),
@@ -379,7 +416,9 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                       onChanged: (newValue) =>
                           setState(() => vaccinCheckValue = newValue),
                       title: Text(
-                        'Vaccinated',
+                        FFLocalizations.of(context).getText(
+                          '38mxdtqh' /* Vaccinated */,
+                        ),
                         style: FlutterFlowTheme.of(context).subtitle1,
                       ),
                       tileColor: Color(0xFFF5F5F5),
@@ -397,7 +436,9 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                       onChanged: (newValue) =>
                           setState(() => sterileCheckValue = newValue),
                       title: Text(
-                        'Sterilised',
+                        FFLocalizations.of(context).getText(
+                          'vx002j8m' /* Sterilised */,
+                        ),
                         style: FlutterFlowTheme.of(context).subtitle1,
                       ),
                       tileColor: Color(0xFFF5F5F5),
@@ -411,7 +452,9 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
                       child: Text(
-                        'Issues',
+                        FFLocalizations.of(context).getText(
+                          'm15jj2x9' /* Issues */,
+                        ),
                         style: FlutterFlowTheme.of(context).title3,
                       ),
                     ),
@@ -419,7 +462,9 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                   Align(
                     alignment: AlignmentDirectional(-1, 0),
                     child: Text(
-                      'Does your pet having these issues?',
+                      FFLocalizations.of(context).getText(
+                        '7wu4kzf3' /* Does your pet having these iss... */,
+                      ),
                       style: FlutterFlowTheme.of(context).bodyText2,
                     ),
                   ),
@@ -432,7 +477,9 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                       onChanged: (newValue) =>
                           setState(() => fungusCheckValue = newValue),
                       title: Text(
-                        'Fungus',
+                        FFLocalizations.of(context).getText(
+                          'mfliyo25' /* Fungus */,
+                        ),
                         style: FlutterFlowTheme.of(context).subtitle1,
                       ),
                       tileColor: Color(0xFFF5F5F5),
@@ -450,7 +497,9 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                       onChanged: (newValue) =>
                           setState(() => fleaCheckValue = newValue),
                       title: Text(
-                        'Fleas',
+                        FFLocalizations.of(context).getText(
+                          'jpu5y914' /* Fleas */,
+                        ),
                         style: FlutterFlowTheme.of(context).subtitle1,
                       ),
                       tileColor: Color(0xFFF5F5F5),
@@ -468,7 +517,9 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                       onChanged: (newValue) =>
                           setState(() => wormCheckValue = newValue),
                       title: Text(
-                        'Worms',
+                        FFLocalizations.of(context).getText(
+                          '56x2r85h' /* Worms */,
+                        ),
                         style: FlutterFlowTheme.of(context).subtitle1,
                       ),
                       tileColor: Color(0xFFF5F5F5),
@@ -486,7 +537,9 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                       onChanged: (newValue) =>
                           setState(() => earmiteCheckValue = newValue),
                       title: Text(
-                        'Earmites',
+                        FFLocalizations.of(context).getText(
+                          '9uuqyy8x' /* Earmites */,
+                        ),
                         style: FlutterFlowTheme.of(context).subtitle1,
                       ),
                       tileColor: Color(0xFFF5F5F5),
@@ -504,7 +557,9 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                       onChanged: (newValue) =>
                           setState(() => scabiesCheckValue = newValue),
                       title: Text(
-                        'Scabies',
+                        FFLocalizations.of(context).getText(
+                          'miodyje6' /* Scabies */,
+                        ),
                         style: FlutterFlowTheme.of(context).subtitle1,
                       ),
                       tileColor: Color(0xFFF5F5F5),
@@ -522,7 +577,9 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                       onChanged: (newValue) =>
                           setState(() => diarrheaCheckValue = newValue),
                       title: Text(
-                        'Diarrhea',
+                        FFLocalizations.of(context).getText(
+                          'c7z7zzd9' /* Diarrhea */,
+                        ),
                         style: FlutterFlowTheme.of(context).subtitle1,
                       ),
                       tileColor: Color(0xFFF5F5F5),
@@ -564,7 +621,9 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                         await PetsRecord.collection.doc().set(petsCreateData);
                         Navigator.pop(context);
                       },
-                      text: 'Add pet',
+                      text: FFLocalizations.of(context).getText(
+                        'cggqlu00' /* Add pet */,
+                      ),
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 56,

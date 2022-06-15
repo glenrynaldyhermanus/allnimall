@@ -16,6 +16,11 @@
 	<string>Allnimall</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>id</string>
+		<string>en</string>
+	</array>
 
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
@@ -44,11 +49,11 @@
 	<false/>
 
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>In order to search nearby, this app requires access to your current location.</string>
+	<string>Kami membutuhkan akses untuk lokasi kamu</string>
 	<key>NSCameraUsageDescription</key>
-	<string>We need to accesss your camera</string>
+	<string>Kami membutuhkan akses untuk menggunakan kamera</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We need to access your gallery</string>
+	<string>Kami membtuhkan akses ke galeri fotomu</string>
     <key>UIBackgroundModes</key>
     <array>
         <string>fetch</string>

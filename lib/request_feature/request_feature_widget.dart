@@ -35,7 +35,9 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
             IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          'Aplikasi Milik Bersama',
+          FFLocalizations.of(context).getText(
+            'fyug81ow' /* Aplikasi Milik Bersama */,
+          ),
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
@@ -55,7 +57,9 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Kakak ingin kami membangun fitur apa?',
+                FFLocalizations.of(context).getText(
+                  'zbw55x1l' /* Kakak ingin kami membangun fit... */,
+                ),
                 style: FlutterFlowTheme.of(context).subtitle2,
               ),
               Padding(
@@ -65,7 +69,9 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                   obscureText: false,
                   decoration: InputDecoration(
                     labelStyle: FlutterFlowTheme.of(context).subtitle1,
-                    hintText: 'I want Allnimall adds...',
+                    hintText: FFLocalizations.of(context).getText(
+                      '13amvh9j' /* I want Allnimall adds... */,
+                    ),
                     hintStyle: FlutterFlowTheme.of(context).subtitle1,
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
@@ -110,7 +116,9 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                         .doc()
                         .set(featureRequestsCreateData);
                   },
-                  text: 'Kirim Permintaan',
+                  text: FFLocalizations.of(context).getText(
+                    '62jatugt' /* Kirim Permintaan */,
+                  ),
                   options: FFButtonOptions(
                     width: 210,
                     height: 60,

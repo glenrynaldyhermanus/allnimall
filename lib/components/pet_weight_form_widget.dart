@@ -34,7 +34,9 @@ class _PetWeightFormWidgetState extends State<PetWeightFormWidget> {
               controller: weightFieldController,
               obscureText: false,
               decoration: InputDecoration(
-                hintText: 'Pet\'s weight',
+                hintText: FFLocalizations.of(context).getText(
+                  '2hiw7ypw' /* Pet's weight */,
+                ),
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: FlutterFlowTheme.of(context).secondaryColor,
@@ -58,7 +60,14 @@ class _PetWeightFormWidgetState extends State<PetWeightFormWidget> {
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
             child: FlutterFlowDropDown(
-              options: ['gr', 'kg'],
+              options: [
+                FFLocalizations.of(context).getText(
+                  'u623owbw' /* gr */,
+                ),
+                FFLocalizations.of(context).getText(
+                  'x55j39qs' /* kg */,
+                )
+              ],
               onChanged: (val) =>
                   setState(() => weightUnitSelectionValue = val),
               width: 88,

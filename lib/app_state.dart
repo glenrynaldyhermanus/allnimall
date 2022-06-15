@@ -45,6 +45,10 @@ class FFAppState {
   String localPreferedTime = '';
 
   String localPreferedDay = '';
+
+  DocumentReference localService;
+
+  String localServiceName = '';
 }
 
 LatLng _latLngFromString(String val) {

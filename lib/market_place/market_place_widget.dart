@@ -23,7 +23,9 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
         backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
         automaticallyImplyLeading: true,
         title: Text(
-          'Marketplace',
+          FFLocalizations.of(context).getText(
+            '4vlofnhq' /* Marketplace */,
+          ),
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
@@ -53,7 +55,9 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 56, 0, 0),
               child: Text(
-                'Coming Soon',
+                FFLocalizations.of(context).getText(
+                  'rc07r47s' /* Coming Soon */,
+                ),
                 style: FlutterFlowTheme.of(context).title2.override(
                       fontFamily: 'RockoUltra',
                       color: Color(0xFF717171),
@@ -64,7 +68,9 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(32, 0, 32, 0),
               child: Text(
-                'Hang on! We\'re on our way...',
+                FFLocalizations.of(context).getText(
+                  'tu0ilbnp' /* Hang on! We're on our way... */,
+                ),
                 textAlign: TextAlign.center,
                 style: FlutterFlowTheme.of(context).subtitle1.override(
                       fontFamily: 'Cabin',

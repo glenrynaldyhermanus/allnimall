@@ -23,7 +23,9 @@ class _EmptyScheduleNoPetWidgetState extends State<EmptyScheduleNoPetWidget> {
         mainAxisSize: MainAxisSize.max,
         children: [
           Text(
-            'You have no upcoming schedules.\nTo create schedule you must first add your pet',
+            FFLocalizations.of(context).getText(
+              'dfhc4yi1' /* You have no upcoming schedules... */,
+            ),
             textAlign: TextAlign.center,
             style: FlutterFlowTheme.of(context).subtitle2,
           ),
@@ -38,7 +40,9 @@ class _EmptyScheduleNoPetWidgetState extends State<EmptyScheduleNoPetWidget> {
                   ),
                 );
               },
-              text: 'Add pet',
+              text: FFLocalizations.of(context).getText(
+                'hogv89al' /* Add pet */,
+              ),
               options: FFButtonOptions(
                 width: 160,
                 height: 40,

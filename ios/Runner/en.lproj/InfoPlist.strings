@@ -1,0 +1,3 @@
+NSCameraUsageDescription = "We need to accesss your camera";
+NSPhotoLibraryUsageDescription = "We need to access your gallery";
+NSLocationWhenInUseUsageDescription = "We need to access your location";

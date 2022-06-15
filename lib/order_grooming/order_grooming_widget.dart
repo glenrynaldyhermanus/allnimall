@@ -26,7 +26,9 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
             IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          'Grooming',
+          FFLocalizations.of(context).getText(
+            'xj2dmd00' /* Grooming */,
+          ),
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
@@ -59,7 +61,9 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                     onPressed: () {
                       print('Button pressed ...');
                     },
-                    text: 'Panggil Groomer',
+                    text: FFLocalizations.of(context).getText(
+                      '1yefum5g' /* Panggil Groomer */,
+                    ),
                     options: FFButtonOptions(
                       width: double.infinity,
                       height: 48,

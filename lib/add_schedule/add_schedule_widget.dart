@@ -66,7 +66,9 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                 IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
             automaticallyImplyLeading: true,
             title: Text(
-              'Create Plan',
+              FFLocalizations.of(context).getText(
+                '5bkm1g5u' /* Create Plan */,
+              ),
               style: FlutterFlowTheme.of(context).title3.override(
                     fontFamily: 'RockoUltra',
                     color: FlutterFlowTheme.of(context).primaryColor,
@@ -92,7 +94,9 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                           controller: nameFieldController,
                           obscureText: false,
                           decoration: InputDecoration(
-                            hintText: 'Name',
+                            hintText: FFLocalizations.of(context).getText(
+                              'ovw55ner' /* Name */,
+                            ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color:
@@ -120,7 +124,9 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                             controller: descFieldController,
                             obscureText: false,
                             decoration: InputDecoration(
-                              hintText: 'Desciption',
+                              hintText: FFLocalizations.of(context).getText(
+                                'sy541fzx' /* Desciption */,
+                              ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context)
@@ -155,6 +161,12 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                                 },
                                 currentTime: getCurrentTimestamp,
                                 minTime: DateTime(0, 0, 0),
+                                locale: LocaleType.values.firstWhere(
+                                  (l) =>
+                                      l.name ==
+                                      FFLocalizations.of(context).languageCode,
+                                  orElse: null,
+                                ),
                               );
                             },
                             child: Material(
@@ -216,7 +228,10 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                                   controller: weightFieldController,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    hintText: 'Duration',
+                                    hintText:
+                                        FFLocalizations.of(context).getText(
+                                      'ccdawajd' /* Duration */,
+                                    ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: FlutterFlowTheme.of(context)
@@ -246,8 +261,17 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                                     EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                                 child: FlutterFlowDropDown(
                                   initialOption: weightUnitSelectionValue ??=
-                                      'minute',
-                                  options: ['minute', 'hour'],
+                                      FFLocalizations.of(context).getText(
+                                    'axg1hzbv' /* minute */,
+                                  ),
+                                  options: [
+                                    FFLocalizations.of(context).getText(
+                                      'xcxs956o' /* minute */,
+                                    ),
+                                    FFLocalizations.of(context).getText(
+                                      'at3tqt1o' /* hour */,
+                                    )
+                                  ],
                                   onChanged: (val) => setState(
                                       () => weightUnitSelectionValue = val),
                                   width: 120,
@@ -287,7 +311,9 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                                   .set(petSchedulesCreateData);
                               Navigator.pop(context);
                             },
-                            text: 'Add plan',
+                            text: FFLocalizations.of(context).getText(
+                              '8mpc4rcp' /* Add plan */,
+                            ),
                             options: FFButtonOptions(
                               width: double.infinity,
                               height: 56,

@@ -15,20 +15,6 @@ service cloud.firestore {
       allow delete: if false;
     }
 
-    match /categories/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if false;
-      allow delete: if false;
-    }
-
-    match /services/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if false;
-      allow delete: if false;
-    }
-
     match /articles/{document} {
       allow create: if true;
       allow read: if true;
@@ -77,5 +63,31 @@ service cloud.firestore {
       allow write: if false;
       allow delete: if false;
     }
+
+    match /service_categories/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /services/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /services/{parent}/activities/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /{path=**}/activities/{document} {
+      allow read: if true;
+    }
+
   }
 }

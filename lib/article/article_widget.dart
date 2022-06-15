@@ -32,7 +32,9 @@ class _ArticleWidgetState extends State<ArticleWidget> {
             IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          'Article',
+          FFLocalizations.of(context).getText(
+            'dkbnletr' /* Article */,
+          ),
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,

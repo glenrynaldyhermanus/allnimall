@@ -61,7 +61,9 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                 IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
             automaticallyImplyLeading: true,
             title: Text(
-              'Update Pet',
+              FFLocalizations.of(context).getText(
+                'bu42gq16' /* Update Pet */,
+              ),
               style: FlutterFlowTheme.of(context).title3.override(
                     fontFamily: 'RockoUltra',
                     color: FlutterFlowTheme.of(context).primaryColor,
@@ -160,7 +162,9 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                         children: [
                           if ((uploadedFileUrl) == '')
                             Text(
-                              'Change picture',
+                              FFLocalizations.of(context).getText(
+                                'jyd2m5s2' /* Change picture */,
+                              ),
                               style: FlutterFlowTheme.of(context).subtitle2,
                             ),
                         ],
@@ -174,7 +178,9 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                           ),
                           obscureText: false,
                           decoration: InputDecoration(
-                            hintText: 'Pet\'s name',
+                            hintText: FFLocalizations.of(context).getText(
+                              'fvvr4agf' /* Pet's name */,
+                            ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color:
@@ -209,6 +215,12 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                               },
                               currentTime: getCurrentTimestamp,
                               minTime: DateTime(0, 0, 0),
+                              locale: LocaleType.values.firstWhere(
+                                (l) =>
+                                    l.name ==
+                                    FFLocalizations.of(context).languageCode,
+                                orElse: null,
+                              ),
                             );
                           },
                           child: Material(
@@ -279,7 +291,17 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                         child: FlutterFlowDropDown(
                           initialOption: sexSelectionValue ??=
                               updatePetPetsRecord.sex,
-                          options: ['Pet\'s sex', 'Female', 'Male'],
+                          options: [
+                            FFLocalizations.of(context).getText(
+                              '1znvm6xj' /* Pet's sex */,
+                            ),
+                            FFLocalizations.of(context).getText(
+                              '2muqbyh7' /* Female */,
+                            ),
+                            FFLocalizations.of(context).getText(
+                              '2ouy0bfk' /* Male */,
+                            )
+                          ],
                           onChanged: (val) =>
                               setState(() => sexSelectionValue = val),
                           width: double.infinity,
@@ -303,7 +325,9 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                           ),
                           obscureText: false,
                           decoration: InputDecoration(
-                            hintText: 'Pet\'s breed',
+                            hintText: FFLocalizations.of(context).getText(
+                              '2tcqqwqr' /* Pet's breed */,
+                            ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color:
@@ -341,7 +365,9 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                                 .update(petsUpdateData);
                             Navigator.pop(context);
                           },
-                          text: 'Save',
+                          text: FFLocalizations.of(context).getText(
+                            'bybjr7dc' /* Save */,
+                          ),
                           options: FFButtonOptions(
                             width: double.infinity,
                             height: 56,

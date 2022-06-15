@@ -12,13 +12,28 @@ abstract class ServicesRecord
       _$servicesRecordSerializer;
 
   @nullable
+  @BuiltValueField(wireName: 'category_uid')
+  DocumentReference get categoryUid;
+
+  @nullable
   String get name;
 
   @nullable
-  DocumentReference get category;
+  double get fee;
 
   @nullable
-  double get price;
+  @BuiltValueField(wireName: 'category_name')
+  String get categoryName;
+
+  @nullable
+  @BuiltValueField(wireName: 'is_active')
+  bool get isActive;
+
+  @nullable
+  String get description;
+
+  @nullable
+  int get sequence;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
@@ -26,7 +41,11 @@ abstract class ServicesRecord
 
   static void _initializeBuilder(ServicesRecordBuilder builder) => builder
     ..name = ''
-    ..price = 0.0;
+    ..fee = 0.0
+    ..categoryName = ''
+    ..isActive = false
+    ..description = ''
+    ..sequence = 0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('services');
@@ -50,13 +69,21 @@ abstract class ServicesRecord
 }
 
 Map<String, dynamic> createServicesRecordData({
+  DocumentReference categoryUid,
   String name,
-  DocumentReference category,
-  double price,
+  double fee,
+  String categoryName,
+  bool isActive,
+  String description,
+  int sequence,
 }) =>
     serializers.toFirestore(
         ServicesRecord.serializer,
         ServicesRecord((s) => s
+          ..categoryUid = categoryUid
           ..name = name
-          ..category = category
-          ..price = price));
+          ..fee = fee
+          ..categoryName = categoryName
+          ..isActive = isActive
+          ..description = description
+          ..sequence = sequence));

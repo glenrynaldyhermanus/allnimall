@@ -34,7 +34,9 @@ class _CreateOrderFormWidgetState extends State<CreateOrderFormWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Lokasi ',
+                        FFLocalizations.of(context).getText(
+                          'lfdr8ijm' /* Lokasi  */,
+                        ),
                         style: FlutterFlowTheme.of(context).bodyText1,
                       ),
                       Padding(
@@ -104,7 +106,9 @@ class _CreateOrderFormWidgetState extends State<CreateOrderFormWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Layanan',
+                        FFLocalizations.of(context).getText(
+                          '40tmcyw7' /* Layanan */,
+                        ),
                         style: FlutterFlowTheme.of(context).bodyText1,
                       ),
                       Padding(
@@ -136,7 +140,9 @@ class _CreateOrderFormWidgetState extends State<CreateOrderFormWidget> {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      'Mandi, cukur, atau lainnya...',
+                                      FFLocalizations.of(context).getText(
+                                        '6fk31ncn' /* Mandi, cukur, atau lainnya... */,
+                                      ),
                                       maxLines: 2,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText2,
@@ -171,7 +177,9 @@ class _CreateOrderFormWidgetState extends State<CreateOrderFormWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Schedule',
+                        FFLocalizations.of(context).getText(
+                          'nkpbsn2s' /* Schedule */,
+                        ),
                         style: FlutterFlowTheme.of(context).bodyText1,
                       ),
                       Padding(

@@ -56,7 +56,9 @@ class _SelectGeoLocationWidgetState extends State<SelectGeoLocationWidget> {
             IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          'Location',
+          FFLocalizations.of(context).getText(
+            'ge0dbgiy' /* Location */,
+          ),
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
@@ -126,8 +128,9 @@ class _SelectGeoLocationWidgetState extends State<SelectGeoLocationWidget> {
                         controller: textController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          hintText:
-                              'Ketik alamat lengkap, jalan, rt, rw, kecamatan, kota, kode pos',
+                          hintText: FFLocalizations.of(context).getText(
+                            '5y73tkqd' /* Ketik alamat lengkap, jalan, r... */,
+                          ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color:
@@ -162,7 +165,9 @@ class _SelectGeoLocationWidgetState extends State<SelectGeoLocationWidget> {
                               .update(customersUpdateData);
                           Navigator.pop(context);
                         },
-                        text: 'Save',
+                        text: FFLocalizations.of(context).getText(
+                          'vjbj9ex6' /* Save */,
+                        ),
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 56,

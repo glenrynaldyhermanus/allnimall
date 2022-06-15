@@ -32,7 +32,9 @@ class _PetScheduleWidgetState extends State<PetScheduleWidget> {
             IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          'Schedule',
+          FFLocalizations.of(context).getText(
+            '7p8t0xyl' /* Schedule */,
+          ),
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
@@ -61,7 +63,9 @@ class _PetScheduleWidgetState extends State<PetScheduleWidget> {
         ),
         elevation: 8,
         label: Text(
-          'Add',
+          FFLocalizations.of(context).getText(
+            '7w8x0qt1' /* Add */,
+          ),
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).tertiaryColor,

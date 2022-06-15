@@ -64,7 +64,9 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                 IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
             automaticallyImplyLeading: true,
             title: Text(
-              'Grooming',
+              FFLocalizations.of(context).getText(
+                '9llw7boq' /* Grooming */,
+              ),
               style: FlutterFlowTheme.of(context).title3.override(
                     fontFamily: 'RockoUltra',
                     color: FlutterFlowTheme.of(context).primaryColor,
@@ -92,7 +94,9 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Alamat',
+                              FFLocalizations.of(context).getText(
+                                'i23sw284' /* Alamat */,
+                              ),
                               style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                             InkWell(
@@ -164,19 +168,23 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Pet',
+                                FFLocalizations.of(context).getText(
+                                  '74xv3zql' /* Pet */,
+                                ),
                                 style: FlutterFlowTheme.of(context).bodyText1,
                               ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Expanded(
-                                    child:
-                                        StreamBuilder<List<CategoriesRecord>>(
-                                      stream: queryCategoriesRecord(
-                                        queryBuilder: (categoriesRecord) =>
-                                            categoriesRecord.where('is_active',
-                                                isEqualTo: true),
+                                    child: StreamBuilder<
+                                        List<ServiceCategoriesRecord>>(
+                                      stream: queryServiceCategoriesRecord(
+                                        queryBuilder:
+                                            (serviceCategoriesRecord) =>
+                                                serviceCategoriesRecord.where(
+                                                    'is_active',
+                                                    isEqualTo: true),
                                         singleRecord: true,
                                       ),
                                       builder: (context, snapshot) {
@@ -195,19 +203,30 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                                             ),
                                           );
                                         }
-                                        List<CategoriesRecord>
-                                            dropDownPetsCategoriesRecordList =
+                                        List<ServiceCategoriesRecord>
+                                            dropDownPetsServiceCategoriesRecordList =
                                             snapshot.data;
-                                        final dropDownPetsCategoriesRecord =
-                                            dropDownPetsCategoriesRecordList
+                                        // Return an empty Container when the document does not exist.
+                                        if (snapshot.data.isEmpty) {
+                                          return Container();
+                                        }
+                                        final dropDownPetsServiceCategoriesRecord =
+                                            dropDownPetsServiceCategoriesRecordList
                                                     .isNotEmpty
-                                                ? dropDownPetsCategoriesRecordList
+                                                ? dropDownPetsServiceCategoriesRecordList
                                                     .first
                                                 : null;
                                         return FlutterFlowDropDown(
                                           initialOption: dropDownPetsValue ??=
-                                              'Kucing',
-                                          options: ['Kucing'],
+                                              FFLocalizations.of(context)
+                                                  .getText(
+                                            '3g16ejbc' /* Kucing */,
+                                          ),
+                                          options: [
+                                            FFLocalizations.of(context).getText(
+                                              '520x57wg' /* Kucing */,
+                                            )
+                                          ],
                                           onChanged: (val) => setState(
                                               () => dropDownPetsValue = val),
                                           width: 130,
@@ -215,7 +234,10 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                                           textStyle:
                                               FlutterFlowTheme.of(context)
                                                   .subtitle1,
-                                          hintText: 'Pilih Jenis Peliharaan',
+                                          hintText: FFLocalizations.of(context)
+                                              .getText(
+                                            '5trys2zk' /* Pilih Jenis Peliharaan */,
+                                          ),
                                           fillColor: Colors.white,
                                           elevation: 2,
                                           borderColor:
@@ -243,7 +265,9 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Servis',
+                                FFLocalizations.of(context).getText(
+                                  'or0r1vfm' /* Servis */,
+                                ),
                                 style: FlutterFlowTheme.of(context).bodyText1,
                               ),
                               Row(
@@ -252,15 +276,24 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                                   Expanded(
                                     child: FlutterFlowDropDown(
                                       initialOption: dropDownServiceValue ??=
-                                          'Mandi Kutu dan Jamur',
-                                      options: ['Mandi Kutu dan Jamur'],
+                                          FFLocalizations.of(context).getText(
+                                        'jp6so3tz' /* Mandi Kutu dan Jamur */,
+                                      ),
+                                      options: [
+                                        FFLocalizations.of(context).getText(
+                                          '52e3l4oc' /* Mandi Kutu dan Jamur */,
+                                        )
+                                      ],
                                       onChanged: (val) => setState(
                                           () => dropDownServiceValue = val),
                                       width: 130,
                                       height: 60,
                                       textStyle: FlutterFlowTheme.of(context)
                                           .subtitle1,
-                                      hintText: 'Pilih Servis',
+                                      hintText:
+                                          FFLocalizations.of(context).getText(
+                                        'o15mxtcu' /* Pilih Servis */,
+                                      ),
                                       fillColor: Colors.white,
                                       elevation: 2,
                                       borderColor: FlutterFlowTheme.of(context)
@@ -284,7 +317,9 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Jumlah pet',
+                                FFLocalizations.of(context).getText(
+                                  'p4q8jx4s' /* Jumlah pet */,
+                                ),
                                 style: FlutterFlowTheme.of(context).bodyText1,
                               ),
                               Padding(
@@ -343,7 +378,9 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Tanggal grooming',
+                                FFLocalizations.of(context).getText(
+                                  'sa4e57p8' /* Tanggal grooming */,
+                                ),
                                 style: FlutterFlowTheme.of(context).bodyText1,
                               ),
                               FlutterFlowCalendar(
@@ -361,6 +398,8 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                                 dateStyle: TextStyle(),
                                 selectedDateStyle: TextStyle(),
                                 inactiveDateStyle: TextStyle(),
+                                locale:
+                                    FFLocalizations.of(context).languageCode,
                               ),
                             ],
                           ),
@@ -372,18 +411,19 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Waktu grooming',
+                                FFLocalizations.of(context).getText(
+                                  '0qfpwngs' /* Waktu grooming */,
+                                ),
                                 style: FlutterFlowTheme.of(context).bodyText1,
                               ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Expanded(
-                                    child:
-                                        StreamBuilder<List<CategoriesRecord>>(
-                                      stream: queryCategoriesRecord(
-                                        queryBuilder: (categoriesRecord) =>
-                                            categoriesRecord.where('is_active',
+                                    child: StreamBuilder<List<ServicesRecord>>(
+                                      stream: queryServicesRecord(
+                                        queryBuilder: (servicesRecord) =>
+                                            servicesRecord.where('is_active',
                                                 isEqualTo: true),
                                         singleRecord: true,
                                       ),
@@ -403,23 +443,38 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                                             ),
                                           );
                                         }
-                                        List<CategoriesRecord>
-                                            dropDownTimeCategoriesRecordList =
+                                        List<ServicesRecord>
+                                            dropDownTimeServicesRecordList =
                                             snapshot.data;
-                                        final dropDownTimeCategoriesRecord =
-                                            dropDownTimeCategoriesRecordList
+                                        // Return an empty Container when the document does not exist.
+                                        if (snapshot.data.isEmpty) {
+                                          return Container();
+                                        }
+                                        final dropDownTimeServicesRecord =
+                                            dropDownTimeServicesRecordList
                                                     .isNotEmpty
-                                                ? dropDownTimeCategoriesRecordList
+                                                ? dropDownTimeServicesRecordList
                                                     .first
                                                 : null;
                                         return FlutterFlowDropDown(
                                           initialOption: dropDownTimeValue ??=
-                                              'Pagi',
+                                              FFLocalizations.of(context)
+                                                  .getText(
+                                            'q0pbfccn' /* Pagi */,
+                                          ),
                                           options: [
-                                            'Pagi',
-                                            'Siang',
-                                            'Sore',
-                                            'Malam'
+                                            FFLocalizations.of(context).getText(
+                                              'bhegat8w' /* Pagi */,
+                                            ),
+                                            FFLocalizations.of(context).getText(
+                                              'l8j675sm' /* Siang */,
+                                            ),
+                                            FFLocalizations.of(context).getText(
+                                              'wwcm5yi5' /* Sore */,
+                                            ),
+                                            FFLocalizations.of(context).getText(
+                                              'ml4dy772' /* Malam */,
+                                            )
                                           ],
                                           onChanged: (val) => setState(
                                               () => dropDownTimeValue = val),
@@ -428,7 +483,10 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                                           textStyle:
                                               FlutterFlowTheme.of(context)
                                                   .subtitle1,
-                                          hintText: 'Pilih Waktu',
+                                          hintText: FFLocalizations.of(context)
+                                              .getText(
+                                            'bbhuj9g4' /* Pilih Waktu */,
+                                          ),
                                           fillColor: Colors.white,
                                           elevation: 2,
                                           borderColor:
@@ -477,7 +535,9 @@ class _GroomingFormWidgetState extends State<GroomingFormWidget> {
                                   ),
                                 );
                               },
-                              text: 'Panggil Groomer',
+                              text: FFLocalizations.of(context).getText(
+                                'c5acn72q' /* Panggil Groomer */,
+                              ),
                               options: FFButtonOptions(
                                 width: double.infinity,
                                 height: 56,

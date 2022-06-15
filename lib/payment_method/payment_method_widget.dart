@@ -33,7 +33,9 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
             IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          'Pembayaran',
+          FFLocalizations.of(context).getText(
+            'mlvk3c76' /* Pembayaran */,
+          ),
           style: FlutterFlowTheme.of(context).title1.override(
                 fontFamily: 'RockoUltra',
                 fontSize: 18,
@@ -60,7 +62,9 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          'Total yang harus dibayar',
+                          FFLocalizations.of(context).getText(
+                            '9n4d6veo' /* Total yang harus dibayar */,
+                          ),
                           textAlign: TextAlign.center,
                           style: FlutterFlowTheme.of(context).subtitle2,
                         ),
@@ -72,7 +76,9 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                           child: Text(
-                            'Transfer Bank',
+                            FFLocalizations.of(context).getText(
+                              'rne616lq' /* Transfer Bank */,
+                            ),
                             style: FlutterFlowTheme.of(context).title3.override(
                                   fontFamily: 'RockoUltra',
                                   color:
@@ -111,7 +117,9 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'Bank BCA',
+                                          FFLocalizations.of(context).getText(
+                                            '1w374732' /* Bank BCA */,
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .subtitle1
                                               .override(
@@ -123,7 +131,9 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
                                               ),
                                         ),
                                         Text(
-                                          '5790285478',
+                                          FFLocalizations.of(context).getText(
+                                            'e096ocvy' /* 5790285478 */,
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .subtitle1,
                                         ),
@@ -164,7 +174,9 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'Bank Mandiri',
+                                          FFLocalizations.of(context).getText(
+                                            'vxsm24qp' /* Bank Mandiri */,
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .subtitle1
                                               .override(
@@ -176,7 +188,9 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
                                               ),
                                         ),
                                         Text(
-                                          '1230005921541',
+                                          FFLocalizations.of(context).getText(
+                                            '1rwn36ai' /* 1230005921541 */,
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .subtitle1,
                                         ),
@@ -191,7 +205,9 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                           child: Text(
-                            'Cara Bayar',
+                            FFLocalizations.of(context).getText(
+                              '1jiqsxnx' /* Cara Bayar */,
+                            ),
                             style: FlutterFlowTheme.of(context).title3.override(
                                   fontFamily: 'RockoUltra',
                                   color:
@@ -208,7 +224,9 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                '1.',
+                                FFLocalizations.of(context).getText(
+                                  '4zi9cw6g' /* 1. */,
+                                ),
                                 textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context).subtitle2,
                               ),
@@ -217,7 +235,9 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       10, 0, 0, 0),
                                   child: Text(
-                                    'Transfer ke salah satu nomor rekening di atas sesuai jumlah yang harus dibayar.',
+                                    FFLocalizations.of(context).getText(
+                                      '08rc5jgm' /* Transfer ke salah satu nomor r... */,
+                                    ),
                                     textAlign: TextAlign.start,
                                     style:
                                         FlutterFlowTheme.of(context).subtitle2,
@@ -234,7 +254,9 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                '2.',
+                                FFLocalizations.of(context).getText(
+                                  '1xab8725' /* 2. */,
+                                ),
                                 textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context).subtitle2,
                               ),
@@ -243,7 +265,9 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       10, 0, 0, 0),
                                   child: Text(
-                                    'Share screenshoot bukti transfer kamu dengan menekan tombol Konfirmasi di bawah.',
+                                    FFLocalizations.of(context).getText(
+                                      'afwtpu61' /* Share screenshoot bukti transf... */,
+                                    ),
                                     textAlign: TextAlign.start,
                                     style:
                                         FlutterFlowTheme.of(context).subtitle2,
@@ -260,7 +284,9 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
                               await launchURL(
                                   'https://api.whatsapp.com/send?phone=6285163707044&text=Konfirmasi%pembayaran%20untuk%20order%20${widget.order.orderNo}');
                             },
-                            text: 'Konfirmasi Pembayaran',
+                            text: FFLocalizations.of(context).getText(
+                              '6f6y92t3' /* Konfirmasi Pembayaran */,
+                            ),
                             options: FFButtonOptions(
                               width: double.infinity,
                               height: 56,
@@ -292,7 +318,9 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
                                 ),
                               );
                             },
-                            text: 'Home',
+                            text: FFLocalizations.of(context).getText(
+                              'vmzlx7qy' /* Home */,
+                            ),
                             options: FFButtonOptions(
                               width: double.infinity,
                               height: 56,
