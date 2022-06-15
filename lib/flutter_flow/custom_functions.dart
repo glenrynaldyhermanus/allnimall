@@ -167,3 +167,28 @@ int stringToInteger(String param) {
     return int.parse(param);
   }
 }
+
+String combinedServiceName(
+  String serviceName,
+  String categoryName,
+  String numOfPet,
+) {
+  // Add your function code here!
+  if (serviceName.isNotEmpty) {
+    return '$serviceName x $numOfPet $categoryName';
+  }
+
+  return "";
+}
+
+String combinedSchedule(
+  DateTime schedule,
+  String prefTime,
+) {
+  // Add your function code here!
+  if (schedule != null) {
+    return '${DateFormat("MMMMEEEEd").format(schedule)} - $prefTime';
+  }
+
+  return "";
+}

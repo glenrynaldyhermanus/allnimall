@@ -3,6 +3,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../order_grooming_location/order_grooming_location_widget.dart';
 import '../order_grooming_schedule/order_grooming_schedule_widget.dart';
 import '../order_grooming_service/order_grooming_service_widget.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -137,7 +138,12 @@ class _CreateOrderFormWidgetState extends State<CreateOrderFormWidget> {
                                   Expanded(
                                     child: Text(
                                       valueOrDefault<String>(
-                                        '${FFAppState().localServiceName} x ${FFAppState().localPetAmount.toString()} ${FFAppState().localServiceCategory}',
+                                        functions.combinedServiceName(
+                                            FFAppState().localServiceName,
+                                            FFAppState().localServiceCategory,
+                                            FFAppState()
+                                                .localPetAmount
+                                                .toString()),
                                         'Mandi, cukur, atau lainnya...',
                                       ),
                                       maxLines: 2,
@@ -207,7 +213,9 @@ class _CreateOrderFormWidgetState extends State<CreateOrderFormWidget> {
                                   Expanded(
                                     child: Text(
                                       valueOrDefault<String>(
-                                        '${dateTimeFormat('MMMMEEEEd', FFAppState().localScheduleDate)} - ${FFAppState().localPreferedTime}',
+                                        functions.combinedSchedule(
+                                            FFAppState().localScheduleDate,
+                                            FFAppState().localPreferedTime),
                                         'Besok, weekend ini, atau waktu lainnya...',
                                       ),
                                       maxLines: 2,
