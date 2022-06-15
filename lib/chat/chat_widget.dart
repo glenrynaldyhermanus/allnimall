@@ -36,7 +36,9 @@ class _ChatWidgetState extends State<ChatWidget> {
             IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          'Chat',
+          FFLocalizations.of(context).getText(
+            'wnb2mvtm' /* Chat */,
+          ),
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
@@ -121,7 +123,9 @@ class _ChatWidgetState extends State<ChatWidget> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'Me',
+                                            FFLocalizations.of(context).getText(
+                                              'sec24cqc' /* Me */,
+                                            ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText2
                                                 .override(
@@ -218,7 +222,10 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                         ),
                                               ),
                                               Text(
-                                                ' from Allnimall',
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                                  '3g6na1tg' /*  from Allnimall */,
+                                                ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText2
@@ -303,7 +310,9 @@ class _ChatWidgetState extends State<ChatWidget> {
                             ),
                             obscureText: false,
                             decoration: InputDecoration(
-                              hintText: 'Put your message here...',
+                              hintText: FFLocalizations.of(context).getText(
+                                'pov8ylz9' /* Put your message here... */,
+                              ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),

@@ -140,6 +140,9 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'OrderGroomingService': (data) async => OrderGroomingServiceWidget(),
   'OrderGroomingSchedule': (data) async => OrderGroomingScheduleWidget(),
   'OrderGroomingLocation': (data) async => OrderGroomingLocationWidget(),
+  'OrderServiceList': (data) async => OrderServiceListWidget(
+        petCategory: getParameter(data, 'petCategory'),
+      ),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>

@@ -36,7 +36,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
         automaticallyImplyLeading: true,
         title: Text(
-          'Sign Up',
+          FFLocalizations.of(context).getText(
+            'fx9mwdfb' /* Sign Up */,
+          ),
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
@@ -73,8 +75,12 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                           controller: nameFieldController,
                           obscureText: false,
                           decoration: InputDecoration(
-                            labelText: 'Nama lengkap',
-                            hintText: 'Masukkan nama lengkap...',
+                            labelText: FFLocalizations.of(context).getText(
+                              'vr2v0qm7' /* Nama lengkap */,
+                            ),
+                            hintText: FFLocalizations.of(context).getText(
+                              'sg4ugq5c' /* Masukkan nama lengkap... */,
+                            ),
                             hintStyle: FlutterFlowTheme.of(context).subtitle1,
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -120,8 +126,12 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                           controller: emailFieldController,
                           obscureText: false,
                           decoration: InputDecoration(
-                            labelText: 'Alamat email',
-                            hintText: 'Masukkan alamat email...',
+                            labelText: FFLocalizations.of(context).getText(
+                              'bw7rio3j' /* Alamat email */,
+                            ),
+                            hintText: FFLocalizations.of(context).getText(
+                              'w56n9y2d' /* Masukkan alamat email... */,
+                            ),
                             hintStyle: FlutterFlowTheme.of(context).subtitle2,
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -178,7 +188,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                             (r) => false,
                           );
                         },
-                        text: 'Simpan Profil',
+                        text: FFLocalizations.of(context).getText(
+                          'j5yjkov6' /* Simpan Profil */,
+                        ),
                         options: FFButtonOptions(
                           width: 210,
                           height: 60,

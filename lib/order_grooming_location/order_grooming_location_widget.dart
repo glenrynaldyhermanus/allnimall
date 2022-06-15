@@ -57,7 +57,9 @@ class _OrderGroomingLocationWidgetState
             IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          'Lokasi',
+          FFLocalizations.of(context).getText(
+            'esoabjjv' /* Lokasi */,
+          ),
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
@@ -81,7 +83,9 @@ class _OrderGroomingLocationWidgetState
                     controller: textController,
                     obscureText: false,
                     decoration: InputDecoration(
-                      hintText: 'Tekan cari',
+                      hintText: FFLocalizations.of(context).getText(
+                        'li2bj2rb' /* Tekan cari */,
+                      ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Color(0x00000000),
@@ -116,7 +120,9 @@ class _OrderGroomingLocationWidgetState
                   webGoogleMapsApiKey:
                       'AIzaSyAVmO1JRU552L2OhuDi0sdRhwgleBPNO3c',
                   onSelect: (place) => setState(() => placePickerValue = place),
-                  defaultText: 'Cari',
+                  defaultText: FFLocalizations.of(context).getText(
+                    'ifl05r5t' /* Cari */,
+                  ),
                   icon: Icon(
                     Icons.search,
                     color: FlutterFlowTheme.of(context).primaryBackground,
@@ -199,7 +205,9 @@ class _OrderGroomingLocationWidgetState
                             () => FFAppState().localLatLng = googleMapsCenter);
                         Navigator.pop(context);
                       },
-                      text: 'Pilih lokasi',
+                      text: FFLocalizations.of(context).getText(
+                        'fid0f36u' /* Pilih lokasi */,
+                      ),
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 48,

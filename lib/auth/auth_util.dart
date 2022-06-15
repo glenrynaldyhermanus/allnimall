@@ -180,10 +180,13 @@ final authenticatedUserStream = FirebaseAuth.instance
       }();
       return user?.uid ?? '';
     })
-    .switchMap((uid) => queryCustomersRecord(
-        queryBuilder: (user) => user.where('uid', isEqualTo: uid),
-        singleRecord: true))
-    .map((users) => currentUserDocument = users.isNotEmpty ? users.first : null)
+    .switchMap(
+      (uid) => uid.isEmpty
+          ? Stream.value(null)
+          : CustomersRecord.getDocument(CustomersRecord.collection.doc(uid))
+              .handleError((_) {}),
+    )
+    .map((user) => currentUserDocument = user)
     .asBroadcastStream();
 
 class AuthUserStreamWidget extends StatelessWidget {

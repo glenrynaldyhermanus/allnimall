@@ -28,7 +28,9 @@ class _EmptyScheduleWidgetState extends State<EmptyScheduleWidget> {
         mainAxisSize: MainAxisSize.max,
         children: [
           Text(
-            'You have no upcoming schedules',
+            FFLocalizations.of(context).getText(
+              'q97kzhzp' /* You have no upcoming schedules */,
+            ),
             style: FlutterFlowTheme.of(context).subtitle2,
           ),
           Padding(
@@ -44,7 +46,9 @@ class _EmptyScheduleWidgetState extends State<EmptyScheduleWidget> {
                   ),
                 );
               },
-              text: 'Create schedule',
+              text: FFLocalizations.of(context).getText(
+                '19k1rzuq' /* Create schedule */,
+              ),
               options: FFButtonOptions(
                 width: 160,
                 height: 40,

@@ -6,8 +6,6 @@ import '../flutter_flow/flutter_flow_util.dart';
 
 import 'schema/pets_record.dart';
 import 'schema/orders_record.dart';
-import 'schema/categories_record.dart';
-import 'schema/services_record.dart';
 import 'schema/articles_record.dart';
 import 'schema/feature_requests_record.dart';
 import 'schema/chat_messages_record.dart';
@@ -15,6 +13,9 @@ import 'schema/pet_posts_record.dart';
 import 'schema/pet_schedules_record.dart';
 import 'schema/customers_record.dart';
 import 'schema/rangers_record.dart';
+import 'schema/service_categories_record.dart';
+import 'schema/services_record.dart';
+import 'schema/activities_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -24,8 +25,6 @@ export 'schema/serializers.dart';
 
 export 'schema/pets_record.dart';
 export 'schema/orders_record.dart';
-export 'schema/categories_record.dart';
-export 'schema/services_record.dart';
 export 'schema/articles_record.dart';
 export 'schema/feature_requests_record.dart';
 export 'schema/chat_messages_record.dart';
@@ -33,6 +32,9 @@ export 'schema/pet_posts_record.dart';
 export 'schema/pet_schedules_record.dart';
 export 'schema/customers_record.dart';
 export 'schema/rangers_record.dart';
+export 'schema/service_categories_record.dart';
+export 'schema/services_record.dart';
+export 'schema/activities_record.dart';
 
 /// Functions to query PetsRecords (as a Stream and as a Future).
 Stream<List<PetsRecord>> queryPetsRecord({
@@ -112,90 +114,6 @@ Future<FFFirestorePage<OrdersRecord>> queryOrdersRecordPage({
     queryCollectionPage(
       OrdersRecord.collection,
       OrdersRecord.serializer,
-      queryBuilder: queryBuilder,
-      nextPageMarker: nextPageMarker,
-      pageSize: pageSize,
-      isStream: isStream,
-    );
-
-/// Functions to query CategoriesRecords (as a Stream and as a Future).
-Stream<List<CategoriesRecord>> queryCategoriesRecord({
-  Query Function(Query) queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      CategoriesRecord.collection,
-      CategoriesRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<CategoriesRecord>> queryCategoriesRecordOnce({
-  Query Function(Query) queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      CategoriesRecord.collection,
-      CategoriesRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<FFFirestorePage<CategoriesRecord>> queryCategoriesRecordPage({
-  Query Function(Query) queryBuilder,
-  DocumentSnapshot nextPageMarker,
-  int pageSize,
-  bool isStream,
-}) =>
-    queryCollectionPage(
-      CategoriesRecord.collection,
-      CategoriesRecord.serializer,
-      queryBuilder: queryBuilder,
-      nextPageMarker: nextPageMarker,
-      pageSize: pageSize,
-      isStream: isStream,
-    );
-
-/// Functions to query ServicesRecords (as a Stream and as a Future).
-Stream<List<ServicesRecord>> queryServicesRecord({
-  Query Function(Query) queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      ServicesRecord.collection,
-      ServicesRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<ServicesRecord>> queryServicesRecordOnce({
-  Query Function(Query) queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      ServicesRecord.collection,
-      ServicesRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<FFFirestorePage<ServicesRecord>> queryServicesRecordPage({
-  Query Function(Query) queryBuilder,
-  DocumentSnapshot nextPageMarker,
-  int pageSize,
-  bool isStream,
-}) =>
-    queryCollectionPage(
-      ServicesRecord.collection,
-      ServicesRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,
@@ -490,6 +408,136 @@ Future<FFFirestorePage<RangersRecord>> queryRangersRecordPage({
     queryCollectionPage(
       RangersRecord.collection,
       RangersRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query ServiceCategoriesRecords (as a Stream and as a Future).
+Stream<List<ServiceCategoriesRecord>> queryServiceCategoriesRecord({
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ServiceCategoriesRecord.collection,
+      ServiceCategoriesRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ServiceCategoriesRecord>> queryServiceCategoriesRecordOnce({
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ServiceCategoriesRecord.collection,
+      ServiceCategoriesRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<ServiceCategoriesRecord>>
+    queryServiceCategoriesRecordPage({
+  Query Function(Query) queryBuilder,
+  DocumentSnapshot nextPageMarker,
+  int pageSize,
+  bool isStream,
+}) =>
+        queryCollectionPage(
+          ServiceCategoriesRecord.collection,
+          ServiceCategoriesRecord.serializer,
+          queryBuilder: queryBuilder,
+          nextPageMarker: nextPageMarker,
+          pageSize: pageSize,
+          isStream: isStream,
+        );
+
+/// Functions to query ServicesRecords (as a Stream and as a Future).
+Stream<List<ServicesRecord>> queryServicesRecord({
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ServicesRecord.collection,
+      ServicesRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ServicesRecord>> queryServicesRecordOnce({
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ServicesRecord.collection,
+      ServicesRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<ServicesRecord>> queryServicesRecordPage({
+  Query Function(Query) queryBuilder,
+  DocumentSnapshot nextPageMarker,
+  int pageSize,
+  bool isStream,
+}) =>
+    queryCollectionPage(
+      ServicesRecord.collection,
+      ServicesRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query ActivitiesRecords (as a Stream and as a Future).
+Stream<List<ActivitiesRecord>> queryActivitiesRecord({
+  DocumentReference parent,
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ActivitiesRecord.collection(parent),
+      ActivitiesRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ActivitiesRecord>> queryActivitiesRecordOnce({
+  DocumentReference parent,
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ActivitiesRecord.collection(parent),
+      ActivitiesRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<ActivitiesRecord>> queryActivitiesRecordPage({
+  DocumentReference parent,
+  Query Function(Query) queryBuilder,
+  DocumentSnapshot nextPageMarker,
+  int pageSize,
+  bool isStream,
+}) =>
+    queryCollectionPage(
+      ActivitiesRecord.collection(parent),
+      ActivitiesRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,

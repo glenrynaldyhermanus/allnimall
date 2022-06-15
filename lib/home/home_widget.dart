@@ -165,7 +165,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Happening!',
+                            FFLocalizations.of(context).getText(
+                              '22804qio' /* Happening! */,
+                            ),
                             style: FlutterFlowTheme.of(context).title3.override(
                                   fontFamily: 'RockoUltra',
                                   color:
@@ -184,7 +186,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                               );
                             },
                             child: Text(
-                              'View All',
+                              FFLocalizations.of(context).getText(
+                                'o5wzc19j' /* View All */,
+                              ),
                               style:
                                   FlutterFlowTheme.of(context).title2.override(
                                         fontFamily: 'RockoUltra',
@@ -378,7 +382,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'My Pets',
+                            FFLocalizations.of(context).getText(
+                              'ikgrhhp8' /* My Pets */,
+                            ),
                             style: FlutterFlowTheme.of(context).title3.override(
                                   fontFamily: 'RockoUltra',
                                   color:
@@ -397,7 +403,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                               );
                             },
                             child: Text(
-                              'View All',
+                              FFLocalizations.of(context).getText(
+                                'sebz3x3k' /* View All */,
+                              ),
                               style:
                                   FlutterFlowTheme.of(context).title2.override(
                                         fontFamily: 'RockoUltra',
@@ -604,7 +612,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Articles',
+                            FFLocalizations.of(context).getText(
+                              'piy5rbss' /* Articles */,
+                            ),
                             style: FlutterFlowTheme.of(context).title3.override(
                                   fontFamily: 'RockoUltra',
                                   color:
@@ -742,7 +752,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Your Schedule',
+                                  FFLocalizations.of(context).getText(
+                                    'vh0nicy1' /* Your Schedule */,
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .title3
                                       .override(

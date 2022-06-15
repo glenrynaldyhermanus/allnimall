@@ -50,7 +50,9 @@ class _GroomingSummaryWidgetState extends State<GroomingSummaryWidget> {
             IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          'Summary',
+          FFLocalizations.of(context).getText(
+            'nh3ip0mq' /* Summary */,
+          ),
           style: FlutterFlowTheme.of(context).title1.override(
                 fontFamily: 'RockoUltra',
                 fontSize: 20,
@@ -92,7 +94,9 @@ class _GroomingSummaryWidgetState extends State<GroomingSummaryWidget> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'Alamat',
+                                        FFLocalizations.of(context).getText(
+                                          'qpvwtwze' /* Alamat */,
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .title3
                                             .override(
@@ -108,7 +112,10 @@ class _GroomingSummaryWidgetState extends State<GroomingSummaryWidget> {
                                         onPressed: () async {
                                           Navigator.pop(context);
                                         },
-                                        text: 'Edit',
+                                        text:
+                                            FFLocalizations.of(context).getText(
+                                          '7fwthd2w' /* Edit */,
+                                        ),
                                         options: FFButtonOptions(
                                           width: 64,
                                           height: 40,
@@ -228,7 +235,9 @@ class _GroomingSummaryWidgetState extends State<GroomingSummaryWidget> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'Order',
+                                        FFLocalizations.of(context).getText(
+                                          'px30cvdm' /* Order */,
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .title3
                                             .override(
@@ -244,7 +253,10 @@ class _GroomingSummaryWidgetState extends State<GroomingSummaryWidget> {
                                         onPressed: () async {
                                           Navigator.pop(context);
                                         },
-                                        text: 'Edit',
+                                        text:
+                                            FFLocalizations.of(context).getText(
+                                          'eb4xs6bz' /* Edit */,
+                                        ),
                                         options: FFButtonOptions(
                                           width: 64,
                                           height: 40,
@@ -322,7 +334,11 @@ class _GroomingSummaryWidgetState extends State<GroomingSummaryWidget> {
                                                               .subtitle2,
                                                         ),
                                                         Text(
-                                                          ' - ',
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'om5h4qz2' /*  -  */,
+                                                          ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .subtitle2,
@@ -365,7 +381,11 @@ class _GroomingSummaryWidgetState extends State<GroomingSummaryWidget> {
                                                               .subtitle2,
                                                         ),
                                                         Text(
-                                                          ' x ',
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'hapslj9a' /*  x  */,
+                                                          ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .subtitle2,
@@ -421,7 +441,9 @@ class _GroomingSummaryWidgetState extends State<GroomingSummaryWidget> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'Potongan',
+                                        FFLocalizations.of(context).getText(
+                                          'v2c1zej6' /* Potongan */,
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .title3
                                             .override(
@@ -461,7 +483,11 @@ class _GroomingSummaryWidgetState extends State<GroomingSummaryWidget> {
                                                               .fromSTEB(
                                                                   0, 4, 0, 0),
                                                       child: Text(
-                                                        'Diskon Aplikasi',
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          '9kcvj1bf' /* Diskon Aplikasi */,
+                                                        ),
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -474,7 +500,11 @@ class _GroomingSummaryWidgetState extends State<GroomingSummaryWidget> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      '20.000 / pet',
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        'omfz2e0x' /* 20.000 / pet */,
+                                                      ),
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .subtitle1

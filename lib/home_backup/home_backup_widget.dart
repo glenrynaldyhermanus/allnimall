@@ -32,7 +32,9 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
         backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
         automaticallyImplyLeading: true,
         title: Text(
-          'Allnimall',
+          FFLocalizations.of(context).getText(
+            '1guaxhbu' /* Allnimall */,
+          ),
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
@@ -76,7 +78,9 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
         backgroundColor: FlutterFlowTheme.of(context).secondaryColor,
         elevation: 8,
         label: Text(
-          'Panggil Groomer',
+          FFLocalizations.of(context).getText(
+            '2cmw9q51' /* Panggil Groomer */,
+          ),
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).tertiaryColor,
@@ -123,7 +127,9 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'Halo kak!',
+                                          FFLocalizations.of(context).getText(
+                                            'shu9orlb' /* Halo kak! */,
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .title3
                                               .override(
@@ -135,7 +141,9 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                               ),
                                         ),
                                         Text(
-                                          'Mau grooming kucing?',
+                                          FFLocalizations.of(context).getText(
+                                            'kgt8v66r' /* Mau grooming kucing? */,
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .subtitle1
                                               .override(
@@ -158,7 +166,9 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                           ),
                                         );
                                       },
-                                      text: 'Panggil Groomer',
+                                      text: FFLocalizations.of(context).getText(
+                                        '21lhnjov' /* Panggil Groomer */,
+                                      ),
                                       options: FFButtonOptions(
                                         width: double.infinity,
                                         height: 48,
@@ -210,7 +220,9 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Artikel',
+                            FFLocalizations.of(context).getText(
+                              'e8uqjh7a' /* Artikel */,
+                            ),
                             style: FlutterFlowTheme.of(context).title3.override(
                                   fontFamily: 'RockoUltra',
                                   color:
@@ -336,7 +348,9 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Order',
+                          FFLocalizations.of(context).getText(
+                            '1wqaryi7' /* Order */,
+                          ),
                           style: FlutterFlowTheme.of(context).title3.override(
                                 fontFamily: 'RockoUltra',
                                 color:
@@ -354,7 +368,9 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                             );
                           },
                           child: Text(
-                            'Lihat Semua',
+                            FFLocalizations.of(context).getText(
+                              'vm432p6n' /* Lihat Semua */,
+                            ),
                             style: FlutterFlowTheme.of(context).title2.override(
                                   fontFamily: 'RockoUltra',
                                   color:

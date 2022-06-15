@@ -65,7 +65,9 @@ class _PhoneSignInWidgetState extends State<PhoneSignInWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Text(
-                        '+62',
+                        FFLocalizations.of(context).getText(
+                          'pkcww6wn' /* +62 */,
+                        ),
                         style: FlutterFlowTheme.of(context).subtitle1.override(
                               fontFamily: 'Cabin',
                               fontSize: 18,
@@ -78,10 +80,14 @@ class _PhoneSignInWidgetState extends State<PhoneSignInWidget> {
                             controller: phoneNumberController,
                             obscureText: false,
                             decoration: InputDecoration(
-                              labelText: 'No Handphone',
+                              labelText: FFLocalizations.of(context).getText(
+                                'oo7wd4zn' /* No Handphone */,
+                              ),
                               labelStyle:
                                   FlutterFlowTheme.of(context).subtitle2,
-                              hintText: '801234567',
+                              hintText: FFLocalizations.of(context).getText(
+                                'ahzxqr3x' /* 801234567 */,
+                              ),
                               hintStyle: FlutterFlowTheme.of(context).subtitle2,
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -134,7 +140,9 @@ class _PhoneSignInWidgetState extends State<PhoneSignInWidget> {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
-                                        'Phone Number is required and has to start with +.'),
+                                        FFLocalizations.of(context).getText(
+                                      '2wf9v1uw' /* Silahkan isi nomor HP */,
+                                    )),
                                   ),
                                 );
                                 return;
@@ -154,7 +162,9 @@ class _PhoneSignInWidgetState extends State<PhoneSignInWidget> {
                                 },
                               );
                             },
-                            text: 'Sign In',
+                            text: FFLocalizations.of(context).getText(
+                              'qh0nkb8h' /* Sign In */,
+                            ),
                             options: FFButtonOptions(
                               width: 230,
                               height: 60,

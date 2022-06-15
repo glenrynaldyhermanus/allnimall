@@ -28,7 +28,9 @@ class _OrderListWidgetState extends State<OrderListWidget> {
             IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          'Orders',
+          FFLocalizations.of(context).getText(
+            'vzooszio' /* Orders */,
+          ),
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
