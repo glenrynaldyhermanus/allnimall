@@ -1,4 +1,4 @@
- import '../backend/backend.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -104,66 +104,6 @@ class _OrderGroomingServiceWidgetState
                                           .secondaryColor,
                                       size: 20,
                                     ),
-                                hintText: 'Pilih pet',
-                                icon: Icon(
-                                  Icons.pets,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryColor,
-                                  size: 20,
-                                ),
-                                fillColor: Color(0x7FDBDCFF),
-                                elevation: 2,
-                                borderColor: Colors.transparent,
-                                borderWidth: 0,
-                                borderRadius: 0,
-                                margin: EdgeInsetsDirectional.fromSTEB(
-                                    24, 4, 16, 4),
-                                hidesUnderline: true,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(25, 25, 25, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Layanan',
-                              style: FlutterFlowTheme.of(context).bodyText1,
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          OrderServiceListWidget(
-                                        petCategory: dropDownValue2,
-                                      ),
-                                    ),
-                                  ).then((value) {
-                                    setState(() {});
-                                  });
-                                },
-                                child: Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 52,
-                                  decoration: BoxDecoration(
-                                    color: Color(0x7FDBDCFF),
-                                    borderRadius: BorderRadius.circular(4),
                                     fillColor: Color(0x7FDBDCFF),
                                     elevation: 2,
                                     borderColor: Colors.transparent,
@@ -251,8 +191,8 @@ class _OrderGroomingServiceWidgetState
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 5, 0, 0),
                                   child: InkWell(
-                                    onTap: () async {
-                                      await Navigator.push(
+                                    onTap: () {
+                                      Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
@@ -260,7 +200,9 @@ class _OrderGroomingServiceWidgetState
                                             petCategory: dropDownValue2,
                                           ),
                                         ),
-                                      );
+                                      ).then((value) {
+                                        setState(() {});
+                                      });
                                     },
                                     child: Container(
                                       width: MediaQuery.of(context).size.width,
