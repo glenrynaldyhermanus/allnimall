@@ -53,6 +53,8 @@ class FFAppState {
   String localServiceCategory = '';
 
   int localPetAmount = 0;
+
+  String localServiceDesc = '';
 }
 
 LatLng _latLngFromString(String val) {
