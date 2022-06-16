@@ -363,15 +363,20 @@ class _OrderGroomingServiceWidgetState
                                                     shape: BoxShape.circle,
                                                   ),
                                                 ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(10, 0, 0, 0),
-                                                  child: Text(
-                                                    columnActivitiesRecord
-                                                        .activity,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .subtitle2,
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                10, 0, 0, 0),
+                                                    child: Text(
+                                                      columnActivitiesRecord
+                                                          .activity,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .subtitle2,
+                                                    ),
                                                   ),
                                                 ),
                                               ],
