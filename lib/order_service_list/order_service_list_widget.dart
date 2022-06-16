@@ -100,6 +100,9 @@ class _OrderServiceListWidgetState extends State<OrderServiceListWidget> {
                                       setState(() =>
                                           FFAppState().localServiceName =
                                               columnServicesRecord.name);
+                                      setState(() =>
+                                          FFAppState().localServiceDesc =
+                                              columnServicesRecord.description);
                                       Navigator.pop(context);
                                     },
                                     child: Row(
