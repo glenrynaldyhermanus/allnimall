@@ -254,24 +254,56 @@ class _OrderGroomingServiceWidgetState
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              FFAppState().localServiceName,
-                              style:
-                                  FlutterFlowTheme.of(context).title3.override(
-                                        fontFamily: 'RockoUltra',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryColor,
-                                        fontSize: 18,
-                                        useGoogleFonts: false,
-                                      ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-                              child: Text(
-                                FFAppState().localServiceDesc,
-                                style: FlutterFlowTheme.of(context).subtitle2,
-                              ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Container(
+                                  width: 10,
+                                  height: 80,
+                                  constraints: BoxConstraints(
+                                    maxHeight: 100,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFDBDCFF),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10, 0, 0, 0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          FFAppState().localServiceName,
+                                          style: FlutterFlowTheme.of(context)
+                                              .title3
+                                              .override(
+                                                fontFamily: 'RockoUltra',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryColor,
+                                                fontSize: 18,
+                                                useGoogleFonts: false,
+                                              ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 5, 0, 0),
+                                          child: Text(
+                                            FFAppState().localServiceDesc,
+                                            style: FlutterFlowTheme.of(context)
+                                                .subtitle2,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                             Padding(
                               padding:
@@ -310,22 +342,23 @@ class _OrderGroomingServiceWidgetState
                                               columnIndex];
                                       return Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 5, 0, 5),
+                                            10, 5, 10, 5),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Container(
                                               width: 10,
-                                              constraints: BoxConstraints(
-                                                maxHeight: 100,
-                                              ),
+                                              height: 10,
                                               decoration: BoxDecoration(
-                                                color: Color(0xFFDBDCFF),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryColor,
+                                                shape: BoxShape.circle,
                                               ),
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(10, 10, 10, 10),
+                                                  .fromSTEB(10, 0, 0, 0),
                                               child: Text(
                                                 columnActivitiesRecord.activity,
                                                 style:
