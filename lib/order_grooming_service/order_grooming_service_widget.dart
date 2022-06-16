@@ -250,146 +250,157 @@ class _OrderGroomingServiceWidgetState
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(25, 25, 25, 0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Container(
-                                      width: 10,
-                                      height: 80,
-                                      constraints: BoxConstraints(
-                                        maxHeight: 100,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFDBDCFF),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10, 0, 0, 0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              FFAppState().localServiceName,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .title3
-                                                  .override(
-                                                    fontFamily: 'RockoUltra',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryColor,
-                                                    fontSize: 18,
-                                                    useGoogleFonts: false,
-                                                  ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 5, 0, 0),
-                                              child: Text(
-                                                FFAppState().localServiceDesc,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .subtitle2,
-                                              ),
-                                            ),
-                                          ],
+                    if ((FFAppState().localServiceName != null) &&
+                        (FFAppState().localServiceName != ''))
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(25, 25, 25, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Expanded(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Container(
+                                        width: 10,
+                                        height: 80,
+                                        constraints: BoxConstraints(
+                                          maxHeight: 100,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFDBDCFF),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 5, 0, 0),
-                                  child: StreamBuilder<List<ActivitiesRecord>>(
-                                    stream: queryActivitiesRecord(
-                                      parent: FFAppState().localService,
-                                      queryBuilder: (activitiesRecord) =>
-                                          activitiesRecord.orderBy('sequence'),
-                                    ),
-                                    builder: (context, snapshot) {
-                                      // Customize what your widget looks like when it's loading.
-                                      if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 50,
-                                            height: 50,
-                                            child: SpinKitRipple(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryColor,
-                                              size: 50,
-                                            ),
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10, 0, 0, 0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                FFAppState().localServiceName,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .title3
+                                                    .override(
+                                                      fontFamily: 'RockoUltra',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryColor,
+                                                      fontSize: 18,
+                                                      useGoogleFonts: false,
+                                                    ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 5, 0, 0),
+                                                child: Text(
+                                                  FFAppState().localServiceDesc,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .subtitle2,
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        );
-                                      }
-                                      List<ActivitiesRecord>
-                                          columnActivitiesRecordList =
-                                          snapshot.data;
-                                      return Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: List.generate(
-                                            columnActivitiesRecordList.length,
-                                            (columnIndex) {
-                                          final columnActivitiesRecord =
-                                              columnActivitiesRecordList[
-                                                  columnIndex];
-                                          return Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10, 5, 10, 5),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Container(
-                                                  width: 10,
-                                                  height: 10,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 5, 0, 0),
+                                    child:
+                                        StreamBuilder<List<ActivitiesRecord>>(
+                                      stream: queryActivitiesRecord(
+                                        parent: FFAppState().localService,
+                                        queryBuilder: (activitiesRecord) =>
+                                            activitiesRecord
+                                                .orderBy('sequence'),
+                                      ),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50,
+                                              height: 50,
+                                              child: SpinKitRipple(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
                                                         .primaryColor,
-                                                    shape: BoxShape.circle,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(10, 0, 0, 0),
-                                                  child: Text(
-                                                    columnActivitiesRecord
-                                                        .activity,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .subtitle2,
-                                                  ),
-                                                ),
-                                              ],
+                                                size: 50,
+                                              ),
                                             ),
                                           );
-                                        }),
-                                      );
-                                    },
+                                        }
+                                        List<ActivitiesRecord>
+                                            columnActivitiesRecordList =
+                                            snapshot.data;
+                                        return Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: List.generate(
+                                              columnActivitiesRecordList.length,
+                                              (columnIndex) {
+                                            final columnActivitiesRecord =
+                                                columnActivitiesRecordList[
+                                                    columnIndex];
+                                            return Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(10, 5, 10, 5),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Container(
+                                                    width: 10,
+                                                    height: 10,
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryColor,
+                                                      shape: BoxShape.circle,
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  10, 0, 0, 0),
+                                                      child: Text(
+                                                        columnActivitiesRecord
+                                                            .activity,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .subtitle2,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          }),
+                                        );
+                                      },
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
                   ],
                 ),
               ),
