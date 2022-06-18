@@ -82,14 +82,16 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 5, 0, 0),
                                           child: InkWell(
-                                            onTap: () async {
-                                              await Navigator.push(
+                                            onTap: ()  {
+                                              Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
                                                       OrderGroomingLocationWidget(),
                                                 ),
-                                              );
+                                              ).then((value) {
+                                                setState(() {});
+                                              });
                                             },
                                             child: Container(
                                               width: MediaQuery.of(context)
@@ -167,14 +169,16 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 5, 0, 0),
                                           child: InkWell(
-                                            onTap: () async {
-                                              await Navigator.push(
+                                            onTap: () {
+                                              Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
                                                       OrderGroomingServiceWidget(),
                                                 ),
-                                              );
+                                              ).then((value) {
+                                                setState(() {});
+                                              });
                                             },
                                             child: Container(
                                               width: MediaQuery.of(context)
@@ -258,14 +262,16 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 5, 0, 0),
                                           child: InkWell(
-                                            onTap: () async {
-                                              await Navigator.push(
+                                            onTap: () {
+                                              Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
                                                       OrderGroomingScheduleWidget(),
                                                 ),
-                                              );
+                                              ).then((value) {
+                                                setState(() {});
+                                              });
                                             },
                                             child: Container(
                                               width: MediaQuery.of(context)
