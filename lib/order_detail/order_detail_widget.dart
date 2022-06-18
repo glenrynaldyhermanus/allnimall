@@ -3,6 +3,7 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../payment_method/payment_method_widget.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -630,10 +631,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                     ),
                                                     child: Icon(
                                                       Icons.check,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryBtnText,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       size: 20,
                                                     ),
                                                   ),
@@ -651,10 +651,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                     ),
                                                     child: Icon(
                                                       Icons.check,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryBtnText,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       size: 20,
                                                     ),
                                                   ),
@@ -744,10 +743,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                     ),
                                                     child: Icon(
                                                       Icons.delivery_dining,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryBtnText,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       size: 20,
                                                     ),
                                                   ),
@@ -765,10 +763,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                     ),
                                                     child: Icon(
                                                       Icons.delivery_dining,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryBtnText,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       size: 20,
                                                     ),
                                                   ),
@@ -860,10 +857,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                     ),
                                                     child: Icon(
                                                       Icons.sync,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryBtnText,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       size: 20,
                                                     ),
                                                   ),
@@ -881,10 +877,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                     ),
                                                     child: Icon(
                                                       Icons.sync,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryBtnText,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       size: 20,
                                                     ),
                                                   ),
@@ -976,10 +971,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                     ),
                                                     child: Icon(
                                                       Icons.done_all,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryBtnText,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       size: 20,
                                                     ),
                                                   ),
@@ -997,10 +991,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                     ),
                                                     child: Icon(
                                                       Icons.done_all,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryBtnText,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       size: 20,
                                                     ),
                                                   ),
@@ -1074,6 +1067,80 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                               ),
                             ),
                           ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(20, 10, 20, 10),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              if ((orderDetailOrdersRecord.paymentStatus) ==
+                                  'Unpaid')
+                                Expanded(
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      if (functions.isOrderPayable(
+                                              orderDetailOrdersRecord) ??
+                                          true)
+                                        Expanded(
+                                          child: FFButtonWidget(
+                                            onPressed: () async {
+                                              await Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      PaymentMethodWidget(
+                                                    order:
+                                                        orderDetailOrdersRecord,
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            text: 'Pembayaran',
+                                            options: FFButtonOptions(
+                                              width: double.infinity,
+                                              height: 60,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
+                                              textStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .subtitle2
+                                                  .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                              elevation: 3,
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              borderRadius: 8,
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                            ],
+                          ),
                         ),
                       ],
                     ),

@@ -3,7 +3,7 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../grooming_detail/grooming_detail_widget.dart';
+import '../order_detail/order_detail_widget.dart';
 import '../order_grooming_location/order_grooming_location_widget.dart';
 import '../order_grooming_schedule/order_grooming_schedule_widget.dart';
 import '../order_grooming_service/order_grooming_service_widget.dart';
@@ -664,7 +664,7 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => GroomingDetailWidget(
+                          builder: (context) => OrderDetailWidget(
                             order: order.reference,
                           ),
                         ),
