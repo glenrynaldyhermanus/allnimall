@@ -219,3 +219,43 @@ String generateOrderName(
   // Add your function code here!
   return "$serviceName $numOfPet $petCategory";
 }
+
+bool isCustomerAbleChatGroomer(OrdersRecord order) {
+  if (order.status == "OnTheWay" || order.status == "Working") {
+    return true;
+  }
+  return false;
+}
+
+bool isOrderPayable(OrdersRecord order) {
+  // Add your function code here!
+  if ((order.status == "Working" || order.status == "Finish") &&
+      order.paymentStatus == "Unpaid") {
+    return true;
+  }
+
+  return false;
+}
+
+bool isOpenForRating(OrdersRecord order) {
+  // Add your function code here!
+  if (order.status == "Finish" &&
+      order.paymentStatus == "Paid" &&
+      order.rate == 0) {
+    return true;
+  }
+  return false;
+}
+
+bool isAlreadyRated(OrdersRecord order) {
+  // Add your function code here!
+  if (order.rate != null && order.rate > 0) {
+    return true;
+  }
+  return false;
+}
+
+String generateWhatsappUrl(String phone) {
+  phone = phone.replaceAll("+", "").trim();
+  return "https://api.whatsapp.com/send?phone=" + phone;
+}

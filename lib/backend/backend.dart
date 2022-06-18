@@ -16,6 +16,7 @@ import 'schema/rangers_record.dart';
 import 'schema/service_categories_record.dart';
 import 'schema/services_record.dart';
 import 'schema/activities_record.dart';
+import 'schema/ratings_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -35,6 +36,7 @@ export 'schema/rangers_record.dart';
 export 'schema/service_categories_record.dart';
 export 'schema/services_record.dart';
 export 'schema/activities_record.dart';
+export 'schema/ratings_record.dart';
 
 /// Functions to query PetsRecords (as a Stream and as a Future).
 Stream<List<PetsRecord>> queryPetsRecord({
@@ -538,6 +540,51 @@ Future<FFFirestorePage<ActivitiesRecord>> queryActivitiesRecordPage({
     queryCollectionPage(
       ActivitiesRecord.collection(parent),
       ActivitiesRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query RatingsRecords (as a Stream and as a Future).
+Stream<List<RatingsRecord>> queryRatingsRecord({
+  DocumentReference parent,
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      RatingsRecord.collection(parent),
+      RatingsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<RatingsRecord>> queryRatingsRecordOnce({
+  DocumentReference parent,
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      RatingsRecord.collection(parent),
+      RatingsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<RatingsRecord>> queryRatingsRecordPage({
+  DocumentReference parent,
+  Query Function(Query) queryBuilder,
+  DocumentSnapshot nextPageMarker,
+  int pageSize,
+  bool isStream,
+}) =>
+    queryCollectionPage(
+      RatingsRecord.collection(parent),
+      RatingsRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,

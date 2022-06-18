@@ -38,3 +38,4 @@ export 'order_grooming_location/order_grooming_location_widget.dart'
     show OrderGroomingLocationWidget;
 export 'order_service_list/order_service_list_widget.dart'
     show OrderServiceListWidget;
+export 'order_detail/order_detail_widget.dart' show OrderDetailWidget;

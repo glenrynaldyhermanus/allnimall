@@ -108,6 +108,44 @@ abstract class OrdersRecord
   DocumentReference get rangerUid;
 
   @nullable
+  @BuiltValueField(wireName: 'working_at')
+  DateTime get workingAt;
+
+  @nullable
+  @BuiltValueField(wireName: 'finish_at')
+  DateTime get finishAt;
+
+  @nullable
+  @BuiltValueField(wireName: 'paid_at')
+  DateTime get paidAt;
+
+  @nullable
+  @BuiltValueField(wireName: 'payment_method')
+  String get paymentMethod;
+
+  @nullable
+  @BuiltValueField(wireName: 'cancelled_at')
+  DateTime get cancelledAt;
+
+  @nullable
+  int get rate;
+
+  @nullable
+  String get comment;
+
+  @nullable
+  @BuiltValueField(wireName: 'rejected_at')
+  DateTime get rejectedAt;
+
+  @nullable
+  @BuiltValueField(wireName: 'prefered_time')
+  String get preferedTime;
+
+  @nullable
+  @BuiltValueField(wireName: 'prefered_day')
+  String get preferedDay;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -130,7 +168,12 @@ abstract class OrdersRecord
     ..rangerName = ''
     ..rangerPhone = ''
     ..rangerProfilePicture = ''
-    ..customerPhone = '';
+    ..customerPhone = ''
+    ..paymentMethod = ''
+    ..rate = 0
+    ..comment = ''
+    ..preferedTime = ''
+    ..preferedDay = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('orders');
@@ -180,6 +223,16 @@ Map<String, dynamic> createOrdersRecordData({
   DateTime onthewayAt,
   DocumentReference customerUid,
   DocumentReference rangerUid,
+  DateTime workingAt,
+  DateTime finishAt,
+  DateTime paidAt,
+  String paymentMethod,
+  DateTime cancelledAt,
+  int rate,
+  String comment,
+  DateTime rejectedAt,
+  String preferedTime,
+  String preferedDay,
 }) =>
     serializers.toFirestore(
         OrdersRecord.serializer,
@@ -209,4 +262,14 @@ Map<String, dynamic> createOrdersRecordData({
           ..customerPhone = customerPhone
           ..onthewayAt = onthewayAt
           ..customerUid = customerUid
-          ..rangerUid = rangerUid));
+          ..rangerUid = rangerUid
+          ..workingAt = workingAt
+          ..finishAt = finishAt
+          ..paidAt = paidAt
+          ..paymentMethod = paymentMethod
+          ..cancelledAt = cancelledAt
+          ..rate = rate
+          ..comment = comment
+          ..rejectedAt = rejectedAt
+          ..preferedTime = preferedTime
+          ..preferedDay = preferedDay));
