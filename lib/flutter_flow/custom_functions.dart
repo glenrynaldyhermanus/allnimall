@@ -92,13 +92,9 @@ String countTotal(
   return formatter.format(fee);
 }
 
-String generateOrderNumber(DateTime dateTime) {
+String generateOrderNo() {
   // generate order number from date time
-  var now = DateTime.now();
-  final int ms = now.millisecondsSinceEpoch;
-  final int idMaker =
-      dateTime.millisecondsSinceEpoch + math.Random().nextInt(1000);
-  return 'GRM-$ms-$idMaker';
+  return "GRM-APP-" + DateFormat('ddMMhhmmss').format(DateTime.now());
 }
 
 double countAmount(
@@ -215,4 +211,13 @@ bool isOrderFormSet(
 
   // all parameter is set and not empty or null
   return address.isNotEmpty && serviceName.isNotEmpty && scheduleDate != null;
+}
+
+String generateOrderName(
+  String serviceName,
+  int numOfPet,
+  String petCategory,
+) {
+  // Add your function code here!
+  return "$serviceName $numOfPet $petCategory";
 }

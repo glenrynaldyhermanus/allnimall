@@ -1,3 +1,5 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -6,6 +8,7 @@ import '../order_grooming_location/order_grooming_location_widget.dart';
 import '../order_grooming_schedule/order_grooming_schedule_widget.dart';
 import '../order_grooming_service/order_grooming_service_widget.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -491,7 +494,7 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                                                             .fromSTEB(
                                                                 0, 4, 0, 0),
                                                     child: Text(
-                                                      'Diskon Aplikasi',
+                                                      'Potongan Aplikasi',
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .subtitle1
@@ -628,6 +631,32 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                 children: [
                   FFButtonWidget(
                     onPressed: () async {
+                      final ordersCreateData = createOrdersRecordData(
+                        createdAt: getCurrentTimestamp,
+                        orderNo: functions.generateOrderNo(),
+                        petCategory: FFAppState().localPetAmount.toString(),
+                        name: functions.generateOrderName(
+                            FFAppState().localServiceName,
+                            FFAppState().localPetAmount,
+                            FFAppState().localServiceCategory),
+                        scheduledAt: FFAppState().localScheduleDate,
+                        service: FFAppState().localServiceName,
+                        quantity: FFAppState().localPetAmount,
+                        amount: functions.countAmount(
+                            FFAppState().localServiceFee,
+                            FFAppState().localPetAmount,
+                            20000.0),
+                        status: 'New',
+                        customerAddress: FFAppState().localAddress,
+                        customerLatlng: FFAppState().localLatLng,
+                        customerName: currentUserDisplayName,
+                        paymentStatus: 'Unpaid',
+                        prefferedTime: FFAppState().localPreferedTime,
+                        discount: 20000.0,
+                        customerPhone: currentPhoneNumber,
+                        customerUid: currentUserReference,
+                      );
+                      await OrdersRecord.collection.doc().set(ordersCreateData);
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
