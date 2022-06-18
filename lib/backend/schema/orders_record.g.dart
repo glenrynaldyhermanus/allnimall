@@ -203,6 +203,75 @@ class _$OrdersRecordSerializer implements StructuredSerializer<OrdersRecord> {
             specifiedType: const FullType(
                 DocumentReference, const [const FullType(Object)])));
     }
+    value = object.workingAt;
+    if (value != null) {
+      result
+        ..add('working_at')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
+    value = object.finishAt;
+    if (value != null) {
+      result
+        ..add('finish_at')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
+    value = object.paidAt;
+    if (value != null) {
+      result
+        ..add('paid_at')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
+    value = object.paymentMethod;
+    if (value != null) {
+      result
+        ..add('payment_method')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.cancelledAt;
+    if (value != null) {
+      result
+        ..add('cancelled_at')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
+    value = object.rate;
+    if (value != null) {
+      result
+        ..add('rate')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.comment;
+    if (value != null) {
+      result
+        ..add('comment')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.rejectedAt;
+    if (value != null) {
+      result
+        ..add('rejected_at')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
+    value = object.preferedTime;
+    if (value != null) {
+      result
+        ..add('prefered_time')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.preferedDay;
+    if (value != null) {
+      result
+        ..add('prefered_day')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -333,6 +402,46 @@ class _$OrdersRecordSerializer implements StructuredSerializer<OrdersRecord> {
                       DocumentReference, const [const FullType(Object)]))
               as DocumentReference<Object>;
           break;
+        case 'working_at':
+          result.workingAt = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime;
+          break;
+        case 'finish_at':
+          result.finishAt = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime;
+          break;
+        case 'paid_at':
+          result.paidAt = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime;
+          break;
+        case 'payment_method':
+          result.paymentMethod = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'cancelled_at':
+          result.cancelledAt = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime;
+          break;
+        case 'rate':
+          result.rate = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'comment':
+          result.comment = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'rejected_at':
+          result.rejectedAt = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime;
+          break;
+        case 'prefered_time':
+          result.preferedTime = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'prefered_day':
+          result.preferedDay = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -400,6 +509,26 @@ class _$OrdersRecord extends OrdersRecord {
   @override
   final DocumentReference<Object> rangerUid;
   @override
+  final DateTime workingAt;
+  @override
+  final DateTime finishAt;
+  @override
+  final DateTime paidAt;
+  @override
+  final String paymentMethod;
+  @override
+  final DateTime cancelledAt;
+  @override
+  final int rate;
+  @override
+  final String comment;
+  @override
+  final DateTime rejectedAt;
+  @override
+  final String preferedTime;
+  @override
+  final String preferedDay;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$OrdersRecord([void Function(OrdersRecordBuilder) updates]) =>
@@ -432,6 +561,16 @@ class _$OrdersRecord extends OrdersRecord {
       this.onthewayAt,
       this.customerUid,
       this.rangerUid,
+      this.workingAt,
+      this.finishAt,
+      this.paidAt,
+      this.paymentMethod,
+      this.cancelledAt,
+      this.rate,
+      this.comment,
+      this.rejectedAt,
+      this.preferedTime,
+      this.preferedDay,
       this.reference})
       : super._();
 
@@ -472,6 +611,16 @@ class _$OrdersRecord extends OrdersRecord {
         onthewayAt == other.onthewayAt &&
         customerUid == other.customerUid &&
         rangerUid == other.rangerUid &&
+        workingAt == other.workingAt &&
+        finishAt == other.finishAt &&
+        paidAt == other.paidAt &&
+        paymentMethod == other.paymentMethod &&
+        cancelledAt == other.cancelledAt &&
+        rate == other.rate &&
+        comment == other.comment &&
+        rejectedAt == other.rejectedAt &&
+        preferedTime == other.preferedTime &&
+        preferedDay == other.preferedDay &&
         reference == other.reference;
   }
 
@@ -495,25 +644,25 @@ class _$OrdersRecord extends OrdersRecord {
                                                                 $jc(
                                                                     $jc(
                                                                         $jc(
-                                                                            $jc($jc($jc($jc($jc($jc($jc($jc($jc(0, createdAt.hashCode), orderNo.hashCode), petCategory.hashCode), name.hashCode), scheduledAt.hashCode), service.hashCode), quantity.hashCode), amount.hashCode),
-                                                                                status.hashCode),
-                                                                            customerAddress.hashCode),
-                                                                        customerLatlng.hashCode),
-                                                                    customerName.hashCode),
-                                                                paymentStatus.hashCode),
-                                                            prefferedTime.hashCode),
-                                                        discount.hashCode),
-                                                    notes.hashCode),
-                                                startTime.hashCode),
-                                            endTime.hashCode),
-                                        rangerName.hashCode),
-                                    rangerPhone.hashCode),
-                                rangerProfilePicture.hashCode),
-                            confirmedAt.hashCode),
-                        customerPhone.hashCode),
-                    onthewayAt.hashCode),
-                customerUid.hashCode),
-            rangerUid.hashCode),
+                                                                            $jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc(0, createdAt.hashCode), orderNo.hashCode), petCategory.hashCode), name.hashCode), scheduledAt.hashCode), service.hashCode), quantity.hashCode), amount.hashCode), status.hashCode), customerAddress.hashCode), customerLatlng.hashCode), customerName.hashCode), paymentStatus.hashCode), prefferedTime.hashCode), discount.hashCode), notes.hashCode), startTime.hashCode), endTime.hashCode),
+                                                                                rangerName.hashCode),
+                                                                            rangerPhone.hashCode),
+                                                                        rangerProfilePicture.hashCode),
+                                                                    confirmedAt.hashCode),
+                                                                customerPhone.hashCode),
+                                                            onthewayAt.hashCode),
+                                                        customerUid.hashCode),
+                                                    rangerUid.hashCode),
+                                                workingAt.hashCode),
+                                            finishAt.hashCode),
+                                        paidAt.hashCode),
+                                    paymentMethod.hashCode),
+                                cancelledAt.hashCode),
+                            rate.hashCode),
+                        comment.hashCode),
+                    rejectedAt.hashCode),
+                preferedTime.hashCode),
+            preferedDay.hashCode),
         reference.hashCode));
   }
 
@@ -546,6 +695,16 @@ class _$OrdersRecord extends OrdersRecord {
           ..add('onthewayAt', onthewayAt)
           ..add('customerUid', customerUid)
           ..add('rangerUid', rangerUid)
+          ..add('workingAt', workingAt)
+          ..add('finishAt', finishAt)
+          ..add('paidAt', paidAt)
+          ..add('paymentMethod', paymentMethod)
+          ..add('cancelledAt', cancelledAt)
+          ..add('rate', rate)
+          ..add('comment', comment)
+          ..add('rejectedAt', rejectedAt)
+          ..add('preferedTime', preferedTime)
+          ..add('preferedDay', preferedDay)
           ..add('reference', reference))
         .toString();
   }
@@ -667,6 +826,47 @@ class OrdersRecordBuilder
   set rangerUid(DocumentReference<Object> rangerUid) =>
       _$this._rangerUid = rangerUid;
 
+  DateTime _workingAt;
+  DateTime get workingAt => _$this._workingAt;
+  set workingAt(DateTime workingAt) => _$this._workingAt = workingAt;
+
+  DateTime _finishAt;
+  DateTime get finishAt => _$this._finishAt;
+  set finishAt(DateTime finishAt) => _$this._finishAt = finishAt;
+
+  DateTime _paidAt;
+  DateTime get paidAt => _$this._paidAt;
+  set paidAt(DateTime paidAt) => _$this._paidAt = paidAt;
+
+  String _paymentMethod;
+  String get paymentMethod => _$this._paymentMethod;
+  set paymentMethod(String paymentMethod) =>
+      _$this._paymentMethod = paymentMethod;
+
+  DateTime _cancelledAt;
+  DateTime get cancelledAt => _$this._cancelledAt;
+  set cancelledAt(DateTime cancelledAt) => _$this._cancelledAt = cancelledAt;
+
+  int _rate;
+  int get rate => _$this._rate;
+  set rate(int rate) => _$this._rate = rate;
+
+  String _comment;
+  String get comment => _$this._comment;
+  set comment(String comment) => _$this._comment = comment;
+
+  DateTime _rejectedAt;
+  DateTime get rejectedAt => _$this._rejectedAt;
+  set rejectedAt(DateTime rejectedAt) => _$this._rejectedAt = rejectedAt;
+
+  String _preferedTime;
+  String get preferedTime => _$this._preferedTime;
+  set preferedTime(String preferedTime) => _$this._preferedTime = preferedTime;
+
+  String _preferedDay;
+  String get preferedDay => _$this._preferedDay;
+  set preferedDay(String preferedDay) => _$this._preferedDay = preferedDay;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
@@ -705,6 +905,16 @@ class OrdersRecordBuilder
       _onthewayAt = $v.onthewayAt;
       _customerUid = $v.customerUid;
       _rangerUid = $v.rangerUid;
+      _workingAt = $v.workingAt;
+      _finishAt = $v.finishAt;
+      _paidAt = $v.paidAt;
+      _paymentMethod = $v.paymentMethod;
+      _cancelledAt = $v.cancelledAt;
+      _rate = $v.rate;
+      _comment = $v.comment;
+      _rejectedAt = $v.rejectedAt;
+      _preferedTime = $v.preferedTime;
+      _preferedDay = $v.preferedDay;
       _reference = $v.reference;
       _$v = null;
     }
@@ -752,6 +962,16 @@ class OrdersRecordBuilder
             onthewayAt: onthewayAt,
             customerUid: customerUid,
             rangerUid: rangerUid,
+            workingAt: workingAt,
+            finishAt: finishAt,
+            paidAt: paidAt,
+            paymentMethod: paymentMethod,
+            cancelledAt: cancelledAt,
+            rate: rate,
+            comment: comment,
+            rejectedAt: rejectedAt,
+            preferedTime: preferedTime,
+            preferedDay: preferedDay,
             reference: reference);
     replace(_$result);
     return _$result;

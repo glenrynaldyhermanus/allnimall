@@ -17,6 +17,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(PetSchedulesRecord.serializer)
       ..add(PetsRecord.serializer)
       ..add(RangersRecord.serializer)
+      ..add(RatingsRecord.serializer)
       ..add(ServiceCategoriesRecord.serializer)
       ..add(ServicesRecord.serializer)
       ..addBuilderFactory(
