@@ -1,27 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'service_categories_record.dart';
+part of 'discounts_record.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<ServiceCategoriesRecord> _$serviceCategoriesRecordSerializer =
-    new _$ServiceCategoriesRecordSerializer();
+Serializer<DiscountsRecord> _$discountsRecordSerializer =
+    new _$DiscountsRecordSerializer();
 
-class _$ServiceCategoriesRecordSerializer
-    implements StructuredSerializer<ServiceCategoriesRecord> {
+class _$DiscountsRecordSerializer
+    implements StructuredSerializer<DiscountsRecord> {
   @override
-  final Iterable<Type> types = const [
-    ServiceCategoriesRecord,
-    _$ServiceCategoriesRecord
-  ];
+  final Iterable<Type> types = const [DiscountsRecord, _$DiscountsRecord];
   @override
-  final String wireName = 'ServiceCategoriesRecord';
+  final String wireName = 'DiscountsRecord';
 
   @override
-  Iterable<Object> serialize(
-      Serializers serializers, ServiceCategoriesRecord object,
+  Iterable<Object> serialize(Serializers serializers, DiscountsRecord object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[];
     Object value;
@@ -32,12 +28,12 @@ class _$ServiceCategoriesRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.type;
+    value = object.discount;
     if (value != null) {
       result
-        ..add('type')
+        ..add('discount')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+            specifiedType: const FullType(double)));
     }
     value = object.isActive;
     if (value != null) {
@@ -45,6 +41,13 @@ class _$ServiceCategoriesRecordSerializer
         ..add('is_active')
         ..add(
             serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.unit;
+    if (value != null) {
+      result
+        ..add('unit')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
     value = object.reference;
     if (value != null) {
@@ -58,10 +61,10 @@ class _$ServiceCategoriesRecordSerializer
   }
 
   @override
-  ServiceCategoriesRecord deserialize(
+  DiscountsRecord deserialize(
       Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new ServiceCategoriesRecordBuilder();
+    final result = new DiscountsRecordBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -73,13 +76,17 @@ class _$ServiceCategoriesRecordSerializer
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'type':
-          result.type = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+        case 'discount':
+          result.discount = serializers.deserialize(value,
+              specifiedType: const FullType(double)) as double;
           break;
         case 'is_active':
           result.isActive = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool;
+          break;
+        case 'unit':
+          result.unit = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
@@ -94,93 +101,102 @@ class _$ServiceCategoriesRecordSerializer
   }
 }
 
-class _$ServiceCategoriesRecord extends ServiceCategoriesRecord {
+class _$DiscountsRecord extends DiscountsRecord {
   @override
   final String name;
   @override
-  final String type;
+  final double discount;
   @override
   final bool isActive;
   @override
+  final String unit;
+  @override
   final DocumentReference<Object> reference;
 
-  factory _$ServiceCategoriesRecord(
-          [void Function(ServiceCategoriesRecordBuilder) updates]) =>
-      (new ServiceCategoriesRecordBuilder()..update(updates)).build();
+  factory _$DiscountsRecord([void Function(DiscountsRecordBuilder) updates]) =>
+      (new DiscountsRecordBuilder()..update(updates)).build();
 
-  _$ServiceCategoriesRecord._(
-      {this.name, this.type, this.isActive, this.reference})
+  _$DiscountsRecord._(
+      {this.name, this.discount, this.isActive, this.unit, this.reference})
       : super._();
 
   @override
-  ServiceCategoriesRecord rebuild(
-          void Function(ServiceCategoriesRecordBuilder) updates) =>
+  DiscountsRecord rebuild(void Function(DiscountsRecordBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  ServiceCategoriesRecordBuilder toBuilder() =>
-      new ServiceCategoriesRecordBuilder()..replace(this);
+  DiscountsRecordBuilder toBuilder() =>
+      new DiscountsRecordBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is ServiceCategoriesRecord &&
+    return other is DiscountsRecord &&
         name == other.name &&
-        type == other.type &&
+        discount == other.discount &&
         isActive == other.isActive &&
+        unit == other.unit &&
         reference == other.reference;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, name.hashCode), type.hashCode), isActive.hashCode),
+        $jc(
+            $jc($jc($jc(0, name.hashCode), discount.hashCode),
+                isActive.hashCode),
+            unit.hashCode),
         reference.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('ServiceCategoriesRecord')
+    return (newBuiltValueToStringHelper('DiscountsRecord')
           ..add('name', name)
-          ..add('type', type)
+          ..add('discount', discount)
           ..add('isActive', isActive)
+          ..add('unit', unit)
           ..add('reference', reference))
         .toString();
   }
 }
 
-class ServiceCategoriesRecordBuilder
-    implements
-        Builder<ServiceCategoriesRecord, ServiceCategoriesRecordBuilder> {
-  _$ServiceCategoriesRecord _$v;
+class DiscountsRecordBuilder
+    implements Builder<DiscountsRecord, DiscountsRecordBuilder> {
+  _$DiscountsRecord _$v;
 
   String _name;
   String get name => _$this._name;
   set name(String name) => _$this._name = name;
 
-  String _type;
-  String get type => _$this._type;
-  set type(String type) => _$this._type = type;
+  double _discount;
+  double get discount => _$this._discount;
+  set discount(double discount) => _$this._discount = discount;
 
   bool _isActive;
   bool get isActive => _$this._isActive;
   set isActive(bool isActive) => _$this._isActive = isActive;
+
+  String _unit;
+  String get unit => _$this._unit;
+  set unit(String unit) => _$this._unit = unit;
 
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
       _$this._reference = reference;
 
-  ServiceCategoriesRecordBuilder() {
-    ServiceCategoriesRecord._initializeBuilder(this);
+  DiscountsRecordBuilder() {
+    DiscountsRecord._initializeBuilder(this);
   }
 
-  ServiceCategoriesRecordBuilder get _$this {
+  DiscountsRecordBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _name = $v.name;
-      _type = $v.type;
+      _discount = $v.discount;
       _isActive = $v.isActive;
+      _unit = $v.unit;
       _reference = $v.reference;
       _$v = null;
     }
@@ -188,21 +204,25 @@ class ServiceCategoriesRecordBuilder
   }
 
   @override
-  void replace(ServiceCategoriesRecord other) {
+  void replace(DiscountsRecord other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$ServiceCategoriesRecord;
+    _$v = other as _$DiscountsRecord;
   }
 
   @override
-  void update(void Function(ServiceCategoriesRecordBuilder) updates) {
+  void update(void Function(DiscountsRecordBuilder) updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$ServiceCategoriesRecord build() {
+  _$DiscountsRecord build() {
     final _$result = _$v ??
-        new _$ServiceCategoriesRecord._(
-            name: name, type: type, isActive: isActive, reference: reference);
+        new _$DiscountsRecord._(
+            name: name,
+            discount: discount,
+            isActive: isActive,
+            unit: unit,
+            reference: reference);
     replace(_$result);
     return _$result;
   }
