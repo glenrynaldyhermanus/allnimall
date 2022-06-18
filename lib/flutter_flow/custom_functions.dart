@@ -84,7 +84,7 @@ String countDiscount(
   }
 
   final formatter = NumberFormat("###,###");
-  return formatter.format(amount);
+  return "-${formatter.format(amount)}";
 }
 
 String countTotal(
