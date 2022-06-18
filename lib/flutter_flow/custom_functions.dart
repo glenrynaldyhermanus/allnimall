@@ -90,10 +90,9 @@ String countDiscount(
 String countTotal(
   int quantity,
   double serviceFee,
+  double totalDiscount,
 ) {
-  // string currency from integer
-  double totalDisc = 0;
-  double fee = (quantity * serviceFee) - totalDisc;
+  double fee = (quantity * serviceFee) - totalDiscount;
 
   final formatter = NumberFormat("###,###");
   return formatter.format(fee);
