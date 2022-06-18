@@ -630,10 +630,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                     ),
                                                     child: Icon(
                                                       Icons.check,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryBtnText,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       size: 20,
                                                     ),
                                                   ),
@@ -651,10 +650,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                     ),
                                                     child: Icon(
                                                       Icons.check,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryBtnText,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       size: 20,
                                                     ),
                                                   ),
@@ -744,10 +742,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                     ),
                                                     child: Icon(
                                                       Icons.delivery_dining,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryBtnText,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       size: 20,
                                                     ),
                                                   ),
@@ -765,10 +762,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                     ),
                                                     child: Icon(
                                                       Icons.delivery_dining,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryBtnText,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       size: 20,
                                                     ),
                                                   ),
@@ -860,10 +856,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                     ),
                                                     child: Icon(
                                                       Icons.sync,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryBtnText,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       size: 20,
                                                     ),
                                                   ),
@@ -881,10 +876,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                     ),
                                                     child: Icon(
                                                       Icons.sync,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryBtnText,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       size: 20,
                                                     ),
                                                   ),
@@ -976,10 +970,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                     ),
                                                     child: Icon(
                                                       Icons.done_all,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryBtnText,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       size: 20,
                                                     ),
                                                   ),
@@ -997,10 +990,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                     ),
                                                     child: Icon(
                                                       Icons.done_all,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryBtnText,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       size: 20,
                                                     ),
                                                   ),
