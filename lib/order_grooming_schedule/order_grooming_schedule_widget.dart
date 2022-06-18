@@ -148,7 +148,8 @@ class _OrderGroomingScheduleWidgetState
                               style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                             FlutterFlowDropDown(
-                              options: ['Pagi ', 'Siang', 'Sore'],
+                              initialOption: dropDownValue1 ??= 'Pagi',
+                              options: ['Pagi', 'Siang', 'Sore'],
                               onChanged: (val) =>
                                   setState(() => dropDownValue1 = val),
                               width: double.infinity,
@@ -182,7 +183,62 @@ class _OrderGroomingScheduleWidgetState
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(25, 25, 25, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(25, 5, 25, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Container(
+                        width: 10,
+                        height: 100,
+                        constraints: BoxConstraints(
+                          maxHeight: 100,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Color(0xFFDBDCFF),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Perhatian',
+                                style: FlutterFlowTheme.of(context)
+                                    .title3
+                                    .override(
+                                      fontFamily: 'RockoUltra',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryColor,
+                                      fontSize: 14,
+                                      fontStyle: FontStyle.italic,
+                                      useGoogleFonts: false,
+                                    ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                                child: Text(
+                                  'Tanggal dan waktu yang ditentukan mungkin berubah jika jadwal penuh. \nKami akan mengikonfirmasikan setiap perubahan jadwal. ',
+                                  style: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: 'Cabin',
+                                        fontStyle: FontStyle.italic,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(25, 40, 25, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -195,7 +251,22 @@ class _OrderGroomingScheduleWidgetState
                               'Backup Plan',
                               style: FlutterFlowTheme.of(context).bodyText1,
                             ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                              child: Text(
+                                'Jika ada perubahan jadwal, kamu ingin diganti di hari apa?',
+                                style: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Cabin',
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                              ),
+                            ),
                             FlutterFlowDropDown(
+                              initialOption: dropDownValue2 ??=
+                                  'Weekday / Hari Kerja',
                               options: [
                                 'Weekday / Hari Kerja',
                                 'Weekend / Hari Libur'
@@ -243,11 +314,31 @@ class _OrderGroomingScheduleWidgetState
                     padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 25),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        setState(() =>
-                            FFAppState().localPreferedTime = dropDownValue1);
-                        setState(() =>
-                            FFAppState().localPreferedDay = dropDownValue2);
-                        Navigator.pop(context);
+                        if ((FFAppState().localScheduleDate != null)) {
+                          setState(() =>
+                              FFAppState().localPreferedTime = dropDownValue1);
+                          setState(() =>
+                              FFAppState().localPreferedDay = dropDownValue2);
+                          Navigator.pop(context);
+                        } else {
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                title: Text('Jadwal Gagal Di-set'),
+                                content: Text(
+                                    'Mohon pilih tanggal dan preferensi waktu'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: Text('Ok'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
                       },
                       text: 'Set Jadwal',
                       options: FFButtonOptions(

@@ -426,7 +426,7 @@ class _OrderGroomingServiceWidgetState
                               return AlertDialog(
                                 title: Text('Layanan Gagal Dipilih'),
                                 content:
-                                    Text('Mohon pilih layanan terlebih dahulu'),
+                                    Text('Mohon pilih layanan terlebih dahul'),
                                 actions: [
                                   TextButton(
                                     onPressed: () =>
