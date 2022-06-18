@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:allnimall/app_state.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -91,7 +92,19 @@ String countTotal(
   int quantity,
   double serviceFee,
 ) {
-  double fee = (quantity * serviceFee) - 0;
+
+  double totalDisc = 0;
+
+  for(DiscountsRecord disc in FFAppState().localDiscount){
+    if(disc.unit == "Order"){
+      totalDisc += disc.discount;
+    } else if(disc.unit == "Pet"){
+      totalDisc += disc.discount * quantity;
+    }
+  }
+
+
+  double fee = (quantity * serviceFee) - totalDisc;
 
   final formatter = NumberFormat("###,###");
   return formatter.format(fee);
