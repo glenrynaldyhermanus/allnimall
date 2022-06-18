@@ -61,8 +61,6 @@ class FFAppState {
 
   double localTotalDiscount = 0.0;
 
-  List<DocumentReference> localDiscountRefs = [];
-
   List<DiscountsRecord> localDiscount = [];
 }
 
