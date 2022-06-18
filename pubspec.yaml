@@ -46,6 +46,7 @@ dependencies:
   flutter_datetime_picker: 1.5.1
   flutter_google_places: 0.3.0
   flutter_html: 2.2.1
+  flutter_rating_bar: 4.0.0
   flutter_spinkit: 4.1.2+1
   font_awesome_flutter: 10.1.0
   geolocator: 8.0.1

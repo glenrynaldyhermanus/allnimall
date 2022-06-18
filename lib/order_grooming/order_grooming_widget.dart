@@ -21,6 +21,7 @@ class OrderGroomingWidget extends StatefulWidget {
 }
 
 class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
+  OrdersRecord order;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -656,13 +657,20 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                         customerPhone: currentPhoneNumber,
                         customerUid: currentUserReference,
                       );
-                      await OrdersRecord.collection.doc().set(ordersCreateData);
+                      var ordersRecordReference = OrdersRecord.collection.doc();
+                      await ordersRecordReference.set(ordersCreateData);
+                      order = OrdersRecord.getDocumentFromData(
+                          ordersCreateData, ordersRecordReference);
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => GroomingDetailWidget(),
+                          builder: (context) => GroomingDetailWidget(
+                            order: order.reference,
+                          ),
                         ),
                       );
+
+                      setState(() {});
                     },
                     text: 'Panggil Groomer',
                     options: FFButtonOptions(
