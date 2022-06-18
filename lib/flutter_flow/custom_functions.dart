@@ -70,13 +70,21 @@ String countFee(
   return formatter.format(amount);
 }
 
-String countDiscount(int quantity) {
+String countDiscount(
+  int quantity,
+  DiscountsRecord discount,
+) {
   // string currency from integer
+  double amount = 0;
 
-  int fee = quantity * -20000;
+  if (discount.unit == "order") {
+    amount = discount.discount;
+  } else {
+    amount = quantity * discount.discount;
+  }
 
-  final formatter = new NumberFormat("###,###");
-  return formatter.format(fee);
+  final formatter = NumberFormat("###,###");
+  return formatter.format(amount);
 }
 
 String countTotal(

@@ -566,9 +566,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 4, 0, 0),
                                           child: Text(
-                                            functions.countDiscount(
-                                                groomingDetailOrdersRecord
-                                                    .quantity),
+                                            'Name',
                                             style: FlutterFlowTheme.of(context)
                                                 .subtitle1
                                                 .override(
