@@ -7,6 +7,7 @@ import '../order_detail/order_detail_widget.dart';
 import '../order_grooming_location/order_grooming_location_widget.dart';
 import '../order_grooming_schedule/order_grooming_schedule_widget.dart';
 import '../order_grooming_service/order_grooming_service_widget.dart';
+import '../custom_code/actions/index.dart' as actions;
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -629,7 +630,7 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                       final ordersCreateData = createOrdersRecordData(
                         createdAt: getCurrentTimestamp,
                         orderNo: functions.generateOrderNo(),
-                        petCategory: FFAppState().localPetAmount.toString(),
+                        petCategory: FFAppState().localServiceCategory,
                         name: functions.generateOrderName(
                             FFAppState().localServiceName,
                             FFAppState().localPetAmount,
@@ -650,11 +651,16 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                         discount: 20000.0,
                         customerPhone: currentPhoneNumber,
                         customerUid: currentUserReference,
+                        preferedTime: FFAppState().localPreferedTime,
+                        preferedDay: FFAppState().localPreferedDay,
                       );
                       var ordersRecordReference = OrdersRecord.collection.doc();
                       await ordersRecordReference.set(ordersCreateData);
                       order = OrdersRecord.getDocumentFromData(
                           ordersCreateData, ordersRecordReference);
+                      await actions.backToRoot(
+                        context,
+                      );
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
