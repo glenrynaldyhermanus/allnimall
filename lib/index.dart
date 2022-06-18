@@ -6,7 +6,6 @@ export 'profile_and_pets/profile_and_pets_widget.dart'
 export 'market_place/market_place_widget.dart' show MarketPlaceWidget;
 export 'new_pet/new_pet_widget.dart' show NewPetWidget;
 export 'order_list/order_list_widget.dart' show OrderListWidget;
-export 'grooming_form/grooming_form_widget.dart' show GroomingFormWidget;
 export 'select_geo_location/select_geo_location_widget.dart'
     show SelectGeoLocationWidget;
 export 'grooming_detail/grooming_detail_widget.dart' show GroomingDetailWidget;
@@ -29,8 +28,6 @@ export 'pet_list/pet_list_widget.dart' show PetListWidget;
 export 'edit_profile/edit_profile_widget.dart' show EditProfileWidget;
 export 'home_backup/home_backup_widget.dart' show HomeBackupWidget;
 export 'settings/settings_widget.dart' show SettingsWidget;
-export 'grooming_summary/grooming_summary_widget.dart'
-    show GroomingSummaryWidget;
 export 'payment_method/payment_method_widget.dart' show PaymentMethodWidget;
 export 'order_grooming/order_grooming_widget.dart' show OrderGroomingWidget;
 export 'order_grooming_service/order_grooming_service_widget.dart'

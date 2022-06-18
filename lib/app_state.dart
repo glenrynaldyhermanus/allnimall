@@ -55,6 +55,8 @@ class FFAppState {
   int localPetAmount = 0;
 
   String localServiceDesc = '';
+
+  double localServiceFee = 0.0;
 }
 
 LatLng _latLngFromString(String val) {

@@ -58,13 +58,16 @@ String countAgeString(DateTime dateTime) {
   return '${age.inDays ~/ 365} $years ${age.inDays ~/ 30} $months';
 }
 
-String countFee(int quantity) {
+String countFee(
+  int quantity,
+  double fee,
+) {
   // string currency from integer
 
-  int fee = quantity * 85000;
+  double amount = quantity * fee;
 
-  final formatter = new NumberFormat("###,###");
-  return formatter.format(fee);
+  final formatter = NumberFormat("###,###");
+  return formatter.format(amount);
 }
 
 String countDiscount(int quantity) {
