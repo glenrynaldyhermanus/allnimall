@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'backend/schema/discounts_record.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/lat_lng.dart';
 
@@ -61,6 +62,8 @@ class FFAppState {
   double localTotalDiscount = 0.0;
 
   List<DocumentReference> localDiscountRefs = [];
+
+  List<DiscountsRecord> localDiscount = [];
 }
 
 LatLng _latLngFromString(String val) {

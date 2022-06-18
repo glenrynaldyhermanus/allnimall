@@ -495,6 +495,7 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                                     List<DiscountsRecord>
                                         columnDiscountsRecordList =
                                         snapshot.data;
+                                    FFAppState().localDiscount = snapshot.data;
                                     return Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: List.generate(
