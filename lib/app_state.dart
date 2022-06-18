@@ -59,8 +59,6 @@ class FFAppState {
 
   double localServiceFee = 0.0;
 
-  double localTotalDiscount = 0.0;
-
   List<DiscountsRecord> localDiscount = [];
 }
 
