@@ -464,6 +464,7 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                                     ],
                                   ),
                                 ),
+                                Divider(),
                                 StreamBuilder<List<DiscountsRecord>>(
                                   stream: queryDiscountsRecord(
                                     queryBuilder: (discountsRecord) =>
@@ -499,7 +500,6 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                                         return Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            Divider(),
                                             Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
