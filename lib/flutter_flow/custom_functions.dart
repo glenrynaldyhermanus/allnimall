@@ -204,6 +204,8 @@ bool isOrderFormSet(
   String serviceName,
   DateTime scheduleDate,
 ) {
+  print(address.isNotEmpty && serviceName.isNotEmpty && scheduleDate != null);
+
   // all parameter is set and not empty or null
   return address.isNotEmpty && serviceName.isNotEmpty && scheduleDate != null;
 }
