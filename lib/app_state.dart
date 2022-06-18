@@ -57,10 +57,6 @@ class FFAppState {
   String localServiceDesc = '';
 
   double localServiceFee = 0.0;
-
-  double localTotalDiscount = 0.0;
-
-  List<DocumentReference> localDiscountRefs = [];
 }
 
 LatLng _latLngFromString(String val) {

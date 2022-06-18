@@ -663,8 +663,7 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                                         child: Text(
                                           functions.countTotal(
                                               FFAppState().localPetAmount,
-                                              FFAppState().localServiceFee,
-                                              FFAppState().localTotalDiscount),
+                                              FFAppState().localServiceFee),
                                           textAlign: TextAlign.end,
                                           style: FlutterFlowTheme.of(context)
                                               .subtitle1
