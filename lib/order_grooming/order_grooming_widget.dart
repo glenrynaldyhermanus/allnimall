@@ -740,14 +740,20 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                         order = OrdersRecord.getDocumentFromData(
                             ordersCreateData, ordersRecordReference);
 
-                        final orderDiscountsCreateData =
-                            createOrderDiscountsRecordData(
-                          name: 'Discount',
-                          discount: 0.0,
-                          unit: 'Order',
-                        );
-                        await OrderDiscountsRecord.createDoc(order.reference)
-                            .set(orderDiscountsCreateData);
+
+                        for(DiscountsRecord disc in FFAppState().localDiscount){
+                          final orderDiscountsCreateData =
+                          createOrderDiscountsRecordData(
+                            name: disc.name,
+                            discount: disc.discount,
+                            unit: disc.unit,
+                          );
+                          await OrderDiscountsRecord.createDoc(order.reference)
+                              .set(orderDiscountsCreateData);
+
+                        }
+
+                        setState(() => FFAppState().localDiscount = null);
                         setState(() => FFAppState().localScheduleDate = null);
                         await actions.backToRoot(
                           context,
