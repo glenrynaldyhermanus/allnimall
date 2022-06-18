@@ -198,3 +198,12 @@ bool isEarlierThanToday(DateTime date) {
   return DateTime(date.year, date.month, date.day).isBefore(
       DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day));
 }
+
+bool isOrderFormSet(
+  String address,
+  String serviceName,
+  DateTime scheduleDate,
+) {
+  // all parameter is set and not empty or null
+  return address.isNotEmpty && serviceName.isNotEmpty && scheduleDate != null;
+}
