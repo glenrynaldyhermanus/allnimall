@@ -3,7 +3,6 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../home_backup/home_backup_widget.dart';
-import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -65,7 +64,7 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
                           style: FlutterFlowTheme.of(context).subtitle2,
                         ),
                         Text(
-                          functions.countTotal(widget.order.quantity),
+                          widget.order.amount.toString(),
                           textAlign: TextAlign.center,
                           style: FlutterFlowTheme.of(context).title1,
                         ),
