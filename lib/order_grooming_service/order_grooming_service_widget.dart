@@ -412,11 +412,32 @@ class _OrderGroomingServiceWidgetState
                     padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 25),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        setState(() =>
-                            FFAppState().localServiceCategory = dropDownValue2);
-                        setState(() => FFAppState().localPetAmount =
-                            functions.stringToInteger(dropDownValue1));
-                        Navigator.pop(context);
+                        if ((FFAppState().localServiceName != null) &&
+                            (FFAppState().localServiceName != '')) {
+                          setState(() => FFAppState().localServiceCategory =
+                              dropDownValue2);
+                          setState(() => FFAppState().localPetAmount =
+                              functions.stringToInteger(dropDownValue1));
+                          Navigator.pop(context);
+                        } else {
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                title: Text('Layanan Gagal Dipilih'),
+                                content:
+                                    Text('Mohon pilih layanan terlebih dahulu'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: Text('Ok'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
                       },
                       text: 'Pilih Layanan',
                       options: FFButtonOptions(
