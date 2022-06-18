@@ -18,6 +18,7 @@ import 'schema/services_record.dart';
 import 'schema/activities_record.dart';
 import 'schema/ratings_record.dart';
 import 'schema/discounts_record.dart';
+import 'schema/order_discounts_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -39,6 +40,7 @@ export 'schema/services_record.dart';
 export 'schema/activities_record.dart';
 export 'schema/ratings_record.dart';
 export 'schema/discounts_record.dart';
+export 'schema/order_discounts_record.dart';
 
 /// Functions to query PetsRecords (as a Stream and as a Future).
 Stream<List<PetsRecord>> queryPetsRecord({
@@ -629,6 +631,51 @@ Future<FFFirestorePage<DiscountsRecord>> queryDiscountsRecordPage({
     queryCollectionPage(
       DiscountsRecord.collection,
       DiscountsRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query OrderDiscountsRecords (as a Stream and as a Future).
+Stream<List<OrderDiscountsRecord>> queryOrderDiscountsRecord({
+  DocumentReference parent,
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      OrderDiscountsRecord.collection(parent),
+      OrderDiscountsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<OrderDiscountsRecord>> queryOrderDiscountsRecordOnce({
+  DocumentReference parent,
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      OrderDiscountsRecord.collection(parent),
+      OrderDiscountsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<OrderDiscountsRecord>> queryOrderDiscountsRecordPage({
+  DocumentReference parent,
+  Query Function(Query) queryBuilder,
+  DocumentSnapshot nextPageMarker,
+  int pageSize,
+  bool isStream,
+}) =>
+    queryCollectionPage(
+      OrderDiscountsRecord.collection(parent),
+      OrderDiscountsRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,
