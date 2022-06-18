@@ -663,9 +663,7 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                                         child: Text(
                                           functions.countTotal(
                                               FFAppState().localPetAmount,
-                                              FFAppState().localServiceFee,
-                                              functions.countTotalDiscount(
-                                                  FFAppState().localPetAmount)),
+                                              FFAppState().localServiceFee),
                                           textAlign: TextAlign.end,
                                           style: FlutterFlowTheme.of(context)
                                               .subtitle1
@@ -698,48 +696,73 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                 children: [
                   FFButtonWidget(
                     onPressed: () async {
-                      final ordersCreateData = createOrdersRecordData(
-                        createdAt: getCurrentTimestamp,
-                        orderNo: functions.generateOrderNo(),
-                        petCategory: FFAppState().localServiceCategory,
-                        name: functions.generateOrderName(
-                            FFAppState().localServiceName,
-                            FFAppState().localPetAmount,
-                            FFAppState().localServiceCategory),
-                        scheduledAt: FFAppState().localScheduleDate,
-                        service: FFAppState().localServiceName,
-                        quantity: FFAppState().localPetAmount,
-                        amount: functions.countAmount(
-                            FFAppState().localServiceFee,
-                            FFAppState().localPetAmount,
-                            20000.0),
-                        status: 'New',
-                        customerAddress: FFAppState().localAddress,
-                        customerLatlng: FFAppState().localLatLng,
-                        customerName: currentUserDisplayName,
-                        paymentStatus: 'Unpaid',
-                        prefferedTime: FFAppState().localPreferedTime,
-                        discount: 20000.0,
-                        customerPhone: currentPhoneNumber,
-                        customerUid: currentUserReference,
-                        preferedTime: FFAppState().localPreferedTime,
-                        preferedDay: FFAppState().localPreferedDay,
-                      );
-                      var ordersRecordReference = OrdersRecord.collection.doc();
-                      await ordersRecordReference.set(ordersCreateData);
-                      order = OrdersRecord.getDocumentFromData(
-                          ordersCreateData, ordersRecordReference);
-                      await actions.backToRoot(
-                        context,
-                      );
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => OrderDetailWidget(
-                            order: order.reference,
+                      if (functions.isOrderFormSet(
+                          FFAppState().localAddress,
+                          FFAppState().localServiceName,
+                          FFAppState().localScheduleDate)) {
+                        final ordersCreateData = createOrdersRecordData(
+                          createdAt: getCurrentTimestamp,
+                          orderNo: functions.generateOrderNo(),
+                          petCategory: FFAppState().localServiceCategory,
+                          name: functions.generateOrderName(
+                              FFAppState().localServiceName,
+                              FFAppState().localPetAmount,
+                              FFAppState().localServiceCategory),
+                          scheduledAt: FFAppState().localScheduleDate,
+                          service: FFAppState().localServiceName,
+                          quantity: FFAppState().localPetAmount,
+                          amount: functions.countAmount(
+                              FFAppState().localServiceFee,
+                              FFAppState().localPetAmount,
+                              20000.0),
+                          status: 'New',
+                          customerAddress: FFAppState().localAddress,
+                          customerLatlng: FFAppState().localLatLng,
+                          customerName: currentUserDisplayName,
+                          paymentStatus: 'Unpaid',
+                          prefferedTime: FFAppState().localPreferedTime,
+                          discount: 20000.0,
+                          customerPhone: currentPhoneNumber,
+                          customerUid: currentUserReference,
+                          preferedTime: FFAppState().localPreferedTime,
+                          preferedDay: FFAppState().localPreferedDay,
+                        );
+                        var ordersRecordReference =
+                            OrdersRecord.collection.doc();
+                        await ordersRecordReference.set(ordersCreateData);
+                        order = OrdersRecord.getDocumentFromData(
+                            ordersCreateData, ordersRecordReference);
+                        setState(() => FFAppState().localScheduleDate = null);
+                        await actions.backToRoot(
+                          context,
+                        );
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OrderDetailWidget(
+                              order: order.reference,
+                            ),
                           ),
-                        ),
-                      );
+                        );
+                      } else {
+                        await showDialog(
+                          context: context,
+                          builder: (alertDialogContext) {
+                            return AlertDialog(
+                              title: Text('Pemesanan Gagal'),
+                              content: Text(
+                                  'Mohon lengkapi semua data yang diminta'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext),
+                                  child: Text('Ok'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }
 
                       setState(() {});
                     },

@@ -90,11 +90,10 @@ String countDiscount(
 String countTotal(
   int quantity,
   double serviceFee,
-  double totalDiscount,
 ) {
   // string currency from integer
-
-  double fee = (quantity * serviceFee) - totalDiscount;
+  double totalDisc = 0;
+  double fee = (quantity * serviceFee) - totalDisc;
 
   final formatter = NumberFormat("###,###");
   return formatter.format(fee);
@@ -266,22 +265,4 @@ bool isAlreadyRated(OrdersRecord order) {
 String generateWhatsappUrl(String phone) {
   phone = phone.replaceAll("+", "").trim();
   return "https://api.whatsapp.com/send?phone=" + phone;
-}
-
-double countTotalDiscount(int numOfPet) {
-  // count total discount document from firebasefirestore
-  double sum = 0.0;
-//  FirebaseFirestore firestore = FirebaseFirestore.instance; // cloud firestore
-  FirebaseFirestore.instance
-      .collection("/discounts")
-      .where("is_active", isEqualTo: true)
-      .get()
-      .then((response) => response.docs.forEach((document) {
-            if (document.data()['unit'] == "Order") {
-              sum += document.data()['discount'];
-            } else {
-              sum += document.data()['discount'] * numOfPet;
-            }
-          }));
-  return sum;
 }
