@@ -79,12 +79,16 @@ String countDiscount(int quantity) {
   return formatter.format(fee);
 }
 
-String countTotal(int quantity) {
+String countTotal(
+  int quantity,
+  double serviceFee,
+  double totalDiscount,
+) {
   // string currency from integer
 
-  int fee = (quantity * 85000) - (quantity * 20000);
+  double fee = (quantity * serviceFee) - (quantity * totalDiscount);
 
-  final formatter = new NumberFormat("###,###");
+  final formatter = NumberFormat("###,###");
   return formatter.format(fee);
 }
 
