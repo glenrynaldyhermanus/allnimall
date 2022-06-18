@@ -89,7 +89,6 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
         pet: getParameter(data, 'pet'),
       ),
   'OrderList': (data) async => OrderListWidget(),
-  'GroomingForm': (data) async => GroomingFormWidget(),
   'SelectGeoLocation': (data) async => SelectGeoLocationWidget(),
   'GroomingDetail': (data) async => GroomingDetailWidget(
         order: getParameter(data, 'order'),
@@ -123,15 +122,6 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'PetList': (data) async => PetListWidget(),
   'EditProfile': (data) async => EditProfileWidget(),
   'Settings': (data) async => SettingsWidget(),
-  'GroomingSummary': (data) async => GroomingSummaryWidget(
-        customerAddress: getParameter(data, 'customerAddress'),
-        service: getParameter(data, 'service'),
-        quantity: getParameter(data, 'quantity'),
-        customerLatLng: getParameter(data, 'customerLatLng'),
-        scheduleDate: getParameter(data, 'scheduleDate'),
-        scheduleTime: getParameter(data, 'scheduleTime'),
-        petCategory: getParameter(data, 'petCategory'),
-      ),
   'PaymentMethod': (data) async => PaymentMethodWidget(
         order:
             await getDocumentParameter(data, 'order', OrdersRecord.serializer),

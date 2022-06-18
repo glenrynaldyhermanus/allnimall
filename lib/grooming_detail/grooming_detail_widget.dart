@@ -537,9 +537,8 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 4, 0, 0),
                                             child: Text(
-                                              functions.countFee(
-                                                  groomingDetailOrdersRecord
-                                                      .quantity),
+                                              groomingDetailOrdersRecord.amount
+                                                  .toString(),
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .subtitle1
