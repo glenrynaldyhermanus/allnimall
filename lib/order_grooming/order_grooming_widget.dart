@@ -366,130 +366,104 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                                     ),
                                   ],
                                 ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      flex: 3,
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Expanded(
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 10, 0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Text(
-                                                        dateTimeFormat(
-                                                            'MMMMEEEEd',
-                                                            FFAppState()
-                                                                .localScheduleDate),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .subtitle2,
-                                                      ),
-                                                      Text(
-                                                        ' - ',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .subtitle2,
-                                                      ),
-                                                      Text(
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 5, 0, 0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        flex: 3,
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Expanded(
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 0, 10, 0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 4, 0, 0),
+                                                      child: Text(
                                                         FFAppState()
-                                                            .localPreferedTime,
+                                                            .localServiceName,
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .subtitle2,
+                                                                .subtitle1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Cabin',
+                                                                  fontSize: 16,
+                                                                ),
                                                       ),
-                                                    ],
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 4, 0, 0),
-                                                    child: Text(
-                                                      FFAppState()
-                                                          .localServiceName,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .subtitle1
-                                                          .override(
-                                                            fontFamily: 'Cabin',
-                                                            fontSize: 16,
-                                                          ),
                                                     ),
-                                                  ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Text(
-                                                        FFAppState()
-                                                            .localPetAmount
-                                                            .toString(),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .subtitle2,
-                                                      ),
-                                                      Text(
-                                                        ' x ',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .subtitle2,
-                                                      ),
-                                                      Text(
-                                                        FFAppState()
-                                                            .localServiceCategory,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .subtitle2,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Text(
+                                                          FFAppState()
+                                                              .localPetAmount
+                                                              .toString(),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .subtitle2,
+                                                        ),
+                                                        Text(
+                                                          ' x ',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .subtitle2,
+                                                        ),
+                                                        Text(
+                                                          FFAppState()
+                                                              .localServiceCategory,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .subtitle2,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 1,
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 4, 0, 0),
-                                        child: Text(
-                                          functions.countFee(
-                                              FFAppState().localPetAmount,
-                                              FFAppState().localServiceFee),
-                                          textAlign: TextAlign.end,
-                                          style: FlutterFlowTheme.of(context)
-                                              .subtitle1
-                                              .override(
-                                                fontFamily: 'Cabin',
-                                                fontSize: 16,
-                                              ),
+                                          ],
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                      Expanded(
+                                        flex: 1,
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 4, 0, 0),
+                                          child: Text(
+                                            functions.countFee(
+                                                FFAppState().localPetAmount,
+                                                FFAppState().localServiceFee),
+                                            textAlign: TextAlign.end,
+                                            style: FlutterFlowTheme.of(context)
+                                                .subtitle1
+                                                .override(
+                                                  fontFamily: 'Cabin',
+                                                  fontSize: 16,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 Divider(),
                                 Row(
@@ -677,6 +651,31 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                         width: 1,
                       ),
                       borderRadius: 4,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                    child: Text(
+                      'Dengan menekan tombol di atas kamu menyetujui',
+                      textAlign: TextAlign.center,
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Cabin',
+                            fontStyle: FontStyle.italic,
+                          ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () async {
+                      await launchURL('https://allnimall.com');
+                    },
+                    child: Text(
+                      'Syarat & Ketentuan',
+                      textAlign: TextAlign.center,
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Cabin',
+                            color: FlutterFlowTheme.of(context).secondaryColor,
+                            fontStyle: FontStyle.italic,
+                          ),
                     ),
                   ),
                 ],
