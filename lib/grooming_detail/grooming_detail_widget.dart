@@ -3,7 +3,7 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../home_backup/home_backup_widget.dart';
+import '../main.dart';
 import '../payment_method/payment_method_widget.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -713,7 +713,8 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => HomeBackupWidget(),
+                                  builder: (context) =>
+                                      NavBarPage(initialPage: 'HomeBackup'),
                                 ),
                               );
                             },
