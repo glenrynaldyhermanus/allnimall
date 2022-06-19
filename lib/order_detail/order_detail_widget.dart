@@ -1393,99 +1393,145 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                 );
                                               },
                                             ),
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Expanded(
-                                                  flex: 3,
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Expanded(
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      0, 10, 0),
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            4,
-                                                                            0,
-                                                                            0),
-                                                                child: Text(
-                                                                  'Total',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .subtitle1
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Cabin',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryColor,
-                                                                        fontSize:
-                                                                            16,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                      ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 0, 10),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Expanded(
+                                                    flex: 3,
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Expanded(
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0,
+                                                                        0,
+                                                                        10,
+                                                                        0),
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          4,
+                                                                          0,
+                                                                          0),
+                                                                  child: Text(
+                                                                    'Total',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .subtitle1
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Cabin',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryColor,
+                                                                          fontSize:
+                                                                              16,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                        ),
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                            ],
+                                                              ],
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 4, 0, 0),
-                                                    child: Text(
-                                                      formatNumber(
-                                                        orderDetailOrdersRecord
-                                                            .amount,
-                                                        formatType:
-                                                            FormatType.decimal,
-                                                        decimalType: DecimalType
-                                                            .commaDecimal,
-                                                      ),
-                                                      textAlign: TextAlign.end,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .subtitle1
-                                                          .override(
-                                                            fontFamily: 'Cabin',
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryColor,
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
+                                                      ],
                                                     ),
                                                   ),
-                                                ),
-                                              ],
+                                                  Expanded(
+                                                    flex: 1,
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 4, 0, 0),
+                                                      child: Text(
+                                                        formatNumber(
+                                                          orderDetailOrdersRecord
+                                                              .amount,
+                                                          formatType: FormatType
+                                                              .decimal,
+                                                          decimalType:
+                                                              DecimalType
+                                                                  .commaDecimal,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.end,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .subtitle1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Cabin',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryColor,
+                                                                  fontSize: 16,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ],
+                                        ),
+                                      ),
+                                      Divider(),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 20, 0, 20),
+                                        child: FFButtonWidget(
+                                          onPressed: () async {
+                                            await launchURL(
+                                                'https://api.whatsapp.com/send?phone=6285163707044&text=Butuh%20bantuan%20untuk%20order%20${orderDetailOrdersRecord.orderNo}');
+                                          },
+                                          text: 'Butuh Bantuan?',
+                                          options: FFButtonOptions(
+                                            width: double.infinity,
+                                            height: 56,
+                                            color: Colors.transparent,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .title3
+                                                    .override(
+                                                      fontFamily: 'RockoUltra',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryColor,
+                                                      fontSize: 18,
+                                                      useGoogleFonts: false,
+                                                    ),
+                                            elevation: 0,
+                                            borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1,
+                                            ),
+                                            borderRadius: 24,
+                                          ),
                                         ),
                                       ),
                                     ],
