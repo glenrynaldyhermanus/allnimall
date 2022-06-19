@@ -115,97 +115,105 @@ class _FAQArticleWidgetState extends State<FAQArticleWidget> {
                             (columnIndex) {
                           final columnFaqsRecord =
                               columnFaqsRecordList[columnIndex];
-                          return Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
-                            child: Container(
-                              width: double.infinity,
-                              height: 80,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                              ),
-                              child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
-                                child: InkWell(
-                                  onTap: () async {
-                                    final faqsUpdateData = {
-                                      'visit_count': FieldValue.increment(1),
-                                    };
-                                    await columnFaqsRecord.reference
-                                        .update(faqsUpdateData);
-                                  },
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  20, 10, 0, 10),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Text(
-                                                    columnFaqsRecord.question,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .subtitle2
-                                                        .override(
-                                                          fontFamily: 'Cabin',
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                  ),
-                                                ],
-                                              ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Expanded(
-                                                    child: Text(
-                                                      columnFaqsRecord.answer,
-                                                      maxLines: 2,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText2
-                                                          .override(
-                                                            fontFamily: 'Cabin',
-                                                            fontSize: 14,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
+                          return Visibility(
+                            visible: (widget.faq.reference) !=
+                                (columnFaqsRecord.reference),
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
+                              child: Container(
+                                width: double.infinity,
+                                height: 80,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 2, 0, 0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      final faqsUpdateData = {
+                                        'visit_count': FieldValue.increment(1),
+                                      };
+                                      await columnFaqsRecord.reference
+                                          .update(faqsUpdateData);
+                                    },
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Expanded(
+                                          child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0, 10, 8, 0),
-                                            child: Icon(
-                                              Icons.chevron_right_outlined,
-                                              color: Color(0xFF95A1AC),
-                                              size: 24,
+                                                    20, 10, 0, 10),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Text(
+                                                      columnFaqsRecord.question,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .subtitle2
+                                                          .override(
+                                                            fontFamily: 'Cabin',
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Expanded(
+                                                      child: Text(
+                                                        columnFaqsRecord.answer,
+                                                        maxLines: 2,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText2
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Cabin',
+                                                                  fontSize: 14,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
                                             ),
                                           ),
-                                        ],
-                                      ),
-                                    ],
+                                        ),
+                                        Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 10, 8, 0),
+                                              child: Icon(
+                                                Icons.chevron_right_outlined,
+                                                color: Color(0xFF95A1AC),
+                                                size: 24,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
