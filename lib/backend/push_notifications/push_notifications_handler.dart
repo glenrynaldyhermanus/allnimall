@@ -83,8 +83,8 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
 final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'Home': (data) async => HomeWidget(),
   'Splash': (data) async => SplashWidget(),
-  'ProfileAndPets': (data) async => ProfileAndPetsWidget(),
-  'MarketPlace': (data) async => MarketPlaceWidget(),
+  'ProfileAndPets': (data) async => NavBarPage(initialPage: 'ProfileAndPets'),
+  'MarketPlace': (data) async => NavBarPage(initialPage: 'MarketPlace'),
   'NewPet': (data) async => NewPetWidget(
         pet: getParameter(data, 'pet'),
       ),
@@ -118,7 +118,7 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'AddSchedule': (data) async => AddScheduleWidget(
         petRef: getParameter(data, 'petRef'),
       ),
-  'Timeline': (data) async => TimelineWidget(),
+  'Timeline': (data) async => NavBarPage(initialPage: 'Timeline'),
   'PetList': (data) async => PetListWidget(),
   'EditProfile': (data) async => EditProfileWidget(),
   'Settings': (data) async => SettingsWidget(),

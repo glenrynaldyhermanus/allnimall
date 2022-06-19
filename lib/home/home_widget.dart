@@ -6,10 +6,10 @@ import '../components/empty_schedule_no_pet_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../main.dart';
 import '../pet_list/pet_list_widget.dart';
 import '../pet_profile/pet_profile_widget.dart';
 import '../settings/settings_widget.dart';
-import '../timeline/timeline_widget.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -179,7 +179,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => TimelineWidget(),
+                                  builder: (context) =>
+                                      NavBarPage(initialPage: 'Timeline'),
                                 ),
                               );
                             },
