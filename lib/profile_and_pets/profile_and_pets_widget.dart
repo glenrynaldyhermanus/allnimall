@@ -7,7 +7,6 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../help/help_widget.dart';
 import '../pet_list/pet_list_widget.dart';
 import '../pet_profile/pet_profile_widget.dart';
 import '../phone_sign_in/phone_sign_in_widget.dart';
@@ -46,24 +45,31 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
               ),
         ),
         actions: [
-          FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
-            icon: Icon(
-              Icons.settings,
-              color: FlutterFlowTheme.of(context).secondaryColor,
-              size: 24,
-            ),
-            onPressed: () async {
-              await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HelpWidget(),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              FlutterFlowIconButton(
+                borderColor: Colors.transparent,
+                borderRadius: 30,
+                borderWidth: 1,
+                buttonSize: 60,
+                icon: Icon(
+                  Icons.exit_to_app_outlined,
+                  color: FlutterFlowTheme.of(context).secondaryColor,
+                  size: 24,
                 ),
-              );
-            },
+                onPressed: () async {
+                  await signOut();
+                  await Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PhoneSignInWidget(),
+                    ),
+                    (r) => false,
+                  );
+                },
+              ),
+            ],
           ),
         ],
         centerTitle: true,
@@ -120,10 +126,12 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                             FlutterFlowTheme.of(context).title3,
                                       ),
                                     ),
-                                    Text(
-                                      currentUserEmail,
-                                      style: FlutterFlowTheme.of(context)
-                                          .subtitle2,
+                                    AuthUserStreamWidget(
+                                      child: Text(
+                                        currentPhoneNumber,
+                                        style: FlutterFlowTheme.of(context)
+                                            .subtitle2,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -709,67 +717,6 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                       ),
                     ),
                   ],
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(0, 0),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        'You need to sign in',
-                        style: FlutterFlowTheme.of(context).title2.override(
-                              fontFamily: 'RockoUltra',
-                              color: Color(0xFF717171),
-                              fontWeight: FontWeight.w500,
-                              useGoogleFonts: false,
-                            ),
-                      ),
-                      Text(
-                        'It just takes a minute to sign in',
-                        textAlign: TextAlign.center,
-                        style: FlutterFlowTheme.of(context).subtitle1.override(
-                              fontFamily: 'Cabin',
-                              color: Color(0xFF757575),
-                            ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => PhoneSignInWidget(),
-                              ),
-                            );
-                          },
-                          text: 'Sign In',
-                          options: FFButtonOptions(
-                            width: 130,
-                            height: 50,
-                            color: FlutterFlowTheme.of(context).secondaryColor,
-                            textStyle:
-                                FlutterFlowTheme.of(context).title3.override(
-                                      fontFamily: 'RockoUltra',
-                                      color: Colors.white,
-                                      useGoogleFonts: false,
-                                    ),
-                            elevation: 3,
-                            borderSide: BorderSide(
-                              color: Colors.transparent,
-                              width: 1,
-                            ),
-                            borderRadius: 8,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
                 ),
               ),
             ],
