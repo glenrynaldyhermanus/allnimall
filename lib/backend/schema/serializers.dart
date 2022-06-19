@@ -16,6 +16,7 @@ import 'ratings_record.dart';
 import 'discounts_record.dart';
 import 'order_discounts_record.dart';
 import 'order_services_record.dart';
+import 'faqs_record.dart';
 
 import 'index.dart';
 
@@ -42,6 +43,7 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   DiscountsRecord,
   OrderDiscountsRecord,
   OrderServicesRecord,
+  FaqsRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())
