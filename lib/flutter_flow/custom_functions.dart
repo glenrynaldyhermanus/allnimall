@@ -135,9 +135,8 @@ String generateOrderNo() {
 double countAmount(
   double serviceFee,
   int quantity,
-  double discount,
 ) {
-  return (serviceFee * quantity) - (discount * quantity);
+  return (serviceFee * quantity) - 0;
 }
 
 bool isDatePicked(DateTime dateTime) {

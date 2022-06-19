@@ -726,8 +726,7 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                           quantity: FFAppState().localPetAmount,
                           amount: functions.countAmount(
                               FFAppState().localServiceFee,
-                              FFAppState().localPetAmount,
-                              20000.0),
+                              FFAppState().localPetAmount),
                           status: 'New',
                           customerAddress: FFAppState().localAddress,
                           customerLatlng: FFAppState().localLatLng,
