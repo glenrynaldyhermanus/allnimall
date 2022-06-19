@@ -497,198 +497,204 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                                         snapshot.data;
                                     FFAppState().localDiscount = snapshot.data;
                                     return Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: List.generate(
-                                          columnDiscountsRecordList.length,
-                                          (columnIndex) {
-                                        final columnDiscountsRecord =
-                                            columnDiscountsRecordList[
-                                                columnIndex];
-                                        return Column(
+                                      children: [
+                                        Column(
                                           mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Row(
+                                          children: List.generate(
+                                              columnDiscountsRecordList.length,
+                                              (columnIndex) {
+                                            final columnDiscountsRecord =
+                                                columnDiscountsRecordList[
+                                                    columnIndex];
+                                            return Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
-                                                Expanded(
-                                                  flex: 3,
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Expanded(
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      0, 10, 0),
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            4,
-                                                                            0,
-                                                                            0),
-                                                                child: Text(
-                                                                  columnDiscountsRecord
-                                                                      .name,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .subtitle1
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Cabin',
-                                                                        fontSize:
-                                                                            16,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                              Text(
-                                                                '${formatNumber(
-                                                                  columnDiscountsRecord
-                                                                      .discount,
-                                                                  formatType:
-                                                                      FormatType
-                                                                          .decimal,
-                                                                  decimalType:
-                                                                      DecimalType
-                                                                          .commaDecimal,
-                                                                )} / ${columnDiscountsRecord.unit}',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .subtitle1
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Cabin',
-                                                                      fontSize:
-                                                                          16,
+                                                Row(
+                                                  mainAxisSize: MainAxisSize.max,
+                                                  children: [
+                                                    Expanded(
+                                                      flex: 3,
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Expanded(
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(0,
+                                                                          0, 10, 0),
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Padding(
+                                                                    padding:
+                                                                        EdgeInsetsDirectional
+                                                                            .fromSTEB(
+                                                                                0,
+                                                                                4,
+                                                                                0,
+                                                                                0),
+                                                                    child: Text(
+                                                                      columnDiscountsRecord
+                                                                          .name,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .subtitle1
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Cabin',
+                                                                            fontSize:
+                                                                                16,
+                                                                          ),
                                                                     ),
+                                                                  ),
+                                                                  Text(
+                                                                    '${formatNumber(
+                                                                      columnDiscountsRecord
+                                                                          .discount,
+                                                                      formatType:
+                                                                          FormatType
+                                                                              .decimal,
+                                                                      decimalType:
+                                                                          DecimalType
+                                                                              .commaDecimal,
+                                                                    )} / ${columnDiscountsRecord.unit}',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .subtitle1
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Cabin',
+                                                                          fontSize:
+                                                                              16,
+                                                                        ),
+                                                                  ),
+                                                                ],
                                                               ),
-                                                            ],
+                                                            ),
                                                           ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Expanded(
+                                                      flex: 1,
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0, 4, 0, 0),
+                                                        child: Text(
+                                                          functions.countDiscount(
+                                                              FFAppState()
+                                                                  .localPetAmount,
+                                                              columnDiscountsRecord),
+                                                          textAlign: TextAlign.end,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .subtitle1
+                                                              .override(
+                                                                fontFamily: 'Cabin',
+                                                                fontSize: 16,
+                                                              ),
                                                         ),
                                                       ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 4, 0, 0),
-                                                    child: Text(
-                                                      functions.countDiscount(
-                                                          FFAppState()
-                                                              .localPetAmount,
-                                                          columnDiscountsRecord),
-                                                      textAlign: TextAlign.end,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .subtitle1
-                                                          .override(
-                                                            fontFamily: 'Cabin',
-                                                            fontSize: 16,
-                                                          ),
                                                     ),
-                                                  ),
+                                                  ],
                                                 ),
+                                                Divider(),
                                               ],
-                                            ),
-                                            Divider(),
-                                          ],
-                                        );
-                                      }),
-                                    );
-                                  },
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      flex: 3,
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Expanded(
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 10, 0),
-                                              child: Column(
+                                            );
+                                          }),
+                                        ),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Expanded(
+                                              flex: 3,
+                                              child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                                 children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding: EdgeInsetsDirectional
+                                                          .fromSTEB(0, 0, 10, 0),
+                                                      child: Column(
+                                                        mainAxisSize: MainAxisSize.max,
+                                                        crossAxisAlignment:
+                                                        CrossAxisAlignment.start,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
                                                                 0, 4, 0, 0),
-                                                    child: Text(
-                                                      'Total',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .subtitle1
-                                                          .override(
-                                                            fontFamily: 'Cabin',
-                                                            color: FlutterFlowTheme
+                                                            child: Text(
+                                                              'Total',
+                                                              style: FlutterFlowTheme
+                                                                  .of(context)
+                                                                  .subtitle1
+                                                                  .override(
+                                                                fontFamily: 'Cabin',
+                                                                color: FlutterFlowTheme
                                                                     .of(context)
-                                                                .primaryColor,
-                                                            fontSize: 16,
-                                                            fontWeight:
+                                                                    .primaryColor,
+                                                                fontSize: 16,
+                                                                fontWeight:
                                                                 FontWeight.bold,
+                                                              ),
+                                                            ),
                                                           ),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ],
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 1,
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 4, 0, 0),
-                                        child: Text(
-                                          functions.countTotal(
-                                              FFAppState().localPetAmount,
-                                              FFAppState().localServiceFee),
-                                          textAlign: TextAlign.end,
-                                          style: FlutterFlowTheme.of(context)
-                                              .subtitle1
-                                              .override(
-                                                fontFamily: 'Cabin',
-                                                color:
+                                            Expanded(
+                                              flex: 1,
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional.fromSTEB(
+                                                    0, 4, 0, 0),
+                                                child: Text(
+                                                  functions.countTotal(
+                                                      FFAppState().localPetAmount,
+                                                      FFAppState().localServiceFee),
+                                                  textAlign: TextAlign.end,
+                                                  style: FlutterFlowTheme.of(context)
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Cabin',
+                                                    color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryColor,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w600,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
                                               ),
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                                    ),
-                                  ],
+                                      ],
+                                    );
+                                  },
                                 ),
+
                               ],
                             ),
+
                           ],
                         ),
                       ),
