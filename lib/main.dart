@@ -123,10 +123,10 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'ProfileAndPets': ProfileAndPetsWidget(),
-      'MarketPlace': MarketPlaceWidget(),
-      'Social': SocialWidget(),
       'HomeBackup': HomeBackupWidget(),
+      'Social': SocialWidget(),
+      'MarketPlace': MarketPlaceWidget(),
+      'ProfileAndPets': ProfileAndPetsWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
@@ -143,18 +143,10 @@ class _NavBarPageState extends State<NavBarPage> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.pets_outlined,
+              Icons.dashboard_rounded,
               size: 24,
             ),
-            label: 'Profile n Pets',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.store_mall_directory_rounded,
-              size: 24,
-            ),
-            label: 'Marketplace',
+            label: 'Home',
             tooltip: '',
           ),
           BottomNavigationBarItem(
@@ -167,10 +159,18 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.dashboard_rounded,
+              Icons.store_mall_directory_rounded,
               size: 24,
             ),
-            label: 'Home',
+            label: 'Marketplace',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.pets_outlined,
+              size: 24,
+            ),
+            label: 'Profile n Pets',
             tooltip: '',
           )
         ],
