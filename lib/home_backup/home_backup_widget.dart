@@ -5,8 +5,8 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../grooming_detail/grooming_detail_widget.dart';
 import '../help/help_widget.dart';
+import '../order_detail/order_detail_widget.dart';
 import '../order_grooming/order_grooming_widget.dart';
 import '../order_list/order_list_widget.dart';
 import 'package:flutter/material.dart';
@@ -413,7 +413,7 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                GroomingDetailWidget(
+                                                OrderDetailWidget(
                                               order:
                                                   columnOrdersRecord.reference,
                                             ),

@@ -2,7 +2,7 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../grooming_detail/grooming_detail_widget.dart';
+import '../order_detail/order_detail_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -76,7 +76,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => GroomingDetailWidget(
+                            builder: (context) => OrderDetailWidget(
                               order: columnOrdersRecord.reference,
                             ),
                           ),
