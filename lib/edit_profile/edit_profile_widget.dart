@@ -68,88 +68,95 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                    child: Stack(
+                  if ((FFAppState().isFeatureReady) == true)
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
                       children: [
-                        AuthUserStreamWidget(
-                          child: InkWell(
-                            onTap: () async {
-                              final selectedMedia =
-                                  await selectMediaWithSourceBottomSheet(
-                                context: context,
-                                maxWidth: 720.00,
-                                maxHeight: 720.00,
-                                allowPhoto: true,
-                              );
-                              if (selectedMedia != null &&
-                                  selectedMedia.every((m) => validateFileFormat(
-                                      m.storagePath, context))) {
-                                showUploadMessage(
-                                  context,
-                                  'Uploading file...',
-                                  showLoading: true,
-                                );
-                                final downloadUrls = (await Future.wait(
-                                        selectedMedia.map((m) async =>
-                                            await uploadData(
-                                                m.storagePath, m.bytes))))
-                                    .where((u) => u != null)
-                                    .toList();
-                                ScaffoldMessenger.of(context)
-                                    .hideCurrentSnackBar();
-                                if (downloadUrls != null &&
-                                    downloadUrls.length ==
-                                        selectedMedia.length) {
-                                  setState(() =>
-                                      uploadedFileUrl = downloadUrls.first);
-                                  showUploadMessage(
-                                    context,
-                                    'Success!',
-                                  );
-                                } else {
-                                  showUploadMessage(
-                                    context,
-                                    'Failed to upload media',
-                                  );
-                                  return;
-                                }
-                              }
-                            },
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(32),
-                              child: Image.network(
-                                currentUserPhoto,
-                                width: 64,
-                                height: 64,
-                                fit: BoxFit.cover,
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                          child: Stack(
+                            children: [
+                              AuthUserStreamWidget(
+                                child: InkWell(
+                                  onTap: () async {
+                                    final selectedMedia =
+                                        await selectMediaWithSourceBottomSheet(
+                                      context: context,
+                                      maxWidth: 720.00,
+                                      maxHeight: 720.00,
+                                      allowPhoto: true,
+                                    );
+                                    if (selectedMedia != null &&
+                                        selectedMedia.every((m) =>
+                                            validateFileFormat(
+                                                m.storagePath, context))) {
+                                      showUploadMessage(
+                                        context,
+                                        'Uploading file...',
+                                        showLoading: true,
+                                      );
+                                      final downloadUrls = (await Future.wait(
+                                              selectedMedia.map((m) async =>
+                                                  await uploadData(
+                                                      m.storagePath, m.bytes))))
+                                          .where((u) => u != null)
+                                          .toList();
+                                      ScaffoldMessenger.of(context)
+                                          .hideCurrentSnackBar();
+                                      if (downloadUrls != null &&
+                                          downloadUrls.length ==
+                                              selectedMedia.length) {
+                                        setState(() => uploadedFileUrl =
+                                            downloadUrls.first);
+                                        showUploadMessage(
+                                          context,
+                                          'Success!',
+                                        );
+                                      } else {
+                                        showUploadMessage(
+                                          context,
+                                          'Failed to upload media',
+                                        );
+                                        return;
+                                      }
+                                    }
+                                  },
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(32),
+                                    child: Image.network(
+                                      currentUserPhoto,
+                                      width: 64,
+                                      height: 64,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
+                              if ((uploadedFileUrl) != '')
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(32),
+                                  child: Image.network(
+                                    uploadedFileUrl,
+                                    width: 64,
+                                    height: 64,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                            ],
                           ),
                         ),
-                        if ((uploadedFileUrl) != '')
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(32),
-                            child: Image.network(
-                              uploadedFileUrl,
-                              width: 64,
-                              height: 64,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            if ((uploadedFileUrl) == '')
+                              Text(
+                                'Change picture',
+                                style: FlutterFlowTheme.of(context).subtitle2,
+                              ),
+                          ],
+                        ),
                       ],
                     ),
-                  ),
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      if ((uploadedFileUrl) == '')
-                        Text(
-                          'Change picture',
-                          style: FlutterFlowTheme.of(context).subtitle2,
-                        ),
-                    ],
-                  ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
                     child: AuthUserStreamWidget(
