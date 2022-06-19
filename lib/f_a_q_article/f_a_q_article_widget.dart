@@ -1,21 +1,26 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../f_a_q_article/f_a_q_article_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class FAQListWidget extends StatefulWidget {
-  const FAQListWidget({Key key}) : super(key: key);
+class FAQArticleWidget extends StatefulWidget {
+  const FAQArticleWidget({
+    Key key,
+    this.faq,
+  }) : super(key: key);
+
+  final FaqsRecord faq;
 
   @override
-  _FAQListWidgetState createState() => _FAQListWidgetState();
+  _FAQArticleWidgetState createState() => _FAQArticleWidgetState();
 }
 
-class _FAQListWidgetState extends State<FAQListWidget> {
+class _FAQArticleWidgetState extends State<FAQArticleWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -28,7 +33,7 @@ class _FAQListWidgetState extends State<FAQListWidget> {
             IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          'FAQ',
+          'Article',
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
@@ -39,13 +44,51 @@ class _FAQListWidgetState extends State<FAQListWidget> {
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+        child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(20, 32, 20, 0),
+                child: Text(
+                  widget.faq.question,
+                  style: FlutterFlowTheme.of(context).title3,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                child: Html(
+                  data: widget.faq.answer,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(20, 5, 0, 0),
+                child: Text(
+                  'Sumber :',
+                  style: FlutterFlowTheme.of(context).bodyText1,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                child: Text(
+                  widget.faq.referenceUrl,
+                  style: FlutterFlowTheme.of(context).bodyText1,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(20, 32, 0, 0),
+                child: Text(
+                  'Pertanyaan lainnya',
+                  style: FlutterFlowTheme.of(context).title3.override(
+                        fontFamily: 'RockoUltra',
+                        fontSize: 16,
+                        useGoogleFonts: false,
+                      ),
+                ),
+              ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                 child: StreamBuilder<List<FaqsRecord>>(
@@ -91,14 +134,6 @@ class _FAQListWidgetState extends State<FAQListWidget> {
                                     };
                                     await columnFaqsRecord.reference
                                         .update(faqsUpdateData);
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => FAQArticleWidget(
-                                          faq: columnFaqsRecord,
-                                        ),
-                                      ),
-                                    );
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,

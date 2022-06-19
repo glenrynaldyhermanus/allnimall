@@ -137,6 +137,9 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
         order: getParameter(data, 'order'),
       ),
   'FAQList': (data) async => FAQListWidget(),
+  'FAQArticle': (data) async => FAQArticleWidget(
+        faq: await getDocumentParameter(data, 'faq', FaqsRecord.serializer),
+      ),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>
