@@ -23,7 +23,7 @@ export 'pet_post/pet_post_widget.dart' show PetPostWidget;
 export 'update_pet/update_pet_widget.dart' show UpdatePetWidget;
 export 'pet_schedule/pet_schedule_widget.dart' show PetScheduleWidget;
 export 'add_schedule/add_schedule_widget.dart' show AddScheduleWidget;
-export 'timeline/timeline_widget.dart' show TimelineWidget;
+export 'social/social_widget.dart' show SocialWidget;
 export 'pet_list/pet_list_widget.dart' show PetListWidget;
 export 'edit_profile/edit_profile_widget.dart' show EditProfileWidget;
 export 'home_backup/home_backup_widget.dart' show HomeBackupWidget;
