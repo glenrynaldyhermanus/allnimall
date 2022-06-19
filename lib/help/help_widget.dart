@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../chat/chat_widget.dart';
+import '../f_a_q_list/f_a_q_list_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -159,7 +160,12 @@ class _HelpWidgetState extends State<HelpWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                       child: InkWell(
                         onTap: () async {
-                          await launchURL('https://allnimall.com/');
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => FAQListWidget(),
+                            ),
+                          );
                         },
                         child: Row(
                           mainAxisSize: MainAxisSize.max,

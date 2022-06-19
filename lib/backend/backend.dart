@@ -20,6 +20,7 @@ import 'schema/ratings_record.dart';
 import 'schema/discounts_record.dart';
 import 'schema/order_discounts_record.dart';
 import 'schema/order_services_record.dart';
+import 'schema/faqs_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -43,6 +44,7 @@ export 'schema/ratings_record.dart';
 export 'schema/discounts_record.dart';
 export 'schema/order_discounts_record.dart';
 export 'schema/order_services_record.dart';
+export 'schema/faqs_record.dart';
 
 /// Functions to query PetsRecords (as a Stream and as a Future).
 Stream<List<PetsRecord>> queryPetsRecord({
@@ -723,6 +725,48 @@ Future<FFFirestorePage<OrderServicesRecord>> queryOrderServicesRecordPage({
     queryCollectionPage(
       OrderServicesRecord.collection(parent),
       OrderServicesRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query FaqsRecords (as a Stream and as a Future).
+Stream<List<FaqsRecord>> queryFaqsRecord({
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      FaqsRecord.collection,
+      FaqsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<FaqsRecord>> queryFaqsRecordOnce({
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      FaqsRecord.collection,
+      FaqsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<FaqsRecord>> queryFaqsRecordPage({
+  Query Function(Query) queryBuilder,
+  DocumentSnapshot nextPageMarker,
+  int pageSize,
+  bool isStream,
+}) =>
+    queryCollectionPage(
+      FaqsRecord.collection,
+      FaqsRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,
