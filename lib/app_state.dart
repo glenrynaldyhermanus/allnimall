@@ -57,6 +57,8 @@ class FFAppState {
   String localServiceDesc = '';
 
   double localServiceFee = 0.0;
+
+  bool isFeatureReady = false;
 }
 
 LatLng _latLngFromString(String val) {
