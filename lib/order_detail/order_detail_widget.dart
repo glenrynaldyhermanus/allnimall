@@ -229,25 +229,6 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .subtitle1,
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            20, 0, 20, 0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              orderDetailOrdersRecord
-                                                  .petCategory,
-                                              textAlign: TextAlign.start,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .subtitle2,
-                                            ),
                                             Text(
                                               ' x ',
                                               textAlign: TextAlign.start,
@@ -262,6 +243,18 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .subtitle2,
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(4, 0, 0, 0),
+                                              child: Text(
+                                                orderDetailOrdersRecord
+                                                    .petCategory,
+                                                textAlign: TextAlign.start,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2,
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -299,115 +292,116 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                           ],
                                         ),
                                       ),
-                                      Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    20, 32, 20, 0),
-                                            child: Text(
-                                              'Groomer',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText1,
+                                      if ((orderDetailOrdersRecord.status) !=
+                                          'New')
+                                        Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(20, 32, 20, 0),
+                                              child: Text(
+                                                'Groomer',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1,
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    20, 0, 20, 10),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      orderDetailOrdersRecord
-                                                          .rangerName,
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .subtitle1,
-                                                    ),
-                                                    if (functions
-                                                            .isCustomerAbleChatGroomer(
-                                                                orderDetailOrdersRecord) ??
-                                                        true)
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(20, 0, 20, 10),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
                                                       Text(
                                                         orderDetailOrdersRecord
-                                                            .rangerPhone,
+                                                            .rangerName,
                                                         textAlign:
                                                             TextAlign.start,
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .subtitle2
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Cabin',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                ),
+                                                                .subtitle1,
                                                       ),
-                                                  ],
-                                                ),
-                                                if (functions
-                                                        .isCustomerAbleChatGroomer(
-                                                            orderDetailOrdersRecord) ??
-                                                    true)
-                                                  FFButtonWidget(
-                                                    onPressed: () async {
-                                                      await launchURL(functions
-                                                          .generateWhatsappUrl(
-                                                              orderDetailOrdersRecord
-                                                                  .rangerPhone));
-                                                    },
-                                                    text: 'Chat',
-                                                    options: FFButtonOptions(
-                                                      width: 64,
-                                                      height: 40,
-                                                      color: Color(0x19EF487F),
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .title3
+                                                      if (functions
+                                                              .isCustomerAbleChatGroomer(
+                                                                  orderDetailOrdersRecord) ??
+                                                          true)
+                                                        Text(
+                                                          orderDetailOrdersRecord
+                                                              .rangerPhone,
+                                                          textAlign:
+                                                              TextAlign.start,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .subtitle2
                                                               .override(
                                                                 fontFamily:
-                                                                    'RockoUltra',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryColor,
-                                                                fontSize: 14,
-                                                                useGoogleFonts:
-                                                                    false,
+                                                                    'Cabin',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
                                                               ),
-                                                      elevation: 0,
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            Colors.transparent,
-                                                        width: 1,
-                                                      ),
-                                                      borderRadius: 12,
-                                                    ),
+                                                        ),
+                                                    ],
                                                   ),
-                                              ],
+                                                  if (functions
+                                                          .isCustomerAbleChatGroomer(
+                                                              orderDetailOrdersRecord) ??
+                                                      true)
+                                                    FFButtonWidget(
+                                                      onPressed: () async {
+                                                        await launchURL(functions
+                                                            .generateWhatsappUrl(
+                                                                orderDetailOrdersRecord
+                                                                    .rangerPhone));
+                                                      },
+                                                      text: 'Chat',
+                                                      options: FFButtonOptions(
+                                                        width: 64,
+                                                        height: 40,
+                                                        color:
+                                                            Color(0x19EF487F),
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .title3
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'RockoUltra',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryColor,
+                                                                  fontSize: 14,
+                                                                  useGoogleFonts:
+                                                                      false,
+                                                                ),
+                                                        elevation: 0,
+                                                        borderSide: BorderSide(
+                                                          color: Colors
+                                                              .transparent,
+                                                          width: 1,
+                                                        ),
+                                                        borderRadius: 12,
+                                                      ),
+                                                    ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
+                                          ],
+                                        ),
                                       if (functions.isOpenForRating(
                                               orderDetailOrdersRecord) ??
                                           true)
@@ -600,467 +594,477 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                             ),
                                           ],
                                         ),
-                                      Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    20, 15, 20, 20),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                if ((orderDetailOrdersRecord
-                                                        .status) ==
-                                                    'Confirmed')
-                                                  Container(
-                                                    width: 48,
-                                                    height: 48,
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryColor,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              24),
+                                      if ((orderDetailOrdersRecord.status) !=
+                                          'New')
+                                        Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(20, 15, 20, 20),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  if ((orderDetailOrdersRecord
+                                                          .status) ==
+                                                      'Confirmed')
+                                                    Container(
+                                                      width: 48,
+                                                      height: 48,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryColor,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(24),
+                                                      ),
+                                                      child: Icon(
+                                                        Icons.check,
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
+                                                        size: 20,
+                                                      ),
                                                     ),
-                                                    child: Icon(
-                                                      Icons.check,
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .primaryBackground,
-                                                      size: 20,
+                                                  if ((orderDetailOrdersRecord
+                                                          .status) !=
+                                                      'Confirmed')
+                                                    Container(
+                                                      width: 48,
+                                                      height: 48,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            Color(0xFFA4A4A4),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(24),
+                                                      ),
+                                                      child: Icon(
+                                                        Icons.check,
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
+                                                        size: 20,
+                                                      ),
+                                                    ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                10, 0, 0, 0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        if ((orderDetailOrdersRecord
+                                                                .status) ==
+                                                            'Confirmed')
+                                                          Text(
+                                                            'Order scheduled',
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1,
+                                                          ),
+                                                        if ((orderDetailOrdersRecord
+                                                                .status) !=
+                                                            'Confirmed')
+                                                          Text(
+                                                            'Order scheduled',
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText2
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Cabin',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                          ),
+                                                        if ((orderDetailOrdersRecord
+                                                                .confirmedAt !=
+                                                            null))
+                                                          Text(
+                                                            orderDetailOrdersRecord
+                                                                .startTime,
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText2,
+                                                          ),
+                                                      ],
                                                     ),
                                                   ),
-                                                if ((orderDetailOrdersRecord
-                                                        .status) !=
-                                                    'Confirmed')
-                                                  Container(
-                                                    width: 48,
-                                                    height: 48,
-                                                    decoration: BoxDecoration(
-                                                      color: Color(0xFFA4A4A4),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              24),
-                                                    ),
-                                                    child: Icon(
-                                                      Icons.check,
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .primaryBackground,
-                                                      size: 20,
-                                                    ),
-                                                  ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(10, 0, 0, 0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      if ((orderDetailOrdersRecord
-                                                              .status) ==
-                                                          'Confirmed')
-                                                        Text(
-                                                          'Order scheduled',
-                                                          textAlign:
-                                                              TextAlign.start,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1,
-                                                        ),
-                                                      if ((orderDetailOrdersRecord
-                                                              .status) !=
-                                                          'Confirmed')
-                                                        Text(
-                                                          'Order scheduled',
-                                                          textAlign:
-                                                              TextAlign.start,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText2
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Cabin',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              ),
-                                                        ),
-                                                      if ((orderDetailOrdersRecord
-                                                              .confirmedAt !=
-                                                          null))
-                                                        Text(
-                                                          orderDetailOrdersRecord
-                                                              .startTime,
-                                                          textAlign:
-                                                              TextAlign.start,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText2,
-                                                        ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    20, 0, 20, 20),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                if ((orderDetailOrdersRecord
-                                                        .status) ==
-                                                    'OnTheWay')
-                                                  Container(
-                                                    width: 48,
-                                                    height: 48,
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryColor,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              24),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(20, 0, 20, 20),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  if ((orderDetailOrdersRecord
+                                                          .status) ==
+                                                      'OnTheWay')
+                                                    Container(
+                                                      width: 48,
+                                                      height: 48,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryColor,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(24),
+                                                      ),
+                                                      child: Icon(
+                                                        Icons.delivery_dining,
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
+                                                        size: 20,
+                                                      ),
                                                     ),
-                                                    child: Icon(
-                                                      Icons.delivery_dining,
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .primaryBackground,
-                                                      size: 20,
+                                                  if ((orderDetailOrdersRecord
+                                                          .status) !=
+                                                      'OnTheWay')
+                                                    Container(
+                                                      width: 48,
+                                                      height: 48,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            Color(0xFFA4A4A4),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(24),
+                                                      ),
+                                                      child: Icon(
+                                                        Icons.delivery_dining,
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
+                                                        size: 20,
+                                                      ),
+                                                    ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                10, 0, 0, 0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        if ((orderDetailOrdersRecord
+                                                                .status) ==
+                                                            'OnTheWay')
+                                                          Text(
+                                                            'Groomer is on the way',
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1,
+                                                          ),
+                                                        if ((orderDetailOrdersRecord
+                                                                .status) !=
+                                                            'OnTheWay')
+                                                          Text(
+                                                            'Groomer is on the way',
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText2
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Cabin',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                          ),
+                                                        if ((orderDetailOrdersRecord
+                                                                .onthewayAt !=
+                                                            null))
+                                                          Text(
+                                                            dateTimeFormat(
+                                                                'Hm',
+                                                                orderDetailOrdersRecord
+                                                                    .onthewayAt),
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText2,
+                                                          ),
+                                                      ],
                                                     ),
                                                   ),
-                                                if ((orderDetailOrdersRecord
-                                                        .status) !=
-                                                    'OnTheWay')
-                                                  Container(
-                                                    width: 48,
-                                                    height: 48,
-                                                    decoration: BoxDecoration(
-                                                      color: Color(0xFFA4A4A4),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              24),
-                                                    ),
-                                                    child: Icon(
-                                                      Icons.delivery_dining,
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .primaryBackground,
-                                                      size: 20,
-                                                    ),
-                                                  ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(10, 0, 0, 0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      if ((orderDetailOrdersRecord
-                                                              .status) ==
-                                                          'OnTheWay')
-                                                        Text(
-                                                          'Groomer is on the way',
-                                                          textAlign:
-                                                              TextAlign.start,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1,
-                                                        ),
-                                                      if ((orderDetailOrdersRecord
-                                                              .status) !=
-                                                          'OnTheWay')
-                                                        Text(
-                                                          'Groomer is on the way',
-                                                          textAlign:
-                                                              TextAlign.start,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText2
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Cabin',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              ),
-                                                        ),
-                                                      if ((orderDetailOrdersRecord
-                                                              .onthewayAt !=
-                                                          null))
-                                                        Text(
-                                                          dateTimeFormat(
-                                                              'Hm',
-                                                              orderDetailOrdersRecord
-                                                                  .onthewayAt),
-                                                          textAlign:
-                                                              TextAlign.start,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText2,
-                                                        ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    20, 0, 20, 20),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                if ((orderDetailOrdersRecord
-                                                        .status) ==
-                                                    'Working')
-                                                  Container(
-                                                    width: 48,
-                                                    height: 48,
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryColor,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              24),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(20, 0, 20, 20),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  if ((orderDetailOrdersRecord
+                                                          .status) ==
+                                                      'Working')
+                                                    Container(
+                                                      width: 48,
+                                                      height: 48,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryColor,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(24),
+                                                      ),
+                                                      child: Icon(
+                                                        Icons.sync,
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
+                                                        size: 20,
+                                                      ),
                                                     ),
-                                                    child: Icon(
-                                                      Icons.sync,
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .primaryBackground,
-                                                      size: 20,
+                                                  if ((orderDetailOrdersRecord
+                                                          .status) !=
+                                                      'Working')
+                                                    Container(
+                                                      width: 48,
+                                                      height: 48,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            Color(0xFFA4A4A4),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(24),
+                                                      ),
+                                                      child: Icon(
+                                                        Icons.sync,
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
+                                                        size: 20,
+                                                      ),
+                                                    ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                10, 0, 0, 0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        if ((orderDetailOrdersRecord
+                                                                .status) ==
+                                                            'Working')
+                                                          Text(
+                                                            'Working on your pets',
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1,
+                                                          ),
+                                                        if ((orderDetailOrdersRecord
+                                                                .status) !=
+                                                            'Working')
+                                                          Text(
+                                                            'Working on your pets',
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText2
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Cabin',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                          ),
+                                                        if ((orderDetailOrdersRecord
+                                                                .workingAt !=
+                                                            null))
+                                                          Text(
+                                                            dateTimeFormat(
+                                                                'Hm',
+                                                                orderDetailOrdersRecord
+                                                                    .workingAt),
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText2,
+                                                          ),
+                                                      ],
                                                     ),
                                                   ),
-                                                if ((orderDetailOrdersRecord
-                                                        .status) !=
-                                                    'Working')
-                                                  Container(
-                                                    width: 48,
-                                                    height: 48,
-                                                    decoration: BoxDecoration(
-                                                      color: Color(0xFFA4A4A4),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              24),
-                                                    ),
-                                                    child: Icon(
-                                                      Icons.sync,
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .primaryBackground,
-                                                      size: 20,
-                                                    ),
-                                                  ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(10, 0, 0, 0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      if ((orderDetailOrdersRecord
-                                                              .status) ==
-                                                          'Working')
-                                                        Text(
-                                                          'Working on your pets',
-                                                          textAlign:
-                                                              TextAlign.start,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1,
-                                                        ),
-                                                      if ((orderDetailOrdersRecord
-                                                              .status) !=
-                                                          'Working')
-                                                        Text(
-                                                          'Working on your pets',
-                                                          textAlign:
-                                                              TextAlign.start,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText2
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Cabin',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              ),
-                                                        ),
-                                                      if ((orderDetailOrdersRecord
-                                                              .workingAt !=
-                                                          null))
-                                                        Text(
-                                                          dateTimeFormat(
-                                                              'Hm',
-                                                              orderDetailOrdersRecord
-                                                                  .workingAt),
-                                                          textAlign:
-                                                              TextAlign.start,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText2,
-                                                        ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    20, 0, 20, 20),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                if ((orderDetailOrdersRecord
-                                                        .status) ==
-                                                    'Finish')
-                                                  Container(
-                                                    width: 48,
-                                                    height: 48,
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryColor,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              24),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(20, 0, 20, 20),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  if ((orderDetailOrdersRecord
+                                                          .status) ==
+                                                      'Finish')
+                                                    Container(
+                                                      width: 48,
+                                                      height: 48,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryColor,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(24),
+                                                      ),
+                                                      child: Icon(
+                                                        Icons.done_all,
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
+                                                        size: 20,
+                                                      ),
                                                     ),
-                                                    child: Icon(
-                                                      Icons.done_all,
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .primaryBackground,
-                                                      size: 20,
+                                                  if ((orderDetailOrdersRecord
+                                                          .status) !=
+                                                      'Finish')
+                                                    Container(
+                                                      width: 48,
+                                                      height: 48,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            Color(0xFFA4A4A4),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(24),
+                                                      ),
+                                                      child: Icon(
+                                                        Icons.done_all,
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
+                                                        size: 20,
+                                                      ),
+                                                    ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                10, 0, 0, 0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        if ((orderDetailOrdersRecord
+                                                                .status) ==
+                                                            'Finish')
+                                                          Text(
+                                                            'Finish',
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1,
+                                                          ),
+                                                        if ((orderDetailOrdersRecord
+                                                                .status) !=
+                                                            'Finish')
+                                                          Text(
+                                                            'Finish',
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText2
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Cabin',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                          ),
+                                                        if ((orderDetailOrdersRecord
+                                                                .finishAt !=
+                                                            null))
+                                                          Text(
+                                                            dateTimeFormat(
+                                                                'Hm',
+                                                                orderDetailOrdersRecord
+                                                                    .finishAt),
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText2,
+                                                          ),
+                                                      ],
                                                     ),
                                                   ),
-                                                if ((orderDetailOrdersRecord
-                                                        .status) !=
-                                                    'Finish')
-                                                  Container(
-                                                    width: 48,
-                                                    height: 48,
-                                                    decoration: BoxDecoration(
-                                                      color: Color(0xFFA4A4A4),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              24),
-                                                    ),
-                                                    child: Icon(
-                                                      Icons.done_all,
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .primaryBackground,
-                                                      size: 20,
-                                                    ),
-                                                  ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(10, 0, 0, 0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      if ((orderDetailOrdersRecord
-                                                              .status) ==
-                                                          'Finish')
-                                                        Text(
-                                                          'Finish',
-                                                          textAlign:
-                                                              TextAlign.start,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1,
-                                                        ),
-                                                      if ((orderDetailOrdersRecord
-                                                              .status) !=
-                                                          'Finish')
-                                                        Text(
-                                                          'Finish',
-                                                          textAlign:
-                                                              TextAlign.start,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText2
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Cabin',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              ),
-                                                        ),
-                                                      if ((orderDetailOrdersRecord
-                                                              .finishAt !=
-                                                          null))
-                                                        Text(
-                                                          dateTimeFormat(
-                                                              'Hm',
-                                                              orderDetailOrdersRecord
-                                                                  .finishAt),
-                                                          textAlign:
-                                                              TextAlign.start,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText2,
-                                                        ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
+                                          ],
+                                        ),
                                     ],
                                   ),
                                 ),
