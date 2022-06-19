@@ -60,6 +60,8 @@ class FFAppState {
   double localServiceFee = 0.0;
 
   List<DiscountsRecord> localDiscount = [];
+
+  bool isFeatureReady = false;
 }
 
 LatLng _latLngFromString(String val) {

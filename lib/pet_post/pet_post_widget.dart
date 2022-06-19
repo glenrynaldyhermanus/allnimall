@@ -283,22 +283,66 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(1, 0, 1, 0),
-                            child: InkWell(
-                              onTap: () async {
-                                await showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  context: context,
-                                  builder: (context) {
-                                    return Padding(
-                                      padding:
-                                          MediaQuery.of(context).viewInsets,
-                                      child: PetWeightFormWidget(),
-                                    );
-                                  },
-                                );
-                              },
+                          if ((FFAppState().isFeatureReady) == true)
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(1, 0, 1, 0),
+                              child: InkWell(
+                                onTap: () async {
+                                  await showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    context: context,
+                                    builder: (context) {
+                                      return Padding(
+                                        padding:
+                                            MediaQuery.of(context).viewInsets,
+                                        child: PetWeightFormWidget(),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Divider(
+                                      height: 1,
+                                      thickness: 1,
+                                      color: Color(0xFFE7E7E7),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          20, 16, 20, 16),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Icon(
+                                            Icons.scanner,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryColor,
+                                            size: 24,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    8, 0, 0, 0),
+                                            child: Text(
+                                              'Update weight',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          if ((FFAppState().isFeatureReady) == true)
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(1, 0, 1, 0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -314,9 +358,9 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Icon(
-                                          Icons.scanner,
+                                          Icons.healing,
                                           color: FlutterFlowTheme.of(context)
-                                              .primaryColor,
+                                              .secondaryColor,
                                           size: 24,
                                         ),
                                         Padding(
@@ -324,7 +368,7 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   8, 0, 0, 0),
                                           child: Text(
-                                            'Update weight',
+                                            'Update condition',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1,
                                           ),
@@ -335,81 +379,46 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                 ],
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(1, 0, 1, 0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Divider(
-                                  height: 1,
-                                  thickness: 1,
-                                  color: Color(0xFFE7E7E7),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      20, 16, 20, 16),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.healing,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryColor,
-                                        size: 24,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8, 0, 0, 0),
-                                        child: Text(
-                                          'Update condition',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1,
-                                        ),
-                                      ),
-                                    ],
+                          if ((FFAppState().isFeatureReady) == true)
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(1, 0, 1, 0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Divider(
+                                    height: 1,
+                                    thickness: 1,
+                                    color: Color(0xFFE7E7E7),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(1, 0, 1, 0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Divider(
-                                  height: 1,
-                                  thickness: 1,
-                                  color: Color(0xFFE7E7E7),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      20, 16, 20, 16),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.emoji_emotions,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                        size: 24,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8, 0, 0, 0),
-                                        child: Text(
-                                          'Mood',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1,
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        20, 16, 20, 16),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Icon(
+                                          Icons.emoji_emotions,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                          size: 24,
                                         ),
-                                      ),
-                                    ],
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  8, 0, 0, 0),
+                                          child: Text(
+                                            'Mood',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
                         ],
                       ),
                     ),

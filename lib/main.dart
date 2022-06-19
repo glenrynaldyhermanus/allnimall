@@ -143,7 +143,7 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.dashboard_rounded,
-              size: 32,
+              size: 24,
             ),
             label: 'Home',
             tooltip: '',
@@ -151,7 +151,7 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.people_alt,
-              size: 32,
+              size: 24,
             ),
             label: 'Timeline',
             tooltip: '',
@@ -159,7 +159,7 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.store_mall_directory_rounded,
-              size: 32,
+              size: 24,
             ),
             label: 'Marketplace',
             tooltip: '',
@@ -167,7 +167,7 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.pets_outlined,
-              size: 32,
+              size: 24,
             ),
             label: 'Profile n Pets',
             tooltip: '',
