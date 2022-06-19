@@ -138,6 +138,15 @@ class _FAQArticleWidgetState extends State<FAQArticleWidget> {
                                       };
                                       await columnFaqsRecord.reference
                                           .update(faqsUpdateData);
+                                      await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              FAQArticleWidget(
+                                            faq: columnFaqsRecord,
+                                          ),
+                                        ),
+                                      );
                                     },
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
