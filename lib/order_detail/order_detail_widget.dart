@@ -247,8 +247,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                           ],
                                         ),
                                       ),
-                                      if ((orderDetailOrdersRecord.status) !=
-                                          'New')
+                                      if (functions.isOrderHandled(
+                                              orderDetailOrdersRecord) ??
+                                          true)
                                         Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
@@ -549,8 +550,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                             ),
                                           ],
                                         ),
-                                      if ((orderDetailOrdersRecord.status) !=
-                                          'New')
+                                      if (functions.isOrderHandled(
+                                              orderDetailOrdersRecord) ??
+                                          true)
                                         Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
@@ -1081,6 +1083,109 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                           ),
                                                           Text(
                                                             'Mohong tunggu, ya! Groomer kami akan meng-konfirmasi reservasi kakak.',
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText2
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Cabin',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      if (functions.isOrderFailed(
+                                              orderDetailOrdersRecord) ??
+                                          true)
+                                        Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(20, 15, 20, 20),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                    width: 48,
+                                                    height: 48,
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryColor,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24),
+                                                    ),
+                                                    child: Icon(
+                                                      Icons.close,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
+                                                      size: 20,
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  10, 0, 0, 0),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .stretch,
+                                                        children: [
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Text(
+                                                                'Order gagal : ',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .start,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1,
+                                                              ),
+                                                              Text(
+                                                                orderDetailOrdersRecord
+                                                                    .status,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .start,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Text(
+                                                            orderDetailOrdersRecord
+                                                                .notes,
                                                             textAlign:
                                                                 TextAlign.start,
                                                             style: FlutterFlowTheme
