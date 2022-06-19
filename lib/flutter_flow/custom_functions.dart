@@ -280,3 +280,19 @@ String generateWhatsappUrl(String phone) {
   phone = phone.replaceAll("+", "").trim();
   return "https://api.whatsapp.com/send?phone=" + phone;
 }
+
+bool isOrderHandled(OrdersRecord order) {
+  if (order.status == "New" ||
+      order.status == "Rejected" ||
+      order.status.contains("Cancelled")) {
+    return false;
+  }
+  return true;
+}
+
+bool isOrderFailed(OrdersRecord order) {
+  if (order.status == "Rejected" || order.status.contains("Cancelled")) {
+    return true;
+  }
+  return false;
+}
