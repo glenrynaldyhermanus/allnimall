@@ -10,14 +10,14 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share_plus/share_plus.dart';
 
-class TimelineWidget extends StatefulWidget {
-  const TimelineWidget({Key key}) : super(key: key);
+class SocialWidget extends StatefulWidget {
+  const SocialWidget({Key key}) : super(key: key);
 
   @override
-  _TimelineWidgetState createState() => _TimelineWidgetState();
+  _SocialWidgetState createState() => _SocialWidgetState();
 }
 
-class _TimelineWidgetState extends State<TimelineWidget> {
+class _SocialWidgetState extends State<SocialWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override

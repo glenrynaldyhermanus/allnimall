@@ -180,7 +180,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                      NavBarPage(initialPage: 'Timeline'),
+                                      NavBarPage(initialPage: 'Social'),
                                 ),
                               );
                             },

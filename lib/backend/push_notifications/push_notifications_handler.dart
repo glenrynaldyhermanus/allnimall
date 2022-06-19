@@ -118,7 +118,7 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'AddSchedule': (data) async => AddScheduleWidget(
         petRef: getParameter(data, 'petRef'),
       ),
-  'Timeline': (data) async => NavBarPage(initialPage: 'Timeline'),
+  'Social': (data) async => NavBarPage(initialPage: 'Social'),
   'PetList': (data) async => PetListWidget(),
   'EditProfile': (data) async => EditProfileWidget(),
   'Settings': (data) async => SettingsWidget(),

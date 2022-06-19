@@ -267,296 +267,302 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                           decoration: BoxDecoration(
                             color: Color(0xFFDFE0EE),
                           ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        20, 16, 20, 0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          'Upcoming',
-                                          style: FlutterFlowTheme.of(context)
-                                              .title3
-                                              .override(
-                                                fontFamily: 'RockoUltra',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryColor,
-                                                useGoogleFonts: false,
-                                              ),
-                                        ),
-                                        InkWell(
-                                          onTap: () async {
-                                            await Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    PetScheduleWidget(
-                                                  petRef: petProfilePetsRecord
-                                                      .reference,
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                          child: Text(
-                                            'View All',
+                          child: Visibility(
+                            visible: (FFAppState().isFeatureReady) == true,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          20, 16, 20, 0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Upcoming',
                                             style: FlutterFlowTheme.of(context)
-                                                .title2
+                                                .title3
                                                 .override(
                                                   fontFamily: 'RockoUltra',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryColor,
-                                                  fontSize: 14,
                                                   useGoogleFonts: false,
                                                 ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  StreamBuilder<List<PetSchedulesRecord>>(
-                                    stream: queryPetSchedulesRecord(
-                                      queryBuilder: (petSchedulesRecord) =>
-                                          petSchedulesRecord
-                                              .where('pet_uid',
-                                                  isEqualTo:
-                                                      petProfilePetsRecord
-                                                          .reference)
-                                              .where('scheduled_at',
-                                                  isGreaterThanOrEqualTo:
-                                                      getCurrentTimestamp)
-                                              .orderBy('scheduled_at'),
-                                      limit: 1,
-                                    ),
-                                    builder: (context, snapshot) {
-                                      // Customize what your widget looks like when it's loading.
-                                      if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 50,
-                                            height: 50,
-                                            child: SpinKitRipple(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryColor,
-                                              size: 50,
+                                          InkWell(
+                                            onTap: () async {
+                                              await Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      PetScheduleWidget(
+                                                    petRef: petProfilePetsRecord
+                                                        .reference,
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            child: Text(
+                                              'View All',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .title2
+                                                  .override(
+                                                    fontFamily: 'RockoUltra',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryColor,
+                                                    fontSize: 14,
+                                                    useGoogleFonts: false,
+                                                  ),
                                             ),
                                           ),
-                                        );
-                                      }
-                                      List<PetSchedulesRecord>
-                                          columnPetSchedulesRecordList =
-                                          snapshot.data;
-                                      if (columnPetSchedulesRecordList
-                                          .isEmpty) {
-                                        return EmptyScheduleWidget(
-                                          petRef: widget.petRef,
-                                        );
-                                      }
-                                      return Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: List.generate(
-                                            columnPetSchedulesRecordList.length,
-                                            (columnIndex) {
-                                          final columnPetSchedulesRecord =
-                                              columnPetSchedulesRecordList[
-                                                  columnIndex];
-                                          return Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    20, 16, 20, 24),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      dateTimeFormat(
-                                                          'MEd',
-                                                          columnPetSchedulesRecord
-                                                              .scheduledAt),
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText1
-                                                          .override(
-                                                            fontFamily: 'Cabin',
-                                                            color: Color(
-                                                                0xFF7F7F7F),
-                                                            fontSize: 12,
-                                                          ),
-                                                    ),
-                                                    Text(
-                                                      dateTimeFormat(
-                                                          'Hm',
-                                                          columnPetSchedulesRecord
-                                                              .scheduledAt),
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText1
-                                                          .override(
-                                                            fontFamily: 'Cabin',
-                                                            fontSize: 16,
-                                                          ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Expanded(
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                8, 0, 0, 0),
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                        color:
+                                        ],
+                                      ),
+                                    ),
+                                    StreamBuilder<List<PetSchedulesRecord>>(
+                                      stream: queryPetSchedulesRecord(
+                                        queryBuilder: (petSchedulesRecord) =>
+                                            petSchedulesRecord
+                                                .where('pet_uid',
+                                                    isEqualTo:
+                                                        petProfilePetsRecord
+                                                            .reference)
+                                                .where('scheduled_at',
+                                                    isGreaterThanOrEqualTo:
+                                                        getCurrentTimestamp)
+                                                .orderBy('scheduled_at'),
+                                        limit: 1,
+                                      ),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50,
+                                              height: 50,
+                                              child: SpinKitRipple(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryColor,
+                                                size: 50,
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        List<PetSchedulesRecord>
+                                            columnPetSchedulesRecordList =
+                                            snapshot.data;
+                                        if (columnPetSchedulesRecordList
+                                            .isEmpty) {
+                                          return EmptyScheduleWidget(
+                                            petRef: widget.petRef,
+                                          );
+                                        }
+                                        return Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: List.generate(
+                                              columnPetSchedulesRecordList
+                                                  .length, (columnIndex) {
+                                            final columnPetSchedulesRecord =
+                                                columnPetSchedulesRecordList[
+                                                    columnIndex];
+                                            return Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(20, 16, 20, 24),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        dateTimeFormat(
+                                                            'MEd',
+                                                            columnPetSchedulesRecord
+                                                                .scheduledAt),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .tertiaryColor,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(16),
-                                                      ),
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(12,
-                                                                    12, 12, 12),
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                ClipRRect(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              16),
-                                                                  child: Image
-                                                                      .network(
-                                                                    'https://i.ibb.co/wJWJgWW/3958832.jpg',
-                                                                    width: 48,
-                                                                    height: 48,
-                                                                    fit: BoxFit
-                                                                        .cover,
-                                                                  ),
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Cabin',
+                                                                  color: Color(
+                                                                      0xFF7F7F7F),
+                                                                  fontSize: 12,
                                                                 ),
-                                                                Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                              8,
-                                                                              0,
-                                                                              0,
-                                                                              0),
-                                                                      child:
-                                                                          Text(
-                                                                        columnPetSchedulesRecord
-                                                                            .name,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .subtitle1,
-                                                                      ),
+                                                      ),
+                                                      Text(
+                                                        dateTimeFormat(
+                                                            'Hm',
+                                                            columnPetSchedulesRecord
+                                                                .scheduledAt),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Cabin',
+                                                                  fontSize: 16,
+                                                                ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8, 0, 0, 0),
+                                                      child: Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tertiaryColor,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(16),
+                                                        ),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      12,
+                                                                      12,
+                                                                      12,
+                                                                      12),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
+                                                            children: [
+                                                              Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  ClipRRect(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            16),
+                                                                    child: Image
+                                                                        .network(
+                                                                      'https://i.ibb.co/wJWJgWW/3958832.jpg',
+                                                                      width: 48,
+                                                                      height:
+                                                                          48,
+                                                                      fit: BoxFit
+                                                                          .cover,
                                                                     ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                              8,
-                                                                              0,
-                                                                              0,
-                                                                              0),
-                                                                      child:
-                                                                          Text(
+                                                                  ),
+                                                                  Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            8,
+                                                                            0,
+                                                                            0,
+                                                                            0),
+                                                                        child:
+                                                                            Text(
+                                                                          columnPetSchedulesRecord
+                                                                              .name,
+                                                                          style:
+                                                                              FlutterFlowTheme.of(context).subtitle1,
+                                                                        ),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            8,
+                                                                            0,
+                                                                            0,
+                                                                            0),
+                                                                        child:
+                                                                            Text(
+                                                                          columnPetSchedulesRecord
+                                                                              .description,
+                                                                          style:
+                                                                              FlutterFlowTheme.of(context).bodyText1,
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      Text(
                                                                         columnPetSchedulesRecord
-                                                                            .description,
+                                                                            .duration
+                                                                            .toString(),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .subtitle1
+                                                                            .override(
+                                                                              fontFamily: 'Cabin',
+                                                                              color: Color(0xFF343434),
+                                                                            ),
+                                                                      ),
+                                                                      Text(
+                                                                        columnPetSchedulesRecord
+                                                                            .durationUnit,
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyText1,
                                                                       ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Text(
-                                                                      columnPetSchedulesRecord
-                                                                          .duration
-                                                                          .toString(),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .subtitle1
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Cabin',
-                                                                            color:
-                                                                                Color(0xFF343434),
-                                                                          ),
-                                                                    ),
-                                                                    Text(
-                                                                      columnPetSchedulesRecord
-                                                                          .durationUnit,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyText1,
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ],
+                                                                    ],
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ],
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                          );
-                                        }),
-                                      );
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ],
+                                                ],
+                                              ),
+                                            );
+                                          }),
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
