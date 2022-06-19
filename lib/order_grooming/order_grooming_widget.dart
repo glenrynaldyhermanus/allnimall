@@ -746,6 +746,7 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                           name: FFAppState().localServiceName,
                           fee: FFAppState().localServiceFee,
                           categoryName: FFAppState().localServiceCategory,
+                          quantity: FFAppState().localPetAmount,
                         );
                         await OrderServicesRecord.createDoc(order.reference)
                             .set(orderServicesCreateData);
