@@ -1171,7 +1171,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                       (columnIndex) {
                                                     final columnOrderServicesRecord =
                                                         columnOrderServicesRecordList[
-                                                            columnIndex];
+                                                            columnIndex]; 
                                                     return Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
