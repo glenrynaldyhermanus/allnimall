@@ -46,6 +46,12 @@ class _$OrderServicesRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.quantity;
+    if (value != null) {
+      result
+        ..add('quantity')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -81,6 +87,10 @@ class _$OrderServicesRecordSerializer
           result.categoryName = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'quantity':
+          result.quantity = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -102,6 +112,8 @@ class _$OrderServicesRecord extends OrderServicesRecord {
   @override
   final String categoryName;
   @override
+  final int quantity;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$OrderServicesRecord(
@@ -109,7 +121,7 @@ class _$OrderServicesRecord extends OrderServicesRecord {
       (new OrderServicesRecordBuilder()..update(updates)).build();
 
   _$OrderServicesRecord._(
-      {this.name, this.fee, this.categoryName, this.reference})
+      {this.name, this.fee, this.categoryName, this.quantity, this.reference})
       : super._();
 
   @override
@@ -128,13 +140,17 @@ class _$OrderServicesRecord extends OrderServicesRecord {
         name == other.name &&
         fee == other.fee &&
         categoryName == other.categoryName &&
+        quantity == other.quantity &&
         reference == other.reference;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, name.hashCode), fee.hashCode), categoryName.hashCode),
+        $jc(
+            $jc($jc($jc(0, name.hashCode), fee.hashCode),
+                categoryName.hashCode),
+            quantity.hashCode),
         reference.hashCode));
   }
 
@@ -144,6 +160,7 @@ class _$OrderServicesRecord extends OrderServicesRecord {
           ..add('name', name)
           ..add('fee', fee)
           ..add('categoryName', categoryName)
+          ..add('quantity', quantity)
           ..add('reference', reference))
         .toString();
   }
@@ -165,6 +182,10 @@ class OrderServicesRecordBuilder
   String get categoryName => _$this._categoryName;
   set categoryName(String categoryName) => _$this._categoryName = categoryName;
 
+  int _quantity;
+  int get quantity => _$this._quantity;
+  set quantity(int quantity) => _$this._quantity = quantity;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
@@ -180,6 +201,7 @@ class OrderServicesRecordBuilder
       _name = $v.name;
       _fee = $v.fee;
       _categoryName = $v.categoryName;
+      _quantity = $v.quantity;
       _reference = $v.reference;
       _$v = null;
     }
@@ -204,6 +226,7 @@ class OrderServicesRecordBuilder
             name: name,
             fee: fee,
             categoryName: categoryName,
+            quantity: quantity,
             reference: reference);
     replace(_$result);
     return _$result;
