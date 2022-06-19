@@ -1,6 +1,7 @@
 import '../article/article_widget.dart';
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../components/empty_order_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -64,27 +65,6 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
         elevation: 0,
       ),
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () async {
-          await Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => OrderGroomingWidget(),
-            ),
-          );
-        },
-        backgroundColor: FlutterFlowTheme.of(context).secondaryColor,
-        elevation: 8,
-        label: Text(
-          'Panggil Groomer',
-          style: FlutterFlowTheme.of(context).title3.override(
-                fontFamily: 'RockoUltra',
-                color: FlutterFlowTheme.of(context).tertiaryColor,
-                fontSize: 16,
-                useGoogleFonts: false,
-              ),
-        ),
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -178,7 +158,7 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                           color: Colors.transparent,
                                           width: 1,
                                         ),
-                                        borderRadius: 12,
+                                        borderRadius: 8,
                                       ),
                                     ),
                                   ],
@@ -391,6 +371,9 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                         }
                         List<OrdersRecord> columnOrdersRecordList =
                             snapshot.data;
+                        if (columnOrdersRecordList.isEmpty) {
+                          return EmptyOrderWidget();
+                        }
                         return Column(
                           mainAxisSize: MainAxisSize.max,
                           children: List.generate(columnOrdersRecordList.length,
