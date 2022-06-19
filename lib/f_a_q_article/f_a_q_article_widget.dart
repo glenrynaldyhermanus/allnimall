@@ -138,6 +138,7 @@ class _FAQArticleWidgetState extends State<FAQArticleWidget> {
                                       };
                                       await columnFaqsRecord.reference
                                           .update(faqsUpdateData);
+                                      Navigator.pop(context);
                                       await Navigator.push(
                                         context,
                                         MaterialPageRoute(
