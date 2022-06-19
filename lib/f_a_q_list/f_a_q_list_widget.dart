@@ -49,10 +49,7 @@ class _FAQListWidgetState extends State<FAQListWidget> {
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                   child: StreamBuilder<List<FaqsRecord>>(
-                    stream: queryFaqsRecord(
-                      queryBuilder: (faqsRecord) =>
-                          faqsRecord.orderBy('visit_count', descending: true),
-                    ),
+                    stream: queryFaqsRecord(),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
                       if (!snapshot.hasData) {
