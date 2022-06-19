@@ -40,3 +40,4 @@ export 'order_service_list/order_service_list_widget.dart'
     show OrderServiceListWidget;
 export 'order_detail/order_detail_widget.dart' show OrderDetailWidget;
 export 'f_a_q_list/f_a_q_list_widget.dart' show FAQListWidget;
+export 'f_a_q_article/f_a_q_article_widget.dart' show FAQArticleWidget;
