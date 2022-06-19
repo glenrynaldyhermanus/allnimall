@@ -136,7 +136,21 @@ double countAmount(
   double serviceFee,
   int quantity,
 ) {
-  return (serviceFee * quantity) - 0;
+
+  double totalDisc = 0;
+
+  for(DiscountsRecord disc in FFAppState().localDiscount){
+    if(disc.unit == "Order"){
+      totalDisc += disc.discount;
+    } else if(disc.unit == "Pet"){
+      totalDisc += disc.discount * quantity;
+    }
+  }
+
+
+  double fee = (quantity * serviceFee) - totalDisc;
+
+  return fee;
 }
 
 bool isDatePicked(DateTime dateTime) {
