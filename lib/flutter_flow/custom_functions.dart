@@ -87,6 +87,23 @@ String countDiscount(
   return "-${formatter.format(amount)}";
 }
 
+String countOrderDiscount(
+  int quantity,
+  OrderDiscountsRecord discount,
+) {
+  // string currency from integer
+  double amount = 0;
+
+  if (discount.unit == "order") {
+    amount = discount.discount;
+  } else {
+    amount = quantity * discount.discount;
+  }
+
+  final formatter = NumberFormat("###,###");
+  return "-${formatter.format(amount)}";
+}
+
 String countTotal(
   int quantity,
   double serviceFee,
