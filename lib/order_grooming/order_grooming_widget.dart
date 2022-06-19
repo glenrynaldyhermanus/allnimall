@@ -741,6 +741,15 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                         );
                         await OrderDiscountsRecord.createDoc(order.reference)
                             .set(orderDiscountsCreateData);
+
+                        final orderServicesCreateData =
+                            createOrderServicesRecordData(
+                          name: FFAppState().localServiceName,
+                          fee: FFAppState().localServiceFee,
+                          categoryName: FFAppState().localServiceCategory,
+                        );
+                        await OrderServicesRecord.createDoc(order.reference)
+                            .set(orderServicesCreateData);
                         setState(() => FFAppState().localScheduleDate = null);
                         await actions.backToRoot(
                           context,
