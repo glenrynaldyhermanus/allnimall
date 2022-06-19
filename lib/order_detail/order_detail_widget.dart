@@ -1136,39 +1136,118 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                 ),
                                               ],
                                             ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 5, 0, 0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Expanded(
-                                                    flex: 3,
-                                                    child: Row(
+                                            StreamBuilder<
+                                                List<OrderServicesRecord>>(
+                                              stream: queryOrderServicesRecord(
+                                                parent: orderDetailOrdersRecord
+                                                    .reference,
+                                              ),
+                                              builder: (context, snapshot) {
+                                                // Customize what your widget looks like when it's loading.
+                                                if (!snapshot.hasData) {
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      width: 50,
+                                                      height: 50,
+                                                      child: SpinKitRipple(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryColor,
+                                                        size: 50,
+                                                      ),
+                                                    ),
+                                                  );
+                                                }
+                                                List<OrderServicesRecord>
+                                                    columnOrderServicesRecordList =
+                                                    snapshot.data;
+                                                return Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: List.generate(
+                                                      columnOrderServicesRecordList
+                                                          .length,
+                                                      (columnIndex) {
+                                                    final columnOrderServicesRecord =
+                                                        columnOrderServicesRecordList[
+                                                            columnIndex];
+                                                    return Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
                                                       children: [
-                                                        Expanded(
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0,
-                                                                        0,
-                                                                        10,
-                                                                        0),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Padding(
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      5, 0, 0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Expanded(
+                                                                flex: 3,
+                                                                child: Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Expanded(
+                                                                      child:
+                                                                          Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0,
+                                                                            0,
+                                                                            10,
+                                                                            0),
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.start,
+                                                                          children: [
+                                                                            Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                                                                              child: Text(
+                                                                                columnOrderServicesRecord.name,
+                                                                                style: FlutterFlowTheme.of(context).subtitle1.override(
+                                                                                      fontFamily: 'Cabin',
+                                                                                      fontSize: 16,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                            Row(
+                                                                              mainAxisSize: MainAxisSize.max,
+                                                                              children: [
+                                                                                Text(
+                                                                                  columnOrderServicesRecord.quantity.toString(),
+                                                                                  style: FlutterFlowTheme.of(context).subtitle2,
+                                                                                ),
+                                                                                Text(
+                                                                                  ' x ',
+                                                                                  style: FlutterFlowTheme.of(context).subtitle2,
+                                                                                ),
+                                                                                Text(
+                                                                                  columnOrderServicesRecord.categoryName,
+                                                                                  style: FlutterFlowTheme.of(context).subtitle2,
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                              Expanded(
+                                                                flex: 1,
+                                                                child: Padding(
                                                                   padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0,
@@ -1176,8 +1255,14 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                                           0,
                                                                           0),
                                                                   child: Text(
-                                                                    orderDetailOrdersRecord
-                                                                        .service,
+                                                                    functions.countFee(
+                                                                        columnOrderServicesRecord
+                                                                            .quantity,
+                                                                        columnOrderServicesRecord
+                                                                            .fee),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .end,
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .subtitle1
@@ -1189,68 +1274,17 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                                         ),
                                                                   ),
                                                                 ),
-                                                                Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Text(
-                                                                      orderDetailOrdersRecord
-                                                                          .quantity
-                                                                          .toString(),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .subtitle2,
-                                                                    ),
-                                                                    Text(
-                                                                      ' x ',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .subtitle2,
-                                                                    ),
-                                                                    Text(
-                                                                      orderDetailOrdersRecord
-                                                                          .petCategory,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .subtitle2,
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ],
-                                                            ),
+                                                              ),
+                                                            ],
                                                           ),
                                                         ),
+                                                        Divider(),
                                                       ],
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    flex: 1,
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 4, 0, 0),
-                                                      child: Text(
-                                                        '10.000',
-                                                        textAlign:
-                                                            TextAlign.end,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .subtitle1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Cabin',
-                                                                  fontSize: 16,
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
+                                                    );
+                                                  }),
+                                                );
+                                              },
                                             ),
-                                            Divider(),
                                             StreamBuilder<
                                                 List<OrderDiscountsRecord>>(
                                               stream: queryOrderDiscountsRecord(

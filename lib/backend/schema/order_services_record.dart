@@ -22,6 +22,9 @@ abstract class OrderServicesRecord
   String get categoryName;
 
   @nullable
+  int get quantity;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -30,7 +33,8 @@ abstract class OrderServicesRecord
   static void _initializeBuilder(OrderServicesRecordBuilder builder) => builder
     ..name = ''
     ..fee = 0.0
-    ..categoryName = '';
+    ..categoryName = ''
+    ..quantity = 0;
 
   static Query<Map<String, dynamic>> collection([DocumentReference parent]) =>
       parent != null
@@ -63,10 +67,12 @@ Map<String, dynamic> createOrderServicesRecordData({
   String name,
   double fee,
   String categoryName,
+  int quantity,
 }) =>
     serializers.toFirestore(
         OrderServicesRecord.serializer,
         OrderServicesRecord((o) => o
           ..name = name
           ..fee = fee
-          ..categoryName = categoryName));
+          ..categoryName = categoryName
+          ..quantity = quantity));
