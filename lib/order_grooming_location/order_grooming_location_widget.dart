@@ -115,7 +115,9 @@ class _OrderGroomingLocationWidgetState
                       'AIzaSyBydXSoppRjB-gdhCkIckjS0O_t9hzMgtw',
                   webGoogleMapsApiKey:
                       'AIzaSyAVmO1JRU552L2OhuDi0sdRhwgleBPNO3c',
-                  onSelect: (place) => setState(() => placePickerValue = place),
+                  onSelect: (place) async {
+                    setState(() => placePickerValue = place);
+                  },
                   defaultText: 'Cari',
                   icon: Icon(
                     Icons.search,

@@ -67,8 +67,8 @@ service cloud.firestore {
     match /service_categories/{document} {
       allow create: if true;
       allow read: if true;
-      allow write: if true;
-      allow delete: if true;
+      allow write: if false;
+      allow delete: if false;
     }
 
     match /services/{document} {
@@ -81,8 +81,8 @@ service cloud.firestore {
     match /services/{parent}/activities/{document} {
       allow create: if true;
       allow read: if true;
-      allow write: if true;
-      allow delete: if true;
+      allow write: if false;
+      allow delete: if false;
     }
 
     match /{path=**}/activities/{document} {
@@ -93,8 +93,8 @@ service cloud.firestore {
     match /rangers/{parent}/ratings/{document} {
       allow create: if true;
       allow read: if true;
-      allow write: if true;
-      allow delete: if true;
+      allow write: if false;
+      allow delete: if false;
     }
 
     match /{path=**}/ratings/{document} {
@@ -105,15 +105,15 @@ service cloud.firestore {
     match /discounts/{document} {
       allow create: if true;
       allow read: if true;
-      allow write: if true;
-      allow delete: if true;
+      allow write: if false;
+      allow delete: if false;
     }
 
     match /orders/{parent}/order_discounts/{document} {
       allow create: if true;
       allow read: if true;
-      allow write: if true;
-      allow delete: if true;
+      allow write: if false;
+      allow delete: if false;
     }
 
     match /{path=**}/order_discounts/{document} {
@@ -124,8 +124,8 @@ service cloud.firestore {
     match /orders/{parent}/order_services/{document} {
       allow create: if true;
       allow read: if true;
-      allow write: if true;
-      allow delete: if true;
+      allow write: if false;
+      allow delete: if false;
     }
 
     match /{path=**}/order_services/{document} {
@@ -136,8 +136,8 @@ service cloud.firestore {
     match /faqs/{document} {
       allow create: if true;
       allow read: if true;
-      allow write: if true;
-      allow delete: if true;
+      allow write: if false;
+      allow delete: if false;
     }
   }
 }

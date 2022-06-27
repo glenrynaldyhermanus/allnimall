@@ -18,13 +18,16 @@ class FFAppState {
     prefs = await SharedPreferences.getInstance();
     _localAddress = prefs.getString('ff_localAddress') ?? _localAddress;
     _localLatLng = _latLngFromString(prefs.getString('ff_localLatLng'));
+    _rangerList = prefs
+            .getStringList('ff_rangerList')
+            ?.map((path) => path.ref)
+            ?.toList() ??
+        _rangerList;
   }
 
   SharedPreferences prefs;
 
   String phone = '';
-
-  List<DocumentReference> adminList = [];
 
   String _localAddress = '';
   String get localAddress => _localAddress;
@@ -59,6 +62,28 @@ class FFAppState {
   double localServiceFee = 0.0;
 
   bool isFeatureReady = false;
+
+  List<DocumentReference> _rangerList = [
+    FirebaseFirestore.instance.doc('/rangers/Q5BvEteqpThJrenAzga36UCdQei2'),
+    FirebaseFirestore.instance.doc('/rangers/pUgDOviQ0jPbDBPgvpsCvUtrTA32')
+  ];
+  List<DocumentReference> get rangerList => _rangerList;
+  set rangerList(List<DocumentReference> _value) {
+    _rangerList = _value;
+    prefs.setStringList('ff_rangerList', _value.map((x) => x.path).toList());
+  }
+
+  void addToRangerList(DocumentReference _value) {
+    _rangerList.add(_value);
+    prefs.setStringList(
+        'ff_rangerList', _rangerList.map((x) => x.path).toList());
+  }
+
+  void removeFromRangerList(DocumentReference _value) {
+    _rangerList.remove(_value);
+    prefs.setStringList(
+        'ff_rangerList', _rangerList.map((x) => x.path).toList());
+  }
 }
 
 LatLng _latLngFromString(String val) {
