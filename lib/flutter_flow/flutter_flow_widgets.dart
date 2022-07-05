@@ -45,6 +45,7 @@ class FFButtonWidget extends StatefulWidget {
     this.iconData,
     @required this.options,
     this.showLoadingIndicator = true,
+    this.isLoading
   }) : super(key: key);
 
   final String text;
@@ -53,6 +54,7 @@ class FFButtonWidget extends StatefulWidget {
   final Function() onPressed;
   final FFButtonOptions options;
   final bool showLoadingIndicator;
+  final bool isLoading;
 
   @override
   State<FFButtonWidget> createState() => _FFButtonWidgetState();
@@ -61,8 +63,13 @@ class FFButtonWidget extends StatefulWidget {
 class _FFButtonWidgetState extends State<FFButtonWidget> {
   bool loading = false;
 
+
   @override
   Widget build(BuildContext context) {
+    if(this.widget.isLoading != null){
+      loading = this.widget.isLoading;
+    }
+
     Widget textWidget = loading
         ? Center(
             child: Container(

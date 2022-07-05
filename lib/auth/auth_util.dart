@@ -110,6 +110,7 @@ Future beginPhoneAuth({
   BuildContext context,
   String phoneNumber,
   VoidCallback onCodeSent,
+  VoidCallback onFailure,
 }) async {
   if (kIsWeb) {
     _webPhoneAuthConfirmationResult =
@@ -122,7 +123,7 @@ Future beginPhoneAuth({
   // * For Android: https://firebase.google.com/docs/auth/android/phone-auth?authuser=0#enable-app-verification (SafetyNet set up)
   // * For iOS: https://firebase.google.com/docs/auth/ios/phone-auth?authuser=0#start-receiving-silent-notifications
   // * Finally modify verificationCompleted below as instructed.
-  await FirebaseAuth.instance.verifyPhoneNumber(
+  return FirebaseAuth.instance.verifyPhoneNumber(
     phoneNumber: phoneNumber,
     timeout: Duration(seconds: 20),
     verificationCompleted: (phoneAuthCredential) async {
@@ -139,6 +140,7 @@ Future beginPhoneAuth({
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text('Error: ${e.message}'),
       ));
+      onFailure();
     },
     codeSent: (verificationId, _) {
       _phoneAuthVerificationCode = verificationId;

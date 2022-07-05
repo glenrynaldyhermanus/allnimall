@@ -17,6 +17,7 @@ class PhoneSignInWidget extends StatefulWidget {
 class _PhoneSignInWidgetState extends State<PhoneSignInWidget> {
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  var loading = false;
 
   @override
   void initState() {
@@ -119,8 +120,10 @@ class _PhoneSignInWidgetState extends State<PhoneSignInWidget> {
                         ),
                       ),
                       FFButtonWidget(
+                        isLoading: loading,
                         onPressed: () async {
-                          final phoneNumberVal = "+62"+textController.text;
+
+                          final phoneNumberVal = "+62" + textController.text;
                           if (phoneNumberVal == null ||
                               phoneNumberVal.isEmpty ||
                               !phoneNumberVal.startsWith('+')) {
@@ -131,19 +134,24 @@ class _PhoneSignInWidgetState extends State<PhoneSignInWidget> {
                             );
                             return;
                           }
+
+                          setState(() {loading = true;});
                           await beginPhoneAuth(
                             context: context,
                             phoneNumber: phoneNumberVal,
                             onCodeSent: () async {
-                              await Navigator.pushAndRemoveUntil(
+                              setState(() {loading = false;});
+                              await Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
                                       PhoneVerificationWidget(),
                                 ),
-                                (r) => false,
                               );
                             },
+                            onFailure: () {
+                              setState(() {loading = false;});
+                            }
                           );
                         },
                         text: 'Go!',

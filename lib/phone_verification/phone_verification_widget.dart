@@ -101,6 +101,7 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                       context: context,
                       smsCode: smsCodeVal,
                     );
+
                     if (phoneVerifiedUser == null) {
                       return;
                     }
