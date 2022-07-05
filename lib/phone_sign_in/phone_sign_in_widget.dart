@@ -144,8 +144,9 @@ class _PhoneSignInWidgetState extends State<PhoneSignInWidget> {
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      PhoneVerificationWidget(),
+                                  builder: (context) => PhoneVerificationWidget(
+                                    phone: textController.text,
+                                  ),
                                 ),
                               );
                             },
