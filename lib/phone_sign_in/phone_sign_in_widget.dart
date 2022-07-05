@@ -15,13 +15,13 @@ class PhoneSignInWidget extends StatefulWidget {
 }
 
 class _PhoneSignInWidgetState extends State<PhoneSignInWidget> {
-  TextEditingController phoneNumberController;
+  TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    phoneNumberController = TextEditingController();
+    textController = TextEditingController();
   }
 
   @override
@@ -60,119 +60,111 @@ class _PhoneSignInWidgetState extends State<PhoneSignInWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Text(
-                        '+62',
-                        style: FlutterFlowTheme.of(context).subtitle1.override(
-                              fontFamily: 'Cabin',
-                              fontSize: 18,
-                            ),
-                      ),
                       Expanded(
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                          child: TextFormField(
-                            controller: phoneNumberController,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelText: 'No Handphone',
-                              labelStyle:
-                                  FlutterFlowTheme.of(context).subtitle2,
-                              hintText: '801234567',
-                              hintStyle: FlutterFlowTheme.of(context).subtitle2,
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryColor,
-                                  width: 2,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryColor,
-                                  width: 2,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              filled: true,
-                              fillColor:
-                                  FlutterFlowTheme.of(context).tertiaryColor,
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                  20, 24, 20, 24),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Text(
+                              '+62',
+                              style: FlutterFlowTheme.of(context)
+                                  .subtitle1
+                                  .override(
+                                    fontFamily: 'Cabin',
+                                    fontSize: 18,
+                                  ),
                             ),
-                            style:
-                                FlutterFlowTheme.of(context).subtitle1.override(
-                                      fontFamily: 'Cabin',
-                                      color: Color(0xFF757575),
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10, 0, 10, 0),
+                                child: TextFormField(
+                                  controller: textController,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    labelText: 'No Handphone',
+                                    hintText: '811XXXXXXX',
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 0,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
                                     ),
-                            keyboardType: TextInputType.phone,
-                          ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 0,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    filled: true,
+                                    fillColor: Color(0x7FDBDCFF),
+                                  ),
+                                  style: FlutterFlowTheme.of(context).subtitle2,
+                                  keyboardType: TextInputType.phone,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20, 24, 20, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 48),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              final phoneNumberVal = phoneNumberController.text;
-                              if (phoneNumberVal == null ||
-                                  phoneNumberVal.isEmpty ||
-                                  !phoneNumberVal.startsWith('+')) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text('Silahkan isi nomor HP'),
-                                  ),
-                                );
-                                return;
-                              }
-                              await beginPhoneAuth(
-                                context: context,
-                                phoneNumber: phoneNumberVal,
-                                onCodeSent: () async {
-                                  await Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          PhoneVerificationWidget(),
-                                    ),
-                                    (r) => false,
-                                  );
-                                },
+                      FFButtonWidget(
+                        onPressed: () async {
+                          final phoneNumberVal = textController.text;
+                          if (phoneNumberVal == null ||
+                              phoneNumberVal.isEmpty ||
+                              !phoneNumberVal.startsWith('+')) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Silahkan isi nomor HP'),
+                              ),
+                            );
+                            return;
+                          }
+                          await beginPhoneAuth(
+                            context: context,
+                            phoneNumber: phoneNumberVal,
+                            onCodeSent: () async {
+                              await Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      PhoneVerificationWidget(),
+                                ),
+                                (r) => false,
                               );
                             },
-                            text: 'Sign In',
-                            options: FFButtonOptions(
-                              width: 230,
-                              height: 60,
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              textStyle:
-                                  FlutterFlowTheme.of(context).title3.override(
-                                        fontFamily: 'RockoUltra',
-                                        color: FlutterFlowTheme.of(context)
-                                            .tertiaryColor,
-                                        useGoogleFonts: false,
-                                      ),
-                              elevation: 3,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
-                              ),
-                              borderRadius: 8,
-                            ),
+                          );
+                        },
+                        text: 'Go!',
+                        options: FFButtonOptions(
+                          width: 64,
+                          height: 48,
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          textStyle:
+                              FlutterFlowTheme.of(context).title3.override(
+                                    fontFamily: 'RockoUltra',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w600,
+                                    useGoogleFonts: false,
+                                  ),
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1,
                           ),
+                          borderRadius: 12,
                         ),
                       ),
                     ],

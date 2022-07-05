@@ -84,6 +84,12 @@ class FFAppState {
     prefs.setStringList(
         'ff_rangerList', _rangerList.map((x) => x.path).toList());
   }
+
+  List<DocumentReference> adminList = [
+    FirebaseFirestore.instance.doc('/rangers/Q5BvEteqpThJrenAzga36UCdQei2'),
+    FirebaseFirestore.instance.doc('/rangers/i8VUfLEhKmPYS9NgoisxHgueTgl2'),
+    FirebaseFirestore.instance.doc('/rangers/pUgDOviQ0jPbDBPgvpsCvUtrTA32')
+  ];
 }
 
 LatLng _latLngFromString(String val) {
