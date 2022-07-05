@@ -145,7 +145,7 @@ class _PhoneSignInWidgetState extends State<PhoneSignInWidget> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => PhoneVerificationWidget(
-                                    phone: textController.text,
+                                    phone: "+62" +textController.text,
                                   ),
                                 ),
                               );

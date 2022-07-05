@@ -28,6 +28,13 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
   TextEditingController textField4Controller;
   TextEditingController textField5Controller;
   TextEditingController textField6Controller;
+  FocusNode focusNode1;
+  FocusNode focusNode2;
+  FocusNode focusNode3;
+  FocusNode focusNode4;
+  FocusNode focusNode5;
+  FocusNode focusNode6;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -39,6 +46,13 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
     textField4Controller = TextEditingController();
     textField5Controller = TextEditingController();
     textField6Controller = TextEditingController();
+
+    focusNode1 = FocusNode();
+    focusNode2 = FocusNode();
+    focusNode3 = FocusNode();
+    focusNode4 = FocusNode();
+    focusNode5 = FocusNode();
+    focusNode6 = FocusNode();
   }
 
   @override
@@ -99,8 +113,12 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
                         child: TextFormField(
                           controller: textField1Controller,
+                          focusNode: focusNode1,
                           obscureText: false,
+                          maxLength: 1,
+                          textAlign: TextAlign.center,
                           decoration: InputDecoration(
+                            counterText: "",
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: Color(0x00000000),
@@ -126,6 +144,14 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                           ),
                           style: FlutterFlowTheme.of(context).subtitle2,
                           keyboardType: TextInputType.number,
+                          onChanged: (value) {
+                            if (value.length >= 1) {
+                              if (textField2Controller.text.isEmpty) {
+                                focusNode1.unfocus();
+                                FocusScope.of(context).requestFocus(focusNode2);
+                              }
+                            }
+                          },
                         ),
                       ),
                     ),
@@ -134,8 +160,12 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
                         child: TextFormField(
                           controller: textField2Controller,
+                          focusNode: focusNode2,
                           obscureText: false,
+                          maxLength: 1,
+                          textAlign: TextAlign.center,
                           decoration: InputDecoration(
+                            counterText: "",
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: Color(0x00000000),
@@ -161,6 +191,19 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                           ),
                           style: FlutterFlowTheme.of(context).subtitle2,
                           keyboardType: TextInputType.number,
+                          onChanged: (value) {
+                            if (value.length >= 1) {
+                              if (textField3Controller.text.isEmpty) {
+                                focusNode2.unfocus();
+                                FocusScope.of(context).requestFocus(focusNode3);
+                              }
+                            } else if (value.length == 0) {
+                              if (textField3Controller.text.isEmpty) {
+                                focusNode2.unfocus();
+                                FocusScope.of(context).requestFocus(focusNode1);
+                              }
+                            }
+                          },
                         ),
                       ),
                     ),
@@ -169,8 +212,12 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
                         child: TextFormField(
                           controller: textField3Controller,
+                          focusNode: focusNode3,
                           obscureText: false,
+                          maxLength: 1,
+                          textAlign: TextAlign.center,
                           decoration: InputDecoration(
+                            counterText: "",
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: Color(0x00000000),
@@ -196,6 +243,19 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                           ),
                           style: FlutterFlowTheme.of(context).subtitle2,
                           keyboardType: TextInputType.number,
+                          onChanged: (value) {
+                            if (value.length >= 1) {
+                              if (textField4Controller.text.isEmpty) {
+                                focusNode3.unfocus();
+                                FocusScope.of(context).requestFocus(focusNode4);
+                              }
+                            } else if (value.length == 0) {
+                              if (textField4Controller.text.isEmpty) {
+                                focusNode3.unfocus();
+                                FocusScope.of(context).requestFocus(focusNode2);
+                              }
+                            }
+                          },
                         ),
                       ),
                     ),
@@ -204,8 +264,12 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
                         child: TextFormField(
                           controller: textField4Controller,
+                          focusNode: focusNode4,
                           obscureText: false,
+                          maxLength: 1,
+                          textAlign: TextAlign.center,
                           decoration: InputDecoration(
+                            counterText: "",
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: Color(0x00000000),
@@ -231,6 +295,19 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                           ),
                           style: FlutterFlowTheme.of(context).subtitle2,
                           keyboardType: TextInputType.number,
+                          onChanged: (value) {
+                            if (value.length >= 1) {
+                              if (textField5Controller.text.isEmpty) {
+                                focusNode4.unfocus();
+                                FocusScope.of(context).requestFocus(focusNode5);
+                              }
+                            } else if (value.length == 0) {
+                              if (textField5Controller.text.isEmpty) {
+                                focusNode4.unfocus();
+                                FocusScope.of(context).requestFocus(focusNode3);
+                              }
+                            }
+                          },
                         ),
                       ),
                     ),
@@ -239,8 +316,12 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
                         child: TextFormField(
                           controller: textField5Controller,
+                          focusNode: focusNode5,
                           obscureText: false,
+                          maxLength: 1,
+                          textAlign: TextAlign.center,
                           decoration: InputDecoration(
+                            counterText: "",
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: Color(0x00000000),
@@ -266,6 +347,19 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                           ),
                           style: FlutterFlowTheme.of(context).subtitle2,
                           keyboardType: TextInputType.number,
+                          onChanged: (value) {
+                            if (value.length >= 1) {
+                              if (textField6Controller.text.isEmpty) {
+                                focusNode5.unfocus();
+                                FocusScope.of(context).requestFocus(focusNode6);
+                              }
+                            } else if (value.length == 0) {
+                              if (textField6Controller.text.isEmpty) {
+                                focusNode5.unfocus();
+                                FocusScope.of(context).requestFocus(focusNode4);
+                              }
+                            }
+                          },
                         ),
                       ),
                     ),
@@ -274,8 +368,12 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
                         child: TextFormField(
                           controller: textField6Controller,
+                          focusNode: focusNode6,
                           obscureText: false,
+                          maxLength: 1,
+                          textAlign: TextAlign.center,
                           decoration: InputDecoration(
+                            counterText: "",
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: Color(0x00000000),
@@ -301,6 +399,14 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                           ),
                           style: FlutterFlowTheme.of(context).subtitle2,
                           keyboardType: TextInputType.number,
+                          onChanged: (value) {
+                            if (value.length >= 1) {
+                              focusNode6.unfocus();
+                            } else if (value.length == 0) {
+                              focusNode6.unfocus();
+                              FocusScope.of(context).requestFocus(focusNode5);
+                            }
+                          },
                         ),
                       ),
                     ),
@@ -311,7 +417,8 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    final smsCodeVal = textField1Controller.text;
+                    final smsCodeVal =
+                        "${textField1Controller.text}${textField2Controller.text}${textField3Controller.text}${textField4Controller.text}${textField5Controller.text}${textField6Controller.text}";
                     if (smsCodeVal == null || smsCodeVal.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -392,7 +499,9 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                       await Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => PhoneVerificationWidget(),
+                          builder: (context) => PhoneVerificationWidget(
+                            phone: widget.phone,
+                          ),
                         ),
                         (r) => false,
                       );
