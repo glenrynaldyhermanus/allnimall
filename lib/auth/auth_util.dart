@@ -124,7 +124,7 @@ Future beginPhoneAuth({
   // * Finally modify verificationCompleted below as instructed.
   await FirebaseAuth.instance.verifyPhoneNumber(
     phoneNumber: phoneNumber,
-    timeout: Duration(seconds: 5),
+    timeout: Duration(seconds: 20),
     verificationCompleted: (phoneAuthCredential) async {
       await FirebaseAuth.instance.signInWithCredential(phoneAuthCredential);
       // If you've implemented auto-verification, navigate to home page or
