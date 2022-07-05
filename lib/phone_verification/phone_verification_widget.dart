@@ -9,7 +9,12 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PhoneVerificationWidget extends StatefulWidget {
-  const PhoneVerificationWidget({Key key}) : super(key: key);
+  const PhoneVerificationWidget({
+    Key key,
+    this.phone,
+  }) : super(key: key);
+
+  final String phone;
 
   @override
   _PhoneVerificationWidgetState createState() =>
@@ -17,13 +22,23 @@ class PhoneVerificationWidget extends StatefulWidget {
 }
 
 class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
-  TextEditingController phoneNumberController;
+  TextEditingController textField1Controller;
+  TextEditingController textField2Controller;
+  TextEditingController textField3Controller;
+  TextEditingController textField4Controller;
+  TextEditingController textField5Controller;
+  TextEditingController textField6Controller;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    phoneNumberController = TextEditingController();
+    textField1Controller = TextEditingController();
+    textField2Controller = TextEditingController();
+    textField3Controller = TextEditingController();
+    textField4Controller = TextEditingController();
+    textField5Controller = TextEditingController();
+    textField6Controller = TextEditingController();
   }
 
   @override
@@ -53,42 +68,250 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
-                child: TextFormField(
-                  controller: phoneNumberController,
-                  obscureText: false,
-                  decoration: InputDecoration(
-                    labelText: 'Masukkan kode 6 digit',
-                    labelStyle: FlutterFlowTheme.of(context).subtitle2,
-                    hintText: '000000',
-                    hintStyle: FlutterFlowTheme.of(context).subtitle2,
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).secondaryColor,
-                        width: 2,
+                padding: EdgeInsetsDirectional.fromSTEB(30, 40, 30, 0),
+                child: Text(
+                  'OTP sudah dikirim ke nomor',
+                  textAlign: TextAlign.center,
+                  style: FlutterFlowTheme.of(context).subtitle1.override(
+                        fontFamily: 'Cabin',
+                        fontSize: 18,
                       ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).secondaryColor,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    filled: true,
-                    fillColor: FlutterFlowTheme.of(context).tertiaryColor,
-                    contentPadding:
-                        EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
-                  ),
-                  style: FlutterFlowTheme.of(context).subtitle1,
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 0),
+                child: Text(
+                  widget.phone,
+                  textAlign: TextAlign.center,
+                  style: FlutterFlowTheme.of(context).subtitle1.override(
+                        fontFamily: 'Cabin',
+                        fontSize: 18,
+                      ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(30, 20, 30, 0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                        child: TextFormField(
+                          controller: textField1Controller,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            filled: true,
+                            fillColor: Color(0x7FDBDCFF),
+                          ),
+                          style: FlutterFlowTheme.of(context).subtitle2,
+                          keyboardType: TextInputType.number,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                        child: TextFormField(
+                          controller: textField2Controller,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            filled: true,
+                            fillColor: Color(0x7FDBDCFF),
+                          ),
+                          style: FlutterFlowTheme.of(context).subtitle2,
+                          keyboardType: TextInputType.number,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                        child: TextFormField(
+                          controller: textField3Controller,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            filled: true,
+                            fillColor: Color(0x7FDBDCFF),
+                          ),
+                          style: FlutterFlowTheme.of(context).subtitle2,
+                          keyboardType: TextInputType.number,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                        child: TextFormField(
+                          controller: textField4Controller,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            filled: true,
+                            fillColor: Color(0x7FDBDCFF),
+                          ),
+                          style: FlutterFlowTheme.of(context).subtitle2,
+                          keyboardType: TextInputType.number,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                        child: TextFormField(
+                          controller: textField5Controller,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            filled: true,
+                            fillColor: Color(0x7FDBDCFF),
+                          ),
+                          style: FlutterFlowTheme.of(context).subtitle2,
+                          keyboardType: TextInputType.number,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                        child: TextFormField(
+                          controller: textField6Controller,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            filled: true,
+                            fillColor: Color(0x7FDBDCFF),
+                          ),
+                          style: FlutterFlowTheme.of(context).subtitle2,
+                          keyboardType: TextInputType.number,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    final smsCodeVal = phoneNumberController.text;
+                    final smsCodeVal = textField1Controller.text;
                     if (smsCodeVal == null || smsCodeVal.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -125,6 +348,10 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                     }
                   },
                   text: 'Lanjut',
+                  icon: Icon(
+                    Icons.arrow_right_alt,
+                    size: 15,
+                  ),
                   options: FFButtonOptions(
                     width: 230,
                     height: 60,
@@ -132,6 +359,7 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                     textStyle: FlutterFlowTheme.of(context).title3.override(
                           fontFamily: 'RockoUltra',
                           color: FlutterFlowTheme.of(context).tertiaryColor,
+                          fontSize: 16,
                           useGoogleFonts: false,
                         ),
                     elevation: 3,
@@ -141,6 +369,52 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                     ),
                     borderRadius: 8,
                   ),
+                ),
+              ),
+              FFButtonWidget(
+                onPressed: () async {
+                  final phoneNumberVal = widget.phone;
+                  if (phoneNumberVal == null ||
+                      phoneNumberVal.isEmpty ||
+                      !phoneNumberVal.startsWith('+')) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Silahkan isi nomor HP'),
+                      ),
+                    );
+                    return;
+                  }
+                  await beginPhoneAuth(
+                    context: context,
+                    phoneNumber: phoneNumberVal,
+                    onCodeSent: () async {
+                      await Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PhoneVerificationWidget(),
+                        ),
+                        (r) => false,
+                      );
+                    },
+                  );
+                },
+                text: 'Resend SMS',
+                options: FFButtonOptions(
+                  width: 230,
+                  height: 60,
+                  color: FlutterFlowTheme.of(context).tertiaryColor,
+                  textStyle: FlutterFlowTheme.of(context).title3.override(
+                        fontFamily: 'RockoUltra',
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                        fontSize: 12,
+                        useGoogleFonts: false,
+                      ),
+                  elevation: 0,
+                  borderSide: BorderSide(
+                    color: Colors.transparent,
+                    width: 1,
+                  ),
+                  borderRadius: 8,
                 ),
               ),
             ],

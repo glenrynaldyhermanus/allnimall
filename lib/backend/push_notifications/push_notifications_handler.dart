@@ -95,7 +95,9 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
       ),
   'AddressForm': (data) async => AddressFormWidget(),
   'PhoneSignIn': (data) async => PhoneSignInWidget(),
-  'PhoneVerification': (data) async => PhoneVerificationWidget(),
+  'PhoneVerification': (data) async => PhoneVerificationWidget(
+        phone: getParameter(data, 'phone'),
+      ),
   'SignUp': (data) async => SignUpWidget(),
   'PetProfile': (data) async => PetProfileWidget(
         petRef: getParameter(data, 'petRef'),

@@ -138,8 +138,9 @@ class _PhoneSignInWidgetState extends State<PhoneSignInWidget> {
                               await Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      PhoneVerificationWidget(),
+                                  builder: (context) => PhoneVerificationWidget(
+                                    phone: textController.text,
+                                  ),
                                 ),
                                 (r) => false,
                               );
