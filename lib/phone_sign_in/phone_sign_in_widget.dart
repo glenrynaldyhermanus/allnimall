@@ -120,7 +120,7 @@ class _PhoneSignInWidgetState extends State<PhoneSignInWidget> {
                       ),
                       FFButtonWidget(
                         onPressed: () async {
-                          final phoneNumberVal = "+62"+phoneNumberController.text;
+                          final phoneNumberVal = "+62"+textController.text;
                           if (phoneNumberVal == null ||
                               phoneNumberVal.isEmpty ||
                               !phoneNumberVal.startsWith('+')) {
