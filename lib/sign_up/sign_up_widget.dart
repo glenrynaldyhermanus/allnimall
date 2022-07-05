@@ -164,20 +164,63 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     children: [
                       FFButtonWidget(
                         onPressed: () async {
-                          final customersUpdateData = createCustomersRecordData(
-                            email: emailFieldController.text,
-                            displayName: nameFieldController.text,
-                          );
-                          await currentUserReference
-                              .update(customersUpdateData);
-                          await Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  NavBarPage(initialPage: 'HomeBackup'),
-                            ),
-                            (r) => false,
-                          );
+                          if ((nameFieldController.text != null) &&
+                              (nameFieldController.text != '')) {
+                            if ((emailFieldController.text != null) &&
+                                (emailFieldController.text != '')) {
+                              final customersUpdateData =
+                                  createCustomersRecordData(
+                                email: emailFieldController.text,
+                                displayName: nameFieldController.text,
+                              );
+                              await currentUserReference
+                                  .update(customersUpdateData);
+                              await Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      NavBarPage(initialPage: 'HomeBackup'),
+                                ),
+                                (r) => false,
+                              );
+                            } else {
+                              await showDialog(
+                                context: context,
+                                builder: (alertDialogContext) {
+                                  return AlertDialog(
+                                    title: Text('Permintaan Gagal'),
+                                    content: Text(
+                                        'Mohon isi nama dan email terlebih dahulu'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: Text('Ok'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            }
+                          } else {
+                            await showDialog(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: Text('Permintaan Gagal'),
+                                  content: Text(
+                                      'Mohon isi nama dan email terlebih dahulu'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(alertDialogContext),
+                                      child: Text('Ok'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }
                         },
                         text: 'Simpan Profil',
                         options: FFButtonOptions(
