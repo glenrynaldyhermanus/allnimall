@@ -772,7 +772,7 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                         triggerPushNotification(
                           notificationTitle: 'New Request!',
                           notificationText: 'Ada permintaan baru, segera lihat',
-                          userRefs: FFAppState().customerList.toList(),
+                          userRefs: FFAppState().adminList.toList(),
                           initialPageName: 'Home',
                           parameterData: {},
                         );
