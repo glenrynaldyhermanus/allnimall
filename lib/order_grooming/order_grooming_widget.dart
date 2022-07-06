@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../backend/push_notifications/push_notifications_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -750,6 +751,13 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                         );
                         await OrderServicesRecord.createDoc(order.reference)
                             .set(orderServicesCreateData);
+                        triggerPushNotification(
+                          notificationTitle: 'New Request!',
+                          notificationText: 'Ada permintaan baru, segera lihat',
+                          userRefs: FFAppState().customerList.toList(),
+                          initialPageName: 'Home',
+                          parameterData: {},
+                        );
                         setState(() => FFAppState().localScheduleDate = null);
                         await actions.backToRoot(
                           context,
