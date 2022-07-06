@@ -93,6 +93,8 @@ class FFAppState {
     FirebaseFirestore.instance.doc('/rangers/i8VUfLEhKmPYS9NgoisxHgueTgl2'),
     FirebaseFirestore.instance.doc('/rangers/pUgDOviQ0jPbDBPgvpsCvUtrTA32')
   ];
+
+  List<DocumentReference> customerList = [];
 }
 
 LatLng _latLngFromString(String val) {
