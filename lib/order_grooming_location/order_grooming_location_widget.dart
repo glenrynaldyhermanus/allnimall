@@ -207,7 +207,7 @@ class _OrderGroomingLocationWidgetState
                     FFButtonWidget(
                       onPressed: () async {
                         if ((textController.text != null) &&
-                            (textController.text != '')) {
+                            (textController.text.trim() != '')) {
                           setState(() =>
                               FFAppState().localAddress = textController.text);
                           setState(() =>
