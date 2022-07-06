@@ -713,73 +713,74 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                           FFAppState().localAddress,
                           FFAppState().localServiceName,
                           FFAppState().localScheduleDate)) {
-                        final ordersCreateData = createOrdersRecordData(
-                          createdAt: getCurrentTimestamp,
-                          orderNo: functions.generateOrderNo(),
-                          petCategory: FFAppState().localServiceCategory,
-                          name: functions.generateOrderName(
-                              FFAppState().localServiceName,
-                              FFAppState().localPetAmount,
-                              FFAppState().localServiceCategory),
-                          scheduledAt: FFAppState().localScheduleDate,
-                          service: FFAppState().localServiceName,
-                          quantity: FFAppState().localPetAmount,
-                          amount: functions.countAmount(
-                              FFAppState().localServiceFee,
-                              FFAppState().localPetAmount),
-                          status: 'New',
-                          customerAddress: FFAppState().localAddress,
-                          customerLatlng: FFAppState().localLatLng,
-                          customerName: currentUserDisplayName,
-                          paymentStatus: 'Unpaid',
-                          prefferedTime: FFAppState().localPreferedTime,
-                          discount: 20000.0,
-                          customerPhone: currentPhoneNumber,
-                          customerUid: currentUserReference,
-                          preferedTime: FFAppState().localPreferedTime,
-                          preferedDay: FFAppState().localPreferedDay,
-                        );
-                        var ordersRecordReference =
-                            OrdersRecord.collection.doc();
-                        await ordersRecordReference.set(ordersCreateData);
-                        order = OrdersRecord.getDocumentFromData(
-                            ordersCreateData, ordersRecordReference);
-
-                        for(DiscountsRecord disc in FFAppState().localDiscount){
-                          final orderDiscountsCreateData =
-                          createOrderDiscountsRecordData(
-                            name: disc.name,
-                            discount: disc.discount,
-                            unit: disc.unit,
-                          );
-                          await OrderDiscountsRecord.createDoc(order.reference)
-                              .set(orderDiscountsCreateData);
-
-                        }
-
-                        setState(() => FFAppState().localDiscount = null);
-
-                        final orderServicesCreateData =
-                            createOrderServicesRecordData(
-                          name: FFAppState().localServiceName,
-                          fee: FFAppState().localServiceFee,
-                          categoryName: FFAppState().localServiceCategory,
-                          quantity: FFAppState().localPetAmount,
-                        );
-                        await OrderServicesRecord.createDoc(order.reference)
-                            .set(orderServicesCreateData);
-                        setState(() => FFAppState().localScheduleDate = null);
-                        await actions.backToRoot(
-                          context,
-                        );
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => OrderDetailWidget(
-                              order: order.reference,
-                            ),
-                          ),
-                        );
+                        print("Yes");
+                        // final ordersCreateData = createOrdersRecordData(
+                        //   createdAt: getCurrentTimestamp,
+                        //   orderNo: functions.generateOrderNo(),
+                        //   petCategory: FFAppState().localServiceCategory,
+                        //   name: functions.generateOrderName(
+                        //       FFAppState().localServiceName,
+                        //       FFAppState().localPetAmount,
+                        //       FFAppState().localServiceCategory),
+                        //   scheduledAt: FFAppState().localScheduleDate,
+                        //   service: FFAppState().localServiceName,
+                        //   quantity: FFAppState().localPetAmount,
+                        //   amount: functions.countAmount(
+                        //       FFAppState().localServiceFee,
+                        //       FFAppState().localPetAmount),
+                        //   status: 'New',
+                        //   customerAddress: FFAppState().localAddress,
+                        //   customerLatlng: FFAppState().localLatLng,
+                        //   customerName: currentUserDisplayName,
+                        //   paymentStatus: 'Unpaid',
+                        //   prefferedTime: FFAppState().localPreferedTime,
+                        //   discount: 20000.0,
+                        //   customerPhone: currentPhoneNumber,
+                        //   customerUid: currentUserReference,
+                        //   preferedTime: FFAppState().localPreferedTime,
+                        //   preferedDay: FFAppState().localPreferedDay,
+                        // );
+                        // var ordersRecordReference =
+                        //     OrdersRecord.collection.doc();
+                        // await ordersRecordReference.set(ordersCreateData);
+                        // order = OrdersRecord.getDocumentFromData(
+                        //     ordersCreateData, ordersRecordReference);
+                        //
+                        // for(DiscountsRecord disc in FFAppState().localDiscount){
+                        //   final orderDiscountsCreateData =
+                        //   createOrderDiscountsRecordData(
+                        //     name: disc.name,
+                        //     discount: disc.discount,
+                        //     unit: disc.unit,
+                        //   );
+                        //   await OrderDiscountsRecord.createDoc(order.reference)
+                        //       .set(orderDiscountsCreateData);
+                        //
+                        // }
+                        //
+                        // setState(() => FFAppState().localDiscount = null);
+                        //
+                        // final orderServicesCreateData =
+                        //     createOrderServicesRecordData(
+                        //   name: FFAppState().localServiceName,
+                        //   fee: FFAppState().localServiceFee,
+                        //   categoryName: FFAppState().localServiceCategory,
+                        //   quantity: FFAppState().localPetAmount,
+                        // );
+                        // await OrderServicesRecord.createDoc(order.reference)
+                        //     .set(orderServicesCreateData);
+                        // setState(() => FFAppState().localScheduleDate = null);
+                        // await actions.backToRoot(
+                        //   context,
+                        // );
+                        // await Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => OrderDetailWidget(
+                        //       order: order.reference,
+                        //     ),
+                        //   ),
+                        // );
                       } else {
                         await showDialog(
                           context: context,
