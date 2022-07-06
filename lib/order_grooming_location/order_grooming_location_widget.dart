@@ -195,11 +195,32 @@ class _OrderGroomingLocationWidgetState
                   children: [
                     FFButtonWidget(
                       onPressed: () async {
-                        setState(() =>
-                            FFAppState().localAddress = textController.text);
-                        setState(
-                            () => FFAppState().localLatLng = googleMapsCenter);
-                        Navigator.pop(context);
+                        if ((textController.text != null) &&
+                            (textController.text != '')) {
+                          setState(() =>
+                              FFAppState().localAddress = textController.text);
+                          setState(() =>
+                              FFAppState().localLatLng = googleMapsCenter);
+                          Navigator.pop(context);
+                        } else {
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                title: Text('Set Alamat Gagal'),
+                                content:
+                                    Text('Mohon masukkan alamat lengkap kamu'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: Text('Ok'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
                       },
                       text: 'Pilih lokasi',
                       options: FFButtonOptions(

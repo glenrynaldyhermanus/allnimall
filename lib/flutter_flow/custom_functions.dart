@@ -229,7 +229,9 @@ bool isOrderFormSet(
   DateTime scheduleDate,
 ) {
   // all parameter is set and not empty or null
-  return address.isNotEmpty && serviceName.isNotEmpty && scheduleDate != null;
+  return address.trim().isNotEmpty &&
+      serviceName.isNotEmpty &&
+      scheduleDate != null;
 }
 
 String generateOrderName(
