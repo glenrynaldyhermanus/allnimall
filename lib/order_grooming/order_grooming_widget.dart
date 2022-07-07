@@ -778,7 +778,7 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                         );
                         setState(() => FFAppState().localScheduleDate = null);
                         await actions.backToRoot(
-                          context,
+                          context, 
                         );
                         await Navigator.push(
                           context,
