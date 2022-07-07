@@ -737,8 +737,9 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                           discount: 20000.0,
                           customerPhone: currentPhoneNumber,
                           customerUid: currentUserReference,
-                          preferedTime: FFAppState().localPreferedTime,
-                          preferedDay: FFAppState().localPreferedDay,
+                          preferredTime: FFAppState().localPreferedTime,
+                          preferredDay: FFAppState().localPreferedDay,
+                          customerCity: FFAppState().localCity,
                         );
                         var ordersRecordReference =
                             OrdersRecord.collection.doc();
@@ -778,7 +779,7 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                         );
                         setState(() => FFAppState().localScheduleDate = null);
                         await actions.backToRoot(
-                          context, 
+                          context,
                         );
                         await Navigator.push(
                           context,
@@ -825,7 +826,7 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                         color: Colors.transparent,
                         width: 1,
                       ),
-                      borderRadius: 4,
+                      borderRadius: BorderRadius.circular(4),
                     ),
                   ),
                   Padding(

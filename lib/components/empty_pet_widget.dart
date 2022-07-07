@@ -82,7 +82,7 @@ class _EmptyPetWidgetState extends State<EmptyPetWidget> {
               borderSide: BorderSide(
                 color: Colors.transparent,
               ),
-              borderRadius: 8,
+              borderRadius: BorderRadius.circular(8),
             ),
           ),
         ),
