@@ -53,7 +53,7 @@ class _EmptyScheduleNoPetWidgetState extends State<EmptyScheduleNoPetWidget> {
                   color: Colors.transparent,
                   width: 1,
                 ),
-                borderRadius: 12,
+                borderRadius: BorderRadius.circular(12),
               ),
             ),
           ),

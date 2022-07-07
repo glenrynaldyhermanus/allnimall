@@ -584,7 +584,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                           color: Colors.transparent,
                           width: 1,
                         ),
-                        borderRadius: 24,
+                        borderRadius: BorderRadius.circular(24),
                       ),
                     ),
                   ),

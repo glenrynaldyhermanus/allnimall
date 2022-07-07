@@ -310,7 +310,7 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                                 color: Colors.transparent,
                                 width: 1,
                               ),
-                              borderRadius: 24,
+                              borderRadius: BorderRadius.circular(24),
                             ),
                           ),
                         ),

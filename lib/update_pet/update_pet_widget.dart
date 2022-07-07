@@ -363,7 +363,7 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                               color: Colors.transparent,
                               width: 1,
                             ),
-                            borderRadius: 24,
+                            borderRadius: BorderRadius.circular(24),
                           ),
                         ),
                       ),

@@ -138,12 +138,16 @@ abstract class OrdersRecord
   DateTime get rejectedAt;
 
   @nullable
-  @BuiltValueField(wireName: 'prefered_time')
-  String get preferedTime;
+  @BuiltValueField(wireName: 'preferred_time')
+  String get preferredTime;
 
   @nullable
-  @BuiltValueField(wireName: 'prefered_day')
-  String get preferedDay;
+  @BuiltValueField(wireName: 'preferred_day')
+  String get preferredDay;
+
+  @nullable
+  @BuiltValueField(wireName: 'customer_city')
+  String get customerCity;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
@@ -172,8 +176,9 @@ abstract class OrdersRecord
     ..paymentMethod = ''
     ..rate = 0
     ..comment = ''
-    ..preferedTime = ''
-    ..preferedDay = '';
+    ..preferredTime = ''
+    ..preferredDay = ''
+    ..customerCity = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('orders');
@@ -231,8 +236,9 @@ Map<String, dynamic> createOrdersRecordData({
   int rate,
   String comment,
   DateTime rejectedAt,
-  String preferedTime,
-  String preferedDay,
+  String preferredTime,
+  String preferredDay,
+  String customerCity,
 }) =>
     serializers.toFirestore(
         OrdersRecord.serializer,
@@ -271,5 +277,6 @@ Map<String, dynamic> createOrdersRecordData({
           ..rate = rate
           ..comment = comment
           ..rejectedAt = rejectedAt
-          ..preferedTime = preferedTime
-          ..preferedDay = preferedDay));
+          ..preferredTime = preferredTime
+          ..preferredDay = preferredDay
+          ..customerCity = customerCity));

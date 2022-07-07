@@ -320,7 +320,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           color: Colors.transparent,
                           width: 1,
                         ),
-                        borderRadius: 24,
+                        borderRadius: BorderRadius.circular(24),
                       ),
                     ),
                   ),

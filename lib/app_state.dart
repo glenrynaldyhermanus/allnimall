@@ -92,6 +92,8 @@ class FFAppState {
   ];
 
   List<DocumentReference> customerList = [];
+
+  String localCity = '';
 }
 
 LatLng _latLngFromString(String val) {

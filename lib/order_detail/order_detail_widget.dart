@@ -350,7 +350,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                               .transparent,
                                                           width: 1,
                                                         ),
-                                                        borderRadius: 12,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12),
                                                       ),
                                                     ),
                                                 ],
@@ -499,7 +501,8 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                     color: Colors.transparent,
                                                     width: 1,
                                                   ),
-                                                  borderRadius: 4,
+                                                  borderRadius:
+                                                      BorderRadius.circular(4),
                                                 ),
                                               ),
                                             ),
@@ -1669,7 +1672,8 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                               color: Colors.transparent,
                                               width: 1,
                                             ),
-                                            borderRadius: 24,
+                                            borderRadius:
+                                                BorderRadius.circular(24),
                                           ),
                                         ),
                                       ),
@@ -1744,7 +1748,8 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                 color: Colors.transparent,
                                                 width: 1,
                                               ),
-                                              borderRadius: 8,
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
                                             ),
                                           ),
                                         ),

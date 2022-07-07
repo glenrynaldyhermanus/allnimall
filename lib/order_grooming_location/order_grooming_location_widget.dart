@@ -136,7 +136,6 @@ class _OrderGroomingLocationWidgetState
                       color: Colors.transparent,
                       width: 1,
                     ),
-                    borderRadius: 0,
                   ),
                 ),
               ],
@@ -201,6 +200,8 @@ class _OrderGroomingLocationWidgetState
                               FFAppState().localAddress = textController.text);
                           setState(() =>
                               FFAppState().localLatLng = googleMapsCenter);
+                          setState(() =>
+                              FFAppState().localCity = placePickerValue.city);
                           Navigator.pop(context);
                         } else {
                           await showDialog(
@@ -237,7 +238,7 @@ class _OrderGroomingLocationWidgetState
                           color: Colors.transparent,
                           width: 1,
                         ),
-                        borderRadius: 4,
+                        borderRadius: BorderRadius.circular(4),
                       ),
                     ),
                   ],

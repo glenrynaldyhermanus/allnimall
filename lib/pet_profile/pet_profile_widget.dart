@@ -160,7 +160,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                   color: Colors.transparent,
                                   width: 1,
                                 ),
-                                borderRadius: 12,
+                                borderRadius: BorderRadius.circular(12),
                               ),
                             ),
                           ],

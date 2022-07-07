@@ -454,7 +454,7 @@ class _OrderGroomingServiceWidgetState
                           color: Colors.transparent,
                           width: 1,
                         ),
-                        borderRadius: 4,
+                        borderRadius: BorderRadius.circular(4),
                       ),
                     ),
                   ),
