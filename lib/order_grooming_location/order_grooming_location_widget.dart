@@ -146,7 +146,6 @@ class _OrderGroomingLocationWidgetState
                       color: Colors.transparent,
                       width: 1,
                     ),
-                    borderRadius: 0,
                     elevation: 0
                   ),
                 ),
