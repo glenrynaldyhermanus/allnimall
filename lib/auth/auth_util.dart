@@ -111,15 +111,15 @@ String? _phoneAuthVerificationCode;
 ConfirmationResult? _webPhoneAuthConfirmationResult;
 
 Future beginPhoneAuth({
-  BuildContext context,
-  String phoneNumber,
-  VoidCallback onCodeSent,
-  VoidCallback onFailure,
+  BuildContext? context,
+  String? phoneNumber,
+  VoidCallback? onCodeSent,
+  VoidCallback? onFailure,
 }) async {
   if (kIsWeb) {
     _webPhoneAuthConfirmationResult =
-        await FirebaseAuth.instance.signInWithPhoneNumber(phoneNumber);
-    onCodeSent();
+        await FirebaseAuth.instance.signInWithPhoneNumber(phoneNumber!);
+    onCodeSent!();
     return;
   }
   // If you'd like auto-verification, without the user having to enter the SMS
@@ -128,7 +128,7 @@ Future beginPhoneAuth({
   // * For iOS: https://firebase.google.com/docs/auth/ios/phone-auth?authuser=0#start-receiving-silent-notifications
   // * Finally modify verificationCompleted below as instructed.
   return FirebaseAuth.instance.verifyPhoneNumber(
-    phoneNumber: phoneNumber,
+    phoneNumber: phoneNumber!,
     timeout: Duration(seconds: 20),
     verificationCompleted: (phoneAuthCredential) async {
       await FirebaseAuth.instance.signInWithCredential(phoneAuthCredential);
@@ -141,14 +141,14 @@ Future beginPhoneAuth({
       // );
     },
     verificationFailed: (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context!).showSnackBar(SnackBar(
         content: Text('Error: ${e.message!}'),
       ));
-      onFailure();
+      onFailure!();
     },
     codeSent: (verificationId, _) {
       _phoneAuthVerificationCode = verificationId;
-      onCodeSent();
+      onCodeSent!();
     },
     codeAutoRetrievalTimeout: (_) {},
   );

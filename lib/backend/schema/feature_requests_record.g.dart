@@ -20,11 +20,11 @@ class _$FeatureRequestsRecordSerializer
   final String wireName = 'FeatureRequestsRecord';
 
   @override
-  Iterable<Object> serialize(
+  Iterable<Object?> serialize(
       Serializers serializers, FeatureRequestsRecord object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
-    Object value;
+    final result = <Object?>[];
+    Object? value;
     value = object.feedback;
     if (value != null) {
       result
@@ -59,58 +59,58 @@ class _$FeatureRequestsRecordSerializer
         ..add('user_uid')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
+                DocumentReference, const [const FullType.nullable(Object)])));
     }
-    value = object.reference;
+    value = object.ffRef;
     if (value != null) {
       result
         ..add('Document__Reference__Field')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
+                DocumentReference, const [const FullType.nullable(Object)])));
     }
     return result;
   }
 
   @override
   FeatureRequestsRecord deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new FeatureRequestsRecordBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'feedback':
           result.feedback = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'created_at':
           result.createdAt = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime;
+              specifiedType: const FullType(DateTime)) as DateTime?;
           break;
         case 'response':
           result.response = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'status':
           result.status = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'user_uid':
           result.userUid = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      DocumentReference, const [const FullType(Object)]))
-              as DocumentReference<Object>;
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
           break;
         case 'Document__Reference__Field':
-          result.reference = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      DocumentReference, const [const FullType(Object)]))
-              as DocumentReference<Object>;
+          result.ffRef = serializers.deserialize(value,
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
           break;
       }
     }
@@ -121,21 +121,21 @@ class _$FeatureRequestsRecordSerializer
 
 class _$FeatureRequestsRecord extends FeatureRequestsRecord {
   @override
-  final String feedback;
+  final String? feedback;
   @override
-  final DateTime createdAt;
+  final DateTime? createdAt;
   @override
-  final String response;
+  final String? response;
   @override
-  final String status;
+  final String? status;
   @override
-  final DocumentReference<Object> userUid;
+  final DocumentReference<Object?>? userUid;
   @override
-  final DocumentReference<Object> reference;
+  final DocumentReference<Object?>? ffRef;
 
   factory _$FeatureRequestsRecord(
-          [void Function(FeatureRequestsRecordBuilder) updates]) =>
-      (new FeatureRequestsRecordBuilder()..update(updates)).build();
+          [void Function(FeatureRequestsRecordBuilder)? updates]) =>
+      (new FeatureRequestsRecordBuilder()..update(updates))._build();
 
   _$FeatureRequestsRecord._(
       {this.feedback,
@@ -143,7 +143,7 @@ class _$FeatureRequestsRecord extends FeatureRequestsRecord {
       this.response,
       this.status,
       this.userUid,
-      this.reference})
+      this.ffRef})
       : super._();
 
   @override
@@ -164,7 +164,7 @@ class _$FeatureRequestsRecord extends FeatureRequestsRecord {
         response == other.response &&
         status == other.status &&
         userUid == other.userUid &&
-        reference == other.reference;
+        ffRef == other.ffRef;
   }
 
   @override
@@ -176,50 +176,49 @@ class _$FeatureRequestsRecord extends FeatureRequestsRecord {
                     response.hashCode),
                 status.hashCode),
             userUid.hashCode),
-        reference.hashCode));
+        ffRef.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('FeatureRequestsRecord')
+    return (newBuiltValueToStringHelper(r'FeatureRequestsRecord')
           ..add('feedback', feedback)
           ..add('createdAt', createdAt)
           ..add('response', response)
           ..add('status', status)
           ..add('userUid', userUid)
-          ..add('reference', reference))
+          ..add('ffRef', ffRef))
         .toString();
   }
 }
 
 class FeatureRequestsRecordBuilder
     implements Builder<FeatureRequestsRecord, FeatureRequestsRecordBuilder> {
-  _$FeatureRequestsRecord _$v;
+  _$FeatureRequestsRecord? _$v;
 
-  String _feedback;
-  String get feedback => _$this._feedback;
-  set feedback(String feedback) => _$this._feedback = feedback;
+  String? _feedback;
+  String? get feedback => _$this._feedback;
+  set feedback(String? feedback) => _$this._feedback = feedback;
 
-  DateTime _createdAt;
-  DateTime get createdAt => _$this._createdAt;
-  set createdAt(DateTime createdAt) => _$this._createdAt = createdAt;
+  DateTime? _createdAt;
+  DateTime? get createdAt => _$this._createdAt;
+  set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
 
-  String _response;
-  String get response => _$this._response;
-  set response(String response) => _$this._response = response;
+  String? _response;
+  String? get response => _$this._response;
+  set response(String? response) => _$this._response = response;
 
-  String _status;
-  String get status => _$this._status;
-  set status(String status) => _$this._status = status;
+  String? _status;
+  String? get status => _$this._status;
+  set status(String? status) => _$this._status = status;
 
-  DocumentReference<Object> _userUid;
-  DocumentReference<Object> get userUid => _$this._userUid;
-  set userUid(DocumentReference<Object> userUid) => _$this._userUid = userUid;
+  DocumentReference<Object?>? _userUid;
+  DocumentReference<Object?>? get userUid => _$this._userUid;
+  set userUid(DocumentReference<Object?>? userUid) => _$this._userUid = userUid;
 
-  DocumentReference<Object> _reference;
-  DocumentReference<Object> get reference => _$this._reference;
-  set reference(DocumentReference<Object> reference) =>
-      _$this._reference = reference;
+  DocumentReference<Object?>? _ffRef;
+  DocumentReference<Object?>? get ffRef => _$this._ffRef;
+  set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
 
   FeatureRequestsRecordBuilder() {
     FeatureRequestsRecord._initializeBuilder(this);
@@ -233,7 +232,7 @@ class FeatureRequestsRecordBuilder
       _response = $v.response;
       _status = $v.status;
       _userUid = $v.userUid;
-      _reference = $v.reference;
+      _ffRef = $v.ffRef;
       _$v = null;
     }
     return this;
@@ -246,12 +245,14 @@ class FeatureRequestsRecordBuilder
   }
 
   @override
-  void update(void Function(FeatureRequestsRecordBuilder) updates) {
+  void update(void Function(FeatureRequestsRecordBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$FeatureRequestsRecord build() {
+  FeatureRequestsRecord build() => _build();
+
+  _$FeatureRequestsRecord _build() {
     final _$result = _$v ??
         new _$FeatureRequestsRecord._(
             feedback: feedback,
@@ -259,10 +260,10 @@ class FeatureRequestsRecordBuilder
             response: response,
             status: status,
             userUid: userUid,
-            reference: reference);
+            ffRef: ffRef);
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

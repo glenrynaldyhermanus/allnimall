@@ -20,11 +20,11 @@ class _$ServiceCategoriesRecordSerializer
   final String wireName = 'ServiceCategoriesRecord';
 
   @override
-  Iterable<Object> serialize(
+  Iterable<Object?> serialize(
       Serializers serializers, ServiceCategoriesRecord object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
-    Object value;
+    final result = <Object?>[];
+    Object? value;
     value = object.name;
     if (value != null) {
       result
@@ -46,46 +46,46 @@ class _$ServiceCategoriesRecordSerializer
         ..add(
             serializers.serialize(value, specifiedType: const FullType(bool)));
     }
-    value = object.reference;
+    value = object.ffRef;
     if (value != null) {
       result
         ..add('Document__Reference__Field')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
+                DocumentReference, const [const FullType.nullable(Object)])));
     }
     return result;
   }
 
   @override
   ServiceCategoriesRecord deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new ServiceCategoriesRecordBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'type':
           result.type = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'is_active':
           result.isActive = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'Document__Reference__Field':
-          result.reference = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      DocumentReference, const [const FullType(Object)]))
-              as DocumentReference<Object>;
+          result.ffRef = serializers.deserialize(value,
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
           break;
       }
     }
@@ -96,20 +96,19 @@ class _$ServiceCategoriesRecordSerializer
 
 class _$ServiceCategoriesRecord extends ServiceCategoriesRecord {
   @override
-  final String name;
+  final String? name;
   @override
-  final String type;
+  final String? type;
   @override
-  final bool isActive;
+  final bool? isActive;
   @override
-  final DocumentReference<Object> reference;
+  final DocumentReference<Object?>? ffRef;
 
   factory _$ServiceCategoriesRecord(
-          [void Function(ServiceCategoriesRecordBuilder) updates]) =>
-      (new ServiceCategoriesRecordBuilder()..update(updates)).build();
+          [void Function(ServiceCategoriesRecordBuilder)? updates]) =>
+      (new ServiceCategoriesRecordBuilder()..update(updates))._build();
 
-  _$ServiceCategoriesRecord._(
-      {this.name, this.type, this.isActive, this.reference})
+  _$ServiceCategoriesRecord._({this.name, this.type, this.isActive, this.ffRef})
       : super._();
 
   @override
@@ -128,23 +127,23 @@ class _$ServiceCategoriesRecord extends ServiceCategoriesRecord {
         name == other.name &&
         type == other.type &&
         isActive == other.isActive &&
-        reference == other.reference;
+        ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
         $jc($jc($jc(0, name.hashCode), type.hashCode), isActive.hashCode),
-        reference.hashCode));
+        ffRef.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('ServiceCategoriesRecord')
+    return (newBuiltValueToStringHelper(r'ServiceCategoriesRecord')
           ..add('name', name)
           ..add('type', type)
           ..add('isActive', isActive)
-          ..add('reference', reference))
+          ..add('ffRef', ffRef))
         .toString();
   }
 }
@@ -152,24 +151,23 @@ class _$ServiceCategoriesRecord extends ServiceCategoriesRecord {
 class ServiceCategoriesRecordBuilder
     implements
         Builder<ServiceCategoriesRecord, ServiceCategoriesRecordBuilder> {
-  _$ServiceCategoriesRecord _$v;
+  _$ServiceCategoriesRecord? _$v;
 
-  String _name;
-  String get name => _$this._name;
-  set name(String name) => _$this._name = name;
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
 
-  String _type;
-  String get type => _$this._type;
-  set type(String type) => _$this._type = type;
+  String? _type;
+  String? get type => _$this._type;
+  set type(String? type) => _$this._type = type;
 
-  bool _isActive;
-  bool get isActive => _$this._isActive;
-  set isActive(bool isActive) => _$this._isActive = isActive;
+  bool? _isActive;
+  bool? get isActive => _$this._isActive;
+  set isActive(bool? isActive) => _$this._isActive = isActive;
 
-  DocumentReference<Object> _reference;
-  DocumentReference<Object> get reference => _$this._reference;
-  set reference(DocumentReference<Object> reference) =>
-      _$this._reference = reference;
+  DocumentReference<Object?>? _ffRef;
+  DocumentReference<Object?>? get ffRef => _$this._ffRef;
+  set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
 
   ServiceCategoriesRecordBuilder() {
     ServiceCategoriesRecord._initializeBuilder(this);
@@ -181,7 +179,7 @@ class ServiceCategoriesRecordBuilder
       _name = $v.name;
       _type = $v.type;
       _isActive = $v.isActive;
-      _reference = $v.reference;
+      _ffRef = $v.ffRef;
       _$v = null;
     }
     return this;
@@ -194,18 +192,20 @@ class ServiceCategoriesRecordBuilder
   }
 
   @override
-  void update(void Function(ServiceCategoriesRecordBuilder) updates) {
+  void update(void Function(ServiceCategoriesRecordBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$ServiceCategoriesRecord build() {
+  ServiceCategoriesRecord build() => _build();
+
+  _$ServiceCategoriesRecord _build() {
     final _$result = _$v ??
         new _$ServiceCategoriesRecord._(
-            name: name, type: type, isActive: isActive, reference: reference);
+            name: name, type: type, isActive: isActive, ffRef: ffRef);
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

@@ -20,18 +20,18 @@ class PhoneVerificationWidget extends StatefulWidget {
 }
 
 class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
-  TextEditingController textField1Controller;
-  TextEditingController textField2Controller;
-  TextEditingController textField3Controller;
-  TextEditingController textField4Controller;
-  TextEditingController textField5Controller;
-  TextEditingController textField6Controller;
-  FocusNode focusNode1;
-  FocusNode focusNode2;
-  FocusNode focusNode3;
-  FocusNode focusNode4;
-  FocusNode focusNode5;
-  FocusNode focusNode6;
+  TextEditingController? textField1Controller;
+  TextEditingController? textField2Controller;
+  TextEditingController? textField3Controller;
+  TextEditingController? textField4Controller;
+  TextEditingController? textField5Controller;
+  TextEditingController? textField6Controller;
+  FocusNode? focusNode1;
+  FocusNode? focusNode2;
+  FocusNode? focusNode3;
+  FocusNode? focusNode4;
+  FocusNode? focusNode5;
+  FocusNode? focusNode6;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -175,8 +175,8 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                           keyboardType: TextInputType.number,
                           onChanged: (value) {
                             if (value.length >= 1) {
-                              if (textField2Controller.text.isEmpty) {
-                                focusNode1.unfocus();
+                              if (textField2Controller!.text.isEmpty) {
+                                focusNode1!.unfocus();
                                 FocusScope.of(context).requestFocus(focusNode2);
                               }
                             }
@@ -242,13 +242,13 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                           keyboardType: TextInputType.number,
                           onChanged: (value) {
                             if (value.length >= 1) {
-                              if (textField3Controller.text.isEmpty) {
-                                focusNode2.unfocus();
+                              if (textField3Controller!.text.isEmpty) {
+                                focusNode2!.unfocus();
                                 FocusScope.of(context).requestFocus(focusNode3);
                               }
                             } else if (value.length == 0) {
-                              if (textField3Controller.text.isEmpty) {
-                                focusNode2.unfocus();
+                              if (textField3Controller!.text.isEmpty) {
+                                focusNode2!.unfocus();
                                 FocusScope.of(context).requestFocus(focusNode1);
                               }
                             }
@@ -314,13 +314,13 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                           keyboardType: TextInputType.number,
                           onChanged: (value) {
                             if (value.length >= 1) {
-                              if (textField4Controller.text.isEmpty) {
-                                focusNode3.unfocus();
+                              if (textField4Controller!.text.isEmpty) {
+                                focusNode3!.unfocus();
                                 FocusScope.of(context).requestFocus(focusNode4);
                               }
                             } else if (value.length == 0) {
-                              if (textField4Controller.text.isEmpty) {
-                                focusNode3.unfocus();
+                              if (textField4Controller!.text.isEmpty) {
+                                focusNode3!.unfocus();
                                 FocusScope.of(context).requestFocus(focusNode2);
                               }
                             }
@@ -386,13 +386,13 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                           keyboardType: TextInputType.number,
                           onChanged: (value) {
                             if (value.length >= 1) {
-                              if (textField5Controller.text.isEmpty) {
-                                focusNode4.unfocus();
+                              if (textField5Controller!.text.isEmpty) {
+                                focusNode4!.unfocus();
                                 FocusScope.of(context).requestFocus(focusNode5);
                               }
                             } else if (value.length == 0) {
-                              if (textField5Controller.text.isEmpty) {
-                                focusNode4.unfocus();
+                              if (textField5Controller!.text.isEmpty) {
+                                focusNode4!.unfocus();
                                 FocusScope.of(context).requestFocus(focusNode3);
                               }
                             }
@@ -458,13 +458,13 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                           keyboardType: TextInputType.number,
                           onChanged: (value) {
                             if (value.length >= 1) {
-                              if (textField6Controller.text.isEmpty) {
-                                focusNode5.unfocus();
+                              if (textField6Controller!.text.isEmpty) {
+                                focusNode5!.unfocus();
                                 FocusScope.of(context).requestFocus(focusNode6);
                               }
                             } else if (value.length == 0) {
-                              if (textField6Controller.text.isEmpty) {
-                                focusNode5.unfocus();
+                              if (textField6Controller!.text.isEmpty) {
+                                focusNode5!.unfocus();
                                 FocusScope.of(context).requestFocus(focusNode4);
                               }
                             }
@@ -530,9 +530,9 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                           keyboardType: TextInputType.number,
                           onChanged: (value) {
                             if (value.length >= 1) {
-                              focusNode6.unfocus();
+                              focusNode6!.unfocus();
                             } else if (value.length == 0) {
-                              focusNode6.unfocus();
+                              focusNode6!.unfocus();
                               FocusScope.of(context).requestFocus(focusNode5);
                             }
                           },
@@ -547,7 +547,7 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                 child: FFButtonWidget(
                   onPressed: () async {
                     final smsCodeVal =
-                        "${textField1Controller.text}${textField2Controller.text}${textField3Controller.text}${textField4Controller.text}${textField5Controller.text}${textField6Controller.text}";
+                        "${textField1Controller!.text}${textField2Controller!.text}${textField3Controller!.text}${textField4Controller!.text}${textField5Controller!.text}${textField6Controller!.text}";
                     if (smsCodeVal == null || smsCodeVal.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

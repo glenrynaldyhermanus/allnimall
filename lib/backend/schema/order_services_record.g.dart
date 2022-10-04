@@ -20,11 +20,11 @@ class _$OrderServicesRecordSerializer
   final String wireName = 'OrderServicesRecord';
 
   @override
-  Iterable<Object> serialize(
+  Iterable<Object?> serialize(
       Serializers serializers, OrderServicesRecord object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
-    Object value;
+    final result = <Object?>[];
+    Object? value;
     value = object.name;
     if (value != null) {
       result
@@ -52,50 +52,50 @@ class _$OrderServicesRecordSerializer
         ..add('quantity')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    value = object.reference;
+    value = object.ffRef;
     if (value != null) {
       result
         ..add('Document__Reference__Field')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
+                DocumentReference, const [const FullType.nullable(Object)])));
     }
     return result;
   }
 
   @override
   OrderServicesRecord deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new OrderServicesRecordBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'fee':
           result.fee = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double;
+              specifiedType: const FullType(double)) as double?;
           break;
         case 'category_name':
           result.categoryName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'quantity':
           result.quantity = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'Document__Reference__Field':
-          result.reference = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      DocumentReference, const [const FullType(Object)]))
-              as DocumentReference<Object>;
+          result.ffRef = serializers.deserialize(value,
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
           break;
       }
     }
@@ -106,22 +106,22 @@ class _$OrderServicesRecordSerializer
 
 class _$OrderServicesRecord extends OrderServicesRecord {
   @override
-  final String name;
+  final String? name;
   @override
-  final double fee;
+  final double? fee;
   @override
-  final String categoryName;
+  final String? categoryName;
   @override
-  final int quantity;
+  final int? quantity;
   @override
-  final DocumentReference<Object> reference;
+  final DocumentReference<Object?>? ffRef;
 
   factory _$OrderServicesRecord(
-          [void Function(OrderServicesRecordBuilder) updates]) =>
-      (new OrderServicesRecordBuilder()..update(updates)).build();
+          [void Function(OrderServicesRecordBuilder)? updates]) =>
+      (new OrderServicesRecordBuilder()..update(updates))._build();
 
   _$OrderServicesRecord._(
-      {this.name, this.fee, this.categoryName, this.quantity, this.reference})
+      {this.name, this.fee, this.categoryName, this.quantity, this.ffRef})
       : super._();
 
   @override
@@ -141,7 +141,7 @@ class _$OrderServicesRecord extends OrderServicesRecord {
         fee == other.fee &&
         categoryName == other.categoryName &&
         quantity == other.quantity &&
-        reference == other.reference;
+        ffRef == other.ffRef;
   }
 
   @override
@@ -151,45 +151,44 @@ class _$OrderServicesRecord extends OrderServicesRecord {
             $jc($jc($jc(0, name.hashCode), fee.hashCode),
                 categoryName.hashCode),
             quantity.hashCode),
-        reference.hashCode));
+        ffRef.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('OrderServicesRecord')
+    return (newBuiltValueToStringHelper(r'OrderServicesRecord')
           ..add('name', name)
           ..add('fee', fee)
           ..add('categoryName', categoryName)
           ..add('quantity', quantity)
-          ..add('reference', reference))
+          ..add('ffRef', ffRef))
         .toString();
   }
 }
 
 class OrderServicesRecordBuilder
     implements Builder<OrderServicesRecord, OrderServicesRecordBuilder> {
-  _$OrderServicesRecord _$v;
+  _$OrderServicesRecord? _$v;
 
-  String _name;
-  String get name => _$this._name;
-  set name(String name) => _$this._name = name;
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
 
-  double _fee;
-  double get fee => _$this._fee;
-  set fee(double fee) => _$this._fee = fee;
+  double? _fee;
+  double? get fee => _$this._fee;
+  set fee(double? fee) => _$this._fee = fee;
 
-  String _categoryName;
-  String get categoryName => _$this._categoryName;
-  set categoryName(String categoryName) => _$this._categoryName = categoryName;
+  String? _categoryName;
+  String? get categoryName => _$this._categoryName;
+  set categoryName(String? categoryName) => _$this._categoryName = categoryName;
 
-  int _quantity;
-  int get quantity => _$this._quantity;
-  set quantity(int quantity) => _$this._quantity = quantity;
+  int? _quantity;
+  int? get quantity => _$this._quantity;
+  set quantity(int? quantity) => _$this._quantity = quantity;
 
-  DocumentReference<Object> _reference;
-  DocumentReference<Object> get reference => _$this._reference;
-  set reference(DocumentReference<Object> reference) =>
-      _$this._reference = reference;
+  DocumentReference<Object?>? _ffRef;
+  DocumentReference<Object?>? get ffRef => _$this._ffRef;
+  set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
 
   OrderServicesRecordBuilder() {
     OrderServicesRecord._initializeBuilder(this);
@@ -202,7 +201,7 @@ class OrderServicesRecordBuilder
       _fee = $v.fee;
       _categoryName = $v.categoryName;
       _quantity = $v.quantity;
-      _reference = $v.reference;
+      _ffRef = $v.ffRef;
       _$v = null;
     }
     return this;
@@ -215,22 +214,24 @@ class OrderServicesRecordBuilder
   }
 
   @override
-  void update(void Function(OrderServicesRecordBuilder) updates) {
+  void update(void Function(OrderServicesRecordBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$OrderServicesRecord build() {
+  OrderServicesRecord build() => _build();
+
+  _$OrderServicesRecord _build() {
     final _$result = _$v ??
         new _$OrderServicesRecord._(
             name: name,
             fee: fee,
             categoryName: categoryName,
             quantity: quantity,
-            reference: reference);
+            ffRef: ffRef);
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

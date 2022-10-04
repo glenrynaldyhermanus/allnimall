@@ -17,17 +17,17 @@ class _$PetPostsRecordSerializer
   final String wireName = 'PetPostsRecord';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, PetPostsRecord object,
+  Iterable<Object?> serialize(Serializers serializers, PetPostsRecord object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
-    Object value;
+    final result = <Object?>[];
+    Object? value;
     value = object.petUid;
     if (value != null) {
       result
         ..add('pet_uid')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
+                DocumentReference, const [const FullType.nullable(Object)])));
     }
     value = object.petName;
     if (value != null) {
@@ -90,82 +90,83 @@ class _$PetPostsRecordSerializer
         ..add('faved_by')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(BuiltList, const [
-              const FullType(DocumentReference, const [const FullType(Object)])
+              const FullType(
+                  DocumentReference, const [const FullType.nullable(Object)])
             ])));
     }
-    value = object.reference;
+    value = object.ffRef;
     if (value != null) {
       result
         ..add('Document__Reference__Field')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
+                DocumentReference, const [const FullType.nullable(Object)])));
     }
     return result;
   }
 
   @override
   PetPostsRecord deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new PetPostsRecordBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'pet_uid':
           result.petUid = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      DocumentReference, const [const FullType(Object)]))
-              as DocumentReference<Object>;
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
           break;
         case 'pet_name':
           result.petName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'pet_picture_url':
           result.petPictureUrl = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'condition':
           result.condition = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'image':
           result.image = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'video':
           result.video = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'text':
           result.text = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'created_at':
           result.createdAt = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime;
+              specifiedType: const FullType(DateTime)) as DateTime?;
           break;
         case 'num_fav':
           result.numFav = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'faved_by':
           result.favedBy.replace(serializers.deserialize(value,
               specifiedType: const FullType(BuiltList, const [
                 const FullType(
-                    DocumentReference, const [const FullType(Object)])
-              ])) as BuiltList<Object>);
+                    DocumentReference, const [const FullType.nullable(Object)])
+              ]))! as BuiltList<Object?>);
           break;
         case 'Document__Reference__Field':
-          result.reference = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      DocumentReference, const [const FullType(Object)]))
-              as DocumentReference<Object>;
+          result.ffRef = serializers.deserialize(value,
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
           break;
       }
     }
@@ -176,30 +177,30 @@ class _$PetPostsRecordSerializer
 
 class _$PetPostsRecord extends PetPostsRecord {
   @override
-  final DocumentReference<Object> petUid;
+  final DocumentReference<Object?>? petUid;
   @override
-  final String petName;
+  final String? petName;
   @override
-  final String petPictureUrl;
+  final String? petPictureUrl;
   @override
-  final String condition;
+  final String? condition;
   @override
-  final String image;
+  final String? image;
   @override
-  final String video;
+  final String? video;
   @override
-  final String text;
+  final String? text;
   @override
-  final DateTime createdAt;
+  final DateTime? createdAt;
   @override
-  final int numFav;
+  final int? numFav;
   @override
-  final BuiltList<DocumentReference<Object>> favedBy;
+  final BuiltList<DocumentReference<Object?>>? favedBy;
   @override
-  final DocumentReference<Object> reference;
+  final DocumentReference<Object?>? ffRef;
 
-  factory _$PetPostsRecord([void Function(PetPostsRecordBuilder) updates]) =>
-      (new PetPostsRecordBuilder()..update(updates)).build();
+  factory _$PetPostsRecord([void Function(PetPostsRecordBuilder)? updates]) =>
+      (new PetPostsRecordBuilder()..update(updates))._build();
 
   _$PetPostsRecord._(
       {this.petUid,
@@ -212,7 +213,7 @@ class _$PetPostsRecord extends PetPostsRecord {
       this.createdAt,
       this.numFav,
       this.favedBy,
-      this.reference})
+      this.ffRef})
       : super._();
 
   @override
@@ -237,7 +238,7 @@ class _$PetPostsRecord extends PetPostsRecord {
         createdAt == other.createdAt &&
         numFav == other.numFav &&
         favedBy == other.favedBy &&
-        reference == other.reference;
+        ffRef == other.ffRef;
   }
 
   @override
@@ -261,12 +262,12 @@ class _$PetPostsRecord extends PetPostsRecord {
                     createdAt.hashCode),
                 numFav.hashCode),
             favedBy.hashCode),
-        reference.hashCode));
+        ffRef.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('PetPostsRecord')
+    return (newBuiltValueToStringHelper(r'PetPostsRecord')
           ..add('petUid', petUid)
           ..add('petName', petName)
           ..add('petPictureUrl', petPictureUrl)
@@ -277,62 +278,61 @@ class _$PetPostsRecord extends PetPostsRecord {
           ..add('createdAt', createdAt)
           ..add('numFav', numFav)
           ..add('favedBy', favedBy)
-          ..add('reference', reference))
+          ..add('ffRef', ffRef))
         .toString();
   }
 }
 
 class PetPostsRecordBuilder
     implements Builder<PetPostsRecord, PetPostsRecordBuilder> {
-  _$PetPostsRecord _$v;
+  _$PetPostsRecord? _$v;
 
-  DocumentReference<Object> _petUid;
-  DocumentReference<Object> get petUid => _$this._petUid;
-  set petUid(DocumentReference<Object> petUid) => _$this._petUid = petUid;
+  DocumentReference<Object?>? _petUid;
+  DocumentReference<Object?>? get petUid => _$this._petUid;
+  set petUid(DocumentReference<Object?>? petUid) => _$this._petUid = petUid;
 
-  String _petName;
-  String get petName => _$this._petName;
-  set petName(String petName) => _$this._petName = petName;
+  String? _petName;
+  String? get petName => _$this._petName;
+  set petName(String? petName) => _$this._petName = petName;
 
-  String _petPictureUrl;
-  String get petPictureUrl => _$this._petPictureUrl;
-  set petPictureUrl(String petPictureUrl) =>
+  String? _petPictureUrl;
+  String? get petPictureUrl => _$this._petPictureUrl;
+  set petPictureUrl(String? petPictureUrl) =>
       _$this._petPictureUrl = petPictureUrl;
 
-  String _condition;
-  String get condition => _$this._condition;
-  set condition(String condition) => _$this._condition = condition;
+  String? _condition;
+  String? get condition => _$this._condition;
+  set condition(String? condition) => _$this._condition = condition;
 
-  String _image;
-  String get image => _$this._image;
-  set image(String image) => _$this._image = image;
+  String? _image;
+  String? get image => _$this._image;
+  set image(String? image) => _$this._image = image;
 
-  String _video;
-  String get video => _$this._video;
-  set video(String video) => _$this._video = video;
+  String? _video;
+  String? get video => _$this._video;
+  set video(String? video) => _$this._video = video;
 
-  String _text;
-  String get text => _$this._text;
-  set text(String text) => _$this._text = text;
+  String? _text;
+  String? get text => _$this._text;
+  set text(String? text) => _$this._text = text;
 
-  DateTime _createdAt;
-  DateTime get createdAt => _$this._createdAt;
-  set createdAt(DateTime createdAt) => _$this._createdAt = createdAt;
+  DateTime? _createdAt;
+  DateTime? get createdAt => _$this._createdAt;
+  set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
 
-  int _numFav;
-  int get numFav => _$this._numFav;
-  set numFav(int numFav) => _$this._numFav = numFav;
+  int? _numFav;
+  int? get numFav => _$this._numFav;
+  set numFav(int? numFav) => _$this._numFav = numFav;
 
-  ListBuilder<DocumentReference<Object>> _favedBy;
-  ListBuilder<DocumentReference<Object>> get favedBy =>
-      _$this._favedBy ??= new ListBuilder<DocumentReference<Object>>();
-  set favedBy(ListBuilder<DocumentReference<Object>> favedBy) =>
+  ListBuilder<DocumentReference<Object?>>? _favedBy;
+  ListBuilder<DocumentReference<Object?>> get favedBy =>
+      _$this._favedBy ??= new ListBuilder<DocumentReference<Object?>>();
+  set favedBy(ListBuilder<DocumentReference<Object?>>? favedBy) =>
       _$this._favedBy = favedBy;
 
-  DocumentReference<Object> _reference;
-  DocumentReference<Object> get reference => _$this._reference;
-  set reference(DocumentReference<Object> reference) =>
-      _$this._reference = reference;
+  DocumentReference<Object?>? _ffRef;
+  DocumentReference<Object?>? get ffRef => _$this._ffRef;
+  set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
 
   PetPostsRecordBuilder() {
     PetPostsRecord._initializeBuilder(this);
@@ -351,7 +351,7 @@ class PetPostsRecordBuilder
       _createdAt = $v.createdAt;
       _numFav = $v.numFav;
       _favedBy = $v.favedBy?.toBuilder();
-      _reference = $v.reference;
+      _ffRef = $v.ffRef;
       _$v = null;
     }
     return this;
@@ -364,12 +364,14 @@ class PetPostsRecordBuilder
   }
 
   @override
-  void update(void Function(PetPostsRecordBuilder) updates) {
+  void update(void Function(PetPostsRecordBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$PetPostsRecord build() {
+  PetPostsRecord build() => _build();
+
+  _$PetPostsRecord _build() {
     _$PetPostsRecord _$result;
     try {
       _$result = _$v ??
@@ -384,15 +386,15 @@ class PetPostsRecordBuilder
               createdAt: createdAt,
               numFav: numFav,
               favedBy: _favedBy?.build(),
-              reference: reference);
+              ffRef: ffRef);
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'favedBy';
         _favedBy?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'PetPostsRecord', _$failedField, e.toString());
+            r'PetPostsRecord', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -401,4 +403,4 @@ class PetPostsRecordBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

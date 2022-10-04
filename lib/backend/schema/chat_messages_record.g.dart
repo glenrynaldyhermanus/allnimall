@@ -17,10 +17,11 @@ class _$ChatMessagesRecordSerializer
   final String wireName = 'ChatMessagesRecord';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, ChatMessagesRecord object,
+  Iterable<Object?> serialize(
+      Serializers serializers, ChatMessagesRecord object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
-    Object value;
+    final result = <Object?>[];
+    Object? value;
     value = object.text;
     if (value != null) {
       result
@@ -69,7 +70,7 @@ class _$ChatMessagesRecordSerializer
         ..add('customer_uid')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
+                DocumentReference, const [const FullType.nullable(Object)])));
     }
     value = object.rangerUid;
     if (value != null) {
@@ -77,72 +78,72 @@ class _$ChatMessagesRecordSerializer
         ..add('ranger_uid')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
+                DocumentReference, const [const FullType.nullable(Object)])));
     }
-    value = object.reference;
+    value = object.ffRef;
     if (value != null) {
       result
         ..add('Document__Reference__Field')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
+                DocumentReference, const [const FullType.nullable(Object)])));
     }
     return result;
   }
 
   @override
   ChatMessagesRecord deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new ChatMessagesRecordBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'text':
           result.text = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'image':
           result.image = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'is_response':
           result.isResponse = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'created_at':
           result.createdAt = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime;
+              specifiedType: const FullType(DateTime)) as DateTime?;
           break;
         case 'user_name':
           result.userName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'admin_name':
           result.adminName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'customer_uid':
           result.customerUid = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      DocumentReference, const [const FullType(Object)]))
-              as DocumentReference<Object>;
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
           break;
         case 'ranger_uid':
           result.rangerUid = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      DocumentReference, const [const FullType(Object)]))
-              as DocumentReference<Object>;
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
           break;
         case 'Document__Reference__Field':
-          result.reference = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      DocumentReference, const [const FullType(Object)]))
-              as DocumentReference<Object>;
+          result.ffRef = serializers.deserialize(value,
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
           break;
       }
     }
@@ -153,27 +154,27 @@ class _$ChatMessagesRecordSerializer
 
 class _$ChatMessagesRecord extends ChatMessagesRecord {
   @override
-  final String text;
+  final String? text;
   @override
-  final String image;
+  final String? image;
   @override
-  final bool isResponse;
+  final bool? isResponse;
   @override
-  final DateTime createdAt;
+  final DateTime? createdAt;
   @override
-  final String userName;
+  final String? userName;
   @override
-  final String adminName;
+  final String? adminName;
   @override
-  final DocumentReference<Object> customerUid;
+  final DocumentReference<Object?>? customerUid;
   @override
-  final DocumentReference<Object> rangerUid;
+  final DocumentReference<Object?>? rangerUid;
   @override
-  final DocumentReference<Object> reference;
+  final DocumentReference<Object?>? ffRef;
 
   factory _$ChatMessagesRecord(
-          [void Function(ChatMessagesRecordBuilder) updates]) =>
-      (new ChatMessagesRecordBuilder()..update(updates)).build();
+          [void Function(ChatMessagesRecordBuilder)? updates]) =>
+      (new ChatMessagesRecordBuilder()..update(updates))._build();
 
   _$ChatMessagesRecord._(
       {this.text,
@@ -184,7 +185,7 @@ class _$ChatMessagesRecord extends ChatMessagesRecord {
       this.adminName,
       this.customerUid,
       this.rangerUid,
-      this.reference})
+      this.ffRef})
       : super._();
 
   @override
@@ -208,7 +209,7 @@ class _$ChatMessagesRecord extends ChatMessagesRecord {
         adminName == other.adminName &&
         customerUid == other.customerUid &&
         rangerUid == other.rangerUid &&
-        reference == other.reference;
+        ffRef == other.ffRef;
   }
 
   @override
@@ -226,12 +227,12 @@ class _$ChatMessagesRecord extends ChatMessagesRecord {
                     adminName.hashCode),
                 customerUid.hashCode),
             rangerUid.hashCode),
-        reference.hashCode));
+        ffRef.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('ChatMessagesRecord')
+    return (newBuiltValueToStringHelper(r'ChatMessagesRecord')
           ..add('text', text)
           ..add('image', image)
           ..add('isResponse', isResponse)
@@ -240,53 +241,52 @@ class _$ChatMessagesRecord extends ChatMessagesRecord {
           ..add('adminName', adminName)
           ..add('customerUid', customerUid)
           ..add('rangerUid', rangerUid)
-          ..add('reference', reference))
+          ..add('ffRef', ffRef))
         .toString();
   }
 }
 
 class ChatMessagesRecordBuilder
     implements Builder<ChatMessagesRecord, ChatMessagesRecordBuilder> {
-  _$ChatMessagesRecord _$v;
+  _$ChatMessagesRecord? _$v;
 
-  String _text;
-  String get text => _$this._text;
-  set text(String text) => _$this._text = text;
+  String? _text;
+  String? get text => _$this._text;
+  set text(String? text) => _$this._text = text;
 
-  String _image;
-  String get image => _$this._image;
-  set image(String image) => _$this._image = image;
+  String? _image;
+  String? get image => _$this._image;
+  set image(String? image) => _$this._image = image;
 
-  bool _isResponse;
-  bool get isResponse => _$this._isResponse;
-  set isResponse(bool isResponse) => _$this._isResponse = isResponse;
+  bool? _isResponse;
+  bool? get isResponse => _$this._isResponse;
+  set isResponse(bool? isResponse) => _$this._isResponse = isResponse;
 
-  DateTime _createdAt;
-  DateTime get createdAt => _$this._createdAt;
-  set createdAt(DateTime createdAt) => _$this._createdAt = createdAt;
+  DateTime? _createdAt;
+  DateTime? get createdAt => _$this._createdAt;
+  set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
 
-  String _userName;
-  String get userName => _$this._userName;
-  set userName(String userName) => _$this._userName = userName;
+  String? _userName;
+  String? get userName => _$this._userName;
+  set userName(String? userName) => _$this._userName = userName;
 
-  String _adminName;
-  String get adminName => _$this._adminName;
-  set adminName(String adminName) => _$this._adminName = adminName;
+  String? _adminName;
+  String? get adminName => _$this._adminName;
+  set adminName(String? adminName) => _$this._adminName = adminName;
 
-  DocumentReference<Object> _customerUid;
-  DocumentReference<Object> get customerUid => _$this._customerUid;
-  set customerUid(DocumentReference<Object> customerUid) =>
+  DocumentReference<Object?>? _customerUid;
+  DocumentReference<Object?>? get customerUid => _$this._customerUid;
+  set customerUid(DocumentReference<Object?>? customerUid) =>
       _$this._customerUid = customerUid;
 
-  DocumentReference<Object> _rangerUid;
-  DocumentReference<Object> get rangerUid => _$this._rangerUid;
-  set rangerUid(DocumentReference<Object> rangerUid) =>
+  DocumentReference<Object?>? _rangerUid;
+  DocumentReference<Object?>? get rangerUid => _$this._rangerUid;
+  set rangerUid(DocumentReference<Object?>? rangerUid) =>
       _$this._rangerUid = rangerUid;
 
-  DocumentReference<Object> _reference;
-  DocumentReference<Object> get reference => _$this._reference;
-  set reference(DocumentReference<Object> reference) =>
-      _$this._reference = reference;
+  DocumentReference<Object?>? _ffRef;
+  DocumentReference<Object?>? get ffRef => _$this._ffRef;
+  set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
 
   ChatMessagesRecordBuilder() {
     ChatMessagesRecord._initializeBuilder(this);
@@ -303,7 +303,7 @@ class ChatMessagesRecordBuilder
       _adminName = $v.adminName;
       _customerUid = $v.customerUid;
       _rangerUid = $v.rangerUid;
-      _reference = $v.reference;
+      _ffRef = $v.ffRef;
       _$v = null;
     }
     return this;
@@ -316,12 +316,14 @@ class ChatMessagesRecordBuilder
   }
 
   @override
-  void update(void Function(ChatMessagesRecordBuilder) updates) {
+  void update(void Function(ChatMessagesRecordBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$ChatMessagesRecord build() {
+  ChatMessagesRecord build() => _build();
+
+  _$ChatMessagesRecord _build() {
     final _$result = _$v ??
         new _$ChatMessagesRecord._(
             text: text,
@@ -332,10 +334,10 @@ class ChatMessagesRecordBuilder
             adminName: adminName,
             customerUid: customerUid,
             rangerUid: rangerUid,
-            reference: reference);
+            ffRef: ffRef);
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

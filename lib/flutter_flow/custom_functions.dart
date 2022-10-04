@@ -114,14 +114,14 @@ String countTotal(
 
   for(DiscountsRecord disc in FFAppState().localDiscount){
     if(disc.unit == "Order"){
-      totalDisc += disc.discount;
+      totalDisc += disc.discount!;
     } else if(disc.unit == "Pet"){
-      totalDisc += disc.discount * quantity;
+      totalDisc += disc.discount! * quantity!;
     }
   }
 
 
-  double fee = (quantity * serviceFee) - totalDisc;
+  double fee = (quantity! * serviceFee!) - totalDisc;
 
   final formatter = NumberFormat("###,###");
   return formatter.format(fee);
@@ -141,14 +141,14 @@ double countAmount(
 
   for(DiscountsRecord disc in FFAppState().localDiscount){
     if(disc.unit == "Order"){
-      totalDisc += disc.discount;
+      totalDisc += disc.discount!;
     } else if(disc.unit == "Pet"){
-      totalDisc += disc.discount * quantity;
+      totalDisc += disc.discount! * quantity!;
     }
   }
 
 
-  double fee = (quantity * serviceFee) - totalDisc;
+  double fee = (quantity! * serviceFee!) - totalDisc;
 
   return fee;
 }

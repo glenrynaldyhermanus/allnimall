@@ -17,10 +17,10 @@ class _$ArticlesRecordSerializer
   final String wireName = 'ArticlesRecord';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, ArticlesRecord object,
+  Iterable<Object?> serialize(Serializers serializers, ArticlesRecord object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
-    Object value;
+    final result = <Object?>[];
+    Object? value;
     value = object.title;
     if (value != null) {
       result
@@ -42,46 +42,46 @@ class _$ArticlesRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.reference;
+    value = object.ffRef;
     if (value != null) {
       result
         ..add('Document__Reference__Field')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
+                DocumentReference, const [const FullType.nullable(Object)])));
     }
     return result;
   }
 
   @override
   ArticlesRecord deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new ArticlesRecordBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'title':
           result.title = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'article':
           result.article = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'image_url':
           result.imageUrl = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'Document__Reference__Field':
-          result.reference = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      DocumentReference, const [const FullType(Object)]))
-              as DocumentReference<Object>;
+          result.ffRef = serializers.deserialize(value,
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
           break;
       }
     }
@@ -92,18 +92,18 @@ class _$ArticlesRecordSerializer
 
 class _$ArticlesRecord extends ArticlesRecord {
   @override
-  final String title;
+  final String? title;
   @override
-  final String article;
+  final String? article;
   @override
-  final String imageUrl;
+  final String? imageUrl;
   @override
-  final DocumentReference<Object> reference;
+  final DocumentReference<Object?>? ffRef;
 
-  factory _$ArticlesRecord([void Function(ArticlesRecordBuilder) updates]) =>
-      (new ArticlesRecordBuilder()..update(updates)).build();
+  factory _$ArticlesRecord([void Function(ArticlesRecordBuilder)? updates]) =>
+      (new ArticlesRecordBuilder()..update(updates))._build();
 
-  _$ArticlesRecord._({this.title, this.article, this.imageUrl, this.reference})
+  _$ArticlesRecord._({this.title, this.article, this.imageUrl, this.ffRef})
       : super._();
 
   @override
@@ -121,47 +121,46 @@ class _$ArticlesRecord extends ArticlesRecord {
         title == other.title &&
         article == other.article &&
         imageUrl == other.imageUrl &&
-        reference == other.reference;
+        ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
         $jc($jc($jc(0, title.hashCode), article.hashCode), imageUrl.hashCode),
-        reference.hashCode));
+        ffRef.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('ArticlesRecord')
+    return (newBuiltValueToStringHelper(r'ArticlesRecord')
           ..add('title', title)
           ..add('article', article)
           ..add('imageUrl', imageUrl)
-          ..add('reference', reference))
+          ..add('ffRef', ffRef))
         .toString();
   }
 }
 
 class ArticlesRecordBuilder
     implements Builder<ArticlesRecord, ArticlesRecordBuilder> {
-  _$ArticlesRecord _$v;
+  _$ArticlesRecord? _$v;
 
-  String _title;
-  String get title => _$this._title;
-  set title(String title) => _$this._title = title;
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
 
-  String _article;
-  String get article => _$this._article;
-  set article(String article) => _$this._article = article;
+  String? _article;
+  String? get article => _$this._article;
+  set article(String? article) => _$this._article = article;
 
-  String _imageUrl;
-  String get imageUrl => _$this._imageUrl;
-  set imageUrl(String imageUrl) => _$this._imageUrl = imageUrl;
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
 
-  DocumentReference<Object> _reference;
-  DocumentReference<Object> get reference => _$this._reference;
-  set reference(DocumentReference<Object> reference) =>
-      _$this._reference = reference;
+  DocumentReference<Object?>? _ffRef;
+  DocumentReference<Object?>? get ffRef => _$this._ffRef;
+  set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
 
   ArticlesRecordBuilder() {
     ArticlesRecord._initializeBuilder(this);
@@ -173,7 +172,7 @@ class ArticlesRecordBuilder
       _title = $v.title;
       _article = $v.article;
       _imageUrl = $v.imageUrl;
-      _reference = $v.reference;
+      _ffRef = $v.ffRef;
       _$v = null;
     }
     return this;
@@ -186,21 +185,20 @@ class ArticlesRecordBuilder
   }
 
   @override
-  void update(void Function(ArticlesRecordBuilder) updates) {
+  void update(void Function(ArticlesRecordBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$ArticlesRecord build() {
+  ArticlesRecord build() => _build();
+
+  _$ArticlesRecord _build() {
     final _$result = _$v ??
         new _$ArticlesRecord._(
-            title: title,
-            article: article,
-            imageUrl: imageUrl,
-            reference: reference);
+            title: title, article: article, imageUrl: imageUrl, ffRef: ffRef);
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

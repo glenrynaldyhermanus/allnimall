@@ -54,7 +54,7 @@ class FFButtonWidget extends StatefulWidget {
   final Function() onPressed;
   final FFButtonOptions options;
   final bool showLoadingIndicator;
-  final bool isLoading;
+  final bool? isLoading;
 
   @override
   State<FFButtonWidget> createState() => _FFButtonWidgetState();
@@ -67,7 +67,7 @@ class _FFButtonWidgetState extends State<FFButtonWidget> {
   @override
   Widget build(BuildContext context) {
     if(this.widget.isLoading != null){
-      loading = this.widget.isLoading;
+      loading = this.widget.isLoading!;
     }
 
     Widget textWidget = loading

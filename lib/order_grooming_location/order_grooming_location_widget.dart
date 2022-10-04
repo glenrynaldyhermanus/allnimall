@@ -143,7 +143,7 @@ class _OrderGroomingLocationWidgetState
                       'AIzaSyAVmO1JRU552L2OhuDi0sdRhwgleBPNO3c',
                   onSelect: (place) => setState(() {
                     placePickerValue = place;
-                    textController.text = place.address;
+                    textController!.text = place.address;
                     var newPosition = CameraPosition(
                         target: placePickerValue.latLng.toGoogleMaps(),
                         zoom: 16);
@@ -231,8 +231,8 @@ class _OrderGroomingLocationWidgetState
                   children: [
                     FFButtonWidget(
                       onPressed: () async {
-                        if ((textController.text != null) &&
-                            (textController.text.trim() != '')) {
+                        if ((textController!.text != null) &&
+                            (textController!.text.trim() != '')) {
                           setState(() =>
                               FFAppState().localAddress = textController!.text);
                           setState(() =>

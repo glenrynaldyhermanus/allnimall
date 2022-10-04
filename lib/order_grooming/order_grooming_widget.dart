@@ -11,6 +11,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../order_grooming_location/order_grooming_location_widget.dart';
+import '../order_grooming_schedule/order_grooming_schedule_widget.dart';
+import '../order_grooming_service/order_grooming_service_widget.dart';
+
 class OrderGroomingWidget extends StatefulWidget {
   const OrderGroomingWidget({Key? key}) : super(key: key);
 
@@ -490,8 +494,8 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                                     }
                                     List<DiscountsRecord>
                                         columnDiscountsRecordList =
-                                        snapshot.data;
-                                    FFAppState().localDiscount = snapshot.data;
+                                        snapshot.data!;
+                                    FFAppState().localDiscount = snapshot.data!;
                                     return Column(
                                       children: [
                                         Column(
@@ -541,7 +545,7 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                                                                                 0),
                                                                     child: Text(
                                                                       columnDiscountsRecord
-                                                                          .name,
+                                                                          .name!,
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .subtitle1
@@ -749,12 +753,12 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                             discount: disc.discount,
                             unit: disc.unit,
                           );
-                          await OrderDiscountsRecord.createDoc(order.reference)
+                          await OrderDiscountsRecord.createDoc(order!.reference)
                               .set(orderDiscountsCreateData);
 
                         }
 
-                        setState(() => FFAppState().localDiscount = null);
+                        setState(() => FFAppState().localDiscount = []);
 
                         final orderServicesCreateData =
                             createOrderServicesRecordData(
