@@ -1,6 +1,6 @@
 # Allnimall
 
-A new Flutter project.
+Allnimall is a pet service platform application for Customers.
 
 ## Getting Started
 
