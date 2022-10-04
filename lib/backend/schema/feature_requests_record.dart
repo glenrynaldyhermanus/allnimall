@@ -11,26 +11,21 @@ abstract class FeatureRequestsRecord
   static Serializer<FeatureRequestsRecord> get serializer =>
       _$featureRequestsRecordSerializer;
 
-  @nullable
-  String get feedback;
+  String? get feedback;
 
-  @nullable
   @BuiltValueField(wireName: 'created_at')
-  DateTime get createdAt;
+  DateTime? get createdAt;
 
-  @nullable
-  String get response;
+  String? get response;
 
-  @nullable
-  String get status;
+  String? get status;
 
-  @nullable
   @BuiltValueField(wireName: 'user_uid')
-  DocumentReference get userUid;
+  DocumentReference? get userUid;
 
-  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference get reference;
+  DocumentReference? get ffRef;
+  DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(FeatureRequestsRecordBuilder builder) =>
       builder
@@ -43,11 +38,11 @@ abstract class FeatureRequestsRecord
 
   static Stream<FeatureRequestsRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   static Future<FeatureRequestsRecord> getDocumentOnce(DocumentReference ref) =>
       ref.get().then(
-          (s) => serializers.deserializeWith(serializer, serializedData(s)));
+          (s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   FeatureRequestsRecord._();
   factory FeatureRequestsRecord(
@@ -57,21 +52,27 @@ abstract class FeatureRequestsRecord
   static FeatureRequestsRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
       serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference});
+          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
 }
 
 Map<String, dynamic> createFeatureRequestsRecordData({
-  String feedback,
-  DateTime createdAt,
-  String response,
-  String status,
-  DocumentReference userUid,
-}) =>
-    serializers.toFirestore(
-        FeatureRequestsRecord.serializer,
-        FeatureRequestsRecord((f) => f
-          ..feedback = feedback
-          ..createdAt = createdAt
-          ..response = response
-          ..status = status
-          ..userUid = userUid));
+  String? feedback,
+  DateTime? createdAt,
+  String? response,
+  String? status,
+  DocumentReference? userUid,
+}) {
+  final firestoreData = serializers.toFirestore(
+    FeatureRequestsRecord.serializer,
+    FeatureRequestsRecord(
+      (f) => f
+        ..feedback = feedback
+        ..createdAt = createdAt
+        ..response = response
+        ..status = status
+        ..userUid = userUid,
+    ),
+  );
+
+  return firestoreData;
+}

@@ -4,9 +4,6 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../pet_post/pet_post_widget.dart';
-import '../pet_schedule/pet_schedule_widget.dart';
-import '../update_pet/update_pet_widget.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +13,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class PetProfileWidget extends StatefulWidget {
   const PetProfileWidget({
-    Key key,
+    Key? key,
     this.petRef,
   }) : super(key: key);
 
-  final DocumentReference petRef;
+  final DocumentReference? petRef;
 
   @override
   _PetProfileWidgetState createState() => _PetProfileWidgetState();
@@ -32,7 +29,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<PetsRecord>(
-      stream: PetsRecord.getDocument(widget.petRef),
+      stream: PetsRecord.getDocument(widget.petRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -47,7 +44,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
             ),
           );
         }
-        final petProfilePetsRecord = snapshot.data;
+        final petProfilePetsRecord = snapshot.data!;
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
@@ -56,7 +53,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                 IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
             automaticallyImplyLeading: true,
             title: Text(
-              petProfilePetsRecord.name,
+              petProfilePetsRecord.name!,
               style: FlutterFlowTheme.of(context).title3.override(
                     fontFamily: 'RockoUltra',
                     color: FlutterFlowTheme.of(context).primaryColor,
@@ -75,8 +72,8 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                   size: 24,
                 ),
                 onPressed: () async {
-                  await widget.petRef.delete();
-                  Navigator.pop(context);
+                  await widget.petRef!.delete();
+                  context.pop();
                 },
               ),
             ],
@@ -116,7 +113,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  petProfilePetsRecord.condition,
+                                  petProfilePetsRecord.condition!,
                                   style: FlutterFlowTheme.of(context).title3,
                                 ),
                                 Text(
@@ -128,13 +125,13 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                             ),
                             FFButtonWidget(
                               onPressed: () async {
-                                await Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => UpdatePetWidget(
-                                      petRef: petProfilePetsRecord.reference,
-                                    ),
-                                  ),
+                                context.pushNamed(
+                                  'UpdatePet',
+                                  queryParams: {
+                                    'petRef': serializeParam(
+                                        petProfilePetsRecord.reference,
+                                        ParamType.DocumentReference),
+                                  }.withoutNulls,
                                 );
                               },
                               text: 'Profile',
@@ -183,7 +180,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                     size: 24,
                                   ),
                                   Text(
-                                    petProfilePetsRecord.sex,
+                                    petProfilePetsRecord.sex!,
                                     style: FlutterFlowTheme.of(context)
                                         .subtitle1
                                         .override(
@@ -205,7 +202,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                     size: 24,
                                   ),
                                   Text(
-                                    petProfilePetsRecord.breed,
+                                    petProfilePetsRecord.breed!,
                                     style: FlutterFlowTheme.of(context)
                                         .subtitle1
                                         .override(
@@ -232,7 +229,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        petProfilePetsRecord.weight.toString(),
+                                        petProfilePetsRecord.weight!.toString(),
                                         style: FlutterFlowTheme.of(context)
                                             .subtitle1
                                             .override(
@@ -268,7 +265,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                             color: Color(0xFFDFE0EE),
                           ),
                           child: Visibility(
-                            visible: (FFAppState().isFeatureReady) == true,
+                            visible: FFAppState().isFeatureReady == true,
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -297,15 +294,15 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                           ),
                                           InkWell(
                                             onTap: () async {
-                                              await Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      PetScheduleWidget(
-                                                    petRef: petProfilePetsRecord
-                                                        .reference,
-                                                  ),
-                                                ),
+                                              context.pushNamed(
+                                                'PetSchedule',
+                                                queryParams: {
+                                                  'petRef': serializeParam(
+                                                      petProfilePetsRecord
+                                                          .reference,
+                                                      ParamType
+                                                          .DocumentReference),
+                                                }.withoutNulls,
                                               );
                                             },
                                             child: Text(
@@ -358,7 +355,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                         }
                                         List<PetSchedulesRecord>
                                             columnPetSchedulesRecordList =
-                                            snapshot.data;
+                                            snapshot.data!;
                                         if (columnPetSchedulesRecordList
                                             .isEmpty) {
                                           return EmptyScheduleWidget(
@@ -392,7 +389,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                                         dateTimeFormat(
                                                             'MEd',
                                                             columnPetSchedulesRecord
-                                                                .scheduledAt),
+                                                                .scheduledAt!),
                                                         textAlign:
                                                             TextAlign.center,
                                                         style:
@@ -411,7 +408,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                                         dateTimeFormat(
                                                             'Hm',
                                                             columnPetSchedulesRecord
-                                                                .scheduledAt),
+                                                                .scheduledAt!),
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -492,7 +489,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                                                         child:
                                                                             Text(
                                                                           columnPetSchedulesRecord
-                                                                              .name,
+                                                                              .name!,
                                                                           style:
                                                                               FlutterFlowTheme.of(context).subtitle1,
                                                                         ),
@@ -506,7 +503,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                                                         child:
                                                                             Text(
                                                                           columnPetSchedulesRecord
-                                                                              .description,
+                                                                              .description!,
                                                                           style:
                                                                               FlutterFlowTheme.of(context).bodyText1,
                                                                         ),
@@ -527,7 +524,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                                                     children: [
                                                                       Text(
                                                                         columnPetSchedulesRecord
-                                                                            .duration
+                                                                            .duration!
                                                                             .toString(),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .subtitle1
@@ -538,7 +535,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                                                       ),
                                                                       Text(
                                                                         columnPetSchedulesRecord
-                                                                            .durationUnit,
+                                                                            .durationUnit!,
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyText1,
                                                                       ),
@@ -574,13 +571,13 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                 EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
                             child: InkWell(
                               onTap: () async {
-                                await Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => PetPostWidget(
-                                      petRef: petProfilePetsRecord.reference,
-                                    ),
-                                  ),
+                                context.pushNamed(
+                                  'PetPost',
+                                  queryParams: {
+                                    'petRef': serializeParam(
+                                        petProfilePetsRecord.reference,
+                                        ParamType.DocumentReference),
+                                  }.withoutNulls,
                                 );
                               },
                               child: Card(
@@ -599,7 +596,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(18),
                                         child: Image.network(
-                                          petProfilePetsRecord.pictureUrl,
+                                          petProfilePetsRecord.pictureUrl!,
                                           width: 36,
                                           height: 36,
                                           fit: BoxFit.cover,
@@ -682,7 +679,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                             );
                           }
                           List<PetPostsRecord> columnPetPostsRecordList =
-                              snapshot.data;
+                              snapshot.data!;
                           return Column(
                             mainAxisSize: MainAxisSize.max,
                             children: List.generate(
@@ -703,7 +700,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                           borderRadius:
                                               BorderRadius.circular(18),
                                           child: Image.network(
-                                            petProfilePetsRecord.pictureUrl,
+                                            petProfilePetsRecord.pictureUrl!,
                                             width: 36,
                                             height: 36,
                                             fit: BoxFit.cover,
@@ -718,7 +715,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(16, 0, 0, 0),
                                               child: Text(
-                                                petProfilePetsRecord.name,
+                                                petProfilePetsRecord.name!,
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .subtitle1
@@ -735,7 +732,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                                 dateTimeFormat(
                                                     'relative',
                                                     columnPetPostsRecord
-                                                        .createdAt),
+                                                        .createdAt!),
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText1,
@@ -746,23 +743,22 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                                       ],
                                     ),
                                   ),
-                                  if ((columnPetPostsRecord.text) != '')
+                                  if (columnPetPostsRecord.text != '')
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           20, 20, 20, 0),
                                       child: Text(
-                                        columnPetPostsRecord.text,
+                                        columnPetPostsRecord.text!,
                                         style: FlutterFlowTheme.of(context)
                                             .subtitle2,
                                       ),
                                     ),
-                                  if ((columnPetPostsRecord.petPictureUrl) !=
-                                      '')
+                                  if (columnPetPostsRecord.petPictureUrl != '')
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 20, 0, 0),
                                       child: Image.network(
-                                        columnPetPostsRecord.image,
+                                        columnPetPostsRecord.image!,
                                         width: double.infinity,
                                         height: 240,
                                         fit: BoxFit.cover,

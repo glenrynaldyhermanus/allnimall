@@ -13,7 +13,8 @@ import '../../index.dart';
 import '../../main.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
-  const PushNotificationsHandler({Key key, this.child}) : super(key: key);
+  const PushNotificationsHandler({Key? key, required this.child})
+      : super(key: key);
 
   final Widget child;
 
@@ -68,12 +69,10 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
       ? Container(
           color: FlutterFlowTheme.of(context).tertiaryColor,
           child: Center(
-            child: Builder(
-              builder: (context) => Image.asset(
-                'assets/images/Artboard1_4.png',
-                width: MediaQuery.of(context).size.width * 0.8,
-                fit: BoxFit.fitWidth,
-              ),
+            child: Image.asset(
+              'assets/images/Artboard1_4.png',
+              width: MediaQuery.of(context).size.width * 0.8,
+              fit: BoxFit.fitWidth,
             ),
           ),
         )

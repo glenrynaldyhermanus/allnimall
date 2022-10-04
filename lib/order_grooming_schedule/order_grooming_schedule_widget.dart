@@ -8,7 +8,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OrderGroomingScheduleWidget extends StatefulWidget {
-  const OrderGroomingScheduleWidget({Key key}) : super(key: key);
+  const OrderGroomingScheduleWidget({Key? key}) : super(key: key);
 
   @override
   _OrderGroomingScheduleWidgetState createState() =>
@@ -17,8 +17,8 @@ class OrderGroomingScheduleWidget extends StatefulWidget {
 
 class _OrderGroomingScheduleWidgetState
     extends State<OrderGroomingScheduleWidget> {
-  String dropDownValue1;
-  String dropDownValue2;
+  String? dropDownValue1;
+  String? dropDownValue2;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -84,7 +84,7 @@ class _OrderGroomingScheduleWidgetState
                                         ),
                                       );
                                     },
-                                  );
+                                  ).then((value) => setState(() {}));
                                 },
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
@@ -314,12 +314,12 @@ class _OrderGroomingScheduleWidgetState
                     padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 25),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        if ((FFAppState().localScheduleDate != null)) {
+                        if (FFAppState().localScheduleDate != null) {
                           setState(() =>
-                              FFAppState().localPreferedTime = dropDownValue1);
+                              FFAppState().localPreferedTime = dropDownValue1!);
                           setState(() =>
-                              FFAppState().localPreferedDay = dropDownValue2);
-                          Navigator.pop(context);
+                              FFAppState().localPreferedDay = dropDownValue2!);
+                          context.pop();
                         } else {
                           await showDialog(
                             context: context,

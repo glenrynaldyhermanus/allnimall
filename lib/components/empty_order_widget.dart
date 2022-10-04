@@ -1,13 +1,12 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../order_grooming/order_grooming_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EmptyOrderWidget extends StatefulWidget {
-  const EmptyOrderWidget({Key key}) : super(key: key);
+  const EmptyOrderWidget({Key? key}) : super(key: key);
 
   @override
   _EmptyOrderWidgetState createState() => _EmptyOrderWidgetState();
@@ -29,12 +28,7 @@ class _EmptyOrderWidgetState extends State<EmptyOrderWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
             child: FFButtonWidget(
               onPressed: () async {
-                await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => OrderGroomingWidget(),
-                  ),
-                );
+                context.pushNamed('OrderGrooming');
               },
               text: 'Panggil groomer',
               options: FFButtonOptions(

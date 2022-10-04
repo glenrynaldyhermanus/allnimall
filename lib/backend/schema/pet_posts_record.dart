@@ -11,45 +11,35 @@ abstract class PetPostsRecord
   static Serializer<PetPostsRecord> get serializer =>
       _$petPostsRecordSerializer;
 
-  @nullable
   @BuiltValueField(wireName: 'pet_uid')
-  DocumentReference get petUid;
+  DocumentReference? get petUid;
 
-  @nullable
   @BuiltValueField(wireName: 'pet_name')
-  String get petName;
+  String? get petName;
 
-  @nullable
   @BuiltValueField(wireName: 'pet_picture_url')
-  String get petPictureUrl;
+  String? get petPictureUrl;
 
-  @nullable
-  String get condition;
+  String? get condition;
 
-  @nullable
-  String get image;
+  String? get image;
 
-  @nullable
-  String get video;
+  String? get video;
 
-  @nullable
-  String get text;
+  String? get text;
 
-  @nullable
   @BuiltValueField(wireName: 'created_at')
-  DateTime get createdAt;
+  DateTime? get createdAt;
 
-  @nullable
   @BuiltValueField(wireName: 'num_fav')
-  int get numFav;
+  int? get numFav;
 
-  @nullable
   @BuiltValueField(wireName: 'faved_by')
-  BuiltList<DocumentReference> get favedBy;
+  BuiltList<DocumentReference>? get favedBy;
 
-  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference get reference;
+  DocumentReference? get ffRef;
+  DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(PetPostsRecordBuilder builder) => builder
     ..petName = ''
@@ -66,11 +56,11 @@ abstract class PetPostsRecord
 
   static Stream<PetPostsRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   static Future<PetPostsRecord> getDocumentOnce(DocumentReference ref) => ref
       .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   PetPostsRecord._();
   factory PetPostsRecord([void Function(PetPostsRecordBuilder) updates]) =
@@ -79,30 +69,36 @@ abstract class PetPostsRecord
   static PetPostsRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
       serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference});
+          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
 }
 
 Map<String, dynamic> createPetPostsRecordData({
-  DocumentReference petUid,
-  String petName,
-  String petPictureUrl,
-  String condition,
-  String image,
-  String video,
-  String text,
-  DateTime createdAt,
-  int numFav,
-}) =>
-    serializers.toFirestore(
-        PetPostsRecord.serializer,
-        PetPostsRecord((p) => p
-          ..petUid = petUid
-          ..petName = petName
-          ..petPictureUrl = petPictureUrl
-          ..condition = condition
-          ..image = image
-          ..video = video
-          ..text = text
-          ..createdAt = createdAt
-          ..numFav = numFav
-          ..favedBy = null));
+  DocumentReference? petUid,
+  String? petName,
+  String? petPictureUrl,
+  String? condition,
+  String? image,
+  String? video,
+  String? text,
+  DateTime? createdAt,
+  int? numFav,
+}) {
+  final firestoreData = serializers.toFirestore(
+    PetPostsRecord.serializer,
+    PetPostsRecord(
+      (p) => p
+        ..petUid = petUid
+        ..petName = petName
+        ..petPictureUrl = petPictureUrl
+        ..condition = condition
+        ..image = image
+        ..video = video
+        ..text = text
+        ..createdAt = createdAt
+        ..numFav = numFav
+        ..favedBy = null,
+    ),
+  );
+
+  return firestoreData;
+}

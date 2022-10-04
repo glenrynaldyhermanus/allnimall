@@ -1,13 +1,12 @@
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../home/home_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SplashWidget extends StatefulWidget {
-  const SplashWidget({Key key}) : super(key: key);
+  const SplashWidget({Key? key}) : super(key: key);
 
   @override
   _SplashWidgetState createState() => _SplashWidgetState();
@@ -55,13 +54,7 @@ class _SplashWidgetState extends State<SplashWidget>
                 alignment: AlignmentDirectional(0, 0),
                 child: InkWell(
                   onTap: () async {
-                    await Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomeWidget(),
-                      ),
-                      (r) => false,
-                    );
+                    context.goNamed('Home');
                   },
                   child: Image.asset(
                     'assets/images/Artboard1_4.png',
@@ -73,7 +66,7 @@ class _SplashWidgetState extends State<SplashWidget>
               ),
             ),
           ],
-        ).animated([animationsMap['rowOnPageLoadAnimation']]),
+        ).animated([animationsMap['rowOnPageLoadAnimation']!]),
       ),
     );
   }

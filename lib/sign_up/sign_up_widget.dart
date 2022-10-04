@@ -3,22 +3,21 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignUpWidget extends StatefulWidget {
-  const SignUpWidget({Key key}) : super(key: key);
+  const SignUpWidget({Key? key}) : super(key: key);
 
   @override
   _SignUpWidgetState createState() => _SignUpWidgetState();
 }
 
 class _SignUpWidgetState extends State<SignUpWidget> {
-  TextEditingController emailFieldController;
-  TextEditingController nameFieldController;
+  TextEditingController? emailFieldController;
+  TextEditingController? nameFieldController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -26,6 +25,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
     super.initState();
     emailFieldController = TextEditingController();
     nameFieldController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    emailFieldController?.dispose();
+    nameFieldController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -92,6 +98,20 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               ),
                               borderRadius: BorderRadius.circular(8),
                             ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
                             filled: true,
                             fillColor: Colors.white,
                             contentPadding:
@@ -139,6 +159,20 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               ),
                               borderRadius: BorderRadius.circular(8),
                             ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
                             filled: true,
                             fillColor: Colors.white,
                             contentPadding:
@@ -164,25 +198,19 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     children: [
                       FFButtonWidget(
                         onPressed: () async {
-                          if ((nameFieldController.text != null) &&
-                              (nameFieldController.text != '')) {
-                            if ((emailFieldController.text != null) &&
-                                (emailFieldController.text != '')) {
+                          if (nameFieldController!.text != null &&
+                              nameFieldController!.text != '') {
+                            if (emailFieldController!.text != null &&
+                                emailFieldController!.text != '') {
                               final customersUpdateData =
                                   createCustomersRecordData(
-                                email: emailFieldController.text,
-                                displayName: nameFieldController.text,
+                                email: emailFieldController!.text,
+                                displayName: nameFieldController!.text,
                               );
-                              await currentUserReference
+                              await currentUserReference!
                                   .update(customersUpdateData);
-                              await Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      NavBarPage(initialPage: 'HomeBackup'),
-                                ),
-                                (r) => false,
-                              );
+
+                              context.goNamed('HomeBackup');
                             } else {
                               await showDialog(
                                 context: context,

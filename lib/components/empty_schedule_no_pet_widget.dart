@@ -1,13 +1,12 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../new_pet/new_pet_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EmptyScheduleNoPetWidget extends StatefulWidget {
-  const EmptyScheduleNoPetWidget({Key key}) : super(key: key);
+  const EmptyScheduleNoPetWidget({Key? key}) : super(key: key);
 
   @override
   _EmptyScheduleNoPetWidgetState createState() =>
@@ -31,12 +30,7 @@ class _EmptyScheduleNoPetWidgetState extends State<EmptyScheduleNoPetWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
             child: FFButtonWidget(
               onPressed: () async {
-                await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => NewPetWidget(),
-                  ),
-                );
+                context.pushNamed('NewPet');
               },
               text: 'Add pet',
               options: FFButtonOptions(

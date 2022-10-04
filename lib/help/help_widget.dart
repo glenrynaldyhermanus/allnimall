@@ -1,10 +1,7 @@
 import '../auth/auth_util.dart';
-import '../f_a_q_list/f_a_q_list_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../phone_sign_in/phone_sign_in_widget.dart';
-import '../request_feature/request_feature_widget.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +9,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HelpWidget extends StatefulWidget {
-  const HelpWidget({Key key}) : super(key: key);
+  const HelpWidget({Key? key}) : super(key: key);
 
   @override
   _HelpWidgetState createState() => _HelpWidgetState();
@@ -50,14 +47,10 @@ class _HelpWidgetState extends State<HelpWidget> {
               size: 24,
             ),
             onPressed: () async {
+              GoRouter.of(context).prepareAuthEvent();
               await signOut();
-              await Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => PhoneSignInWidget(),
-                ),
-                (r) => false,
-              );
+
+              context.goNamedAuth('PhoneSignIn', mounted);
             },
           ),
         ],
@@ -156,12 +149,7 @@ class _HelpWidgetState extends State<HelpWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                       child: InkWell(
                         onTap: () async {
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => FAQListWidget(),
-                            ),
-                          );
+                          context.pushNamed('FAQList');
                         },
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -215,12 +203,7 @@ class _HelpWidgetState extends State<HelpWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                       child: InkWell(
                         onTap: () async {
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => RequestFeatureWidget(),
-                            ),
-                          );
+                          context.pushNamed('RequestFeature');
                         },
                         child: Row(
                           mainAxisSize: MainAxisSize.max,

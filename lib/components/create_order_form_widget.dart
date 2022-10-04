@@ -1,15 +1,12 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../order_grooming_location/order_grooming_location_widget.dart';
-import '../order_grooming_schedule/order_grooming_schedule_widget.dart';
-import '../order_grooming_service/order_grooming_service_widget.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CreateOrderFormWidget extends StatefulWidget {
-  const CreateOrderFormWidget({Key key}) : super(key: key);
+  const CreateOrderFormWidget({Key? key}) : super(key: key);
 
   @override
   _CreateOrderFormWidgetState createState() => _CreateOrderFormWidgetState();
@@ -42,13 +39,7 @@ class _CreateOrderFormWidgetState extends State<CreateOrderFormWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                         child: InkWell(
                           onTap: () async {
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    OrderGroomingLocationWidget(),
-                              ),
-                            );
+                            context.pushNamed('OrderGroomingLocation');
                           },
                           child: Container(
                             width: MediaQuery.of(context).size.width,
@@ -112,13 +103,7 @@ class _CreateOrderFormWidgetState extends State<CreateOrderFormWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                         child: InkWell(
                           onTap: () async {
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    OrderGroomingServiceWidget(),
-                              ),
-                            );
+                            context.pushNamed('OrderGroomingService');
                           },
                           child: Container(
                             width: MediaQuery.of(context).size.width,
@@ -187,13 +172,7 @@ class _CreateOrderFormWidgetState extends State<CreateOrderFormWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                         child: InkWell(
                           onTap: () async {
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    OrderGroomingScheduleWidget(),
-                              ),
-                            );
+                            context.pushNamed('OrderGroomingSchedule');
                           },
                           child: Container(
                             width: MediaQuery.of(context).size.width,

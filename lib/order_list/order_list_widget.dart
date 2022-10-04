@@ -2,14 +2,13 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../order_detail/order_detail_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OrderListWidget extends StatefulWidget {
-  const OrderListWidget({Key key}) : super(key: key);
+  const OrderListWidget({Key? key}) : super(key: key);
 
   @override
   _OrderListWidgetState createState() => _OrderListWidgetState();
@@ -61,7 +60,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                 ),
               );
             }
-            List<OrdersRecord> columnOrdersRecordList = snapshot.data;
+            List<OrdersRecord> columnOrdersRecordList = snapshot.data!;
             return SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -73,13 +72,13 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
                     child: InkWell(
                       onTap: () async {
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => OrderDetailWidget(
-                              order: columnOrdersRecord.reference,
-                            ),
-                          ),
+                        context.pushNamed(
+                          'OrderDetail',
+                          queryParams: {
+                            'order': serializeParam(
+                                columnOrdersRecord.reference,
+                                ParamType.DocumentReference),
+                          }.withoutNulls,
                         );
                       },
                       child: Row(
@@ -111,7 +110,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    columnOrdersRecord.name,
+                                    columnOrdersRecord.name!,
                                     style: FlutterFlowTheme.of(context)
                                         .subtitle1
                                         .override(
@@ -124,7 +123,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                   ),
                                   Text(
                                     dateTimeFormat('relative',
-                                        columnOrdersRecord.createdAt),
+                                        columnOrdersRecord.createdAt!),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
@@ -145,7 +144,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             8, 4, 8, 0),
                                         child: Text(
-                                          columnOrdersRecord.status,
+                                          columnOrdersRecord.status!,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyText1
                                               .override(

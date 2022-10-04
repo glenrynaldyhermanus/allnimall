@@ -1,4 +1,3 @@
-import '../add_schedule/add_schedule_widget.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -9,11 +8,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class PetScheduleWidget extends StatefulWidget {
   const PetScheduleWidget({
-    Key key,
+    Key? key,
     this.petRef,
   }) : super(key: key);
 
-  final DocumentReference petRef;
+  final DocumentReference? petRef;
 
   @override
   _PetScheduleWidgetState createState() => _PetScheduleWidgetState();
@@ -46,13 +45,12 @@ class _PetScheduleWidgetState extends State<PetScheduleWidget> {
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
-          await Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AddScheduleWidget(
-                petRef: widget.petRef,
-              ),
-            ),
+          context.pushNamed(
+            'AddSchedule',
+            queryParams: {
+              'petRef':
+                  serializeParam(widget.petRef, ParamType.DocumentReference),
+            }.withoutNulls,
           );
         },
         backgroundColor: FlutterFlowTheme.of(context).secondaryColor,
@@ -93,7 +91,7 @@ class _PetScheduleWidgetState extends State<PetScheduleWidget> {
               );
             }
             List<PetSchedulesRecord> columnPetSchedulesRecordList =
-                snapshot.data;
+                snapshot.data!;
             return Column(
               mainAxisSize: MainAxisSize.max,
               children: List.generate(columnPetSchedulesRecordList.length,
@@ -112,7 +110,7 @@ class _PetScheduleWidgetState extends State<PetScheduleWidget> {
                         children: [
                           Text(
                             dateTimeFormat(
-                                'MEd', columnPetSchedulesRecord.scheduledAt),
+                                'MEd', columnPetSchedulesRecord.scheduledAt!),
                             textAlign: TextAlign.center,
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
@@ -123,7 +121,7 @@ class _PetScheduleWidgetState extends State<PetScheduleWidget> {
                           ),
                           Text(
                             dateTimeFormat(
-                                'Hm', columnPetSchedulesRecord.scheduledAt),
+                                'Hm', columnPetSchedulesRecord.scheduledAt!),
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
                                       fontFamily: 'Cabin',
@@ -170,7 +168,7 @@ class _PetScheduleWidgetState extends State<PetScheduleWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     8, 0, 0, 0),
                                             child: Text(
-                                              columnPetSchedulesRecord.name,
+                                              columnPetSchedulesRecord.name!,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .subtitle1,
@@ -182,7 +180,7 @@ class _PetScheduleWidgetState extends State<PetScheduleWidget> {
                                                     8, 0, 0, 0),
                                             child: Text(
                                               columnPetSchedulesRecord
-                                                  .description,
+                                                  .description!,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyText1,
@@ -199,7 +197,7 @@ class _PetScheduleWidgetState extends State<PetScheduleWidget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Text(
-                                            columnPetSchedulesRecord.duration
+                                            columnPetSchedulesRecord.duration!
                                                 .toString(),
                                             style: FlutterFlowTheme.of(context)
                                                 .subtitle1
@@ -210,7 +208,7 @@ class _PetScheduleWidgetState extends State<PetScheduleWidget> {
                                           ),
                                           Text(
                                             columnPetSchedulesRecord
-                                                .durationUnit,
+                                                .durationUnit!,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1,
                                           ),

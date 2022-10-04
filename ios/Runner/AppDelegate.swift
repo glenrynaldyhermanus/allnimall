@@ -21,6 +21,7 @@ import GoogleMaps
     _ application: UIApplication,
     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
     Auth.auth().setAPNSToken(deviceToken, type: .unknown)
+    Messaging.messaging().apnsToken = deviceToken
   }
 
   override func application(_ application: UIApplication,

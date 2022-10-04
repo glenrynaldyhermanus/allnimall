@@ -11,22 +11,18 @@ abstract class DiscountsRecord
   static Serializer<DiscountsRecord> get serializer =>
       _$discountsRecordSerializer;
 
-  @nullable
-  String get name;
+  String? get name;
 
-  @nullable
-  double get discount;
+  double? get discount;
 
-  @nullable
   @BuiltValueField(wireName: 'is_active')
-  bool get isActive;
+  bool? get isActive;
 
-  @nullable
-  String get unit;
+  String? get unit;
 
-  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference get reference;
+  DocumentReference? get ffRef;
+  DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(DiscountsRecordBuilder builder) => builder
     ..name = ''
@@ -39,11 +35,11 @@ abstract class DiscountsRecord
 
   static Stream<DiscountsRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   static Future<DiscountsRecord> getDocumentOnce(DocumentReference ref) => ref
       .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   DiscountsRecord._();
   factory DiscountsRecord([void Function(DiscountsRecordBuilder) updates]) =
@@ -52,19 +48,25 @@ abstract class DiscountsRecord
   static DiscountsRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
       serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference});
+          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
 }
 
 Map<String, dynamic> createDiscountsRecordData({
-  String name,
-  double discount,
-  bool isActive,
-  String unit,
-}) =>
-    serializers.toFirestore(
-        DiscountsRecord.serializer,
-        DiscountsRecord((d) => d
-          ..name = name
-          ..discount = discount
-          ..isActive = isActive
-          ..unit = unit));
+  String? name,
+  double? discount,
+  bool? isActive,
+  String? unit,
+}) {
+  final firestoreData = serializers.toFirestore(
+    DiscountsRecord.serializer,
+    DiscountsRecord(
+      (d) => d
+        ..name = name
+        ..discount = discount
+        ..isActive = isActive
+        ..unit = unit,
+    ),
+  );
+
+  return firestoreData;
+}

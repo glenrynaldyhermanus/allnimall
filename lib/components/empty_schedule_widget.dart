@@ -1,4 +1,3 @@
-import '../add_schedule/add_schedule_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -9,11 +8,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class EmptyScheduleWidget extends StatefulWidget {
   const EmptyScheduleWidget({
-    Key key,
+    Key? key,
     this.petRef,
   }) : super(key: key);
 
-  final DocumentReference petRef;
+  final DocumentReference? petRef;
 
   @override
   _EmptyScheduleWidgetState createState() => _EmptyScheduleWidgetState();
@@ -35,13 +34,12 @@ class _EmptyScheduleWidgetState extends State<EmptyScheduleWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
             child: FFButtonWidget(
               onPressed: () async {
-                await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AddScheduleWidget(
-                      petRef: widget.petRef,
-                    ),
-                  ),
+                context.pushNamed(
+                  'AddSchedule',
+                  queryParams: {
+                    'petRef': serializeParam(
+                        widget.petRef, ParamType.DocumentReference),
+                  }.withoutNulls,
                 );
               },
               text: 'Create schedule',

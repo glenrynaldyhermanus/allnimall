@@ -8,14 +8,14 @@ abstract class FlutterFlowTheme {
     return LightModeTheme();
   }
 
-  Color primaryColor;
-  Color secondaryColor;
-  Color tertiaryColor;
-  Color alternate;
-  Color primaryBackground;
-  Color secondaryBackground;
-  Color primaryText;
-  Color secondaryText;
+  late Color primaryColor;
+  late Color secondaryColor;
+  late Color tertiaryColor;
+  late Color alternate;
+  late Color primaryBackground;
+  late Color secondaryBackground;
+  late Color primaryText;
+  late Color secondaryText;
 
   String get title1Family => typography.title1Family;
   TextStyle get title1 => typography.title1;
@@ -36,14 +36,14 @@ abstract class FlutterFlowTheme {
 }
 
 class LightModeTheme extends FlutterFlowTheme {
-  Color primaryColor = const Color(0xFF3A3D71);
-  Color secondaryColor = const Color(0xFFEF487F);
-  Color tertiaryColor = const Color(0xFFFFFFFF);
-  Color alternate = const Color(0xFFDBE2E7);
-  Color primaryBackground = const Color(0xFFF1F4F8);
-  Color secondaryBackground = const Color(0xFFFFFFFF);
-  Color primaryText = const Color(0xFF14181B);
-  Color secondaryText = const Color(0xFF57636C);
+  late Color primaryColor = const Color(0xFF3A3D71);
+  late Color secondaryColor = const Color(0xFFEF487F);
+  late Color tertiaryColor = const Color(0xFFFFFFFF);
+  late Color alternate = const Color(0xFFDBE2E7);
+  late Color primaryBackground = const Color(0xFFF1F4F8);
+  late Color secondaryBackground = const Color(0xFFFFFFFF);
+  late Color primaryText = const Color(0xFF14181B);
+  late Color secondaryText = const Color(0xFF57636C);
 }
 
 abstract class Typography {
@@ -121,19 +121,19 @@ class ThemeTypography extends Typography {
 
 extension TextStyleHelper on TextStyle {
   TextStyle override({
-    String fontFamily,
-    Color color,
-    double fontSize,
-    FontWeight fontWeight,
-    double letterSpacing,
-    FontStyle fontStyle,
+    String? fontFamily,
+    Color? color,
+    double? fontSize,
+    FontWeight? fontWeight,
+    double? letterSpacing,
+    FontStyle? fontStyle,
     bool useGoogleFonts = true,
-    TextDecoration decoration,
-    double lineHeight,
+    TextDecoration? decoration,
+    double? lineHeight,
   }) =>
       useGoogleFonts
           ? GoogleFonts.getFont(
-              fontFamily,
+              fontFamily!,
               color: color ?? this.color,
               fontSize: fontSize ?? this.fontSize,
               letterSpacing: letterSpacing ?? this.letterSpacing,

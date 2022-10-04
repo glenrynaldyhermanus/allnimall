@@ -33,7 +33,19 @@
             </array>
         </dict>
 
+        <dict>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
+        <key>CFBundleURLName</key>
+        <string>allnimall.com</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+        <string>allnimall</string>
+        </array>
+        </dict>
     </array>
+    <key>FlutterDeepLinkingEnabled</key>
+    <true/>
 
 
 	<key>CFBundleVersion</key>
@@ -44,11 +56,12 @@
 	<false/>
 
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Kami membutuhkan akses untuk lokasi kamu</string>
+      <string>Kami membutuhkan akses untuk lokasi kamu</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Kami membutuhkan akses untuk menggunakan kamera</string>
+      <string>Kami membutuhkan akses untuk menggunakan kamera</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Kami membtuhkan akses ke galeri fotomu</string>
+      <string>Kami membtuhkan akses ke galeri fotomu</string>
+
     <key>UIBackgroundModes</key>
     <array>
         <string>fetch</string>

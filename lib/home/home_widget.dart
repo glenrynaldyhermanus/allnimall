@@ -1,4 +1,3 @@
-import '../article/article_widget.dart';
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/empty_pet_widget.dart';
@@ -6,10 +5,6 @@ import '../components/empty_schedule_no_pet_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../main.dart';
-import '../pet_list/pet_list_widget.dart';
-import '../pet_profile/pet_profile_widget.dart';
-import '../settings/settings_widget.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +13,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeWidget extends StatefulWidget {
-  const HomeWidget({Key key}) : super(key: key);
+  const HomeWidget({Key? key}) : super(key: key);
 
   @override
   _HomeWidgetState createState() => _HomeWidgetState();
@@ -52,12 +47,7 @@ class _HomeWidgetState extends State<HomeWidget> {
               size: 26,
             ),
             onPressed: () async {
-              await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => SettingsWidget(),
-                ),
-              );
+              context.pushNamed('Settings');
             },
           ),
         ],
@@ -176,13 +166,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           ),
                           InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      NavBarPage(initialPage: 'Social'),
-                                ),
-                              );
+                              context.pushNamed('Social');
                             },
                             child: Text(
                               'Lihat Semua',
@@ -228,7 +212,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   );
                                 }
                                 List<PetPostsRecord> rowPetPostsRecordList =
-                                    snapshot.data;
+                                    snapshot.data!;
                                 return Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: List.generate(
@@ -262,7 +246,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               borderRadius:
                                                   BorderRadius.circular(24),
                                               child: Image.network(
-                                                rowPetPostsRecord.image,
+                                                rowPetPostsRecord.image!,
                                                 width: 240,
                                                 height: 160,
                                                 fit: BoxFit.cover,
@@ -289,7 +273,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                 .circular(18),
                                                         child: Image.network(
                                                           rowPetPostsRecord
-                                                              .petPictureUrl,
+                                                              .petPictureUrl!,
                                                           width: 36,
                                                           height: 36,
                                                           fit: BoxFit.cover,
@@ -312,7 +296,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                         0),
                                                             child: Text(
                                                               rowPetPostsRecord
-                                                                  .text,
+                                                                  .text!,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyText1,
@@ -330,7 +314,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                               dateTimeFormat(
                                                                   'relative',
                                                                   rowPetPostsRecord
-                                                                      .createdAt),
+                                                                      .createdAt!),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyText1
@@ -390,12 +374,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           ),
                           InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => PetListWidget(),
-                                ),
-                              );
+                              context.pushNamed('PetList');
                             },
                             child: Text(
                               'Lihat Semua',
@@ -435,7 +414,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               ),
                             );
                           }
-                          List<PetsRecord> rowPetsRecordList = snapshot.data;
+                          List<PetsRecord> rowPetsRecordList = snapshot.data!;
                           if (rowPetsRecordList.isEmpty) {
                             return Center(
                               child: EmptyPetWidget(),
@@ -454,14 +433,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       20, 0, 0, 20),
                                   child: InkWell(
                                     onTap: () async {
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              PetProfileWidget(
-                                            petRef: rowPetsRecord.reference,
-                                          ),
-                                        ),
+                                      context.pushNamed(
+                                        'PetProfile',
+                                        queryParams: {
+                                          'petRef': serializeParam(
+                                              rowPetsRecord.reference,
+                                              ParamType.DocumentReference),
+                                        }.withoutNulls,
                                       );
                                     },
                                     child: Container(
@@ -490,7 +468,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   BorderRadius.circular(16),
                                               child: CachedNetworkImage(
                                                 imageUrl:
-                                                    rowPetsRecord.pictureUrl,
+                                                    rowPetsRecord.pictureUrl!,
                                                 width: 120,
                                                 height: 90,
                                                 fit: BoxFit.cover,
@@ -503,7 +481,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Text(
-                                                    rowPetsRecord.name,
+                                                    rowPetsRecord.name!,
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .subtitle1
@@ -515,7 +493,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           fontSize: 21,
                                                         ),
                                                   ),
-                                                  if ((rowPetsRecord.sex) ==
+                                                  if (rowPetsRecord.sex ==
                                                       'female')
                                                     Padding(
                                                       padding:
@@ -531,7 +509,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         size: 24,
                                                       ),
                                                     ),
-                                                  if ((rowPetsRecord.sex) ==
+                                                  if (rowPetsRecord.sex ==
                                                       'male')
                                                     Padding(
                                                       padding:
@@ -566,7 +544,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               ),
                                             ),
                                             Text(
-                                              rowPetsRecord.condition,
+                                              rowPetsRecord.condition!,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyText1
@@ -642,7 +620,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   );
                                 }
                                 List<ArticlesRecord> rowArticlesRecordList =
-                                    snapshot.data;
+                                    snapshot.data!;
                                 return Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: List.generate(
@@ -654,15 +632,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           20, 0, 0, 0),
                                       child: InkWell(
                                         onTap: () async {
-                                          await Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  ArticleWidget(
-                                                article:
-                                                    rowArticlesRecord.reference,
-                                              ),
-                                            ),
+                                          context.pushNamed(
+                                            'Article',
+                                            queryParams: {
+                                              'article': serializeParam(
+                                                  rowArticlesRecord.reference,
+                                                  ParamType.DocumentReference),
+                                            }.withoutNulls,
                                           );
                                         },
                                         child: Container(
@@ -680,7 +656,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 borderRadius:
                                                     BorderRadius.circular(24),
                                                 child: Image.network(
-                                                  rowArticlesRecord.imageUrl,
+                                                  rowArticlesRecord.imageUrl!,
                                                   width: 240,
                                                   height: 160,
                                                   fit: BoxFit.cover,
@@ -690,7 +666,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(8, 8, 8, 0),
                                                 child: Text(
-                                                  rowArticlesRecord.title
+                                                  rowArticlesRecord.title!
                                                       .maybeHandleOverflow(
                                                           maxChars: 100),
                                                   textAlign: TextAlign.justify,
@@ -789,7 +765,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 }
                                 List<PetSchedulesRecord>
                                     columnPetSchedulesRecordList =
-                                    snapshot.data;
+                                    snapshot.data!;
                                 if (columnPetSchedulesRecordList.isEmpty) {
                                   return Center(
                                     child: EmptyScheduleNoPetWidget(),
@@ -820,7 +796,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 dateTimeFormat(
                                                     'MEd',
                                                     columnPetSchedulesRecord
-                                                        .scheduledAt),
+                                                        .scheduledAt!),
                                                 textAlign: TextAlign.center,
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -836,7 +812,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 dateTimeFormat(
                                                     'Hm',
                                                     columnPetSchedulesRecord
-                                                        .scheduledAt),
+                                                        .scheduledAt!),
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText1
@@ -904,7 +880,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                             0),
                                                                 child: Text(
                                                                   columnPetSchedulesRecord
-                                                                      .name,
+                                                                      .name!,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .subtitle1,
@@ -920,7 +896,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                             0),
                                                                 child: Text(
                                                                   columnPetSchedulesRecord
-                                                                      .description,
+                                                                      .description!,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyText1,
@@ -941,7 +917,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                             children: [
                                                               Text(
                                                                 columnPetSchedulesRecord
-                                                                    .duration
+                                                                    .duration!
                                                                     .toString(),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
@@ -955,7 +931,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                               ),
                                                               Text(
                                                                 columnPetSchedulesRecord
-                                                                    .durationUnit,
+                                                                    .durationUnit!,
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyText1,

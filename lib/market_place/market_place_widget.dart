@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 class MarketPlaceWidget extends StatefulWidget {
-  const MarketPlaceWidget({Key key}) : super(key: key);
+  const MarketPlaceWidget({Key? key}) : super(key: key);
 
   @override
   _MarketPlaceWidgetState createState() => _MarketPlaceWidgetState();

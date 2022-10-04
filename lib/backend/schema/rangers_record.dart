@@ -10,37 +10,29 @@ abstract class RangersRecord
     implements Built<RangersRecord, RangersRecordBuilder> {
   static Serializer<RangersRecord> get serializer => _$rangersRecordSerializer;
 
-  @nullable
-  String get uid;
+  String? get uid;
 
-  @nullable
   @BuiltValueField(wireName: 'display_name')
-  String get displayName;
+  String? get displayName;
 
-  @nullable
   @BuiltValueField(wireName: 'photo_url')
-  String get photoUrl;
+  String? get photoUrl;
 
-  @nullable
-  String get email;
+  String? get email;
 
-  @nullable
   @BuiltValueField(wireName: 'created_time')
-  DateTime get createdTime;
+  DateTime? get createdTime;
 
-  @nullable
   @BuiltValueField(wireName: 'phone_number')
-  String get phoneNumber;
+  String? get phoneNumber;
 
-  @nullable
-  String get role;
+  String? get role;
 
-  @nullable
-  LatLng get latlng;
+  LatLng? get latlng;
 
-  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference get reference;
+  DocumentReference? get ffRef;
+  DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(RangersRecordBuilder builder) => builder
     ..uid = ''
@@ -55,11 +47,11 @@ abstract class RangersRecord
 
   static Stream<RangersRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   static Future<RangersRecord> getDocumentOnce(DocumentReference ref) => ref
       .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   RangersRecord._();
   factory RangersRecord([void Function(RangersRecordBuilder) updates]) =
@@ -68,27 +60,33 @@ abstract class RangersRecord
   static RangersRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
       serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference});
+          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
 }
 
 Map<String, dynamic> createRangersRecordData({
-  String uid,
-  String displayName,
-  String photoUrl,
-  String email,
-  DateTime createdTime,
-  String phoneNumber,
-  String role,
-  LatLng latlng,
-}) =>
-    serializers.toFirestore(
-        RangersRecord.serializer,
-        RangersRecord((r) => r
-          ..uid = uid
-          ..displayName = displayName
-          ..photoUrl = photoUrl
-          ..email = email
-          ..createdTime = createdTime
-          ..phoneNumber = phoneNumber
-          ..role = role
-          ..latlng = latlng));
+  String? uid,
+  String? displayName,
+  String? photoUrl,
+  String? email,
+  DateTime? createdTime,
+  String? phoneNumber,
+  String? role,
+  LatLng? latlng,
+}) {
+  final firestoreData = serializers.toFirestore(
+    RangersRecord.serializer,
+    RangersRecord(
+      (r) => r
+        ..uid = uid
+        ..displayName = displayName
+        ..photoUrl = photoUrl
+        ..email = email
+        ..createdTime = createdTime
+        ..phoneNumber = phoneNumber
+        ..role = role
+        ..latlng = latlng,
+    ),
+  );
+
+  return firestoreData;
+}

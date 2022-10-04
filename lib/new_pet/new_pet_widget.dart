@@ -17,32 +17,32 @@ import 'package:google_fonts/google_fonts.dart';
 
 class NewPetWidget extends StatefulWidget {
   const NewPetWidget({
-    Key key,
+    Key? key,
     this.pet,
   }) : super(key: key);
 
-  final DocumentReference pet;
+  final DocumentReference? pet;
 
   @override
   _NewPetWidgetState createState() => _NewPetWidgetState();
 }
 
 class _NewPetWidgetState extends State<NewPetWidget> {
-  DateTime datePicked;
+  DateTime? datePicked;
   String uploadedFileUrl = '';
-  TextEditingController nameFieldController;
-  String sexSelectionValue;
-  String weightUnitSelectionValue;
-  TextEditingController weightFieldController;
-  TextEditingController breedFieldController;
-  bool vaccinCheckValue;
-  bool sterileCheckValue;
-  bool fungusCheckValue;
-  bool fleaCheckValue;
-  bool wormCheckValue;
-  bool earmiteCheckValue;
-  bool scabiesCheckValue;
-  bool diarrheaCheckValue;
+  TextEditingController? nameFieldController;
+  String? sexSelectionValue;
+  String? weightUnitSelectionValue;
+  TextEditingController? weightFieldController;
+  TextEditingController? breedFieldController;
+  bool? vaccinCheckValue;
+  bool? sterileCheckValue;
+  bool? fungusCheckValue;
+  bool? fleaCheckValue;
+  bool? wormCheckValue;
+  bool? earmiteCheckValue;
+  bool? scabiesCheckValue;
+  bool? diarrheaCheckValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -51,6 +51,14 @@ class _NewPetWidgetState extends State<NewPetWidget> {
     breedFieldController = TextEditingController();
     nameFieldController = TextEditingController();
     weightFieldController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    breedFieldController?.dispose();
+    nameFieldController?.dispose();
+    weightFieldController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -121,11 +129,11 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                                           await uploadData(
                                               m.storagePath, m.bytes))))
                                   .where((u) => u != null)
+                                  .map((u) => u!)
                                   .toList();
                               ScaffoldMessenger.of(context)
                                   .hideCurrentSnackBar();
-                              if (downloadUrls != null &&
-                                  downloadUrls.length == selectedMedia.length) {
+                              if (downloadUrls.length == selectedMedia.length) {
                                 setState(
                                     () => uploadedFileUrl = downloadUrls.first);
                                 showUploadMessage(
@@ -142,7 +150,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                             }
                           },
                         ),
-                        if ((uploadedFileUrl) != '')
+                        if (uploadedFileUrl != '')
                           ClipRRect(
                             borderRadius: BorderRadius.circular(32),
                             child: Image.network(
@@ -158,7 +166,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                   Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      if ((uploadedFileUrl) == '')
+                      if (uploadedFileUrl == '')
                         Text(
                           'Add picture',
                           style: FlutterFlowTheme.of(context).subtitle2,
@@ -186,6 +194,20 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                           ),
                           borderRadius: BorderRadius.circular(8),
                         ),
+                        errorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0x00000000),
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0x00000000),
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                         contentPadding:
                             EdgeInsetsDirectional.fromSTEB(16, 24, 16, 24),
                       ),
@@ -208,7 +230,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                             (l) =>
                                 l.name ==
                                 FFLocalizations.of(context).languageCode,
-                            orElse: null,
+                            orElse: () => LocaleType.en,
                           ),
                         );
                       },
@@ -303,6 +325,20 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                                 ),
                                 borderRadius: BorderRadius.circular(8),
                               ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
                               contentPadding: EdgeInsetsDirectional.fromSTEB(
                                   16, 24, 16, 24),
                             ),
@@ -353,6 +389,20 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                           ),
                           borderRadius: BorderRadius.circular(8),
                         ),
+                        errorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0x00000000),
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0x00000000),
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                         contentPadding:
                             EdgeInsetsDirectional.fromSTEB(16, 24, 16, 24),
                       ),
@@ -383,7 +433,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                     child: CheckboxListTile(
                       value: vaccinCheckValue ??= false,
                       onChanged: (newValue) =>
-                          setState(() => vaccinCheckValue = newValue),
+                          setState(() => vaccinCheckValue = newValue!),
                       title: Text(
                         'Vaccinated',
                         style: FlutterFlowTheme.of(context).subtitle1,
@@ -401,7 +451,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                     child: CheckboxListTile(
                       value: sterileCheckValue ??= false,
                       onChanged: (newValue) =>
-                          setState(() => sterileCheckValue = newValue),
+                          setState(() => sterileCheckValue = newValue!),
                       title: Text(
                         'Sterilised',
                         style: FlutterFlowTheme.of(context).subtitle1,
@@ -436,7 +486,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                     child: CheckboxListTile(
                       value: fungusCheckValue ??= false,
                       onChanged: (newValue) =>
-                          setState(() => fungusCheckValue = newValue),
+                          setState(() => fungusCheckValue = newValue!),
                       title: Text(
                         'Fungus',
                         style: FlutterFlowTheme.of(context).subtitle1,
@@ -454,7 +504,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                     child: CheckboxListTile(
                       value: fleaCheckValue ??= false,
                       onChanged: (newValue) =>
-                          setState(() => fleaCheckValue = newValue),
+                          setState(() => fleaCheckValue = newValue!),
                       title: Text(
                         'Fleas',
                         style: FlutterFlowTheme.of(context).subtitle1,
@@ -472,7 +522,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                     child: CheckboxListTile(
                       value: wormCheckValue ??= false,
                       onChanged: (newValue) =>
-                          setState(() => wormCheckValue = newValue),
+                          setState(() => wormCheckValue = newValue!),
                       title: Text(
                         'Worms',
                         style: FlutterFlowTheme.of(context).subtitle1,
@@ -490,7 +540,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                     child: CheckboxListTile(
                       value: earmiteCheckValue ??= false,
                       onChanged: (newValue) =>
-                          setState(() => earmiteCheckValue = newValue),
+                          setState(() => earmiteCheckValue = newValue!),
                       title: Text(
                         'Earmites',
                         style: FlutterFlowTheme.of(context).subtitle1,
@@ -508,7 +558,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                     child: CheckboxListTile(
                       value: scabiesCheckValue ??= false,
                       onChanged: (newValue) =>
-                          setState(() => scabiesCheckValue = newValue),
+                          setState(() => scabiesCheckValue = newValue!),
                       title: Text(
                         'Scabies',
                         style: FlutterFlowTheme.of(context).subtitle1,
@@ -526,7 +576,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                     child: CheckboxListTile(
                       value: diarrheaCheckValue ??= false,
                       onChanged: (newValue) =>
-                          setState(() => diarrheaCheckValue = newValue),
+                          setState(() => diarrheaCheckValue = newValue!),
                       title: Text(
                         'Diarrhea',
                         style: FlutterFlowTheme.of(context).subtitle1,
@@ -542,16 +592,16 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                     child: FFButtonWidget(
                       onPressed: () async {
                         final petsCreateData = createPetsRecordData(
-                          name: nameFieldController.text,
+                          name: nameFieldController!.text,
                           ownerUid: currentUserReference,
                           ownerName: currentUserDisplayName,
-                          weight: double.parse(weightFieldController.text),
+                          weight: double.parse(weightFieldController!.text),
                           pictureUrl: uploadedFileUrl,
                           sex: sexSelectionValue,
                           hasVaccinated: vaccinCheckValue,
                           hasSterilised: sterileCheckValue,
                           weightUnit: weightUnitSelectionValue,
-                          breed: breedFieldController.text,
+                          breed: breedFieldController!.text,
                           hasFungus: fungusCheckValue,
                           hasFleas: fleaCheckValue,
                           hasWorms: wormCheckValue,
@@ -568,7 +618,7 @@ class _NewPetWidgetState extends State<NewPetWidget> {
                           birthdate: datePicked,
                         );
                         await PetsRecord.collection.doc().set(petsCreateData);
-                        Navigator.pop(context);
+                        context.pop();
                       },
                       text: 'Add pet',
                       options: FFButtonOptions(

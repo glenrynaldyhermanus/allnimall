@@ -11,33 +11,26 @@ abstract class ServicesRecord
   static Serializer<ServicesRecord> get serializer =>
       _$servicesRecordSerializer;
 
-  @nullable
   @BuiltValueField(wireName: 'category_uid')
-  DocumentReference get categoryUid;
+  DocumentReference? get categoryUid;
 
-  @nullable
-  String get name;
+  String? get name;
 
-  @nullable
-  double get fee;
+  double? get fee;
 
-  @nullable
   @BuiltValueField(wireName: 'category_name')
-  String get categoryName;
+  String? get categoryName;
 
-  @nullable
   @BuiltValueField(wireName: 'is_active')
-  bool get isActive;
+  bool? get isActive;
 
-  @nullable
-  String get description;
+  String? get description;
 
-  @nullable
-  int get sequence;
+  int? get sequence;
 
-  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference get reference;
+  DocumentReference? get ffRef;
+  DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(ServicesRecordBuilder builder) => builder
     ..name = ''
@@ -52,11 +45,11 @@ abstract class ServicesRecord
 
   static Stream<ServicesRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   static Future<ServicesRecord> getDocumentOnce(DocumentReference ref) => ref
       .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   ServicesRecord._();
   factory ServicesRecord([void Function(ServicesRecordBuilder) updates]) =
@@ -65,25 +58,31 @@ abstract class ServicesRecord
   static ServicesRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
       serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference});
+          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
 }
 
 Map<String, dynamic> createServicesRecordData({
-  DocumentReference categoryUid,
-  String name,
-  double fee,
-  String categoryName,
-  bool isActive,
-  String description,
-  int sequence,
-}) =>
-    serializers.toFirestore(
-        ServicesRecord.serializer,
-        ServicesRecord((s) => s
-          ..categoryUid = categoryUid
-          ..name = name
-          ..fee = fee
-          ..categoryName = categoryName
-          ..isActive = isActive
-          ..description = description
-          ..sequence = sequence));
+  DocumentReference? categoryUid,
+  String? name,
+  double? fee,
+  String? categoryName,
+  bool? isActive,
+  String? description,
+  int? sequence,
+}) {
+  final firestoreData = serializers.toFirestore(
+    ServicesRecord.serializer,
+    ServicesRecord(
+      (s) => s
+        ..categoryUid = categoryUid
+        ..name = name
+        ..fee = fee
+        ..categoryName = categoryName
+        ..isActive = isActive
+        ..description = description
+        ..sequence = sequence,
+    ),
+  );
+
+  return firestoreData;
+}

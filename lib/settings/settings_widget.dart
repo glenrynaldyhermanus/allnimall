@@ -1,16 +1,13 @@
 import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../help/help_widget.dart';
-import '../order_list/order_list_widget.dart';
-import '../phone_sign_in/phone_sign_in_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SettingsWidget extends StatefulWidget {
-  const SettingsWidget({Key key}) : super(key: key);
+  const SettingsWidget({Key? key}) : super(key: key);
 
   @override
   _SettingsWidgetState createState() => _SettingsWidgetState();
@@ -55,12 +52,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                     child: InkWell(
                       onTap: () async {
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HelpWidget(),
-                          ),
-                        );
+                        context.pushNamed('Help');
                       },
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -110,12 +102,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                     child: InkWell(
                       onTap: () async {
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => OrderListWidget(),
-                          ),
-                        );
+                        context.pushNamed('OrderList');
                       },
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -167,14 +154,10 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                 child: InkWell(
                   onTap: () async {
+                    GoRouter.of(context).prepareAuthEvent();
                     await signOut();
-                    await Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PhoneSignInWidget(),
-                      ),
-                      (r) => false,
-                    );
+
+                    context.goNamedAuth('PhoneSignIn', mounted);
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.max,

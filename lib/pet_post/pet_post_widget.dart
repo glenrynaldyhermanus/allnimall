@@ -12,11 +12,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class PetPostWidget extends StatefulWidget {
   const PetPostWidget({
-    Key key,
+    Key? key,
     this.petRef,
   }) : super(key: key);
 
-  final DocumentReference petRef;
+  final DocumentReference? petRef;
 
   @override
   _PetPostWidgetState createState() => _PetPostWidgetState();
@@ -24,7 +24,7 @@ class PetPostWidget extends StatefulWidget {
 
 class _PetPostWidgetState extends State<PetPostWidget> {
   String uploadedFileUrl = '';
-  TextEditingController textController;
+  TextEditingController? textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -34,9 +34,15 @@ class _PetPostWidgetState extends State<PetPostWidget> {
   }
 
   @override
+  void dispose() {
+    textController?.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return StreamBuilder<PetsRecord>(
-      stream: PetsRecord.getDocument(widget.petRef),
+      stream: PetsRecord.getDocument(widget.petRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -51,7 +57,7 @@ class _PetPostWidgetState extends State<PetPostWidget> {
             ),
           );
         }
-        final petPostPetsRecord = snapshot.data;
+        final petPostPetsRecord = snapshot.data!;
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
@@ -79,14 +85,14 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                         petName: petPostPetsRecord.name,
                         petPictureUrl: petPostPetsRecord.pictureUrl,
                         image: uploadedFileUrl,
-                        text: textController.text,
+                        text: textController!.text,
                         createdAt: getCurrentTimestamp,
                         numFav: 0,
                       );
                       await PetPostsRecord.collection
                           .doc()
                           .set(petPostsCreateData);
-                      Navigator.pop(context);
+                      context.pop();
                     },
                     child: Text(
                       'Post',
@@ -129,7 +135,7 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(18),
                                 child: Image.network(
-                                  petPostPetsRecord.pictureUrl,
+                                  petPostPetsRecord.pictureUrl!,
                                   width: 36,
                                   height: 36,
                                   fit: BoxFit.cover,
@@ -139,7 +145,7 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                                 child: Text(
-                                  petPostPetsRecord.name,
+                                  petPostPetsRecord.name!,
                                   style: FlutterFlowTheme.of(context)
                                       .subtitle1
                                       .override(
@@ -178,11 +184,31 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                   topRight: Radius.circular(4.0),
                                 ),
                               ),
+                              errorBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                              focusedErrorBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
                             ),
                             style: FlutterFlowTheme.of(context).subtitle2,
                           ),
                         ),
-                        if ((uploadedFileUrl) != '')
+                        if (uploadedFileUrl != '')
                           Image.network(
                             uploadedFileUrl,
                             width: double.infinity,
@@ -225,12 +251,12 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                               await uploadData(
                                                   m.storagePath, m.bytes))))
                                       .where((u) => u != null)
+                                      .map((u) => u!)
                                       .toList();
                                   ScaffoldMessenger.of(context)
                                       .hideCurrentSnackBar();
-                                  if (downloadUrls != null &&
-                                      downloadUrls.length ==
-                                          selectedMedia.length) {
+                                  if (downloadUrls.length ==
+                                      selectedMedia.length) {
                                     setState(() =>
                                         uploadedFileUrl = downloadUrls.first);
                                     showUploadMessage(
@@ -283,7 +309,7 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                               ),
                             ),
                           ),
-                          if ((FFAppState().isFeatureReady) == true)
+                          if (FFAppState().isFeatureReady == true)
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(1, 0, 1, 0),
@@ -299,7 +325,7 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                         child: PetWeightFormWidget(),
                                       );
                                     },
-                                  );
+                                  ).then((value) => setState(() {}));
                                 },
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -339,7 +365,7 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                 ),
                               ),
                             ),
-                          if ((FFAppState().isFeatureReady) == true)
+                          if (FFAppState().isFeatureReady == true)
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(1, 0, 1, 0),
@@ -379,7 +405,7 @@ class _PetPostWidgetState extends State<PetPostWidget> {
                                 ],
                               ),
                             ),
-                          if ((FFAppState().isFeatureReady) == true)
+                          if (FFAppState().isFeatureReady == true)
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(1, 0, 1, 0),

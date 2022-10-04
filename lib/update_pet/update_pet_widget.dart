@@ -16,28 +16,35 @@ import 'package:google_fonts/google_fonts.dart';
 
 class UpdatePetWidget extends StatefulWidget {
   const UpdatePetWidget({
-    Key key,
+    Key? key,
     this.petRef,
   }) : super(key: key);
 
-  final DocumentReference petRef;
+  final DocumentReference? petRef;
 
   @override
   _UpdatePetWidgetState createState() => _UpdatePetWidgetState();
 }
 
 class _UpdatePetWidgetState extends State<UpdatePetWidget> {
-  DateTime datePicked;
+  DateTime? datePicked;
   String uploadedFileUrl = '';
-  TextEditingController nameFieldController;
-  String sexSelectionValue;
-  TextEditingController breedFieldController;
+  TextEditingController? nameFieldController;
+  String? sexSelectionValue;
+  TextEditingController? breedFieldController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void dispose() {
+    breedFieldController?.dispose();
+    nameFieldController?.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<PetsRecord>(
-      stream: PetsRecord.getDocument(widget.petRef),
+      stream: PetsRecord.getDocument(widget.petRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -52,7 +59,7 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
             ),
           );
         }
-        final updatePetPetsRecord = snapshot.data;
+        final updatePetPetsRecord = snapshot.data!;
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
@@ -111,12 +118,12 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                                               await uploadData(
                                                   m.storagePath, m.bytes))))
                                       .where((u) => u != null)
+                                      .map((u) => u!)
                                       .toList();
                                   ScaffoldMessenger.of(context)
                                       .hideCurrentSnackBar();
-                                  if (downloadUrls != null &&
-                                      downloadUrls.length ==
-                                          selectedMedia.length) {
+                                  if (downloadUrls.length ==
+                                      selectedMedia.length) {
                                     setState(() =>
                                         uploadedFileUrl = downloadUrls.first);
                                     showUploadMessage(
@@ -135,14 +142,14 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(32),
                                 child: Image.network(
-                                  updatePetPetsRecord.pictureUrl,
+                                  updatePetPetsRecord.pictureUrl!,
                                   width: 64,
                                   height: 64,
                                   fit: BoxFit.cover,
                                 ),
                               ),
                             ),
-                            if ((uploadedFileUrl) != '')
+                            if (uploadedFileUrl != '')
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(32),
                                 child: Image.network(
@@ -158,7 +165,7 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                       Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          if ((uploadedFileUrl) == '')
+                          if (uploadedFileUrl == '')
                             Text(
                               'Change picture',
                               style: FlutterFlowTheme.of(context).subtitle2,
@@ -191,6 +198,20 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                               ),
                               borderRadius: BorderRadius.circular(8),
                             ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
                             contentPadding:
                                 EdgeInsetsDirectional.fromSTEB(16, 24, 16, 24),
                           ),
@@ -213,7 +234,7 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                                 (l) =>
                                     l.name ==
                                     FFLocalizations.of(context).languageCode,
-                                orElse: null,
+                                orElse: () => LocaleType.en,
                               ),
                             );
                           },
@@ -242,8 +263,7 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    if (!(functions.isDatePicked(datePicked)) ??
-                                        true)
+                                    if (!functions.isDatePicked(datePicked))
                                       Expanded(
                                         child: Text(
                                           valueOrDefault<String>(
@@ -255,8 +275,7 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                                               .subtitle1,
                                         ),
                                       ),
-                                    if (functions.isDatePicked(datePicked) ??
-                                        true)
+                                    if (functions.isDatePicked(datePicked))
                                       Expanded(
                                         child: Text(
                                           valueOrDefault<String>(
@@ -326,6 +345,20 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                               ),
                               borderRadius: BorderRadius.circular(8),
                             ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
                             contentPadding:
                                 EdgeInsetsDirectional.fromSTEB(16, 24, 16, 24),
                           ),
@@ -345,7 +378,7 @@ class _UpdatePetWidgetState extends State<UpdatePetWidget> {
                             );
                             await updatePetPetsRecord.reference
                                 .update(petsUpdateData);
-                            Navigator.pop(context);
+                            context.pop();
                           },
                           text: 'Save',
                           options: FFButtonOptions(

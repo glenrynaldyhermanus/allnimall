@@ -2,8 +2,6 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../new_pet/new_pet_widget.dart';
-import '../pet_profile/pet_profile_widget.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +10,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PetListWidget extends StatefulWidget {
-  const PetListWidget({Key key}) : super(key: key);
+  const PetListWidget({Key? key}) : super(key: key);
 
   @override
   _PetListWidgetState createState() => _PetListWidgetState();
@@ -45,12 +43,7 @@ class _PetListWidgetState extends State<PetListWidget> {
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
-          await Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => NewPetWidget(),
-            ),
-          );
+          context.pushNamed('NewPet');
         },
         backgroundColor: FlutterFlowTheme.of(context).secondaryColor,
         icon: Icon(
@@ -94,7 +87,7 @@ class _PetListWidgetState extends State<PetListWidget> {
                           ),
                         );
                       }
-                      List<PetsRecord> columnPetsRecordList = snapshot.data;
+                      List<PetsRecord> columnPetsRecordList = snapshot.data!;
                       return SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -108,13 +101,13 @@ class _PetListWidgetState extends State<PetListWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                               child: InkWell(
                                 onTap: () async {
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => PetProfileWidget(
-                                        petRef: columnPetsRecord.reference,
-                                      ),
-                                    ),
+                                  context.pushNamed(
+                                    'PetProfile',
+                                    queryParams: {
+                                      'petRef': serializeParam(
+                                          columnPetsRecord.reference,
+                                          ParamType.DocumentReference),
+                                    }.withoutNulls,
                                   );
                                 },
                                 child: Row(
@@ -123,7 +116,7 @@ class _PetListWidgetState extends State<PetListWidget> {
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(28),
                                       child: CachedNetworkImage(
-                                        imageUrl: columnPetsRecord.pictureUrl,
+                                        imageUrl: columnPetsRecord.pictureUrl!,
                                         width: 80,
                                         height: 80,
                                         fit: BoxFit.cover,
@@ -142,7 +135,7 @@ class _PetListWidgetState extends State<PetListWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Text(
-                                                  columnPetsRecord.name,
+                                                  columnPetsRecord.name!,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .subtitle1
@@ -155,7 +148,7 @@ class _PetListWidgetState extends State<PetListWidget> {
                                                         fontSize: 21,
                                                       ),
                                                 ),
-                                                if ((columnPetsRecord.sex) ==
+                                                if (columnPetsRecord.sex ==
                                                     'female')
                                                   Padding(
                                                     padding:
@@ -171,7 +164,7 @@ class _PetListWidgetState extends State<PetListWidget> {
                                                       size: 24,
                                                     ),
                                                   ),
-                                                if ((columnPetsRecord.sex) ==
+                                                if (columnPetsRecord.sex ==
                                                     'male')
                                                   Padding(
                                                     padding:
@@ -201,7 +194,7 @@ class _PetListWidgetState extends State<PetListWidget> {
                                                       ),
                                             ),
                                             Text(
-                                              columnPetsRecord.condition,
+                                              columnPetsRecord.condition!,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyText1

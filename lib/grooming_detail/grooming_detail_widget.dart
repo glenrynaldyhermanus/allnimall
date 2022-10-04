@@ -3,8 +3,6 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../main.dart';
-import '../payment_method/payment_method_widget.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +12,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class GroomingDetailWidget extends StatefulWidget {
   const GroomingDetailWidget({
-    Key key,
+    Key? key,
     this.order,
   }) : super(key: key);
 
-  final DocumentReference order;
+  final DocumentReference? order;
 
   @override
   _GroomingDetailWidgetState createState() => _GroomingDetailWidgetState();
@@ -30,7 +28,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<OrdersRecord>(
-      stream: OrdersRecord.getDocument(widget.order),
+      stream: OrdersRecord.getDocument(widget.order!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -45,7 +43,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
             ),
           );
         }
-        final groomingDetailOrdersRecord = snapshot.data;
+        final groomingDetailOrdersRecord = snapshot.data!;
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
@@ -98,7 +96,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                               children: [
                                 Text(
                                   dateTimeFormat('MMMMEEEEd',
-                                      groomingDetailOrdersRecord.createdAt),
+                                      groomingDetailOrdersRecord.createdAt!),
                                   style: FlutterFlowTheme.of(context)
                                       .subtitle1
                                       .override(
@@ -110,7 +108,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                       ),
                                 ),
                                 Text(
-                                  groomingDetailOrdersRecord.orderNo,
+                                  groomingDetailOrdersRecord.orderNo!,
                                   style: FlutterFlowTheme.of(context)
                                       .subtitle1
                                       .override(
@@ -183,7 +181,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                               dateTimeFormat(
                                                   'MMMMEEEEd',
                                                   groomingDetailOrdersRecord
-                                                      .scheduledAt),
+                                                      .scheduledAt!),
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .subtitle2,
@@ -196,7 +194,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                             ),
                                             Text(
                                               groomingDetailOrdersRecord
-                                                  .prefferedTime,
+                                                  .prefferedTime!,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .subtitle2,
@@ -209,7 +207,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                             ),
                                             Text(
                                               groomingDetailOrdersRecord
-                                                  .startTime,
+                                                  .startTime!,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .subtitle2,
@@ -217,7 +215,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                           ],
                                         ),
                                         Text(
-                                          groomingDetailOrdersRecord.service,
+                                          groomingDetailOrdersRecord.service!,
                                           style: FlutterFlowTheme.of(context)
                                               .subtitle2,
                                         ),
@@ -226,7 +224,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                           children: [
                                             Text(
                                               groomingDetailOrdersRecord
-                                                  .quantity
+                                                  .quantity!
                                                   .toString(),
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -240,7 +238,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                             ),
                                             Text(
                                               groomingDetailOrdersRecord
-                                                  .petCategory,
+                                                  .petCategory!,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .subtitle2,
@@ -332,7 +330,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                                   .fromSTEB(0, 10, 0, 0),
                                               child: Text(
                                                 groomingDetailOrdersRecord
-                                                    .customerAddress,
+                                                    .customerAddress!,
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .subtitle1
@@ -353,8 +351,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                           ),
                         ),
                         if (functions.isOrderConfirmed(
-                                groomingDetailOrdersRecord.status) ??
-                            true)
+                            groomingDetailOrdersRecord.status))
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
@@ -416,7 +413,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                             children: [
                                               Text(
                                                 groomingDetailOrdersRecord
-                                                    .rangerName,
+                                                    .rangerName!,
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .subtitle1
@@ -427,7 +424,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                               ),
                                               Text(
                                                 groomingDetailOrdersRecord
-                                                    .rangerPhone,
+                                                    .rangerPhone!,
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .subtitle1
@@ -477,8 +474,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                             ),
                           ),
                         if (functions.isOrderConfirmed(
-                                groomingDetailOrdersRecord.status) ??
-                            true)
+                            groomingDetailOrdersRecord.status))
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
@@ -538,7 +534,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 4, 0, 0),
                                             child: Text(
-                                              groomingDetailOrdersRecord.amount
+                                              groomingDetailOrdersRecord.amount!
                                                   .toString(),
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -600,7 +596,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 4, 0, 0),
                                             child: Text(
-                                              groomingDetailOrdersRecord.amount
+                                              groomingDetailOrdersRecord.amount!
                                                   .toString(),
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -616,23 +612,23 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                     ),
                                   ],
                                 ),
-                                if (!(functions.isPaid(
-                                        groomingDetailOrdersRecord
-                                            .paymentStatus)) ??
-                                    true)
+                                if (!functions.isPaid(
+                                    groomingDetailOrdersRecord.paymentStatus))
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 16, 0, 20),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                PaymentMethodWidget(
-                                              order: groomingDetailOrdersRecord,
-                                            ),
-                                          ),
+                                        context.pushNamed(
+                                          'PaymentMethod',
+                                          queryParams: {
+                                            'order': serializeParam(
+                                                groomingDetailOrdersRecord,
+                                                ParamType.Document),
+                                          }.withoutNulls,
+                                          extra: <String, dynamic>{
+                                            'order': groomingDetailOrdersRecord,
+                                          },
                                         );
                                       },
                                       text: 'Bayar',
@@ -663,8 +659,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                             ),
                           ),
                         if (functions
-                                .hasNotes(groomingDetailOrdersRecord.notes) ??
-                            true)
+                            .hasNotes(groomingDetailOrdersRecord.notes))
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
@@ -695,7 +690,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 5, 0, 0),
                                   child: Text(
-                                    groomingDetailOrdersRecord.notes,
+                                    groomingDetailOrdersRecord.notes!,
                                     style: FlutterFlowTheme.of(context)
                                         .subtitle1
                                         .override(
@@ -711,13 +706,7 @@ class _GroomingDetailWidgetState extends State<GroomingDetailWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 60, 0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      NavBarPage(initialPage: 'HomeBackup'),
-                                ),
-                              );
+                              context.pushNamed('HomeBackup');
                             },
                             text: 'Home',
                             options: FFButtonOptions(

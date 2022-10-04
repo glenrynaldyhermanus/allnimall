@@ -2,19 +2,17 @@ import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../main.dart';
-import '../sign_up/sign_up_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PhoneVerificationWidget extends StatefulWidget {
   const PhoneVerificationWidget({
-    Key key,
+    Key? key,
     this.phone,
   }) : super(key: key);
 
-  final String phone;
+  final String? phone;
 
   @override
   _PhoneVerificationWidgetState createState() =>
@@ -22,12 +20,12 @@ class PhoneVerificationWidget extends StatefulWidget {
 }
 
 class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
-  TextEditingController textField1Controller;
-  TextEditingController textField2Controller;
-  TextEditingController textField3Controller;
-  TextEditingController textField4Controller;
-  TextEditingController textField5Controller;
-  TextEditingController textField6Controller;
+  TextEditingController? textField1Controller;
+  TextEditingController? textField2Controller;
+  TextEditingController? textField3Controller;
+  TextEditingController? textField4Controller;
+  TextEditingController? textField5Controller;
+  TextEditingController? textField6Controller;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -39,6 +37,17 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
     textField4Controller = TextEditingController();
     textField5Controller = TextEditingController();
     textField6Controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    textField1Controller?.dispose();
+    textField2Controller?.dispose();
+    textField3Controller?.dispose();
+    textField4Controller?.dispose();
+    textField5Controller?.dispose();
+    textField6Controller?.dispose();
+    super.dispose();
   }
 
   @override
@@ -81,7 +90,7 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 0),
                 child: Text(
-                  widget.phone,
+                  widget.phone!,
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).subtitle1.override(
                         fontFamily: 'Cabin',
@@ -112,6 +121,26 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                               ),
                             ),
                             focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: Color(0x00000000),
                                 width: 0,
@@ -156,6 +185,26 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                                 topRight: Radius.circular(4.0),
                               ),
                             ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
                             filled: true,
                             fillColor: Color(0x7FDBDCFF),
                           ),
@@ -182,6 +231,26 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                               ),
                             ),
                             focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: Color(0x00000000),
                                 width: 0,
@@ -226,6 +295,26 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                                 topRight: Radius.circular(4.0),
                               ),
                             ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
                             filled: true,
                             fillColor: Color(0x7FDBDCFF),
                           ),
@@ -252,6 +341,26 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                               ),
                             ),
                             focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: Color(0x00000000),
                                 width: 0,
@@ -296,6 +405,26 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                                 topRight: Radius.circular(4.0),
                               ),
                             ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
                             filled: true,
                             fillColor: Color(0x7FDBDCFF),
                           ),
@@ -311,7 +440,8 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    final smsCodeVal = textField1Controller.text;
+                    GoRouter.of(context).prepareAuthEvent();
+                    final smsCodeVal = textField1Controller!.text;
                     if (smsCodeVal == null || smsCodeVal.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -328,23 +458,11 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                       return;
                     }
 
-                    if ((currentUserDisplayName != null) &&
-                        (currentUserDisplayName != '')) {
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              NavBarPage(initialPage: 'HomeBackup'),
-                        ),
-                      );
+                    if (currentUserDisplayName != null &&
+                        currentUserDisplayName != '') {
+                      context.pushNamedAuth('HomeBackup', mounted);
                     } else {
-                      await Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SignUpWidget(),
-                        ),
-                        (r) => false,
-                      );
+                      context.goNamedAuth('SignUp', mounted);
                     }
                   },
                   text: 'Lanjut',
@@ -388,13 +506,7 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                     context: context,
                     phoneNumber: phoneNumberVal,
                     onCodeSent: () async {
-                      await Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PhoneVerificationWidget(),
-                        ),
-                        (r) => false,
-                      );
+                      context.goNamedAuth('PhoneVerification', mounted);
                     },
                   );
                 },

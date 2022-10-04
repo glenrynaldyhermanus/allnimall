@@ -9,20 +9,26 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RequestFeatureWidget extends StatefulWidget {
-  const RequestFeatureWidget({Key key}) : super(key: key);
+  const RequestFeatureWidget({Key? key}) : super(key: key);
 
   @override
   _RequestFeatureWidgetState createState() => _RequestFeatureWidgetState();
 }
 
 class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
-  TextEditingController nameFieldController;
+  TextEditingController? nameFieldController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
     nameFieldController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    nameFieldController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -81,6 +87,20 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                       ),
                       borderRadius: BorderRadius.circular(8),
                     ),
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0x00000000),
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0x00000000),
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                     filled: true,
                     fillColor: Colors.white,
                     contentPadding:
@@ -101,7 +121,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                     final featureRequestsCreateData =
                         createFeatureRequestsRecordData(
                       userUid: currentUserReference,
-                      feedback: nameFieldController.text,
+                      feedback: nameFieldController!.text,
                       createdAt: getCurrentTimestamp,
                       status: 'new',
                       response: 'Waiting list',
@@ -153,7 +173,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                       );
                     }
                     List<FeatureRequestsRecord>
-                        columnFeatureRequestsRecordList = snapshot.data;
+                        columnFeatureRequestsRecordList = snapshot.data!;
                     return Column(
                       mainAxisSize: MainAxisSize.max,
                       children:
@@ -193,7 +213,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        columnFeatureRequestsRecord.feedback,
+                                        columnFeatureRequestsRecord.feedback!,
                                         style: FlutterFlowTheme.of(context)
                                             .subtitle1
                                             .override(
@@ -209,7 +229,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                         dateTimeFormat(
                                             'relative',
                                             columnFeatureRequestsRecord
-                                                .createdAt),
+                                                .createdAt!),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
                                             .override(
@@ -225,7 +245,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                           children: [
                                             Text(
                                               columnFeatureRequestsRecord
-                                                  .response,
+                                                  .response!,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyText1

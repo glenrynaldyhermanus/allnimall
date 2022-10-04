@@ -1,6 +1,5 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../f_a_q_article/f_a_q_article_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -9,7 +8,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FAQListWidget extends StatefulWidget {
-  const FAQListWidget({Key key}) : super(key: key);
+  const FAQListWidget({Key? key}) : super(key: key);
 
   @override
   _FAQListWidgetState createState() => _FAQListWidgetState();
@@ -64,7 +63,7 @@ class _FAQListWidgetState extends State<FAQListWidget> {
                         ),
                       );
                     }
-                    List<FaqsRecord> columnFaqsRecordList = snapshot.data;
+                    List<FaqsRecord> columnFaqsRecordList = snapshot.data!;
                     return SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
@@ -91,13 +90,16 @@ class _FAQListWidgetState extends State<FAQListWidget> {
                                     };
                                     await columnFaqsRecord.reference
                                         .update(faqsUpdateData);
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => FAQArticleWidget(
-                                          faq: columnFaqsRecord,
-                                        ),
-                                      ),
+
+                                    context.pushNamed(
+                                      'FAQArticle',
+                                      queryParams: {
+                                        'faq': serializeParam(columnFaqsRecord,
+                                            ParamType.Document),
+                                      }.withoutNulls,
+                                      extra: <String, dynamic>{
+                                        'faq': columnFaqsRecord,
+                                      },
                                     );
                                   },
                                   child: Row(
@@ -119,7 +121,7 @@ class _FAQListWidgetState extends State<FAQListWidget> {
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Text(
-                                                    columnFaqsRecord.question,
+                                                    columnFaqsRecord.question!,
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .subtitle2
@@ -136,7 +138,7 @@ class _FAQListWidgetState extends State<FAQListWidget> {
                                                 children: [
                                                   Expanded(
                                                     child: Text(
-                                                      columnFaqsRecord.answer,
+                                                      columnFaqsRecord.answer!,
                                                       maxLines: 2,
                                                       style: FlutterFlowTheme
                                                               .of(context)

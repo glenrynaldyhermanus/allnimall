@@ -4,10 +4,6 @@ import '../backend/push_notifications/push_notifications_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../order_detail/order_detail_widget.dart';
-import '../order_grooming_location/order_grooming_location_widget.dart';
-import '../order_grooming_schedule/order_grooming_schedule_widget.dart';
-import '../order_grooming_service/order_grooming_service_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -16,14 +12,14 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OrderGroomingWidget extends StatefulWidget {
-  const OrderGroomingWidget({Key key}) : super(key: key);
+  const OrderGroomingWidget({Key? key}) : super(key: key);
 
   @override
   _OrderGroomingWidgetState createState() => _OrderGroomingWidgetState();
 }
 
 class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
-  OrdersRecord order;
+  OrdersRecord? order;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -88,13 +84,8 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                                                   0, 5, 0, 0),
                                           child: InkWell(
                                             onTap: () async {
-                                              await Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      OrderGroomingLocationWidget(),
-                                                ),
-                                              );
+                                              context.pushNamed(
+                                                  'OrderGroomingLocation');
                                             },
                                             child: Container(
                                               width: MediaQuery.of(context)
@@ -173,13 +164,8 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                                                   0, 5, 0, 0),
                                           child: InkWell(
                                             onTap: () async {
-                                              await Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      OrderGroomingServiceWidget(),
-                                                ),
-                                              );
+                                              context.pushNamed(
+                                                  'OrderGroomingService');
                                             },
                                             child: Container(
                                               width: MediaQuery.of(context)
@@ -264,13 +250,8 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                                                   0, 5, 0, 0),
                                           child: InkWell(
                                             onTap: () async {
-                                              await Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      OrderGroomingScheduleWidget(),
-                                                ),
-                                              );
+                                              context.pushNamed(
+                                                  'OrderGroomingSchedule');
                                             },
                                             child: Container(
                                               width: MediaQuery.of(context)
@@ -334,10 +315,9 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                       ],
                     ),
                     if (functions.isOrderFormSet(
-                            FFAppState().localAddress,
-                            FFAppState().localServiceName,
-                            FFAppState().localScheduleDate) ??
-                        true)
+                        FFAppState().localAddress,
+                        FFAppState().localServiceName,
+                        FFAppState().localScheduleDate))
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(25, 35, 25, 0),
                         child: Column(
@@ -489,7 +469,7 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                                     }
                                     List<DiscountsRecord>
                                         columnDiscountsRecordList =
-                                        snapshot.data;
+                                        snapshot.data!;
                                     return Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: List.generate(
@@ -537,7 +517,7 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                                                                             0),
                                                                 child: Text(
                                                                   columnDiscountsRecord
-                                                                      .name,
+                                                                      .name!,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .subtitle1
@@ -740,7 +720,7 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                           discount: 0.0,
                           unit: 'Order',
                         );
-                        await OrderDiscountsRecord.createDoc(order.reference)
+                        await OrderDiscountsRecord.createDoc(order!.reference)
                             .set(orderDiscountsCreateData);
 
                         final orderServicesCreateData =
@@ -750,7 +730,7 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                           categoryName: FFAppState().localServiceCategory,
                           quantity: FFAppState().localPetAmount,
                         );
-                        await OrderServicesRecord.createDoc(order.reference)
+                        await OrderServicesRecord.createDoc(order!.reference)
                             .set(orderServicesCreateData);
                         triggerPushNotification(
                           notificationTitle: 'New Request!',
@@ -763,13 +743,13 @@ class _OrderGroomingWidgetState extends State<OrderGroomingWidget> {
                         await actions.backToRoot(
                           context,
                         );
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => OrderDetailWidget(
-                              order: order.reference,
-                            ),
-                          ),
+
+                        context.pushNamed(
+                          'OrderDetail',
+                          queryParams: {
+                            'order': serializeParam(
+                                order!.reference, ParamType.DocumentReference),
+                          }.withoutNulls,
                         );
                       } else {
                         await showDialog(

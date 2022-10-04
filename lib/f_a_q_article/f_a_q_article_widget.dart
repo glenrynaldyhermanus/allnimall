@@ -10,11 +10,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class FAQArticleWidget extends StatefulWidget {
   const FAQArticleWidget({
-    Key key,
+    Key? key,
     this.faq,
   }) : super(key: key);
 
-  final FaqsRecord faq;
+  final FaqsRecord? faq;
 
   @override
   _FAQArticleWidgetState createState() => _FAQArticleWidgetState();
@@ -54,14 +54,14 @@ class _FAQArticleWidgetState extends State<FAQArticleWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20, 32, 20, 0),
                 child: Text(
-                  widget.faq.question,
+                  widget.faq!.question!,
                   style: FlutterFlowTheme.of(context).title3,
                 ),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
                 child: Html(
-                  data: widget.faq.answer,
+                  data: widget.faq!.answer!,
                 ),
               ),
               Padding(
@@ -74,7 +74,7 @@ class _FAQArticleWidgetState extends State<FAQArticleWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                 child: Text(
-                  widget.faq.referenceUrl,
+                  widget.faq!.referenceUrl!,
                   style: FlutterFlowTheme.of(context).bodyText1,
                 ),
               ),
@@ -107,7 +107,7 @@ class _FAQArticleWidgetState extends State<FAQArticleWidget> {
                         ),
                       );
                     }
-                    List<FaqsRecord> columnFaqsRecordList = snapshot.data;
+                    List<FaqsRecord> columnFaqsRecordList = snapshot.data!;
                     return SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
@@ -116,8 +116,8 @@ class _FAQArticleWidgetState extends State<FAQArticleWidget> {
                           final columnFaqsRecord =
                               columnFaqsRecordList[columnIndex];
                           return Visibility(
-                            visible: (widget.faq.reference) !=
-                                (columnFaqsRecord.reference),
+                            visible: widget.faq!.reference !=
+                                columnFaqsRecord.reference,
                             child: Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
@@ -138,15 +138,18 @@ class _FAQArticleWidgetState extends State<FAQArticleWidget> {
                                       };
                                       await columnFaqsRecord.reference
                                           .update(faqsUpdateData);
-                                      Navigator.pop(context);
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              FAQArticleWidget(
-                                            faq: columnFaqsRecord,
-                                          ),
-                                        ),
+                                      context.pop();
+
+                                      context.pushNamed(
+                                        'FAQArticle',
+                                        queryParams: {
+                                          'faq': serializeParam(
+                                              columnFaqsRecord,
+                                              ParamType.Document),
+                                        }.withoutNulls,
+                                        extra: <String, dynamic>{
+                                          'faq': columnFaqsRecord,
+                                        },
                                       );
                                     },
                                     child: Row(
@@ -169,7 +172,8 @@ class _FAQArticleWidgetState extends State<FAQArticleWidget> {
                                                       MainAxisSize.max,
                                                   children: [
                                                     Text(
-                                                      columnFaqsRecord.question,
+                                                      columnFaqsRecord
+                                                          .question!,
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .subtitle2
@@ -187,7 +191,8 @@ class _FAQArticleWidgetState extends State<FAQArticleWidget> {
                                                   children: [
                                                     Expanded(
                                                       child: Text(
-                                                        columnFaqsRecord.answer,
+                                                        columnFaqsRecord
+                                                            .answer!,
                                                         maxLines: 2,
                                                         style:
                                                             FlutterFlowTheme.of(
