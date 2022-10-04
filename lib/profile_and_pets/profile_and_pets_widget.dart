@@ -2,14 +2,10 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/empty_pet_widget.dart';
 import '../components/empty_schedule_no_pet_widget.dart';
-import '../edit_profile/edit_profile_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../pet_list/pet_list_widget.dart';
-import '../pet_profile/pet_profile_widget.dart';
-import '../phone_sign_in/phone_sign_in_widget.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +14,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfileAndPetsWidget extends StatefulWidget {
-  const ProfileAndPetsWidget({Key key}) : super(key: key);
+  const ProfileAndPetsWidget({Key? key}) : super(key: key);
 
   @override
   _ProfileAndPetsWidgetState createState() => _ProfileAndPetsWidgetState();
@@ -59,14 +55,10 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                   size: 24,
                 ),
                 onPressed: () async {
+                  GoRouter.of(context).prepareAuthEvent();
                   await signOut();
-                  await Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PhoneSignInWidget(),
-                    ),
-                    (r) => false,
-                  );
+
+                  context.goNamedAuth('PhoneSignIn', mounted);
                 },
               ),
             ],
@@ -137,13 +129,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                 ),
                                 FFButtonWidget(
                                   onPressed: () async {
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            EditProfileWidget(),
-                                      ),
-                                    );
+                                    context.pushNamed('EditProfile');
                                   },
                                   text: 'Profile',
                                   icon: Icon(
@@ -203,13 +189,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                       ),
                                       InkWell(
                                         onTap: () async {
-                                          await Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  PetListWidget(),
-                                            ),
-                                          );
+                                          context.pushNamed('PetList');
                                         },
                                         child: Text(
                                           'View All',
@@ -254,7 +234,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                         );
                                       }
                                       List<PetsRecord> rowPetsRecordList =
-                                          snapshot.data;
+                                          snapshot.data!;
                                       if (rowPetsRecordList.isEmpty) {
                                         return Center(
                                           child: EmptyPetWidget(),
@@ -274,15 +254,15 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                                   .fromSTEB(20, 0, 0, 16),
                                               child: InkWell(
                                                 onTap: () async {
-                                                  await Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          PetProfileWidget(
-                                                        petRef: rowPetsRecord
-                                                            .reference,
-                                                      ),
-                                                    ),
+                                                  context.pushNamed(
+                                                    'PetProfile',
+                                                    queryParams: {
+                                                      'petRef': serializeParam(
+                                                          rowPetsRecord
+                                                              .reference,
+                                                          ParamType
+                                                              .DocumentReference),
+                                                    }.withoutNulls,
                                                   );
                                                 },
                                                 child: Container(
@@ -321,7 +301,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                                               CachedNetworkImage(
                                                             imageUrl:
                                                                 rowPetsRecord
-                                                                    .pictureUrl,
+                                                                    .pictureUrl!,
                                                             width: 120,
                                                             height: 90,
                                                             fit: BoxFit.cover,
@@ -339,7 +319,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                                             children: [
                                                               Text(
                                                                 rowPetsRecord
-                                                                    .name,
+                                                                    .name!,
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .subtitle1
@@ -353,8 +333,8 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                                                           21,
                                                                     ),
                                                               ),
-                                                              if ((rowPetsRecord
-                                                                      .sex) ==
+                                                              if (rowPetsRecord
+                                                                      .sex ==
                                                                   'female')
                                                                 Padding(
                                                                   padding: EdgeInsetsDirectional
@@ -372,8 +352,8 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                                                     size: 24,
                                                                   ),
                                                                 ),
-                                                              if ((rowPetsRecord
-                                                                      .sex) ==
+                                                              if (rowPetsRecord
+                                                                      .sex ==
                                                                   'male')
                                                                 Padding(
                                                                   padding: EdgeInsetsDirectional
@@ -415,7 +395,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                                         ),
                                                         Text(
                                                           rowPetsRecord
-                                                              .condition,
+                                                              .condition!,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyText1
@@ -442,7 +422,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                               ],
                             ),
                           ),
-                          if ((FFAppState().isFeatureReady) == true)
+                          if (FFAppState().isFeatureReady == true)
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
@@ -520,7 +500,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                               }
                                               List<PetSchedulesRecord>
                                                   columnPetSchedulesRecordList =
-                                                  snapshot.data;
+                                                  snapshot.data!;
                                               if (columnPetSchedulesRecordList
                                                   .isEmpty) {
                                                 return Center(
@@ -559,7 +539,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                                               dateTimeFormat(
                                                                   'MEd',
                                                                   columnPetSchedulesRecord
-                                                                      .scheduledAt),
+                                                                      .scheduledAt!),
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,
@@ -579,7 +559,7 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                                               dateTimeFormat(
                                                                   'Hm',
                                                                   columnPetSchedulesRecord
-                                                                      .scheduledAt),
+                                                                      .scheduledAt!),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyText1
@@ -656,14 +636,14 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                                                             Padding(
                                                                               padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
                                                                               child: Text(
-                                                                                columnPetSchedulesRecord.name,
+                                                                                columnPetSchedulesRecord.name!,
                                                                                 style: FlutterFlowTheme.of(context).subtitle1,
                                                                               ),
                                                                             ),
                                                                             Padding(
                                                                               padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
                                                                               child: Text(
-                                                                                columnPetSchedulesRecord.description,
+                                                                                columnPetSchedulesRecord.description!,
                                                                                 style: FlutterFlowTheme.of(context).bodyText1,
                                                                               ),
                                                                             ),
@@ -681,14 +661,14 @@ class _ProfileAndPetsWidgetState extends State<ProfileAndPetsWidget> {
                                                                               MainAxisSize.max,
                                                                           children: [
                                                                             Text(
-                                                                              columnPetSchedulesRecord.duration.toString(),
+                                                                              columnPetSchedulesRecord.duration!.toString(),
                                                                               style: FlutterFlowTheme.of(context).subtitle1.override(
                                                                                     fontFamily: 'Cabin',
                                                                                     color: Color(0xFF343434),
                                                                                   ),
                                                                             ),
                                                                             Text(
-                                                                              columnPetSchedulesRecord.durationUnit,
+                                                                              columnPetSchedulesRecord.durationUnit!,
                                                                               style: FlutterFlowTheme.of(context).bodyText1,
                                                                             ),
                                                                           ],

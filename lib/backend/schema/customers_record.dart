@@ -11,45 +11,35 @@ abstract class CustomersRecord
   static Serializer<CustomersRecord> get serializer =>
       _$customersRecordSerializer;
 
-  @nullable
-  String get uid;
+  String? get uid;
 
-  @nullable
-  String get email;
+  String? get email;
 
-  @nullable
   @BuiltValueField(wireName: 'display_name')
-  String get displayName;
+  String? get displayName;
 
-  @nullable
   @BuiltValueField(wireName: 'photo_url')
-  String get photoUrl;
+  String? get photoUrl;
 
-  @nullable
   @BuiltValueField(wireName: 'created_time')
-  DateTime get createdTime;
+  DateTime? get createdTime;
 
-  @nullable
   @BuiltValueField(wireName: 'phone_number')
-  String get phoneNumber;
+  String? get phoneNumber;
 
-  @nullable
   @BuiltValueField(wireName: 'order_address')
-  String get orderAddress;
+  String? get orderAddress;
 
-  @nullable
   @BuiltValueField(wireName: 'order_latlng')
-  LatLng get orderLatlng;
+  LatLng? get orderLatlng;
 
-  @nullable
-  DateTime get birthdate;
+  DateTime? get birthdate;
 
-  @nullable
-  String get gender;
+  String? get gender;
 
-  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference get reference;
+  DocumentReference? get ffRef;
+  DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(CustomersRecordBuilder builder) => builder
     ..uid = ''
@@ -65,11 +55,11 @@ abstract class CustomersRecord
 
   static Stream<CustomersRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   static Future<CustomersRecord> getDocumentOnce(DocumentReference ref) => ref
       .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   CustomersRecord._();
   factory CustomersRecord([void Function(CustomersRecordBuilder) updates]) =
@@ -78,31 +68,37 @@ abstract class CustomersRecord
   static CustomersRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
       serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference});
+          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
 }
 
 Map<String, dynamic> createCustomersRecordData({
-  String uid,
-  String email,
-  String displayName,
-  String photoUrl,
-  DateTime createdTime,
-  String phoneNumber,
-  String orderAddress,
-  LatLng orderLatlng,
-  DateTime birthdate,
-  String gender,
-}) =>
-    serializers.toFirestore(
-        CustomersRecord.serializer,
-        CustomersRecord((c) => c
-          ..uid = uid
-          ..email = email
-          ..displayName = displayName
-          ..photoUrl = photoUrl
-          ..createdTime = createdTime
-          ..phoneNumber = phoneNumber
-          ..orderAddress = orderAddress
-          ..orderLatlng = orderLatlng
-          ..birthdate = birthdate
-          ..gender = gender));
+  String? uid,
+  String? email,
+  String? displayName,
+  String? photoUrl,
+  DateTime? createdTime,
+  String? phoneNumber,
+  String? orderAddress,
+  LatLng? orderLatlng,
+  DateTime? birthdate,
+  String? gender,
+}) {
+  final firestoreData = serializers.toFirestore(
+    CustomersRecord.serializer,
+    CustomersRecord(
+      (c) => c
+        ..uid = uid
+        ..email = email
+        ..displayName = displayName
+        ..photoUrl = photoUrl
+        ..createdTime = createdTime
+        ..phoneNumber = phoneNumber
+        ..orderAddress = orderAddress
+        ..orderLatlng = orderLatlng
+        ..birthdate = birthdate
+        ..gender = gender,
+    ),
+  );
+
+  return firestoreData;
+}

@@ -18,15 +18,16 @@ class FFAppState {
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
     _localAddress = prefs.getString('ff_localAddress') ?? _localAddress;
-    _localLatLng = _latLngFromString(prefs.getString('ff_localLatLng'));
+    _localLatLng =
+        _latLngFromString(prefs.getString('ff_localLatLng')) ?? _localLatLng;
     _rangerList = prefs
             .getStringList('ff_rangerList')
             ?.map((path) => path.ref)
-            ?.toList() ??
+            .toList() ??
         _rangerList;
   }
 
-  SharedPreferences prefs;
+  late SharedPreferences prefs;
 
   String phone = '';
 
@@ -37,20 +38,23 @@ class FFAppState {
     prefs.setString('ff_localAddress', _value);
   }
 
-  LatLng _localLatLng;
-  LatLng get localLatLng => _localLatLng;
-  set localLatLng(LatLng _value) {
+  LatLng? _localLatLng;
+  LatLng? get localLatLng => _localLatLng;
+  set localLatLng(LatLng? _value) {
+    if (_value == null) {
+      return;
+    }
     _localLatLng = _value;
     prefs.setString('ff_localLatLng', _value.serialize());
   }
 
-  DateTime localScheduleDate;
+  DateTime? localScheduleDate;
 
   String localPreferedTime = '';
 
   String localPreferedDay = '';
 
-  DocumentReference localService;
+  DocumentReference? localService;
 
   String localServiceName = '';
 
@@ -99,7 +103,7 @@ class FFAppState {
   String localCity = '';
 }
 
-LatLng _latLngFromString(String val) {
+LatLng? _latLngFromString(String? val) {
   if (val == null) {
     return null;
   }

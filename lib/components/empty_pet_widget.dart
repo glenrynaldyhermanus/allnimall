@@ -1,14 +1,13 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../new_pet/new_pet_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EmptyPetWidget extends StatefulWidget {
-  const EmptyPetWidget({Key key}) : super(key: key);
+  const EmptyPetWidget({Key? key}) : super(key: key);
 
   @override
   _EmptyPetWidgetState createState() => _EmptyPetWidgetState();
@@ -60,12 +59,7 @@ class _EmptyPetWidgetState extends State<EmptyPetWidget> {
           padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
           child: FFButtonWidget(
             onPressed: () async {
-              await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => NewPetWidget(),
-                ),
-              );
+              context.pushNamed('NewPet');
             },
             text: 'Add',
             options: FFButtonOptions(

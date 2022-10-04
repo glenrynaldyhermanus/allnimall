@@ -8,11 +8,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class OrderServiceListWidget extends StatefulWidget {
   const OrderServiceListWidget({
-    Key key,
+    Key? key,
     this.petCategory,
   }) : super(key: key);
 
-  final String petCategory;
+  final String? petCategory;
 
   @override
   _OrderServiceListWidgetState createState() => _OrderServiceListWidgetState();
@@ -31,7 +31,7 @@ class _OrderServiceListWidgetState extends State<OrderServiceListWidget> {
             IconThemeData(color: FlutterFlowTheme.of(context).primaryColor),
         automaticallyImplyLeading: true,
         title: Text(
-          widget.petCategory,
+          widget.petCategory!,
           style: FlutterFlowTheme.of(context).title3.override(
                 fontFamily: 'RockoUltra',
                 color: FlutterFlowTheme.of(context).primaryColor,
@@ -72,7 +72,7 @@ class _OrderServiceListWidgetState extends State<OrderServiceListWidget> {
                         );
                       }
                       List<ServicesRecord> columnServicesRecordList =
-                          snapshot.data;
+                          snapshot.data!;
                       return SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -99,14 +99,14 @@ class _OrderServiceListWidgetState extends State<OrderServiceListWidget> {
                                           columnServicesRecord.reference);
                                       setState(() =>
                                           FFAppState().localServiceName =
-                                              columnServicesRecord.name);
-                                      setState(() =>
-                                          FFAppState().localServiceDesc =
-                                              columnServicesRecord.description);
+                                              columnServicesRecord.name!);
+                                      setState(() => FFAppState()
+                                              .localServiceDesc =
+                                          columnServicesRecord.description!);
                                       setState(() =>
                                           FFAppState().localServiceFee =
-                                              columnServicesRecord.fee);
-                                      Navigator.pop(context);
+                                              columnServicesRecord.fee!);
+                                      context.pop();
                                     },
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -159,7 +159,8 @@ class _OrderServiceListWidgetState extends State<OrderServiceListWidget> {
                                                       MainAxisSize.max,
                                                   children: [
                                                     Text(
-                                                      columnServicesRecord.name,
+                                                      columnServicesRecord
+                                                          .name!,
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -174,7 +175,7 @@ class _OrderServiceListWidgetState extends State<OrderServiceListWidget> {
                                                     Expanded(
                                                       child: Text(
                                                         columnServicesRecord
-                                                            .categoryName,
+                                                            .categoryName!,
                                                         maxLines: 1,
                                                         style:
                                                             FlutterFlowTheme.of(
@@ -196,7 +197,7 @@ class _OrderServiceListWidgetState extends State<OrderServiceListWidget> {
                                                     Text(
                                                       formatNumber(
                                                         columnServicesRecord
-                                                            .fee,
+                                                            .fee!,
                                                         formatType:
                                                             FormatType.decimal,
                                                         decimalType: DecimalType

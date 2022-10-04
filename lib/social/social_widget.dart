@@ -11,7 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:share_plus/share_plus.dart';
 
 class SocialWidget extends StatefulWidget {
-  const SocialWidget({Key key}) : super(key: key);
+  const SocialWidget({Key? key}) : super(key: key);
 
   @override
   _SocialWidgetState createState() => _SocialWidgetState();
@@ -62,7 +62,7 @@ class _SocialWidgetState extends State<SocialWidget> {
                 ),
               );
             }
-            List<PetPostsRecord> columnPetPostsRecordList = snapshot.data;
+            List<PetPostsRecord> columnPetPostsRecordList = snapshot.data!;
             return SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -82,7 +82,7 @@ class _SocialWidgetState extends State<SocialWidget> {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(18),
                               child: Image.network(
-                                columnPetPostsRecord.petPictureUrl,
+                                columnPetPostsRecord.petPictureUrl!,
                                 width: 36,
                                 height: 36,
                                 fit: BoxFit.cover,
@@ -96,7 +96,7 @@ class _SocialWidgetState extends State<SocialWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       16, 0, 0, 0),
                                   child: Text(
-                                    columnPetPostsRecord.petName,
+                                    columnPetPostsRecord.petName!,
                                     style: FlutterFlowTheme.of(context)
                                         .subtitle1
                                         .override(
@@ -110,7 +110,7 @@ class _SocialWidgetState extends State<SocialWidget> {
                                       16, 0, 0, 0),
                                   child: Text(
                                     dateTimeFormat('relative',
-                                        columnPetPostsRecord.createdAt),
+                                        columnPetPostsRecord.createdAt!),
                                     style:
                                         FlutterFlowTheme.of(context).bodyText1,
                                   ),
@@ -120,20 +120,20 @@ class _SocialWidgetState extends State<SocialWidget> {
                           ],
                         ),
                       ),
-                      if ((columnPetPostsRecord.text) != '')
+                      if (columnPetPostsRecord.text != '')
                         Padding(
                           padding:
                               EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
                           child: Text(
-                            columnPetPostsRecord.text,
+                            columnPetPostsRecord.text!,
                             style: FlutterFlowTheme.of(context).subtitle2,
                           ),
                         ),
-                      if ((columnPetPostsRecord.image) != '')
+                      if (columnPetPostsRecord.image != '')
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                           child: Image.network(
-                            columnPetPostsRecord.image,
+                            columnPetPostsRecord.image!,
                             width: double.infinity,
                             height: 240,
                             fit: BoxFit.cover,
@@ -151,7 +151,7 @@ class _SocialWidgetState extends State<SocialWidget> {
                                   onPressed: () async {
                                     final favedByElement = currentUserReference;
                                     final favedByUpdate = columnPetPostsRecord
-                                            .favedBy
+                                            .favedBy!
                                             .toList()
                                             .contains(favedByElement)
                                         ? FieldValue.arrayRemove(
@@ -164,7 +164,7 @@ class _SocialWidgetState extends State<SocialWidget> {
                                     await columnPetPostsRecord.reference
                                         .update(petPostsUpdateData);
                                   },
-                                  value: columnPetPostsRecord.favedBy
+                                  value: columnPetPostsRecord.favedBy!
                                       .toList()
                                       .contains(currentUserReference),
                                   onIcon: Icon(
@@ -180,13 +180,13 @@ class _SocialWidgetState extends State<SocialWidget> {
                                     size: 26,
                                   ),
                                 ),
-                                if ((functions.countFavs(columnPetPostsRecord
-                                        .favedBy
-                                        .toList())) >
+                                if (functions.countFavs(columnPetPostsRecord
+                                        .favedBy!
+                                        .toList()) >
                                     0)
                                   Text(
                                     functions
-                                        .countFavs(columnPetPostsRecord.favedBy
+                                        .countFavs(columnPetPostsRecord.favedBy!
                                             .toList())
                                         .toString(),
                                     style:

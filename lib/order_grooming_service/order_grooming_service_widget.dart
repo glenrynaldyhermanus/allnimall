@@ -3,14 +3,13 @@ import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../order_service_list/order_service_list_widget.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OrderGroomingServiceWidget extends StatefulWidget {
-  const OrderGroomingServiceWidget({Key key}) : super(key: key);
+  const OrderGroomingServiceWidget({Key? key}) : super(key: key);
 
   @override
   _OrderGroomingServiceWidgetState createState() =>
@@ -19,8 +18,8 @@ class OrderGroomingServiceWidget extends StatefulWidget {
 
 class _OrderGroomingServiceWidgetState
     extends State<OrderGroomingServiceWidget> {
-  String dropDownValue1;
-  String dropDownValue2;
+  String? dropDownValue1;
+  String? dropDownValue2;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -250,8 +249,8 @@ class _OrderGroomingServiceWidgetState
                         ],
                       ),
                     ),
-                    if ((FFAppState().localServiceName != null) &&
-                        (FFAppState().localServiceName != ''))
+                    if (FFAppState().localServiceName != null &&
+                        FFAppState().localServiceName != '')
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(25, 25, 25, 0),
                         child: Row(
@@ -345,7 +344,7 @@ class _OrderGroomingServiceWidgetState
                                         }
                                         List<ActivitiesRecord>
                                             columnActivitiesRecordList =
-                                            snapshot.data;
+                                            snapshot.data!;
                                         return Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: List.generate(
@@ -379,7 +378,7 @@ class _OrderGroomingServiceWidgetState
                                                                   10, 0, 0, 0),
                                                       child: Text(
                                                         columnActivitiesRecord
-                                                            .activity,
+                                                            .activity!,
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -414,13 +413,13 @@ class _OrderGroomingServiceWidgetState
                     padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 25),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        if ((FFAppState().localServiceName != null) &&
-                            (FFAppState().localServiceName != '')) {
+                        if (FFAppState().localServiceName != null &&
+                            FFAppState().localServiceName != '') {
                           setState(() => FFAppState().localServiceCategory =
-                              dropDownValue2);
+                              dropDownValue2!);
                           setState(() => FFAppState().localPetAmount =
                               functions.stringToInteger(dropDownValue1));
-                          Navigator.pop(context);
+                          context.pop();
                         } else {
                           await showDialog(
                             context: context,

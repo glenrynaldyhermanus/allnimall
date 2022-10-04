@@ -10,7 +10,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OrderGroomingLocationWidget extends StatefulWidget {
-  const OrderGroomingLocationWidget({Key key}) : super(key: key);
+  const OrderGroomingLocationWidget({Key? key}) : super(key: key);
 
   @override
   _OrderGroomingLocationWidgetState createState() =>
@@ -19,12 +19,12 @@ class OrderGroomingLocationWidget extends StatefulWidget {
 
 class _OrderGroomingLocationWidgetState
     extends State<OrderGroomingLocationWidget> {
-  LatLng googleMapsCenter;
-  final googleMapsController = Completer<GoogleMapController>();
-  TextEditingController textController;
-  var placePickerValue = FFPlace();
+  LatLng? currentUserLocationValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  LatLng currentUserLocationValue;
+  LatLng? googleMapsCenter;
+  final googleMapsController = Completer<GoogleMapController>();
+  TextEditingController? textController;
+  var placePickerValue = FFPlace();
 
   @override
   void initState() {
@@ -32,6 +32,12 @@ class _OrderGroomingLocationWidgetState
     getCurrentUserLocation(defaultLocation: LatLng(0.0, 0.0), cached: true)
         .then((loc) => setState(() => currentUserLocationValue = loc));
     textController = TextEditingController(text: placePickerValue.address);
+  }
+
+  @override
+  void dispose() {
+    textController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -102,6 +108,26 @@ class _OrderGroomingLocationWidgetState
                           topRight: Radius.circular(4.0),
                         ),
                       ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0x00000000),
+                          width: 0,
+                        ),
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(4.0),
+                          topRight: Radius.circular(4.0),
+                        ),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0x00000000),
+                          width: 0,
+                        ),
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(4.0),
+                          topRight: Radius.circular(4.0),
+                        ),
+                      ),
                       filled: true,
                       fillColor: Color(0x7FDBDCFF),
                     ),
@@ -163,7 +189,7 @@ class _OrderGroomingLocationWidgetState
                         controller: googleMapsController,
                         onCameraIdle: (latLng) => googleMapsCenter = latLng,
                         initialLocation: googleMapsCenter ??=
-                            currentUserLocationValue,
+                            currentUserLocationValue!,
                         markerColor: GoogleMarkerColor.violet,
                         mapType: MapType.normal,
                         style: GoogleMapStyle.standard,
@@ -208,12 +234,12 @@ class _OrderGroomingLocationWidgetState
                         if ((textController.text != null) &&
                             (textController.text.trim() != '')) {
                           setState(() =>
-                              FFAppState().localAddress = textController.text);
+                              FFAppState().localAddress = textController!.text);
                           setState(() =>
                               FFAppState().localLatLng = googleMapsCenter);
                           setState(() =>
                               FFAppState().localCity = placePickerValue.city);
-                          Navigator.pop(context);
+                          context.pop();
                         } else {
                           await showDialog(
                             context: context,

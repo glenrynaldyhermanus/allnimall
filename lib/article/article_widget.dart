@@ -9,11 +9,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class ArticleWidget extends StatefulWidget {
   const ArticleWidget({
-    Key key,
+    Key? key,
     this.article,
   }) : super(key: key);
 
-  final DocumentReference article;
+  final DocumentReference? article;
 
   @override
   _ArticleWidgetState createState() => _ArticleWidgetState();
@@ -46,7 +46,7 @@ class _ArticleWidgetState extends State<ArticleWidget> {
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(
         child: StreamBuilder<ArticlesRecord>(
-          stream: ArticlesRecord.getDocument(widget.article),
+          stream: ArticlesRecord.getDocument(widget.article!),
           builder: (context, snapshot) {
             // Customize what your widget looks like when it's loading.
             if (!snapshot.hasData) {
@@ -61,14 +61,14 @@ class _ArticleWidgetState extends State<ArticleWidget> {
                 ),
               );
             }
-            final columnArticlesRecord = snapshot.data;
+            final columnArticlesRecord = snapshot.data!;
             return SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.network(
-                    columnArticlesRecord.imageUrl,
+                    columnArticlesRecord.imageUrl!,
                     width: double.infinity,
                     height: 200,
                     fit: BoxFit.cover,
@@ -76,14 +76,14 @@ class _ArticleWidgetState extends State<ArticleWidget> {
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(20, 32, 20, 0),
                     child: Text(
-                      columnArticlesRecord.title,
+                      columnArticlesRecord.title!,
                       style: FlutterFlowTheme.of(context).title3,
                     ),
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(20, 32, 20, 0),
                     child: Html(
-                      data: columnArticlesRecord.article,
+                      data: columnArticlesRecord.article!,
                     ),
                   ),
                 ],

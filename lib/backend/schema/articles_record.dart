@@ -11,19 +11,16 @@ abstract class ArticlesRecord
   static Serializer<ArticlesRecord> get serializer =>
       _$articlesRecordSerializer;
 
-  @nullable
-  String get title;
+  String? get title;
 
-  @nullable
-  String get article;
+  String? get article;
 
-  @nullable
   @BuiltValueField(wireName: 'image_url')
-  String get imageUrl;
+  String? get imageUrl;
 
-  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference get reference;
+  DocumentReference? get ffRef;
+  DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(ArticlesRecordBuilder builder) => builder
     ..title = ''
@@ -35,11 +32,11 @@ abstract class ArticlesRecord
 
   static Stream<ArticlesRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   static Future<ArticlesRecord> getDocumentOnce(DocumentReference ref) => ref
       .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   ArticlesRecord._();
   factory ArticlesRecord([void Function(ArticlesRecordBuilder) updates]) =
@@ -48,17 +45,23 @@ abstract class ArticlesRecord
   static ArticlesRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
       serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference});
+          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
 }
 
 Map<String, dynamic> createArticlesRecordData({
-  String title,
-  String article,
-  String imageUrl,
-}) =>
-    serializers.toFirestore(
-        ArticlesRecord.serializer,
-        ArticlesRecord((a) => a
-          ..title = title
-          ..article = article
-          ..imageUrl = imageUrl));
+  String? title,
+  String? article,
+  String? imageUrl,
+}) {
+  final firestoreData = serializers.toFirestore(
+    ArticlesRecord.serializer,
+    ArticlesRecord(
+      (a) => a
+        ..title = title
+        ..article = article
+        ..imageUrl = imageUrl,
+    ),
+  );
+
+  return firestoreData;
+}

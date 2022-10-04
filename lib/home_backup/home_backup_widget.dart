@@ -1,4 +1,3 @@
-import '../article/article_widget.dart';
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/empty_order_widget.dart';
@@ -6,17 +5,13 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../help/help_widget.dart';
-import '../order_detail/order_detail_widget.dart';
-import '../order_grooming/order_grooming_widget.dart';
-import '../order_list/order_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeBackupWidget extends StatefulWidget {
-  const HomeBackupWidget({Key key}) : super(key: key);
+  const HomeBackupWidget({Key? key}) : super(key: key);
 
   @override
   _HomeBackupWidgetState createState() => _HomeBackupWidgetState();
@@ -52,12 +47,7 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
               size: 24,
             ),
             onPressed: () async {
-              await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HelpWidget(),
-                ),
-              );
+              context.pushNamed('Help');
             },
           ),
         ],
@@ -130,13 +120,7 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                     ),
                                     FFButtonWidget(
                                       onPressed: () async {
-                                        await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                OrderGroomingWidget(),
-                                          ),
-                                        );
+                                        context.pushNamed('OrderGrooming');
                                       },
                                       text: 'Panggil Groomer',
                                       options: FFButtonOptions(
@@ -226,7 +210,7 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                   );
                                 }
                                 List<ArticlesRecord> rowArticlesRecordList =
-                                    snapshot.data;
+                                    snapshot.data!;
                                 return Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: List.generate(
@@ -238,15 +222,13 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                           20, 0, 0, 0),
                                       child: InkWell(
                                         onTap: () async {
-                                          await Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  ArticleWidget(
-                                                article:
-                                                    rowArticlesRecord.reference,
-                                              ),
-                                            ),
+                                          context.pushNamed(
+                                            'Article',
+                                            queryParams: {
+                                              'article': serializeParam(
+                                                  rowArticlesRecord.reference,
+                                                  ParamType.DocumentReference),
+                                            }.withoutNulls,
                                           );
                                         },
                                         child: Container(
@@ -264,7 +246,7 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                                 borderRadius:
                                                     BorderRadius.circular(32),
                                                 child: Image.network(
-                                                  rowArticlesRecord.imageUrl,
+                                                  rowArticlesRecord.imageUrl!,
                                                   width: 240,
                                                   height: 160,
                                                   fit: BoxFit.cover,
@@ -274,7 +256,7 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(8, 8, 8, 0),
                                                 child: Text(
-                                                  rowArticlesRecord.title
+                                                  rowArticlesRecord.title!
                                                       .maybeHandleOverflow(
                                                           maxChars: 100),
                                                   textAlign: TextAlign.justify,
@@ -326,12 +308,7 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                         ),
                         InkWell(
                           onTap: () async {
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => OrderListWidget(),
-                              ),
-                            );
+                            context.pushNamed('OrderList');
                           },
                           child: Text(
                             'Lihat Semua',
@@ -370,7 +347,7 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                           );
                         }
                         List<OrdersRecord> columnOrdersRecordList =
-                            snapshot.data;
+                            snapshot.data!;
                         if (columnOrdersRecordList.isEmpty) {
                           return EmptyOrderWidget();
                         }
@@ -392,15 +369,13 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                         0, 20, 0, 20),
                                     child: InkWell(
                                       onTap: () async {
-                                        await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                OrderDetailWidget(
-                                              order:
-                                                  columnOrdersRecord.reference,
-                                            ),
-                                          ),
+                                        context.pushNamed(
+                                          'OrderDetail',
+                                          queryParams: {
+                                            'order': serializeParam(
+                                                columnOrdersRecord.reference,
+                                                ParamType.DocumentReference),
+                                          }.withoutNulls,
                                         );
                                       },
                                       child: Row(
@@ -436,7 +411,7 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    columnOrdersRecord.name,
+                                                    columnOrdersRecord.name!,
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .subtitle1
@@ -454,7 +429,7 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                                     dateTimeFormat(
                                                         'relative',
                                                         columnOrdersRecord
-                                                            .scheduledAt),
+                                                            .scheduledAt!),
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyText1
@@ -484,7 +459,7 @@ class _HomeBackupWidgetState extends State<HomeBackupWidget> {
                                                                     8, 4, 8, 0),
                                                         child: Text(
                                                           columnOrdersRecord
-                                                              .status,
+                                                              .status!,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyText1

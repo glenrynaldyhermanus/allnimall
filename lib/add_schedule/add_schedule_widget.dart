@@ -13,22 +13,22 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AddScheduleWidget extends StatefulWidget {
   const AddScheduleWidget({
-    Key key,
+    Key? key,
     this.petRef,
   }) : super(key: key);
 
-  final DocumentReference petRef;
+  final DocumentReference? petRef;
 
   @override
   _AddScheduleWidgetState createState() => _AddScheduleWidgetState();
 }
 
 class _AddScheduleWidgetState extends State<AddScheduleWidget> {
-  DateTime datePicked;
-  TextEditingController descFieldController;
-  TextEditingController nameFieldController;
-  String weightUnitSelectionValue;
-  TextEditingController weightFieldController;
+  DateTime? datePicked;
+  TextEditingController? descFieldController;
+  TextEditingController? nameFieldController;
+  String? weightUnitSelectionValue;
+  TextEditingController? weightFieldController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -40,9 +40,17 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
   }
 
   @override
+  void dispose() {
+    descFieldController?.dispose();
+    nameFieldController?.dispose();
+    weightFieldController?.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return FutureBuilder<PetsRecord>(
-      future: PetsRecord.getDocumentOnce(widget.petRef),
+      future: PetsRecord.getDocumentOnce(widget.petRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -57,7 +65,7 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
             ),
           );
         }
-        final addSchedulePetsRecord = snapshot.data;
+        final addSchedulePetsRecord = snapshot.data!;
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
@@ -109,6 +117,20 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                               ),
                               borderRadius: BorderRadius.circular(8),
                             ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
                             contentPadding:
                                 EdgeInsetsDirectional.fromSTEB(16, 24, 16, 24),
                           ),
@@ -137,6 +159,20 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                                 ),
                                 borderRadius: BorderRadius.circular(8),
                               ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
                               contentPadding: EdgeInsetsDirectional.fromSTEB(
                                   16, 24, 16, 24),
                             ),
@@ -159,7 +195,7 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                                   (l) =>
                                       l.name ==
                                       FFLocalizations.of(context).languageCode,
-                                  orElse: null,
+                                  orElse: () => LocaleType.en,
                                 ),
                               );
                             },
@@ -239,6 +275,20 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                                       ),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 2,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 2,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
                                     contentPadding:
                                         EdgeInsetsDirectional.fromSTEB(
                                             16, 24, 16, 24),
@@ -279,10 +329,11 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                             onPressed: () async {
                               final petSchedulesCreateData =
                                   createPetSchedulesRecordData(
-                                name: nameFieldController.text,
-                                description: descFieldController.text,
+                                name: nameFieldController!.text,
+                                description: descFieldController!.text,
                                 scheduledAt: datePicked,
-                                duration: int.parse(weightFieldController.text),
+                                duration:
+                                    int.parse(weightFieldController!.text),
                                 durationUnit: weightUnitSelectionValue,
                                 ownerUid: currentUserReference,
                                 createdAt: getCurrentTimestamp,
@@ -291,7 +342,7 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                               await PetSchedulesRecord.collection
                                   .doc()
                                   .set(petSchedulesCreateData);
-                              Navigator.pop(context);
+                              context.pop();
                             },
                             text: 'Add plan',
                             options: FFButtonOptions(

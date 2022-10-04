@@ -6,15 +6,15 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AddressFormWidget extends StatefulWidget {
-  const AddressFormWidget({Key key}) : super(key: key);
+  const AddressFormWidget({Key? key}) : super(key: key);
 
   @override
   _AddressFormWidgetState createState() => _AddressFormWidgetState();
 }
 
 class _AddressFormWidgetState extends State<AddressFormWidget> {
-  TextEditingController textController1;
-  TextEditingController textController2;
+  TextEditingController? textController1;
+  TextEditingController? textController2;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -22,6 +22,13 @@ class _AddressFormWidgetState extends State<AddressFormWidget> {
     super.initState();
     textController1 = TextEditingController();
     textController2 = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    textController1?.dispose();
+    textController2?.dispose();
+    super.dispose();
   }
 
   @override
@@ -75,6 +82,20 @@ class _AddressFormWidgetState extends State<AddressFormWidget> {
                           ),
                           borderRadius: BorderRadius.circular(8),
                         ),
+                        errorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0x00000000),
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0x00000000),
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                         contentPadding:
                             EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
                       ),
@@ -99,6 +120,20 @@ class _AddressFormWidgetState extends State<AddressFormWidget> {
                             borderSide: BorderSide(
                               color:
                                   FlutterFlowTheme.of(context).secondaryColor,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(8),

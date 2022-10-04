@@ -11,24 +11,20 @@ abstract class OrderServicesRecord
   static Serializer<OrderServicesRecord> get serializer =>
       _$orderServicesRecordSerializer;
 
-  @nullable
-  String get name;
+  String? get name;
 
-  @nullable
-  double get fee;
+  double? get fee;
 
-  @nullable
   @BuiltValueField(wireName: 'category_name')
-  String get categoryName;
+  String? get categoryName;
 
-  @nullable
-  int get quantity;
+  int? get quantity;
 
-  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference get reference;
+  DocumentReference? get ffRef;
+  DocumentReference get reference => ffRef!;
 
-  DocumentReference get parentReference => reference.parent.parent;
+  DocumentReference get parentReference => reference.parent.parent!;
 
   static void _initializeBuilder(OrderServicesRecordBuilder builder) => builder
     ..name = ''
@@ -36,7 +32,7 @@ abstract class OrderServicesRecord
     ..categoryName = ''
     ..quantity = 0;
 
-  static Query<Map<String, dynamic>> collection([DocumentReference parent]) =>
+  static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
           ? parent.collection('order_services')
           : FirebaseFirestore.instance.collectionGroup('order_services');
@@ -46,11 +42,11 @@ abstract class OrderServicesRecord
 
   static Stream<OrderServicesRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   static Future<OrderServicesRecord> getDocumentOnce(DocumentReference ref) =>
       ref.get().then(
-          (s) => serializers.deserializeWith(serializer, serializedData(s)));
+          (s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   OrderServicesRecord._();
   factory OrderServicesRecord(
@@ -60,19 +56,25 @@ abstract class OrderServicesRecord
   static OrderServicesRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
       serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference});
+          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
 }
 
 Map<String, dynamic> createOrderServicesRecordData({
-  String name,
-  double fee,
-  String categoryName,
-  int quantity,
-}) =>
-    serializers.toFirestore(
-        OrderServicesRecord.serializer,
-        OrderServicesRecord((o) => o
-          ..name = name
-          ..fee = fee
-          ..categoryName = categoryName
-          ..quantity = quantity));
+  String? name,
+  double? fee,
+  String? categoryName,
+  int? quantity,
+}) {
+  final firestoreData = serializers.toFirestore(
+    OrderServicesRecord.serializer,
+    OrderServicesRecord(
+      (o) => o
+        ..name = name
+        ..fee = fee
+        ..categoryName = categoryName
+        ..quantity = quantity,
+    ),
+  );
+
+  return firestoreData;
+}

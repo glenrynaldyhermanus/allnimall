@@ -9,18 +9,18 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CalendarPickerWidget extends StatefulWidget {
   const CalendarPickerWidget({
-    Key key,
+    Key? key,
     this.isAllowBackdate,
   }) : super(key: key);
 
-  final bool isAllowBackdate;
+  final bool? isAllowBackdate;
 
   @override
   _CalendarPickerWidgetState createState() => _CalendarPickerWidgetState();
 }
 
 class _CalendarPickerWidgetState extends State<CalendarPickerWidget> {
-  DateTimeRange calendarSelectedDay;
+  DateTimeRange? calendarSelectedDay;
 
   @override
   void initState() {
@@ -76,10 +76,10 @@ class _CalendarPickerWidgetState extends State<CalendarPickerWidget> {
                   ),
                   FFButtonWidget(
                     onPressed: () async {
-                      if (widget.isAllowBackdate) {
+                      if (widget.isAllowBackdate!) {
                         setState(() => FFAppState().localScheduleDate =
                             calendarSelectedDay?.start);
-                        Navigator.pop(context);
+                        context.pop();
                       } else {
                         if (functions
                             .isEarlierThanToday(calendarSelectedDay?.start)) {
@@ -103,7 +103,7 @@ class _CalendarPickerWidgetState extends State<CalendarPickerWidget> {
                         } else {
                           setState(() => FFAppState().localScheduleDate =
                               calendarSelectedDay?.start);
-                          Navigator.pop(context);
+                          context.pop();
                         }
                       }
                     },
@@ -135,7 +135,7 @@ class _CalendarPickerWidgetState extends State<CalendarPickerWidget> {
               weekFormat: false,
               weekStartsMonday: false, 
               initialDate: FFAppState().localScheduleDate,
-              onChange: (DateTimeRange newSelectedDate) {
+              onChange: (DateTimeRange? newSelectedDate) {
                 setState(() => calendarSelectedDay = newSelectedDate);
               },
               titleStyle: TextStyle(),

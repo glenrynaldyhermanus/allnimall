@@ -11,19 +11,16 @@ abstract class ServiceCategoriesRecord
   static Serializer<ServiceCategoriesRecord> get serializer =>
       _$serviceCategoriesRecordSerializer;
 
-  @nullable
-  String get name;
+  String? get name;
 
-  @nullable
-  String get type;
+  String? get type;
 
-  @nullable
   @BuiltValueField(wireName: 'is_active')
-  bool get isActive;
+  bool? get isActive;
 
-  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference get reference;
+  DocumentReference? get ffRef;
+  DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(ServiceCategoriesRecordBuilder builder) =>
       builder
@@ -36,12 +33,12 @@ abstract class ServiceCategoriesRecord
 
   static Stream<ServiceCategoriesRecord> getDocument(DocumentReference ref) =>
       ref.snapshots().map(
-          (s) => serializers.deserializeWith(serializer, serializedData(s)));
+          (s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   static Future<ServiceCategoriesRecord> getDocumentOnce(
           DocumentReference ref) =>
       ref.get().then(
-          (s) => serializers.deserializeWith(serializer, serializedData(s)));
+          (s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   ServiceCategoriesRecord._();
   factory ServiceCategoriesRecord(
@@ -51,17 +48,23 @@ abstract class ServiceCategoriesRecord
   static ServiceCategoriesRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
       serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference});
+          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
 }
 
 Map<String, dynamic> createServiceCategoriesRecordData({
-  String name,
-  String type,
-  bool isActive,
-}) =>
-    serializers.toFirestore(
-        ServiceCategoriesRecord.serializer,
-        ServiceCategoriesRecord((s) => s
-          ..name = name
-          ..type = type
-          ..isActive = isActive));
+  String? name,
+  String? type,
+  bool? isActive,
+}) {
+  final firestoreData = serializers.toFirestore(
+    ServiceCategoriesRecord.serializer,
+    ServiceCategoriesRecord(
+      (s) => s
+        ..name = name
+        ..type = type
+        ..isActive = isActive,
+    ),
+  );
+
+  return firestoreData;
+}

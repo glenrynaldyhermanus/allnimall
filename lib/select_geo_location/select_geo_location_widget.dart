@@ -10,7 +10,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SelectGeoLocationWidget extends StatefulWidget {
-  const SelectGeoLocationWidget({Key key}) : super(key: key);
+  const SelectGeoLocationWidget({Key? key}) : super(key: key);
 
   @override
   _SelectGeoLocationWidgetState createState() =>
@@ -18,11 +18,11 @@ class SelectGeoLocationWidget extends StatefulWidget {
 }
 
 class _SelectGeoLocationWidgetState extends State<SelectGeoLocationWidget> {
-  LatLng googleMapsCenter;
-  final googleMapsController = Completer<GoogleMapController>();
-  TextEditingController textController;
+  LatLng? currentUserLocationValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  LatLng currentUserLocationValue;
+  LatLng? googleMapsCenter;
+  final googleMapsController = Completer<GoogleMapController>();
+  TextEditingController? textController;
 
   @override
   void initState() {
@@ -31,6 +31,12 @@ class _SelectGeoLocationWidgetState extends State<SelectGeoLocationWidget> {
         .then((loc) => setState(() => currentUserLocationValue = loc));
     textController = TextEditingController(
         text: valueOrDefault(currentUserDocument?.orderAddress, ''));
+  }
+
+  @override
+  void dispose() {
+    textController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -84,7 +90,7 @@ class _SelectGeoLocationWidgetState extends State<SelectGeoLocationWidget> {
                         controller: googleMapsController,
                         onCameraIdle: (latLng) => googleMapsCenter = latLng,
                         initialLocation: googleMapsCenter ??=
-                            currentUserLocationValue,
+                            currentUserLocationValue!,
                         markerColor: GoogleMarkerColor.violet,
                         mapType: MapType.normal,
                         style: GoogleMapStyle.standard,
@@ -144,6 +150,20 @@ class _SelectGeoLocationWidgetState extends State<SelectGeoLocationWidget> {
                             ),
                             borderRadius: BorderRadius.circular(8),
                           ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                           contentPadding:
                               EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
                         ),
@@ -155,12 +175,12 @@ class _SelectGeoLocationWidgetState extends State<SelectGeoLocationWidget> {
                       child: FFButtonWidget(
                         onPressed: () async {
                           final customersUpdateData = createCustomersRecordData(
-                            orderAddress: textController.text,
+                            orderAddress: textController!.text,
                             orderLatlng: googleMapsCenter,
                           );
-                          await currentUserReference
+                          await currentUserReference!
                               .update(customersUpdateData);
-                          Navigator.pop(context);
+                          context.pop();
                         },
                         text: 'Save',
                         options: FFButtonOptions(

@@ -15,23 +15,29 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EditProfileWidget extends StatefulWidget {
-  const EditProfileWidget({Key key}) : super(key: key);
+  const EditProfileWidget({Key? key}) : super(key: key);
 
   @override
   _EditProfileWidgetState createState() => _EditProfileWidgetState();
 }
 
 class _EditProfileWidgetState extends State<EditProfileWidget> {
-  DateTime datePicked;
+  DateTime? datePicked;
   String uploadedFileUrl = '';
-  TextEditingController nameFieldController;
-  String sexSelectionValue;
+  TextEditingController? nameFieldController;
+  String? sexSelectionValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
     nameFieldController = TextEditingController(text: currentUserDisplayName);
+  }
+
+  @override
+  void dispose() {
+    nameFieldController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -68,7 +74,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  if ((FFAppState().isFeatureReady) == true)
+                  if (FFAppState().isFeatureReady == true)
                     Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -100,12 +106,12 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                   await uploadData(
                                                       m.storagePath, m.bytes))))
                                           .where((u) => u != null)
+                                          .map((u) => u!)
                                           .toList();
                                       ScaffoldMessenger.of(context)
                                           .hideCurrentSnackBar();
-                                      if (downloadUrls != null &&
-                                          downloadUrls.length ==
-                                              selectedMedia.length) {
+                                      if (downloadUrls.length ==
+                                          selectedMedia.length) {
                                         setState(() => uploadedFileUrl =
                                             downloadUrls.first);
                                         showUploadMessage(
@@ -132,7 +138,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   ),
                                 ),
                               ),
-                              if ((uploadedFileUrl) != '')
+                              if (uploadedFileUrl != '')
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(32),
                                   child: Image.network(
@@ -148,7 +154,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            if ((uploadedFileUrl) == '')
+                            if (uploadedFileUrl == '')
                               Text(
                                 'Change picture',
                                 style: FlutterFlowTheme.of(context).subtitle2,
@@ -181,6 +187,20 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             ),
                             borderRadius: BorderRadius.circular(8),
                           ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                           contentPadding:
                               EdgeInsetsDirectional.fromSTEB(16, 24, 16, 24),
                         ),
@@ -204,7 +224,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             (l) =>
                                 l.name ==
                                 FFLocalizations.of(context).languageCode,
-                            orElse: null,
+                            orElse: () => LocaleType.en,
                           ),
                         );
                       },
@@ -232,14 +252,13 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                if (!(functions.isDatePicked(datePicked)) ??
-                                    true)
+                                if (!functions.isDatePicked(datePicked))
                                   Expanded(
                                     child: AuthUserStreamWidget(
                                       child: Text(
                                         valueOrDefault<String>(
                                           dateTimeFormat('yMMMd',
-                                              currentUserDocument?.birthdate),
+                                              currentUserDocument!.birthdate),
                                           'Birthdate',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -247,7 +266,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                       ),
                                     ),
                                   ),
-                                if (functions.isDatePicked(datePicked) ?? true)
+                                if (functions.isDatePicked(datePicked))
                                   Expanded(
                                     child: Text(
                                       valueOrDefault<String>(
@@ -299,12 +318,12 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       onPressed: () async {
                         final customersUpdateData = createCustomersRecordData(
                           birthdate: datePicked,
-                          displayName: nameFieldController.text,
+                          displayName: nameFieldController!.text,
                           gender: sexSelectionValue,
                           photoUrl: uploadedFileUrl,
                         );
-                        await currentUserReference.update(customersUpdateData);
-                        Navigator.pop(context);
+                        await currentUserReference!.update(customersUpdateData);
+                        context.pop();
                       },
                       text: 'Save',
                       options: FFButtonOptions(

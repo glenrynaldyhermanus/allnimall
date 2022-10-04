@@ -11,41 +11,32 @@ abstract class PetSchedulesRecord
   static Serializer<PetSchedulesRecord> get serializer =>
       _$petSchedulesRecordSerializer;
 
-  @nullable
-  String get name;
+  String? get name;
 
-  @nullable
-  String get description;
+  String? get description;
 
-  @nullable
   @BuiltValueField(wireName: 'scheduled_at')
-  DateTime get scheduledAt;
+  DateTime? get scheduledAt;
 
-  @nullable
-  int get duration;
+  int? get duration;
 
-  @nullable
   @BuiltValueField(wireName: 'duration_unit')
-  String get durationUnit;
+  String? get durationUnit;
 
-  @nullable
   @BuiltValueField(wireName: 'pet_uid')
-  DocumentReference get petUid;
+  DocumentReference? get petUid;
 
-  @nullable
-  LatLng get location;
+  LatLng? get location;
 
-  @nullable
   @BuiltValueField(wireName: 'created_at')
-  DateTime get createdAt;
+  DateTime? get createdAt;
 
-  @nullable
   @BuiltValueField(wireName: 'owner_uid')
-  DocumentReference get ownerUid;
+  DocumentReference? get ownerUid;
 
-  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference get reference;
+  DocumentReference? get ffRef;
+  DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(PetSchedulesRecordBuilder builder) => builder
     ..name = ''
@@ -58,11 +49,11 @@ abstract class PetSchedulesRecord
 
   static Stream<PetSchedulesRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   static Future<PetSchedulesRecord> getDocumentOnce(DocumentReference ref) =>
       ref.get().then(
-          (s) => serializers.deserializeWith(serializer, serializedData(s)));
+          (s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   PetSchedulesRecord._();
   factory PetSchedulesRecord(
@@ -72,29 +63,35 @@ abstract class PetSchedulesRecord
   static PetSchedulesRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
       serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference});
+          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
 }
 
 Map<String, dynamic> createPetSchedulesRecordData({
-  String name,
-  String description,
-  DateTime scheduledAt,
-  int duration,
-  String durationUnit,
-  DocumentReference petUid,
-  LatLng location,
-  DateTime createdAt,
-  DocumentReference ownerUid,
-}) =>
-    serializers.toFirestore(
-        PetSchedulesRecord.serializer,
-        PetSchedulesRecord((p) => p
-          ..name = name
-          ..description = description
-          ..scheduledAt = scheduledAt
-          ..duration = duration
-          ..durationUnit = durationUnit
-          ..petUid = petUid
-          ..location = location
-          ..createdAt = createdAt
-          ..ownerUid = ownerUid));
+  String? name,
+  String? description,
+  DateTime? scheduledAt,
+  int? duration,
+  String? durationUnit,
+  DocumentReference? petUid,
+  LatLng? location,
+  DateTime? createdAt,
+  DocumentReference? ownerUid,
+}) {
+  final firestoreData = serializers.toFirestore(
+    PetSchedulesRecord.serializer,
+    PetSchedulesRecord(
+      (p) => p
+        ..name = name
+        ..description = description
+        ..scheduledAt = scheduledAt
+        ..duration = duration
+        ..durationUnit = durationUnit
+        ..petUid = petUid
+        ..location = location
+        ..createdAt = createdAt
+        ..ownerUid = ownerUid,
+    ),
+  );
+
+  return firestoreData;
+}

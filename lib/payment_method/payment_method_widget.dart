@@ -2,18 +2,17 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PaymentMethodWidget extends StatefulWidget {
   const PaymentMethodWidget({
-    Key key,
+    Key? key,
     this.order,
   }) : super(key: key);
 
-  final OrdersRecord order;
+  final OrdersRecord? order;
 
   @override
   _PaymentMethodWidgetState createState() => _PaymentMethodWidgetState();
@@ -64,7 +63,7 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
                           style: FlutterFlowTheme.of(context).subtitle2,
                         ),
                         Text(
-                          widget.order.amount.toString(),
+                          widget.order!.amount!.toString(),
                           textAlign: TextAlign.center,
                           style: FlutterFlowTheme.of(context).title1,
                         ),
@@ -257,7 +256,7 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               await launchURL(
-                                  'https://api.whatsapp.com/send?phone=6285163707044&text=Konfirmasi%pembayaran%20untuk%20order%20${widget.order.orderNo}');
+                                  'https://api.whatsapp.com/send?phone=6285163707044&text=Konfirmasi%pembayaran%20untuk%20order%20${widget.order!.orderNo}');
                             },
                             text: 'Konfirmasi Pembayaran',
                             options: FFButtonOptions(
@@ -284,13 +283,7 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      NavBarPage(initialPage: 'HomeBackup'),
-                                ),
-                              );
+                              context.pushNamed('HomeBackup');
                             },
                             text: 'Home',
                             options: FFButtonOptions(

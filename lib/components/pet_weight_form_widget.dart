@@ -6,20 +6,26 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PetWeightFormWidget extends StatefulWidget {
-  const PetWeightFormWidget({Key key}) : super(key: key);
+  const PetWeightFormWidget({Key? key}) : super(key: key);
 
   @override
   _PetWeightFormWidgetState createState() => _PetWeightFormWidgetState();
 }
 
 class _PetWeightFormWidgetState extends State<PetWeightFormWidget> {
-  String weightUnitSelectionValue;
-  TextEditingController weightFieldController;
+  String? weightUnitSelectionValue;
+  TextEditingController? weightFieldController;
 
   @override
   void initState() {
     super.initState();
     weightFieldController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    weightFieldController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -45,6 +51,20 @@ class _PetWeightFormWidgetState extends State<PetWeightFormWidget> {
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: FlutterFlowTheme.of(context).secondaryColor,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                errorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color(0x00000000),
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color(0x00000000),
                     width: 2,
                   ),
                   borderRadius: BorderRadius.circular(8),

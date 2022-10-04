@@ -10,20 +10,26 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ChatWidget extends StatefulWidget {
-  const ChatWidget({Key key}) : super(key: key);
+  const ChatWidget({Key? key}) : super(key: key);
 
   @override
   _ChatWidgetState createState() => _ChatWidgetState();
 }
 
 class _ChatWidgetState extends State<ChatWidget> {
-  TextEditingController textController;
+  TextEditingController? textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
     textController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    textController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -83,7 +89,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                         );
                       }
                       List<ChatMessagesRecord> columnChatMessagesRecordList =
-                          snapshot.data;
+                          snapshot.data!;
                       return Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,8 +101,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              if ((columnChatMessagesRecord.isResponse) ==
-                                  false)
+                              if (columnChatMessagesRecord.isResponse == false)
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 4, 0, 4),
@@ -135,7 +140,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 4, 0, 0),
                                             child: Text(
-                                              columnChatMessagesRecord.text,
+                                              columnChatMessagesRecord.text!,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .subtitle2
@@ -156,7 +161,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                               dateTimeFormat(
                                                   'Hm',
                                                   columnChatMessagesRecord
-                                                      .createdAt),
+                                                      .createdAt!),
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyText2
@@ -177,7 +182,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [],
                               ),
-                              if ((columnChatMessagesRecord.isResponse) == true)
+                              if (columnChatMessagesRecord.isResponse == true)
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 4, 0, 4),
@@ -206,7 +211,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                             children: [
                                               Text(
                                                 columnChatMessagesRecord
-                                                    .adminName,
+                                                    .adminName!,
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText2
@@ -236,7 +241,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 4, 0, 0),
                                             child: Text(
-                                              columnChatMessagesRecord.text,
+                                              columnChatMessagesRecord.text!,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .subtitle2
@@ -257,7 +262,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                               dateTimeFormat(
                                                   'Hm',
                                                   columnChatMessagesRecord
-                                                      .createdAt),
+                                                      .createdAt!),
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyText2
@@ -318,6 +323,20 @@ class _ChatWidgetState extends State<ChatWidget> {
                                 ),
                                 borderRadius: BorderRadius.circular(8),
                               ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
                               filled: true,
                               fillColor: Color(0xFFE7E7E7),
                             ),
@@ -338,7 +357,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                         onPressed: () async {
                           final chatMessagesCreateData =
                               createChatMessagesRecordData(
-                            text: textController.text,
+                            text: textController!.text,
                             isResponse: false,
                             createdAt: getCurrentTimestamp,
                             userName: currentUserDisplayName,
