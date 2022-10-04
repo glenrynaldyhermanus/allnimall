@@ -258,17 +258,24 @@ class _$OrdersRecordSerializer implements StructuredSerializer<OrdersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
     }
-    value = object.preferedTime;
+    value = object.preferredTime;
     if (value != null) {
       result
-        ..add('prefered_time')
+        ..add('preferred_time')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.preferedDay;
+    value = object.preferredDay;
     if (value != null) {
       result
-        ..add('prefered_day')
+        ..add('preferred_day')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.customerCity;
+    if (value != null) {
+      result
+        ..add('customer_city')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -434,12 +441,16 @@ class _$OrdersRecordSerializer implements StructuredSerializer<OrdersRecord> {
           result.rejectedAt = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime;
           break;
-        case 'prefered_time':
-          result.preferedTime = serializers.deserialize(value,
+        case 'preferred_time':
+          result.preferredTime = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'prefered_day':
-          result.preferedDay = serializers.deserialize(value,
+        case 'preferred_day':
+          result.preferredDay = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'customer_city':
+          result.customerCity = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'Document__Reference__Field':
@@ -525,9 +536,11 @@ class _$OrdersRecord extends OrdersRecord {
   @override
   final DateTime rejectedAt;
   @override
-  final String preferedTime;
+  final String preferredTime;
   @override
-  final String preferedDay;
+  final String preferredDay;
+  @override
+  final String customerCity;
   @override
   final DocumentReference<Object> reference;
 
@@ -569,8 +582,9 @@ class _$OrdersRecord extends OrdersRecord {
       this.rate,
       this.comment,
       this.rejectedAt,
-      this.preferedTime,
-      this.preferedDay,
+      this.preferredTime,
+      this.preferredDay,
+      this.customerCity,
       this.reference})
       : super._();
 
@@ -619,8 +633,9 @@ class _$OrdersRecord extends OrdersRecord {
         rate == other.rate &&
         comment == other.comment &&
         rejectedAt == other.rejectedAt &&
-        preferedTime == other.preferedTime &&
-        preferedDay == other.preferedDay &&
+        preferredTime == other.preferredTime &&
+        preferredDay == other.preferredDay &&
+        customerCity == other.customerCity &&
         reference == other.reference;
   }
 
@@ -644,25 +659,25 @@ class _$OrdersRecord extends OrdersRecord {
                                                                 $jc(
                                                                     $jc(
                                                                         $jc(
-                                                                            $jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc(0, createdAt.hashCode), orderNo.hashCode), petCategory.hashCode), name.hashCode), scheduledAt.hashCode), service.hashCode), quantity.hashCode), amount.hashCode), status.hashCode), customerAddress.hashCode), customerLatlng.hashCode), customerName.hashCode), paymentStatus.hashCode), prefferedTime.hashCode), discount.hashCode), notes.hashCode), startTime.hashCode), endTime.hashCode),
-                                                                                rangerName.hashCode),
-                                                                            rangerPhone.hashCode),
-                                                                        rangerProfilePicture.hashCode),
-                                                                    confirmedAt.hashCode),
-                                                                customerPhone.hashCode),
-                                                            onthewayAt.hashCode),
-                                                        customerUid.hashCode),
-                                                    rangerUid.hashCode),
-                                                workingAt.hashCode),
-                                            finishAt.hashCode),
-                                        paidAt.hashCode),
-                                    paymentMethod.hashCode),
-                                cancelledAt.hashCode),
-                            rate.hashCode),
-                        comment.hashCode),
-                    rejectedAt.hashCode),
-                preferedTime.hashCode),
-            preferedDay.hashCode),
+                                                                            $jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc(0, createdAt.hashCode), orderNo.hashCode), petCategory.hashCode), name.hashCode), scheduledAt.hashCode), service.hashCode), quantity.hashCode), amount.hashCode), status.hashCode), customerAddress.hashCode), customerLatlng.hashCode), customerName.hashCode), paymentStatus.hashCode), prefferedTime.hashCode), discount.hashCode), notes.hashCode), startTime.hashCode), endTime.hashCode), rangerName.hashCode),
+                                                                                rangerPhone.hashCode),
+                                                                            rangerProfilePicture.hashCode),
+                                                                        confirmedAt.hashCode),
+                                                                    customerPhone.hashCode),
+                                                                onthewayAt.hashCode),
+                                                            customerUid.hashCode),
+                                                        rangerUid.hashCode),
+                                                    workingAt.hashCode),
+                                                finishAt.hashCode),
+                                            paidAt.hashCode),
+                                        paymentMethod.hashCode),
+                                    cancelledAt.hashCode),
+                                rate.hashCode),
+                            comment.hashCode),
+                        rejectedAt.hashCode),
+                    preferredTime.hashCode),
+                preferredDay.hashCode),
+            customerCity.hashCode),
         reference.hashCode));
   }
 
@@ -703,8 +718,9 @@ class _$OrdersRecord extends OrdersRecord {
           ..add('rate', rate)
           ..add('comment', comment)
           ..add('rejectedAt', rejectedAt)
-          ..add('preferedTime', preferedTime)
-          ..add('preferedDay', preferedDay)
+          ..add('preferredTime', preferredTime)
+          ..add('preferredDay', preferredDay)
+          ..add('customerCity', customerCity)
           ..add('reference', reference))
         .toString();
   }
@@ -859,13 +875,18 @@ class OrdersRecordBuilder
   DateTime get rejectedAt => _$this._rejectedAt;
   set rejectedAt(DateTime rejectedAt) => _$this._rejectedAt = rejectedAt;
 
-  String _preferedTime;
-  String get preferedTime => _$this._preferedTime;
-  set preferedTime(String preferedTime) => _$this._preferedTime = preferedTime;
+  String _preferredTime;
+  String get preferredTime => _$this._preferredTime;
+  set preferredTime(String preferredTime) =>
+      _$this._preferredTime = preferredTime;
 
-  String _preferedDay;
-  String get preferedDay => _$this._preferedDay;
-  set preferedDay(String preferedDay) => _$this._preferedDay = preferedDay;
+  String _preferredDay;
+  String get preferredDay => _$this._preferredDay;
+  set preferredDay(String preferredDay) => _$this._preferredDay = preferredDay;
+
+  String _customerCity;
+  String get customerCity => _$this._customerCity;
+  set customerCity(String customerCity) => _$this._customerCity = customerCity;
 
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
@@ -913,8 +934,9 @@ class OrdersRecordBuilder
       _rate = $v.rate;
       _comment = $v.comment;
       _rejectedAt = $v.rejectedAt;
-      _preferedTime = $v.preferedTime;
-      _preferedDay = $v.preferedDay;
+      _preferredTime = $v.preferredTime;
+      _preferredDay = $v.preferredDay;
+      _customerCity = $v.customerCity;
       _reference = $v.reference;
       _$v = null;
     }
@@ -970,8 +992,9 @@ class OrdersRecordBuilder
             rate: rate,
             comment: comment,
             rejectedAt: rejectedAt,
-            preferedTime: preferedTime,
-            preferedDay: preferedDay,
+            preferredTime: preferredTime,
+            preferredDay: preferredDay,
+            customerCity: customerCity,
             reference: reference);
     replace(_$result);
     return _$result;
