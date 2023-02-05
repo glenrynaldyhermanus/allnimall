@@ -321,7 +321,7 @@ class _OrderGroomingScheduleWidgetState
                               FFAppState().localPreferedTime = dropDownValue1!);
                           setState(() =>
                               FFAppState().localPreferedDay = dropDownValue2!);
-                          context.pop();
+                          Navigator.pop(context);
                         } else {
                           await showDialog(
                             context: context,

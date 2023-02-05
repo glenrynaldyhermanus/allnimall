@@ -79,7 +79,7 @@ class _CalendarPickerWidgetState extends State<CalendarPickerWidget> {
                       if (widget.isAllowBackdate!) {
                         setState(() => FFAppState().localScheduleDate =
                             calendarSelectedDay?.start);
-                        context.pop();
+                        Navigator.pop(context);
                       } else {
                         if (functions
                             .isEarlierThanToday(calendarSelectedDay?.start)) {
@@ -103,7 +103,7 @@ class _CalendarPickerWidgetState extends State<CalendarPickerWidget> {
                         } else {
                           setState(() => FFAppState().localScheduleDate =
                               calendarSelectedDay?.start);
-                          context.pop();
+                          Navigator.pop(context);
                         }
                       }
                     },

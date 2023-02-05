@@ -104,7 +104,7 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 0),
                 child: Text(
-                  widget.phone!,
+                  "0${widget.phone!}",
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).subtitle1.override(
                         fontFamily: 'Cabin',
@@ -598,9 +598,8 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
               ),
               FFButtonWidget(
                 onPressed: () async {
-                  final phoneNumberVal = widget.phone;
-                  if (phoneNumberVal == null ||
-                      phoneNumberVal.isEmpty ||
+                  final phoneNumberVal = "+62${widget.phone}";
+                  if (phoneNumberVal.isEmpty ||
                       !phoneNumberVal.startsWith('+')) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(

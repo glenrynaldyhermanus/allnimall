@@ -80,170 +80,173 @@ class _OrderServiceListWidgetState extends State<OrderServiceListWidget> {
                               columnServicesRecordList.length, (columnIndex) {
                             final columnServicesRecord =
                                 columnServicesRecordList[columnIndex];
-                            return Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
-                              child: Container(
-                                width: double.infinity,
-                                height: 90,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 2, 0, 0),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      setState(() => FFAppState().localService =
-                                          columnServicesRecord.reference);
-                                      setState(() =>
-                                          FFAppState().localServiceName =
-                                              columnServicesRecord.name!);
-                                      setState(() => FFAppState()
-                                              .localServiceDesc =
-                                          columnServicesRecord.description!);
-                                      setState(() =>
-                                          FFAppState().localServiceFee =
-                                              columnServicesRecord.fee!);
-                                      context.pop();
-                                    },
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  20, 0, 0, 0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                width: 64,
-                                                height: 64,
-                                                decoration: BoxDecoration(
-                                                  color: Color(0xFFD8D1F2),
-                                                  borderRadius:
-                                                      BorderRadius.circular(12),
+                            if(columnServicesRecord.categoryName == widget.petCategory){
+                              return Padding(
+                                padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 90,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 2, 0, 0),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        setState(() => FFAppState().localService =
+                                            columnServicesRecord.reference);
+                                        setState(() =>
+                                        FFAppState().localServiceName =
+                                        columnServicesRecord.name!);
+                                        setState(() => FFAppState()
+                                            .localServiceDesc =
+                                        columnServicesRecord.description!);
+                                        setState(() =>
+                                        FFAppState().localServiceFee =
+                                        columnServicesRecord.fee!);
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                20, 0, 0, 0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                  width: 64,
+                                                  height: 64,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xFFD8D1F2),
+                                                    borderRadius:
+                                                    BorderRadius.circular(12),
+                                                  ),
+                                                  child: Align(
+                                                    alignment:
+                                                    AlignmentDirectional(
+                                                        0, 0),
+                                                    child: FaIcon(
+                                                      FontAwesomeIcons.cat,
+                                                      color: FlutterFlowTheme.of(
+                                                          context)
+                                                          .primaryColor,
+                                                      size: 28,
+                                                    ),
+                                                  ),
                                                 ),
-                                                child: Align(
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                          0, 0),
-                                                  child: FaIcon(
-                                                    FontAwesomeIcons.cat,
-                                                    color: FlutterFlowTheme.of(
+                                              ],
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Padding(
+                                              padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10, 0, 0, 0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                                children: [
+                                                  Row(
+                                                    mainAxisSize:
+                                                    MainAxisSize.max,
+                                                    children: [
+                                                      Text(
+                                                        columnServicesRecord
+                                                            .name!,
+                                                        style:
+                                                        FlutterFlowTheme.of(
                                                             context)
-                                                        .primaryColor,
-                                                    size: 28,
+                                                            .subtitle2,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                    MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          columnServicesRecord
+                                                              .categoryName!,
+                                                          maxLines: 1,
+                                                          style:
+                                                          FlutterFlowTheme.of(
+                                                              context)
+                                                              .bodyText2
+                                                              .override(
+                                                            fontFamily:
+                                                            'Cabin',
+                                                            fontSize: 12,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                    MainAxisSize.max,
+                                                    children: [
+                                                      Text(
+                                                        formatNumber(
+                                                          columnServicesRecord
+                                                              .fee!,
+                                                          formatType:
+                                                          FormatType.decimal,
+                                                          decimalType: DecimalType
+                                                              .commaDecimal,
+                                                          currency: 'Rp',
+                                                        ),
+                                                        style: FlutterFlowTheme
+                                                            .of(context)
+                                                            .bodyText1
+                                                            .override(
+                                                          fontFamily: 'Cabin',
+                                                          color: FlutterFlowTheme
+                                                              .of(context)
+                                                              .primaryColor,
+                                                          fontWeight:
+                                                          FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Expanded(
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 8, 0),
+                                                  child: Icon(
+                                                    Icons.chevron_right_outlined,
+                                                    color: Color(0xFF95A1AC),
+                                                    size: 24,
                                                   ),
                                                 ),
                                               ),
                                             ],
                                           ),
-                                        ),
-                                        Expanded(
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10, 0, 0, 0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      columnServicesRecord
-                                                          .name!,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .subtitle2,
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Expanded(
-                                                      child: Text(
-                                                        columnServicesRecord
-                                                            .categoryName!,
-                                                        maxLines: 1,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyText2
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Cabin',
-                                                                  fontSize: 12,
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      formatNumber(
-                                                        columnServicesRecord
-                                                            .fee!,
-                                                        formatType:
-                                                            FormatType.decimal,
-                                                        decimalType: DecimalType
-                                                            .commaDecimal,
-                                                        currency: 'Rp',
-                                                      ),
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText1
-                                                          .override(
-                                                            fontFamily: 'Cabin',
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryColor,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 8, 0),
-                                                child: Icon(
-                                                  Icons.chevron_right_outlined,
-                                                  color: Color(0xFF95A1AC),
-                                                  size: 24,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            );
+                              );
+                            }
+                            return SizedBox();
                           }),
                         ),
                       );

@@ -73,7 +73,7 @@ class _PetProfileWidgetState extends State<PetProfileWidget> {
                 ),
                 onPressed: () async {
                   await widget.petRef!.delete();
-                  context.pop();
+                  Navigator.of(context).pop();
                 },
               ),
             ],

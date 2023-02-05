@@ -342,7 +342,7 @@ class _AddScheduleWidgetState extends State<AddScheduleWidget> {
                               await PetSchedulesRecord.collection
                                   .doc()
                                   .set(petSchedulesCreateData);
-                              context.pop();
+                              Navigator.of(context).pop();
                             },
                             text: 'Add plan',
                             options: FFButtonOptions(

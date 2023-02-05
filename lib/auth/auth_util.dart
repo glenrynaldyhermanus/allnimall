@@ -1,3 +1,5 @@
+import 'package:allnimall/home/home_widget.dart';
+import 'package:allnimall/home_backup/home_backup_widget.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -129,16 +131,13 @@ Future beginPhoneAuth({
   // * Finally modify verificationCompleted below as instructed.
   return FirebaseAuth.instance.verifyPhoneNumber(
     phoneNumber: phoneNumber!,
-    timeout: Duration(seconds: 20),
+    timeout: Duration(seconds: 30),
     verificationCompleted: (phoneAuthCredential) async {
-      await FirebaseAuth.instance.signInWithCredential(phoneAuthCredential);
+      // await FirebaseAuth.instance.signInWithCredential(phoneAuthCredential);
       // If you've implemented auto-verification, navigate to home page or
       // onboarding page here manually. Uncomment the lines below and replace
       // DestinationPage() with the desired widget.
-      // await Navigator.push(
-      //   context,
-      //   MaterialPageRoute(builder: (_) => DestinationPage()),
-      // );
+      //context!.goNamed('HomeBackup');
     },
     verificationFailed: (e) {
       ScaffoldMessenger.of(context!).showSnackBar(SnackBar(

@@ -43,7 +43,7 @@ class _PhoneSignInWidgetState extends State<PhoneSignInWidget> {
             child: Image.asset(
               'assets/images/Artboard1_4.png',
               width: MediaQuery.of(context).size.width,
-              height: 64,
+              height: 56,
               fit: BoxFit.contain,
             ),
           ),
@@ -61,139 +61,140 @@ class _PhoneSignInWidgetState extends State<PhoneSignInWidget> {
               ),
             ],
           ),
-          Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Text(
-                            '+62',
-                            style:
-                                FlutterFlowTheme.of(context).subtitle1.override(
-                                      fontFamily: 'Cabin',
-                                      fontSize: 18,
+          Expanded(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Text(
+                              '+62',
+                              style:
+                                  FlutterFlowTheme.of(context).subtitle1.override(
+                                        fontFamily: 'Cabin',
+                                        fontSize: 18,
+                                      ),
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                                child: TextFormField(
+                                  controller: textController,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    labelText: 'No Handphone',
+                                    hintText: '811XXXXXXX',
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 0,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
                                     ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                              child: TextFormField(
-                                controller: textController,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText: 'No Handphone',
-                                  hintText: '811XXXXXXX',
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 0,
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 0,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
                                     ),
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(4.0),
-                                      topRight: Radius.circular(4.0),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 0,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
                                     ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 0,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    filled: true,
+                                    fillColor: Color(0x7FDBDCFF),
                                   ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 0,
-                                    ),
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(4.0),
-                                      topRight: Radius.circular(4.0),
-                                    ),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 0,
-                                    ),
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(4.0),
-                                      topRight: Radius.circular(4.0),
-                                    ),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 0,
-                                    ),
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(4.0),
-                                      topRight: Radius.circular(4.0),
-                                    ),
-                                  ),
-                                  filled: true,
-                                  fillColor: Color(0x7FDBDCFF),
+                                  style: FlutterFlowTheme.of(context).subtitle2,
+                                  keyboardType: TextInputType.phone,
                                 ),
-                                style: FlutterFlowTheme.of(context).subtitle2,
-                                keyboardType: TextInputType.phone,
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    FFButtonWidget(
-                      onPressed: () async {
-                        final phoneNumberVal = textController!.text;
-                        if (phoneNumberVal == null ||
-                            phoneNumberVal.isEmpty ||
-                            !phoneNumberVal.startsWith('+')) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('Silahkan isi nomor HP'),
-                            ),
-                          );
-                          return;
-                        }
-                        await beginPhoneAuth(
-                          context: context,
-                          phoneNumber: phoneNumberVal,
-                          onCodeSent: () async {
-                            context.goNamedAuth(
-                              'PhoneVerification',
-                              mounted,
-                              queryParams: {
-                                'phone': serializeParam(
-                                    textController!.text, ParamType.String),
-                              }.withoutNulls,
-                            );
-                          },
-                        );
-                      },
-                      text: 'Go!',
-                      options: FFButtonOptions(
-                        width: 64,
-                        height: 48,
-                        color: FlutterFlowTheme.of(context).primaryColor,
-                        textStyle: FlutterFlowTheme.of(context).title3.override(
-                              fontFamily: 'RockoUltra',
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600,
-                              useGoogleFonts: false,
-                            ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
+                          ],
                         ),
-                        borderRadius: BorderRadius.circular(12),
                       ),
-                    ),
-                  ],
+                      FFButtonWidget(
+                        onPressed: () async {
+                          final phoneNumberVal = "+62${textController!.text}";
+                          if (phoneNumberVal.isEmpty ||
+                              !phoneNumberVal.startsWith('+')) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Silahkan isi nomor HP'),
+                              ),
+                            );
+                            return;
+                          }
+                          await beginPhoneAuth(
+                            context: context,
+                            phoneNumber: phoneNumberVal,
+                            onCodeSent: () async {
+                              context.goNamedAuth(
+                                'PhoneVerification',
+                                mounted,
+                                queryParams: {
+                                  'phone': serializeParam(
+                                      textController!.text, ParamType.String),
+                                }.withoutNulls,
+                              );
+                            },
+                          );
+                        },
+                        text: 'Go!',
+                        options: FFButtonOptions(
+                          width: 64,
+                          height: 48,
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          textStyle: FlutterFlowTheme.of(context).title3.override(
+                                fontFamily: 'RockoUltra',
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w600,
+                                useGoogleFonts: false,
+                              ),
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

@@ -140,7 +140,7 @@ class _OrderGroomingServiceWidgetState
                                       0, 5, 0, 0),
                                   child: FlutterFlowDropDown(
                                     initialOption: dropDownValue2 ??= 'Kucing',
-                                    options: ['Kucing'],
+                                    options: ['Kucing','Anjing Small','Anjing Medium', 'Anjing Large'],
                                     onChanged: (val) =>
                                         setState(() => dropDownValue2 = val),
                                     width: double.infinity,
@@ -421,7 +421,7 @@ class _OrderGroomingServiceWidgetState
                               dropDownValue2!);
                           setState(() => FFAppState().localPetAmount =
                               functions.stringToInteger(dropDownValue1));
-                          context.pop();
+                          Navigator.pop(context);
                         } else {
                           await showDialog(
                             context: context,

@@ -239,7 +239,7 @@ class _OrderGroomingLocationWidgetState
                               FFAppState().localLatLng = googleMapsCenter);
                           setState(() =>
                               FFAppState().localCity = placePickerValue.city);
-                          context.pop();
+                          Navigator.of(context).pop();
                         } else {
                           await showDialog(
                             context: context,

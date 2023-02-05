@@ -70,6 +70,8 @@ class _SocialWidgetState extends State<SocialWidget> {
                     (columnIndex) {
                   final columnPetPostsRecord =
                       columnPetPostsRecordList[columnIndex];
+                  print("OUT >> ");
+                  print(columnPetPostsRecord.petPictureUrl);
                   return Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,12 +83,14 @@ class _SocialWidgetState extends State<SocialWidget> {
                           children: [
                             ClipRRect(
                               borderRadius: BorderRadius.circular(18),
-                              child: Image.network(
-                                columnPetPostsRecord.petPictureUrl!,
-                                width: 36,
-                                height: 36,
-                                fit: BoxFit.cover,
-                              ),
+                              child:
+                              columnPetPostsRecord.petPictureUrl != null && columnPetPostsRecord.petPictureUrl!.isNotEmpty ?
+                                Image.network(
+                                  columnPetPostsRecord.petPictureUrl!,
+                                  width: 36,
+                                  height: 36,
+                                  fit: BoxFit.cover,
+                                ) : Container(height: 36, width: 36,color: Colors.grey),
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.max,
