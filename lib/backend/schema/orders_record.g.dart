@@ -642,44 +642,47 @@ class _$OrdersRecord extends OrdersRecord {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc(
-                                    $jc(
-                                        $jc(
-                                            $jc(
-                                                $jc(
-                                                    $jc(
-                                                        $jc(
-                                                            $jc(
-                                                                $jc(
-                                                                    $jc(
-                                                                        $jc(
-                                                                            $jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc(0, createdAt.hashCode), orderNo.hashCode), petCategory.hashCode), name.hashCode), scheduledAt.hashCode), service.hashCode), quantity.hashCode), amount.hashCode), status.hashCode), customerAddress.hashCode), customerLatlng.hashCode), customerName.hashCode), paymentStatus.hashCode), prefferedTime.hashCode), discount.hashCode), notes.hashCode), startTime.hashCode), endTime.hashCode), rangerName.hashCode),
-                                                                                rangerPhone.hashCode),
-                                                                            rangerProfilePicture.hashCode),
-                                                                        confirmedAt.hashCode),
-                                                                    customerPhone.hashCode),
-                                                                onthewayAt.hashCode),
-                                                            customerUid.hashCode),
-                                                        rangerUid.hashCode),
-                                                    workingAt.hashCode),
-                                                finishAt.hashCode),
-                                            paidAt.hashCode),
-                                        paymentMethod.hashCode),
-                                    cancelledAt.hashCode),
-                                rate.hashCode),
-                            comment.hashCode),
-                        rejectedAt.hashCode),
-                    preferredTime.hashCode),
-                preferredDay.hashCode),
-            customerCity.hashCode),
-        ffRef.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, orderNo.hashCode);
+    _$hash = $jc(_$hash, petCategory.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, scheduledAt.hashCode);
+    _$hash = $jc(_$hash, service.hashCode);
+    _$hash = $jc(_$hash, quantity.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, status.hashCode);
+    _$hash = $jc(_$hash, customerAddress.hashCode);
+    _$hash = $jc(_$hash, customerLatlng.hashCode);
+    _$hash = $jc(_$hash, customerName.hashCode);
+    _$hash = $jc(_$hash, paymentStatus.hashCode);
+    _$hash = $jc(_$hash, prefferedTime.hashCode);
+    _$hash = $jc(_$hash, discount.hashCode);
+    _$hash = $jc(_$hash, notes.hashCode);
+    _$hash = $jc(_$hash, startTime.hashCode);
+    _$hash = $jc(_$hash, endTime.hashCode);
+    _$hash = $jc(_$hash, rangerName.hashCode);
+    _$hash = $jc(_$hash, rangerPhone.hashCode);
+    _$hash = $jc(_$hash, rangerProfilePicture.hashCode);
+    _$hash = $jc(_$hash, confirmedAt.hashCode);
+    _$hash = $jc(_$hash, customerPhone.hashCode);
+    _$hash = $jc(_$hash, onthewayAt.hashCode);
+    _$hash = $jc(_$hash, customerUid.hashCode);
+    _$hash = $jc(_$hash, rangerUid.hashCode);
+    _$hash = $jc(_$hash, workingAt.hashCode);
+    _$hash = $jc(_$hash, finishAt.hashCode);
+    _$hash = $jc(_$hash, paidAt.hashCode);
+    _$hash = $jc(_$hash, paymentMethod.hashCode);
+    _$hash = $jc(_$hash, cancelledAt.hashCode);
+    _$hash = $jc(_$hash, rate.hashCode);
+    _$hash = $jc(_$hash, comment.hashCode);
+    _$hash = $jc(_$hash, rejectedAt.hashCode);
+    _$hash = $jc(_$hash, preferredTime.hashCode);
+    _$hash = $jc(_$hash, preferredDay.hashCode);
+    _$hash = $jc(_$hash, customerCity.hashCode);
+    _$hash = $jc(_$hash, ffRef.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -1003,4 +1006,4 @@ class OrdersRecordBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint
